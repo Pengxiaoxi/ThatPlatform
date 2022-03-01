@@ -26,9 +26,6 @@ namespace ThatPlatform.Core.Web.Controllers
             timer.Change(0, Timeout.Infinite);
             Console.ReadKey();
 
-            Console.WriteLine();
-            Console.WriteLine();
-
             var result = new { code = 200, msg = "", isSucess = true, data = new object() };
             return result;
         }
