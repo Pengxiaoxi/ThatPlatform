@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="BaseInfo\" />
+    <Folder Include="BaseInfo\" />
+    <Folder Include="Platform_Ugly\" />
+    <Folder Include="Platform_YourPostman\" />
+  </ItemGroup>
+
+</Project>
