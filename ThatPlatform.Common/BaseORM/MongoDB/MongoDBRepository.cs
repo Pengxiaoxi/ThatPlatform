@@ -5,10 +5,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using ThatPlatform.Common.BaseDomain.Entity;
 
 namespace ThatPlatform.Common.BaseORM.MongoDB
 {
-    public class MongoDBRepository<T> : IMongoDBRepository<T> where T : class
+    public class MongoDBRepository<T> : IMongoDBRepository<T> where T : BaseEntity<string>
     {
         #region Fields
         /// <summary>
@@ -38,12 +39,20 @@ namespace ThatPlatform.Common.BaseORM.MongoDB
 
         public MongoDBRepository()
         {
-            var connectionString = "mongodb://FOne:4285a752cff1e9208493eaf680601e83@127.0.0.1:27017/?safe=true;maxPoolSize=5000";
+            var connectionString = "mongodb://42.192.5.10:27017";
             var client = new MongoClient(connectionString);
-            _database = client.GetDatabase("FOneCloudAppDB");
-            _collection = _database.GetCollection<T>(nameof(T));
-        }        
+            _database = client.GetDatabase("base_userinfo");
+            _collection = _database.GetCollection<T>(typeof(T).Name);
+        }
 
+
+        #region Async
+        
+
+        #endregion
+
+
+        #region Sync
         public IQueryable<T> All()
         {
             throw new NotImplementedException();
@@ -131,7 +140,12 @@ namespace ThatPlatform.Common.BaseORM.MongoDB
 
         public List<T> Find(Expression<Func<T, bool>> filter, ProjectionDefinition<T, T> projecter = null, SortDefinition<T> sorter = null)
         {
-            throw new NotImplementedException();
+            return this._collection.Find(filter).Project(projecter).Sort(sorter).ToList();
+        }
+
+        public async Task<List<T>> FindAsync(Expression<Func<T, bool>> filter, ProjectionDefinition<T, T> projecter = null, SortDefinition<T> sorter = null)
+        {
+            return this._collection.FindAsync(filter, new FindOptions<T, T>() { Projection = projecter, Sort = sorter }).Result.ToList();
         }
 
         public List<T> Find(Expression<Func<T, bool>> filter, ProjectionDefinition<T, T> projecter, string sorter)
@@ -199,6 +213,13 @@ namespace ThatPlatform.Common.BaseORM.MongoDB
             throw new NotImplementedException();
         }
 
+        public async Task InsertAsync(T entity)
+        {
+            await _collection.InsertOneAsync(entity);
+        }
+
+
+
         public void Insert(IEnumerable<T> entities)
         {
             throw new NotImplementedException();
@@ -257,6 +278,7 @@ namespace ThatPlatform.Common.BaseORM.MongoDB
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)
         {
             throw new NotImplementedException();
-        }
+        } 
+        #endregion
     }
 }

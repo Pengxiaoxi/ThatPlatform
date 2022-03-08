@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ThatPlatform.Common.BaseDomain.Svc
 {
-    internal class IBaseService
+    public interface IBaseService<T> where T : class
     {
+
     }
 }

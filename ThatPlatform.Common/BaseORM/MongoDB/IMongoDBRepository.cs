@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using ThatPlatform.Common.BaseDomain.Entity;
 
 namespace ThatPlatform.Common.BaseORM.MongoDB
 {
-    public interface IMongoDBRepository<T> : IBaseRepository<T> where T : class
+    public interface IMongoDBRepository<T> : IBaseRepository<T> where T : BaseEntity<string>
     {
         IMongoDatabase Database { get; }
 
@@ -72,6 +73,8 @@ namespace ThatPlatform.Common.BaseORM.MongoDB
         /// <param name="filter">条件Expression</param>
         /// <returns>结果列表</returns>
         List<T> Find(Expression<Func<T, bool>> filter, ProjectionDefinition<T, T> projecter = null, SortDefinition<T> sorter = null);
+
+        Task<List<T>> FindAsync(Expression<Func<T, bool>> filter, ProjectionDefinition<T, T> projecter = null, SortDefinition<T> sorter = null);
 
         /// <summary>
         /// 根据条件获取结果列表
@@ -275,6 +278,8 @@ namespace ThatPlatform.Common.BaseORM.MongoDB
         /// <returns></returns>
         BulkWriteResult BulkWrite(List<UpdateOneModel<T>> updates);
 
+
+        Task InsertAsync(T entity);
 
         #region Index
         /// <summary>

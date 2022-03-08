@@ -14,6 +14,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.OpenApi.Models;
+using ThatPlatform.BaseInfo.Applciation.Impl;
+using ThatPlatform.BaseInfo.Applciation.Svc;
+using ThatPlatform.Common.BaseORM.MongoDB;
+using ThatPlatform.Common.BaseORM;
+using ThatPlatform.BaseInfo.Domain.Entity;
 
 namespace ThatPlatform.Core.Web
 {
@@ -46,7 +51,11 @@ namespace ThatPlatform.Core.Web
             // 服务注册BackgroundService，项目启动则自动启动
             services.AddHostedService<DownloadTaskService>();
 
+            services.AddSingleton<IMongoDBRepository<UserInfo>, MongoDBRepository<UserInfo>>();
+
+            services.AddTransient<IUserService, UserService>();
             services.AddTransient<ITencentCloudDBOperateService, TencentCloudDBOperateService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,13 @@ namespace ThatPlatform.Common.BaseDomain.Entity
 {
     public class BaseEntity<T> where T : class
     {
-        public T Id { get; set; }
+        public ObjectId Id { get; set; }
 
 
+        public string CreatedUserId { get; set; }
+
+        public string CreatedUserName { get; set; }
+
+        public Guid TenantId { get; set; }
     }
 }
