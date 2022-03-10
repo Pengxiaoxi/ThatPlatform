@@ -55,6 +55,8 @@ namespace ThatPlatform.Common.BaseORM
         /// <param name="entities">Entities</param>
         void Insert(IEnumerable<T> entities);
 
+        Task InsertAsync(T entity);
+
         /// <summary>
         /// 批量插入数据，和Insert的区别是会判断插入大小不要超过GridFS大小
         /// 正常情况使用Insert

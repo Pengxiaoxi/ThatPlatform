@@ -279,8 +279,6 @@ namespace ThatPlatform.Common.BaseORM.MongoDB
         BulkWriteResult BulkWrite(List<UpdateOneModel<T>> updates);
 
 
-        Task InsertAsync(T entity);
-
         #region Index
         /// <summary>
         /// 创建索引，支持多个字段组合索引

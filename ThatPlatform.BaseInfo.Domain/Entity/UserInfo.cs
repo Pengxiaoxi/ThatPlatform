@@ -19,5 +19,6 @@ namespace ThatPlatform.BaseInfo.Domain.Entity
 
 
         public string CompanyId { get; set; }
+
     }
 }

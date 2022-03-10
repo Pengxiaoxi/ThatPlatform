@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,6 +31,11 @@ namespace ThatPlatform.BaseInfo.Applciation.Impl
         public async Task<List<UserInfo>> GetUserInfosAsync()
         {
             var userInfoList = await _userMgRepository.FindAsync(x => x.UserName != null);
+
+            //var userInfoStr = userInfoList.ToJson();
+            //Console.WriteLine(userInfoStr);
+            //var newUserInfoList = BsonSerializer.Deserialize<List<UserInfo>>(userInfoStr);
+
             return userInfoList;
         }
 
