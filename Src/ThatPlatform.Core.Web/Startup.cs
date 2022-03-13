@@ -12,9 +12,9 @@ using ThatPlatform.BaseInfo.Applciation.Impl;
 using ThatPlatform.BaseInfo.Applciation.Svc;
 using ThatPlatform.Common.BaseORM.MongoDB;
 using ThatPlatform.BaseInfo.Domain.Entity;
-using ThatPlatform.Common.Infrastructure.ServiceExtension.DI;
 using ThatPlatform.Common.BaseDomain.Svc;
 using ThatPlatform.Common.BaseDomain.Impl;
+using ThatPlatform.Common.Infrastructure.ServiceExtension.DI;
 
 namespace ThatPlatform.Core.Web
 {
