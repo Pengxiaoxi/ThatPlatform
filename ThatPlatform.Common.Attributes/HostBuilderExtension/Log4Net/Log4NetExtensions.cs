@@ -2,15 +2,18 @@
 using log4net.Config;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Text;
 
-namespace ThatPlatform.Core.Web
+namespace ThatPlatform.Common.Infrastructure.HostBuilderExtension.Log4Net
 {
     public static class Log4NetExtensions
     {
+        /// <summary>
+        /// UseLog4Net
+        /// </summary>
+        /// <param name="hostBuilder"></param>
+        /// <returns></returns>
         public static IHostBuilder UseLog4Net(this IHostBuilder hostBuilder)
         {
             var log4netRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
@@ -19,5 +22,4 @@ namespace ThatPlatform.Core.Web
             return hostBuilder;
         }
     }
-
 }

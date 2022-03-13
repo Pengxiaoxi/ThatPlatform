@@ -2,23 +2,19 @@ using ThatPlatform.Core.Web.Interface;
 using ThatPlatform.Core.Web.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.OpenApi.Models;
 using ThatPlatform.BaseInfo.Applciation.Impl;
 using ThatPlatform.BaseInfo.Applciation.Svc;
 using ThatPlatform.Common.BaseORM.MongoDB;
-using ThatPlatform.Common.BaseORM;
 using ThatPlatform.BaseInfo.Domain.Entity;
+using ThatPlatform.Common.Infrastructure.ServiceExtension.DI;
+using ThatPlatform.Common.BaseDomain.Svc;
+using ThatPlatform.Common.BaseDomain.Impl;
 
 namespace ThatPlatform.Core.Web
 {
@@ -51,11 +47,17 @@ namespace ThatPlatform.Core.Web
             // 服务注册BackgroundService，项目启动则自动启动
             services.AddHostedService<DownloadTaskService>();
 
-            services.AddSingleton<IMongoDBRepository<UserInfo>, MongoDBRepository<UserInfo>>();
+            #region DI
+            // 统一依赖注入
+            services.AddModules();
 
-            services.AddTransient<IUserService, UserService>();
+            // [Drop]
+            // 直接注入泛型 IRepository<> 与 IBaseService<> 接口（IBaseService<> 接口注入但子类未注入，故此方案不可行）
+            //services.AddTransient(typeof(IMongoDBRepository<>), typeof(MongoDBRepository<>));
+            //services.AddTransient(typeof(IBaseService<>), typeof(BaseService<>));
+
             services.AddTransient<ITencentCloudDBOperateService, TencentCloudDBOperateService>();
-
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

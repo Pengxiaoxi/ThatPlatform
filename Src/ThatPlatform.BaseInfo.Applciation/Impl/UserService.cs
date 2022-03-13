@@ -1,47 +1,36 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ThatPlatform.BaseInfo.Applciation.Svc;
 using ThatPlatform.BaseInfo.Domain.Entity;
+using ThatPlatform.Common.BaseDomain.Entity;
+using ThatPlatform.Common.BaseDomain.Impl;
+using ThatPlatform.Common.BaseDomain.Svc;
 using ThatPlatform.Common.BaseORM.MongoDB;
+using ThatPlatform.Common.Infrastructure.CommonAttributes;
 
 namespace ThatPlatform.BaseInfo.Applciation.Impl
 {
-    public class UserService : IUserService
+    /// <summary>
+    /// UserService
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    [DependsOn(typeof(IUserService<>))]
+    public class UserService<T> : BaseService<T>, IUserService<T> where T : BaseEntity<string>
     {
         #region Field
-        protected readonly IMongoDBRepository<UserInfo> _userMgRepository;
+        
         #endregion
 
         #region Ctor
-        public UserService(IMongoDBRepository<UserInfo> userMgRepository)
+        public UserService(IMongoDBRepository<T> repository) : base(repository)
         {
-            this._userMgRepository = userMgRepository;
+
         }
         #endregion
 
-        /// <summary>
-        /// GetUserInfosAsync
-        /// </summary>
-        /// <returns></returns>
-        public async Task<List<UserInfo>> GetUserInfosAsync()
-        {
-            var userInfoList = await _userMgRepository.FindAsync(x => x.UserName != null);
+        #region Public Method
 
-            //var userInfoStr = userInfoList.ToJson();
-            //Console.WriteLine(userInfoStr);
-            //var newUserInfoList = BsonSerializer.Deserialize<List<UserInfo>>(userInfoStr);
+        #endregion
 
-            return userInfoList;
-        }
-
-        public async Task InsertAsync(UserInfo userInfo)
-        {
-            await _userMgRepository.InsertAsync(userInfo);
-        }
     }
 }

@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ThatPlatform.BaseInfo.Domain.Entity;
+using ThatPlatform.Common.BaseDomain.Entity;
+using ThatPlatform.Common.BaseDomain.Svc;
 
 namespace ThatPlatform.BaseInfo.Applciation.Svc
 {
-    public interface IUserService
+    public interface IUserService<T> : IBaseService<T> where T : BaseEntity<string>
     {
-        Task<List<UserInfo>> GetUserInfosAsync();
 
-        Task InsertAsync(UserInfo userInfo);
     }
 }

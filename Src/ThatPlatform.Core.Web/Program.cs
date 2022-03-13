@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using ThatPlatform.Common.Infrastructure.HostBuilderExtension.Log4Net;
 
 namespace ThatPlatform.Core.Web
 {

@@ -104,7 +104,7 @@ namespace ThatPlatform.Core.Web
             //await _operateService.GetAndDownloadInstanceBackFile();
 
             // SDK
-            await _operateService.DownloadCloudDBBackupFile();
+            //await _operateService.DownloadCloudDBBackupFile();
         }
     }
 }

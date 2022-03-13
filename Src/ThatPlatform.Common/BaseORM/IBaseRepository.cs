@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ThatPlatform.Common.BaseORM
@@ -70,6 +69,8 @@ namespace ThatPlatform.Common.BaseORM
         /// </summary>
         /// <param name="entity">Entity</param>
         T Update(T entity);
+
+        Task<bool> UpdateAsync(T entity);
 
         /// <summary>
         /// Update entities

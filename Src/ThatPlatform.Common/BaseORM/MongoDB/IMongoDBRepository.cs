@@ -247,6 +247,8 @@ namespace ThatPlatform.Common.BaseORM.MongoDB
         /// <returns>DeleteResult</returns>
         DeleteResult Delete(FilterDefinition<T> filter, bool isOne = false);
 
+        Task DeleteAsync(T entity);
+
         /// <summary>
         /// 异步删除对象根据Expression表达式
         /// </summary>

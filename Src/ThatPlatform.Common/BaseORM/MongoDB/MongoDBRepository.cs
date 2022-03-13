@@ -6,9 +6,11 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using ThatPlatform.Common.BaseDomain.Entity;
+using ThatPlatform.Common.Infrastructure.CommonAttributes;
 
 namespace ThatPlatform.Common.BaseORM.MongoDB
 {
+    [DependsOn(typeof(IMongoDBRepository<>))]
     public class MongoDBRepository<T> : IMongoDBRepository<T> where T : BaseEntity<string>
     {
         #region Fields
@@ -91,6 +93,11 @@ namespace ThatPlatform.Common.BaseORM.MongoDB
         public int Delete(Expression<Func<T, bool>> expression, bool isOne = false)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task DeleteAsync(T entity)
+        {
+            await _collection.DeleteOneAsync(x => x.Id == entity.Id);
         }
 
         public Task<DeleteResult> DeleteAsync(Expression<Func<T, bool>> expression, bool isOne = false)
@@ -250,6 +257,12 @@ namespace ThatPlatform.Common.BaseORM.MongoDB
             throw new NotImplementedException();
         }
 
+        public async Task<bool> UpdateAsync(T entity)
+        {
+            var result = await _collection.ReplaceOneAsync(x => x.Id == entity.Id, entity);
+            return result.ModifiedCount > 0;
+        }
+
         public void Update(IEnumerable<T> entities)
         {
             throw new NotImplementedException();
@@ -278,7 +291,8 @@ namespace ThatPlatform.Common.BaseORM.MongoDB
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)
         {
             throw new NotImplementedException();
-        } 
+        }
+
         #endregion
     }
 }

@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\ThatPlatform.Common.Attributes\ThatPlatform.Common.Infrastructure.csproj" />
     <ProjectReference Include="..\ThatPlatform.BaseInfo.Applciation\ThatPlatform.BaseInfo.Applciation.csproj" />
     <ProjectReference Include="..\ThatPlatform.Common\ThatPlatform.Common.csproj" />
     <ProjectReference Include="..\ThatPlatform.Tools.UtilLibrary\ThatPlatform.Tools.UtilLibrary.csproj" />
