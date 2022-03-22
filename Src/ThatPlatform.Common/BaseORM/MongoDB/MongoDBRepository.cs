@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ThatPlatform.Common.BaseDomain.Entity;
 using ThatPlatform.Common.Infrastructure.CommonAttributes;
+using ThatPlatform.Common.Infrastructure.CommonAttributes.Database;
 
 namespace ThatPlatform.Common.BaseORM.MongoDB
 {
@@ -41,10 +42,26 @@ namespace ThatPlatform.Common.BaseORM.MongoDB
 
         public MongoDBRepository()
         {
-            var connectionString = "mongodb://42.192.5.10:27017";
+            //var connectionString = "mongodb://42.192.5.10:27017";
+            var connectionString = "mongodb://admin:admin996@42.192.5.10:27017";
+
             var client = new MongoClient(connectionString);
-            _database = client.GetDatabase("base_userinfo");
-            _collection = _database.GetCollection<T>(typeof(T).Name);
+
+            var mongoDbCollectionAttribute = typeof(T).GetCustomAttributes(typeof(MongoDbCollectionAttribute), true).
+                FirstOrDefault()
+                as MongoDbCollectionAttribute;
+
+            var databaseName = "tpf_default";
+            var collectionName = "defaultTable";
+            if (mongoDbCollectionAttribute is not null)
+            {
+                databaseName = mongoDbCollectionAttribute.DatabaseName;
+                collectionName = mongoDbCollectionAttribute.CollectionName;
+            }
+
+            _database = client.GetDatabase(databaseName);
+            _collection = _database.GetCollection<T>(collectionName);
+
         }
 
 
@@ -292,6 +309,10 @@ namespace ThatPlatform.Common.BaseORM.MongoDB
         {
             throw new NotImplementedException();
         }
+
+        #endregion
+
+        #region Private
 
         #endregion
     }
