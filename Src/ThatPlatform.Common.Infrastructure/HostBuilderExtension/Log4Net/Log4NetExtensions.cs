@@ -5,7 +5,7 @@ using System;
 using System.IO;
 using System.Reflection;
 
-namespace ThatPlatform.Common.Infrastructure.HostBuilderExtension.Log4Net
+namespace ThatPlatform.Infrastructure.HostBuilderExtension.Log4Net
 {
     public static class Log4NetExtensions
     {

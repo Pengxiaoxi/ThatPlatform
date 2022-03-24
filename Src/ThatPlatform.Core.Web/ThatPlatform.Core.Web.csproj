@@ -14,6 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.3.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
     <PackageReference Include="log4net" Version="2.0.13" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="5.0.1" />
@@ -24,7 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ThatPlatform.BaseInfo.Applciation\ThatPlatform.BaseInfo.Applciation.csproj" />
-    <ProjectReference Include="..\ThatPlatform.Common.Infrastructure\ThatPlatform.Common.Infrastructure.csproj" />
+    <ProjectReference Include="..\ThatPlatform.Common.Infrastructure\ThatPlatform.Infrastructure.csproj" />
     <ProjectReference Include="..\ThatPlatform.Common\ThatPlatform.Common.csproj" />
     <ProjectReference Include="..\ThatPlatform.Tools.UtilLibrary\ThatPlatform.Tools.UtilLibrary.csproj" />
   </ItemGroup>

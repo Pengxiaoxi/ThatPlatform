@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ThatPlatform.Common.Infrastructure.CommonAttributes.Database
+namespace ThatPlatform.Infrastructure.CommonAttributes.Database
 {
     /// <summary>
     /// DbCollectionAttribute
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class MongoDbCollectionAttribute : Attribute
     {
         /// <summary>

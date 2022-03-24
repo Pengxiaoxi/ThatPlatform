@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ThatPlatform.Common.BaseDomain.Entity;
-using ThatPlatform.Common.Infrastructure.CommonAttributes.Database;
+using ThatPlatform.Infrastructure.CommonAttributes.Database;
 
 namespace ThatPlatform.BaseInfo.Domain.Entity
 {

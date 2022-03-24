@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ThatPlatform.Common.Infrastructure.CommonAttributes
+namespace ThatPlatform.Infrastructure.CommonAttributes
 {
     /// <summary>
     /// DependsOnAttribute

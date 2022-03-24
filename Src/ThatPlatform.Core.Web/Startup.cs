@@ -8,13 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using Microsoft.OpenApi.Models;
-using ThatPlatform.BaseInfo.Applciation.Impl;
-using ThatPlatform.BaseInfo.Applciation.Svc;
-using ThatPlatform.Common.BaseORM.MongoDB;
-using ThatPlatform.BaseInfo.Domain.Entity;
-using ThatPlatform.Common.BaseDomain.Svc;
-using ThatPlatform.Common.BaseDomain.Impl;
-using ThatPlatform.Common.Infrastructure.ServiceExtension.DI;
+using ThatPlatform.Infrastructure.ServiceExtension.DI;
+using Autofac;
 
 namespace ThatPlatform.Core.Web
 {
@@ -45,16 +40,17 @@ namespace ThatPlatform.Core.Web
             services.AddSingleton<IConfiguration>(configuration);
 
             // 服务注册BackgroundService，项目启动则自动启动
-            services.AddHostedService<DownloadTaskService>();
+            //services.AddHostedService<DownloadTaskService>();
 
             #region DI
-            // 统一依赖注入
+            // 接口服务统一注册
             services.AddModules();
 
-            // [Drop]
-            // 直接注入泛型 IRepository<> 与 IBaseService<> 接口（IBaseService<> 接口注入但子类未注入，故此方案不可行）
+
+            #region .Net Core默认DI示例
             //services.AddTransient(typeof(IMongoDBRepository<>), typeof(MongoDBRepository<>));
-            //services.AddTransient(typeof(IBaseService<>), typeof(BaseService<>));
+            //services.AddTransient(typeof(IBaseService<>), typeof(BaseService<>)); 
+            #endregion
 
             services.AddTransient<ITencentCloudDBOperateService, TencentCloudDBOperateService>();
             #endregion
@@ -80,6 +76,11 @@ namespace ThatPlatform.Core.Web
             {
                 endpoints.MapControllers();
             });
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            //builder.ModuleRegister();
         }
     }
 }

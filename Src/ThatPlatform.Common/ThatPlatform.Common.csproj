@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ThatPlatform.Common.Infrastructure\ThatPlatform.Common.Infrastructure.csproj" />
+    <ProjectReference Include="..\ThatPlatform.Common.Infrastructure\ThatPlatform.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

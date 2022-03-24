@@ -6,8 +6,8 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using ThatPlatform.Common.BaseDomain.Entity;
-using ThatPlatform.Common.Infrastructure.CommonAttributes;
-using ThatPlatform.Common.Infrastructure.CommonAttributes.Database;
+using ThatPlatform.Infrastructure.CommonAttributes;
+using ThatPlatform.Infrastructure.CommonAttributes.Database;
 
 namespace ThatPlatform.Common.BaseORM.MongoDB
 {

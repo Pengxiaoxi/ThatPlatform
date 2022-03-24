@@ -6,7 +6,7 @@ using ThatPlatform.Common.BaseDomain.Entity;
 using ThatPlatform.Common.BaseDomain.Impl;
 using ThatPlatform.Common.BaseDomain.Svc;
 using ThatPlatform.Common.BaseORM.MongoDB;
-using ThatPlatform.Common.Infrastructure.CommonAttributes;
+using ThatPlatform.Infrastructure.CommonAttributes;
 
 namespace ThatPlatform.BaseInfo.Applciation.Impl
 {
