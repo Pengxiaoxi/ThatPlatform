@@ -6,9 +6,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using ThatPlatform.Common.Infrastructure.CommonAttributes;
+using ThatPlatform.Infrastructure.CommonAttributes;
 
-namespace ThatPlatform.Common.Infrastructure.ModuleManager
+namespace ThatPlatform.Infrastructure.ModuleManager
 {
     public class ThatPlatformModulManager
     {

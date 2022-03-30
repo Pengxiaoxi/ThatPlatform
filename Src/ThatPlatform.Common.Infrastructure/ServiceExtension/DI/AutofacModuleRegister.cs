@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Autofac;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +10,12 @@ using ThatPlatform.Infrastructure.ModuleManager;
 
 namespace ThatPlatform.Infrastructure.ServiceExtension.DI
 {
-    public static class ServicesCollectionExtension
+    /// <summary>
+    /// AutofacModuleRegister
+    /// </summary>
+    public static class AutofacModuleRegister
     {
-        /// <summary>
-        /// 依赖注入（反射实现）
-        /// </summary>
-        /// <param name="services"></param>
-        public static void AddModules(this IServiceCollection services)
+        public static void ModuleRegister(this ContainerBuilder builder)
         {
             var _modules = new ThatPlatformModulManager().LoadAllModules();
 
@@ -27,7 +26,9 @@ namespace ThatPlatform.Infrastructure.ServiceExtension.DI
                 {
                     foreach (var module in depandAttribute?.DependedModuleTypes)
                     {
-                        services.AddTransient(module, type);
+                        //builder.RegisterGeneric(module).As(type).InstancePerDependency();
+
+                        builder.RegisterType(module).As(type).InstancePerDependency();
                     }
                 }
             }
