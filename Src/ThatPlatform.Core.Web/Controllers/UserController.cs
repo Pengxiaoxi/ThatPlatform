@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ThatPlatform.BaseInfo.Applciation.Svc;
 using ThatPlatform.BaseInfo.Domain.Entity;
 using ThatPlatform.Common.BaseWebApi;
+using ThatPlatform.Infrastructure.DevExtensions.ServiceResult;
 
 namespace ThatPlatform.Core.Web.Controllers
 {
@@ -23,13 +24,14 @@ namespace ThatPlatform.Core.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<List<UserInfo>> GetUserList()
+        public async Task<ServiceResult<List<UserInfo>>> GetUserList()
         {
-            return await _userService.GetListAsync(x => x.UserName != null);
+            var result = await _userService.GetListAsync(x => x.UserName != null);
+            return ServiceResult<List<UserInfo>>.IsSuccess(result);
         }
 
         [HttpPost]
-        public async Task Insert()
+        public async Task<ServiceResult> Insert()
         {
             var userInfo = new UserInfo()
             {
@@ -37,21 +39,27 @@ namespace ThatPlatform.Core.Web.Controllers
                 UserPass = Guid.NewGuid().ToString(),
             };
             await _userService.InsertAsync(userInfo);
+
+            return ServiceResult.IsSuccess("Insert Success");
         }
 
         [HttpPost]
-        public async Task Update()
+        public async Task<ServiceResult> Update()
         {
             var users = await _userService.GetListAsync(x => x.UserName != null);
             users.FirstOrDefault().UserName = $"pxx_{new Random().Next(1, int.MaxValue)}";
             await _userService.UpdateAsync(users.FirstOrDefault());
+
+            return ServiceResult.IsSuccess("Update Success");
         }
 
         [HttpPost]
-        public async Task Delete()
+        public async Task<ServiceResult> Delete()
         {
             var deleteUsers = await _userService.GetListAsync(x => x.UserName != null);
             await _userService.DeleteAsync(deleteUsers.FirstOrDefault());
+
+            return ServiceResult.IsSuccess("Delete Success");
         }
     }
 }
