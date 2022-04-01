@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using ThatPlatform.Common.BaseDomain.Entity;
 using ThatPlatform.Common.BaseDomain.Svc;
 using ThatPlatform.Common.BaseORM.MongoDB;
+using ThatPlatform.Logging;
 
 namespace ThatPlatform.Common.BaseDomain.Impl
 {
@@ -16,12 +18,15 @@ namespace ThatPlatform.Common.BaseDomain.Impl
     public class BaseService<T> : IBaseService<T> where T: BaseEntity<string>
     {
         #region Field
+        protected readonly ILogging _logger;
         protected readonly IMongoDBRepository<T> _repository;
         #endregion
 
         #region Ctor
-        public BaseService(IMongoDBRepository<T> repository)
+        public BaseService(ILogging logger
+            , IMongoDBRepository<T> repository)
         {
+            _logger = logger;
             _repository = repository;
         }
         #endregion
@@ -29,7 +34,9 @@ namespace ThatPlatform.Common.BaseDomain.Impl
         #region Public Method
         public async Task<List<T>> GetListAsync(Expression<Func<T, bool>> filter)
         {
-            return await _repository.FindAsync(filter);
+            var result = await _repository.FindAsync(filter);
+            _logger.Info(JsonConvert.SerializeObject(result));
+            return result;
         }
 
         public async Task InsertAsync(T entity)

@@ -43,10 +43,14 @@ namespace ThatPlatform.Infrastructure.ModuleManager
 
         public List<Type> FindDependedModules()
         {
-            List<Type> _modules = AppDomain.CurrentDomain
-                .GetAssemblies()
+            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            assemblies = assemblies.Append(Assembly.Load("ThatPlatform.Logging")).ToArray();
+
+            
+
+            List<Type> _modules = assemblies
                 .SelectMany(x => x.GetTypes())
-                .Where(x => x.GetCustomAttributes(typeof(DependsOnAttribute), false).Length > 0
+                .Where(x => x.GetCustomAttributes(typeof(DependsOnAttribute), true).Length > 0
                             && x.IsClass 
                             && !x.IsAbstract)
                 .ToList();
