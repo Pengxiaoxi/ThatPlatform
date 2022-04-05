@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ThatPlatform.BaseInfo.Applciation.Dto;
 using ThatPlatform.BaseInfo.Applciation.Svc;
 using ThatPlatform.BaseInfo.Domain.Entity;
 using ThatPlatform.Common.BaseWebApi;
@@ -26,7 +27,7 @@ namespace ThatPlatform.Core.Web.Controllers
         [HttpPost]
         public async Task<ServiceResult<List<UserInfo>>> GetUserList()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
 
             var result = await _userService.GetListAsync(x => x.UserName != null);
             return ServiceResult<List<UserInfo>>.IsSuccess(result);
@@ -38,7 +39,7 @@ namespace ThatPlatform.Core.Web.Controllers
             var userInfo = new UserInfo()
             {
                 UserName = "pxx",
-                UserPass = Guid.NewGuid().ToString(),
+                Pass = Guid.NewGuid().ToString(),
             };
             await _userService.InsertAsync(userInfo);
 
@@ -63,5 +64,26 @@ namespace ThatPlatform.Core.Web.Controllers
 
             return ServiceResult.IsSuccess("Delete Success");
         }
+
+        #region About Login
+        [HttpPost]
+        public async Task<ServiceResult<LoginOutputDto>> Login(LoginInputDto loginDto)
+        {
+            var user = await _userService.FindOneAsync(x => x.Account == loginDto.Account);
+            if (user is null)
+            {
+                throw new Exception("User not exist");
+            }
+            if (user.Pass != loginDto.Pass)
+            {
+                throw new Exception("Login error, Pass error");
+            }
+
+            var result = new LoginOutputDto() { Account = user.Account, UserName = user.UserName };
+            return ServiceResult<LoginOutputDto>.IsSuccess(result);
+        } 
+        #endregion
+
+
     }
 }

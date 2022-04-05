@@ -10,6 +10,8 @@ namespace ThatPlatform.Common.BaseDomain.Svc
 {
     public interface IBaseService<T> where T : BaseEntity<string>
     {
+        Task<T> FindOneAsync(Expression<Func<T, bool>> filter);
+
         Task<List<T>> GetListAsync(Expression<Func<T, bool>> filter);
 
         Task InsertAsync(T entity);

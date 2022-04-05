@@ -33,6 +33,12 @@ namespace ThatPlatform.Common.BaseDomain.Impl
         #endregion
 
         #region Public Method
+        public async Task<T> FindOneAsync(Expression<Func<T, bool>> filter)
+        {
+            var result = await _repository.FindOneAsync(filter);
+            return result;
+        }
+
         public async Task<List<T>> GetListAsync(Expression<Func<T, bool>> filter)
         {
             var result = await _repository.FindAsync(filter);

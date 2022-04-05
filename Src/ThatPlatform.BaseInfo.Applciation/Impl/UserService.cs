@@ -29,7 +29,7 @@ namespace ThatPlatform.BaseInfo.Applciation.Impl
         #endregion
 
         #region Public Method
-
+        
         #endregion
 
     }
