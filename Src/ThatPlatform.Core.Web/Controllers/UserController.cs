@@ -26,6 +26,8 @@ namespace ThatPlatform.Core.Web.Controllers
         [HttpPost]
         public async Task<ServiceResult<List<UserInfo>>> GetUserList()
         {
+            throw new NotImplementedException();
+
             var result = await _userService.GetListAsync(x => x.UserName != null);
             return ServiceResult<List<UserInfo>>.IsSuccess(result);
         }

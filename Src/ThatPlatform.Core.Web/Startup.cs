@@ -10,6 +10,7 @@ using System;
 using Microsoft.OpenApi.Models;
 using ThatPlatform.Infrastructure.ServiceExtension.DI;
 using Autofac;
+using ThatPlatform.Infrastructure.CoreExtensions.HostBuilderExtensions;
 
 namespace ThatPlatform.Core.Web
 {
@@ -72,6 +73,9 @@ namespace ThatPlatform.Core.Web
             app.UseRouting();
 
             app.UseAuthorization();
+
+            // Òì³£Aop´¦Àí
+            app.UseExceptionHandlerMidd();
 
             app.UseEndpoints(endpoints =>
             {
