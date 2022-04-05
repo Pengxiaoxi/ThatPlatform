@@ -27,7 +27,7 @@ namespace ThatPlatform.Common.BaseDomain.Impl
             IMongoDBRepository<T> repository
             )
         {
-            //_log = LogManager.GetLogger(typeof(BaseService<T>));
+            _log = LogManager.GetLogger(typeof(BaseService<T>));
             _repository = repository;
         }
         #endregion
@@ -36,7 +36,7 @@ namespace ThatPlatform.Common.BaseDomain.Impl
         public async Task<List<T>> GetListAsync(Expression<Func<T, bool>> filter)
         {
             var result = await _repository.FindAsync(filter);
-            _log.Info(JsonConvert.SerializeObject(result));
+            //_log.Info(JsonConvert.SerializeObject(result));
             return result;
         }
 
