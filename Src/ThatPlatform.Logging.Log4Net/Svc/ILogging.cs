@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ThatPlatform.Logging
+namespace ThatPlatform.Logging.Log4Net
 {
-    public interface ILogging
+    public interface ILogging<T> where T : class
     {
         void Info(object message);
 

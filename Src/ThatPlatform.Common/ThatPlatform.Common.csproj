@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ThatPlatform.Logging\ThatPlatform.Logging.csproj" />
     <ProjectReference Include="..\ThatPlatform.Common.Infrastructure\ThatPlatform.Infrastructure.csproj" />
+    <ProjectReference Include="..\ThatPlatform.Logging.Log4Net\ThatPlatform.Logging.Log4Net.csproj" />
   </ItemGroup>
 
 </Project>

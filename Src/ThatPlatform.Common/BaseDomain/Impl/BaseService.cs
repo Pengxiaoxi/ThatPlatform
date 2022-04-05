@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using log4net;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -6,7 +7,6 @@ using System.Threading.Tasks;
 using ThatPlatform.Common.BaseDomain.Entity;
 using ThatPlatform.Common.BaseDomain.Svc;
 using ThatPlatform.Common.BaseORM.MongoDB;
-using ThatPlatform.Logging;
 
 namespace ThatPlatform.Common.BaseDomain.Impl
 {
@@ -18,15 +18,16 @@ namespace ThatPlatform.Common.BaseDomain.Impl
     public class BaseService<T> : IBaseService<T> where T: BaseEntity<string>
     {
         #region Field
-        protected readonly ILogging _logger;
+        protected readonly ILog _log;
         protected readonly IMongoDBRepository<T> _repository;
         #endregion
 
         #region Ctor
-        public BaseService(ILogging logger
-            , IMongoDBRepository<T> repository)
+        public BaseService(
+            IMongoDBRepository<T> repository
+            )
         {
-            _logger = logger;
+            //_log = LogManager.GetLogger(typeof(BaseService<T>));
             _repository = repository;
         }
         #endregion
@@ -35,7 +36,7 @@ namespace ThatPlatform.Common.BaseDomain.Impl
         public async Task<List<T>> GetListAsync(Expression<Func<T, bool>> filter)
         {
             var result = await _repository.FindAsync(filter);
-            _logger.Info(JsonConvert.SerializeObject(result));
+            _log.Info(JsonConvert.SerializeObject(result));
             return result;
         }
 

@@ -4,19 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ThatPlatform.Infrastructure.CommonAttributes;
-using ThatPlatform.Logging;
 
-namespace ThatPlatform.Logging
+namespace ThatPlatform.Logging.Log4Net.Impl
 {
-    [DependsOn(typeof(ILogging))]
-    public class Log4NetLogging : ILogging
+    public class Log4NetLogging<T> : ILog4NetLogging<T> where T : class
     {
         private readonly ILog _log;
 
-        public Log4NetLogging(ILog log)
+        public Log4NetLogging()
         {
-            _log = log;
+            _log = LogManager.GetLogger(typeof(T));
         }
 
         public void Info(object message)
@@ -58,6 +55,5 @@ namespace ThatPlatform.Logging
         {
             _log.Fatal(message);
         }
-
     }
 }

@@ -7,7 +7,6 @@ using ThatPlatform.Common.BaseDomain.Impl;
 using ThatPlatform.Common.BaseDomain.Svc;
 using ThatPlatform.Common.BaseORM.MongoDB;
 using ThatPlatform.Infrastructure.CommonAttributes;
-using ThatPlatform.Logging;
 
 namespace ThatPlatform.BaseInfo.Applciation.Impl
 {
@@ -19,12 +18,11 @@ namespace ThatPlatform.BaseInfo.Applciation.Impl
     public class UserService<T> : BaseService<T>, IUserService<T> where T : BaseEntity<string>
     {
         #region Field
-        
+
         #endregion
 
         #region Ctor
-        public UserService(ILogging logger
-            , IMongoDBRepository<T> repository) : base(logger, repository)
+        public UserService(IMongoDBRepository<T> repository) : base(repository)
         {
 
         }
