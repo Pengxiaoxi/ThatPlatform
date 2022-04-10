@@ -36,6 +36,20 @@ namespace ThatPlatform.Infrastructure.DevExtensions.ServiceResult
         /// </summary>
         /// <param name="result"></param>
         /// <param name="message"></param>
+        public static ServiceResult<T> IsFailed(T result = null, string message = "", Exception exception = null)
+        {
+            return new ServiceResult<T>()
+            {
+                Message = $"{message},Exception: {exception?.Message}, StackTrace: {exception?.StackTrace}",
+                Code = ServiceResultCodeEnum.Failed,
+            };
+        }
+
+        /// <summary>
+        /// 响应失败
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="message"></param>
         public static ServiceResult<T> IsFailed(T result = null, string message = "")
         {
             var innerResult = new ServiceResult<T>()

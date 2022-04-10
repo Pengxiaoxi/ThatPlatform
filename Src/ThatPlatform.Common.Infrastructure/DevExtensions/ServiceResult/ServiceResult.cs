@@ -53,11 +53,11 @@ namespace ThatPlatform.Infrastructure.DevExtensions.ServiceResult
         /// <param name="message"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static ServiceResult IsFailed(string message = "")
+        public static ServiceResult IsFailed(string message = "", Exception exception = null)
         {
             return new ServiceResult()
             {
-                Message = message,
+                Message = $"{message},Exception: {exception?.Message}, StackTrace: {exception?.StackTrace}",
                 Code = ServiceResultCodeEnum.Failed
             };
         }

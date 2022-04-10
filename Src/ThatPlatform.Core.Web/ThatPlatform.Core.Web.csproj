@@ -20,6 +20,7 @@
     <PackageReference Include="Autofac" Version="6.3.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
     <PackageReference Include="log4net" Version="2.0.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="5.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
@@ -32,6 +33,7 @@
     <ProjectReference Include="..\ThatPlatform.BaseInfo.Applciation\ThatPlatform.BaseInfo.Applciation.csproj" />
     <ProjectReference Include="..\ThatPlatform.Common.Infrastructure\ThatPlatform.Infrastructure.csproj" />
     <ProjectReference Include="..\ThatPlatform.Common\ThatPlatform.Common.csproj" />
+    <ProjectReference Include="..\ThatPlatform.Jobs\ThatPlatform.Jobs.QuartzNet.csproj" />
     <ProjectReference Include="..\ThatPlatform.Middlewares\ThatPlatform.Middlewares.csproj" />
     <ProjectReference Include="..\ThatPlatform.Tools.UtilLibrary\ThatPlatform.Tools.UtilLibrary.csproj" />
   </ItemGroup>

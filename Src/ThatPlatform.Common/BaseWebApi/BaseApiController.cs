@@ -25,5 +25,7 @@ namespace ThatPlatform.Common.BaseWebApi
             _log = LogManager.GetLogger(typeof(BaseApiController));
         }
         #endregion
+
+        
     }
 }

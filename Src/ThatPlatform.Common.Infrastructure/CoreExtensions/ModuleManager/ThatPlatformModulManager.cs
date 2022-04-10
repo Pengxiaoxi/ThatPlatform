@@ -44,7 +44,9 @@ namespace ThatPlatform.Infrastructure.ModuleManager
         public List<Type> FindDependedModules()
         {
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
-            assemblies = assemblies.Append(Assembly.Load("ThatPlatform.Logging.Log4Net")).ToArray();
+            //assemblies = assemblies.Append(Assembly.Load("ThatPlatform.Logging.Log4Net")).ToArray();
+
+            assemblies = assemblies.Append(Assembly.Load("ThatPlatform.Jobs.QuartzNet")).ToArray();
 
 
 

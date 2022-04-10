@@ -11,6 +11,10 @@ using Microsoft.OpenApi.Models;
 using ThatPlatform.Infrastructure.ServiceExtension.DI;
 using Autofac;
 using ThatPlatform.Infrastructure.CoreExtensions.HostBuilderExtensions;
+using Quartz.Spi;
+using ThatPlatform.Jobs.QuartzNet;
+using Quartz;
+using Quartz.Impl;
 
 namespace ThatPlatform.Core.Web
 {
@@ -26,7 +30,13 @@ namespace ThatPlatform.Core.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services
+                .AddControllers()
+                .AddNewtonsoftJson((builder) => 
+                {
+
+                })
+                ;
 
             services.AddSwaggerGen(c =>
             {
@@ -44,6 +54,9 @@ namespace ThatPlatform.Core.Web
             //services.AddHostedService<DownloadTaskService>();
 
             #region DI
+            //services.AddSingleton<IJobFactory, JobFactory>();
+            services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();//注册ISchedulerFactory的实例。
+
             // 接口服务统一注册
             services.AddModules();
 
