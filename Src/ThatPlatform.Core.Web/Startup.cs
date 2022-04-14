@@ -15,6 +15,8 @@ using Quartz.Spi;
 using ThatPlatform.Jobs.QuartzNet;
 using Quartz;
 using Quartz.Impl;
+using ProtoBuf.Grpc.Server;
+using ThatPlatform.Grpc.Server;
 
 namespace ThatPlatform.Core.Web
 {
@@ -37,6 +39,9 @@ namespace ThatPlatform.Core.Web
 
                 })
                 ;
+
+            // 注册启用了代码优先的Grpc服务
+            services.AddCodeFirstGrpc();
 
             services.AddSwaggerGen(c =>
             {
@@ -93,6 +98,9 @@ namespace ThatPlatform.Core.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                // TPF Grpc服务
+                endpoints.MapGrpcServiceOfTPF();
             });
         }
 

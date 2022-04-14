@@ -81,9 +81,16 @@ namespace ThatPlatform.Core.Web.Controllers
 
             var result = new LoginOutputDto() { Account = user.Account, UserName = user.UserName };
             return ServiceResult<LoginOutputDto>.IsSuccess(result);
-        } 
+        }
         #endregion
 
-
+        #region Grpc
+        [HttpPost]
+        public async Task<ServiceResult<object>> UserGrpcTest()
+        {
+            var result = await _userService.GetOrgByUser();
+            return ServiceResult<object>.IsSuccess(result);
+        }
+        #endregion
     }
 }

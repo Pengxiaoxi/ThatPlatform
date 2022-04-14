@@ -47,7 +47,8 @@ namespace ThatPlatform.Infrastructure.ModuleManager
             //assemblies = assemblies.Append(Assembly.Load("ThatPlatform.Logging.Log4Net")).ToArray();
 
             assemblies = assemblies.Append(Assembly.Load("ThatPlatform.Jobs.QuartzNet")).ToArray();
-
+            assemblies = assemblies.Append(Assembly.Load("ThatPlatform.Grpc.Client")).ToArray();
+            
 
 
             List<Type> _modules = assemblies

@@ -1,59 +1,101 @@
-﻿using Grpc.Net.Client;
+﻿using Grpc.Core;
+using Grpc.Net.Client;
+using Grpc.Net.Client.Configuration;
 using ProtoBuf.Grpc.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ThatPlatform.Infrastructure.CommonAttributes;
 
-namespace ThatPlatform.Grpc
+namespace ThatPlatform.Grpc.Client
 {
     /// <summary>
     /// GrpcService
+    /// https://docs.microsoft.com/zh-cn/aspnet/core/grpc/client?view=aspnetcore-5.0
+    /// https://docs.microsoft.com/zh-cn/aspnet/core/grpc/code-first?view=aspnetcore-5.0
     /// </summary>
+    [DependsOn(typeof(IGrpcService))]
     public class GrpcService : IGrpcService
     {
         private string ServerAddress = string.Empty;
         private GrpcChannel grpcChannel = null;
 
+        /// <summary>
+        /// 默认配置
+        /// </summary>
+        private MethodConfig defaultMethodConfig = new MethodConfig
+        {
+            Names = { MethodName.Default },
+            // 重试次数：3
+            RetryPolicy = new RetryPolicy
+            {
+                MaxAttempts = 3,
+                InitialBackoff = TimeSpan.FromSeconds(1),
+                MaxBackoff = TimeSpan.FromSeconds(5),
+                BackoffMultiplier = 1.5,
+                RetryableStatusCodes = { StatusCode.Unavailable }
+            }
+        };
+
+        /// <summary>
+        /// Ctor
+        /// </summary>
         public GrpcService()
         {
-            if (string.IsNullOrWhiteSpace(ServerAddress))
-            {
-                ServerAddress = ""; // TODO: get from default config
-            }
+            
         }
 
-        public void SetServer(string serverAddress)
+        /// <summary>
+        /// GetClient
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="serverAddress"></param>
+        /// <returns></returns>
+        public T GetClient<T>(string serverAddress) where T : class
         {
-            this.ServerAddress = serverAddress;
+            var client = this.GetChannel(serverAddress).CreateGrpcService<T>();
+            return client;
         }
 
-        public GrpcChannel GetChannel(string serverAddress = null)
+        /// <summary>
+        /// GetChannel
+        /// </summary>
+        /// <param name="serverAddress"></param>
+        /// <returns></returns>
+        public GrpcChannel GetChannel(string serverAddress)
         {
             if (!string.IsNullOrWhiteSpace(serverAddress))
             {
-                grpcChannel = GrpcChannel.ForAddress(ServerAddress);
+                if (this.ServerAddress != serverAddress)
+                {
+                    this.ServerAddress = serverAddress.Trim();
+                    this.GetChannelByOptions();
+                }
                 return grpcChannel;
             }
 
             if (grpcChannel == null)
             {
-                grpcChannel = GrpcChannel.ForAddress(ServerAddress);
+                this.GetChannelByOptions();
             }
             return grpcChannel;
         }
 
-        public T GetClient<T>() where T : class
+        /// <summary>
+        /// GetChannelByOptions
+        /// </summary>
+        private void GetChannelByOptions()
         {
-            var client = this.GetChannel().CreateGrpcService<T>();
-            return client;
+            this.grpcChannel = GrpcChannel.ForAddress(this.ServerAddress, new GrpcChannelOptions
+            {
+                ServiceConfig = new ServiceConfig { MethodConfigs = { defaultMethodConfig } }
+            });
         }
 
-        public T GetClient<T>(string serverAddress) where T : class
-        {
-            var client = this.GetChannel().CreateGrpcService<T>();
-            return client;
-        }
+        
+
+
     }
 }

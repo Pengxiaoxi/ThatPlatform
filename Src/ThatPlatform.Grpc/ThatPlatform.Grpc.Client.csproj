@@ -6,8 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="Grpc.Net.Client" Version="2.44.0" />
-    <PackageReference Include="protobuf-net.Grpc" Version="1.0.152" />
     <PackageReference Include="protobuf-net.Grpc.AspNetCore" Version="1.0.152" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ThatPlatform.Common.Infrastructure\ThatPlatform.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
