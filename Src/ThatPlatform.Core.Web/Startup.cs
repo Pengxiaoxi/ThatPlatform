@@ -40,8 +40,11 @@ namespace ThatPlatform.Core.Web
                 })
                 ;
 
+            services.AddGrpc();
             // 注册启用了代码优先的Grpc服务
             services.AddCodeFirstGrpc();
+            // 注册启用反射的服务
+            services.AddGrpcReflectionOfTPF();
 
             services.AddSwaggerGen(c =>
             {
@@ -73,6 +76,7 @@ namespace ThatPlatform.Core.Web
 
             services.AddTransient<ITencentCloudDBOperateService, TencentCloudDBOperateService>();
             #endregion
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,6 +86,7 @@ namespace ThatPlatform.Core.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+            Console.WriteLine($"EnvironmentName: {env.EnvironmentName}");
 
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ThatPlatform v1"));
@@ -101,6 +106,12 @@ namespace ThatPlatform.Core.Web
 
                 // TPF Grpc服务
                 endpoints.MapGrpcServiceOfTPF();
+
+                if (!env.IsProduction())
+                {
+                    // 添加Grpc反射服务终结点
+                    endpoints.MapGrpcReflectionService();
+                }
             });
         }
 

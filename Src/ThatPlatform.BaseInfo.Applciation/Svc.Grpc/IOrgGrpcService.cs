@@ -4,12 +4,14 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using ThatPlatform.BaseInfo.Applciation.Dto.Grpc;
 
 namespace ThatPlatform.BaseInfo.Applciation.Svc.Grpc
 {
+    [ServiceContract(Name = "IOrganizationService")]
     public interface IOrgGrpcService
     {
         [OperationContract]
-        Task<object> GetOrganization(object req);
+        Task<GetOrgResposne> GetOrganization(GetOrgRequest req);
     }
 }
