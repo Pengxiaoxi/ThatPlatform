@@ -1,14 +1,9 @@
 ﻿using Grpc.Core;
 using Grpc.Net.Client;
 using Grpc.Net.Client.Configuration;
-using Microsoft.Extensions.Logging;
 using ProtoBuf.Grpc.Client;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using ThatPlatform.Infrastructure.CommonAttributes;
 
 namespace ThatPlatform.Grpc.Client

@@ -41,7 +41,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThatPlatform.Logging.Log4Ne
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThatPlatform.Middlewares", "ThatPlatform.Middlewares\ThatPlatform.Middlewares.csproj", "{BD0CB82E-C81E-4043-9EB7-64BE0E87AD17}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThatPlatform.Grpc.Client", "ThatPlatform.Grpc\ThatPlatform.Grpc.Client.csproj", "{A80EA55F-C3FC-4E25-BD0F-2760514C3FB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThatPlatform.Grpc.Client", "ThatPlatform.Grpc.Client\ThatPlatform.Grpc.Client.csproj", "{A80EA55F-C3FC-4E25-BD0F-2760514C3FB5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThatPlatform.Grpc.Server", "ThatPlatform.Grpc.Server\ThatPlatform.Grpc.Server.csproj", "{9BB2DF3D-232B-4B69-86F2-71B1320B30D4}"
 EndProject
