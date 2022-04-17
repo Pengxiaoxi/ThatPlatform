@@ -1,16 +1,14 @@
 ﻿using Newtonsoft.Json;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using ThatPlatform.BaseInfo.Applciation.Dto.Grpc;
 using ThatPlatform.BaseInfo.Applciation.Svc;
-using ThatPlatform.BaseInfo.Applciation.Svc.Grpc;
-using ThatPlatform.BaseInfo.Domain.Entity;
+using ThatPlatform.BaseInfo.GrpcApplciation.Client.Dto;
+using ThatPlatform.BaseInfo.GrpcApplciation.Client.Svc;
 using ThatPlatform.Common.BaseDomain.Entity;
 using ThatPlatform.Common.BaseDomain.Impl;
-using ThatPlatform.Common.BaseDomain.Svc;
 using ThatPlatform.Common.BaseORM.MongoDB;
 using ThatPlatform.Grpc.Client;
 using ThatPlatform.Infrastructure.CommonAttributes;
+using ThatPlatform.Tools.UtilLibrary;
 
 namespace ThatPlatform.BaseInfo.Applciation.Impl
 {
@@ -38,20 +36,18 @@ namespace ThatPlatform.BaseInfo.Applciation.Impl
         #region Public Method
 
         /// <summary>
-        /// GetOrgByUser
+        /// GetOrgByUserByGrpc
         /// </summary>
         /// <returns></returns>
-        public async Task<object> GetOrgByUser()
+        public async Task<object> GetOrgByUserByGrpc()
         {
-            var req = new GetOrgRequest() { OrgName = "pxx-Grpc" };
-            var orgGrpcServerAddress = "http://localhost:8001";
+            var req = new GetOrgRequest() { OrgName = "pxx" };
+            
+            var orgGrpcServerAddress = ConfigHelper.GetConfig("gRpc:Organization");
+            var _client = _grpcService.GetClient<IOrganizationService>(orgGrpcServerAddress);
+            var rsp = await _client.GetOrganization(req);
 
-            var channel = _grpcService.GetChannel(orgGrpcServerAddress);
-            var client = _grpcService.GetClient<IOrgGrpcService>(orgGrpcServerAddress);
-            var rsp = client.GetOrganization(req);
-
-            //System.Console.WriteLine(JsonConvert.SerializeObject(rsp)); ;
-
+            System.Console.WriteLine(JsonConvert.SerializeObject(rsp)); ;
             return await Task.FromResult(rsp);
         }
         #endregion

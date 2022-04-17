@@ -40,23 +40,17 @@ namespace ThatPlatform.Core.Web
                 })
                 ;
 
-            services.AddGrpc();
-            // 注册启用了代码优先的Grpc服务
-            services.AddCodeFirstGrpc();
-            // 注册启用反射的服务
-            services.AddGrpcReflectionOfTPF();
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ThatPlatform", Version = "v1" });
             });
 
             // 添加appsettings
-            var configuration = new ConfigurationBuilder()
-                .SetBasePath(AppContext.BaseDirectory)
-                .Add(new JsonConfigurationSource { Path = "appsettings.json", Optional = false, ReloadOnChange = true }) //可以直接读目录里的json文件，修改后自动生效
-                .Build();
-            services.AddSingleton<IConfiguration>(configuration);
+            //var configuration = new ConfigurationBuilder()
+            //    .SetBasePath(AppContext.BaseDirectory)
+            //    .Add(new JsonConfigurationSource { Path = "appsettings.json", Optional = false, ReloadOnChange = true }) //可以直接读目录里的json文件，修改后自动生效
+            //    .Build();
+            //services.AddSingleton<IConfiguration>(configuration);
 
             // 服务注册BackgroundService，项目启动则自动启动
             //services.AddHostedService<DownloadTaskService>();
@@ -75,6 +69,15 @@ namespace ThatPlatform.Core.Web
             #endregion
 
             services.AddTransient<ITencentCloudDBOperateService, TencentCloudDBOperateService>();
+
+            #region gRpc Server
+            //services.AddGrpc();
+            //// 注册启用了代码优先的Grpc服务
+            //services.AddCodeFirstGrpc();
+            //// 注册启用反射的服务
+            //services.AddGrpcReflectionOfTPF(); 
+            #endregion
+
             #endregion
 
         }
@@ -104,14 +107,16 @@ namespace ThatPlatform.Core.Web
             {
                 endpoints.MapControllers();
 
-                // TPF Grpc服务
-                endpoints.MapGrpcServiceOfTPF();
+                #region gRpc Server
+                //// TPF Grpc服务
+                //endpoints.MapGrpcServiceOfTPF();
 
-                if (!env.IsProduction())
-                {
-                    // 添加Grpc反射服务终结点
-                    endpoints.MapGrpcReflectionService();
-                }
+                //if (!env.IsProduction())
+                //{
+                //    // 添加Grpc反射服务终结点
+                //    endpoints.MapGrpcReflectionService();
+                //} 
+                #endregion
             });
         }
 

@@ -4,10 +4,14 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using ProtoBuf.Grpc.Server;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ThatPlatform.Grpc.Server;
+using ThatPlatform.Infrastructure.CoreExtensions.HostBuilderExtensions;
 
 namespace ThatPlatform.Ugly.Web
 {
@@ -23,7 +27,21 @@ namespace ThatPlatform.Ugly.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            services.AddControllers();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ThatPlatform.Ugly", Version = "v1" });
+            });
+
+            #region gRpc Server
+            services.AddGrpc();
+            // 注册启用了代码优先的Grpc服务
+            services.AddCodeFirstGrpc();
+            // 注册启用反射的服务
+            services.AddGrpcReflectionOfTPF();
+            #endregion
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +57,12 @@ namespace ThatPlatform.Ugly.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            Console.WriteLine($"EnvironmentName: {env.EnvironmentName}");
+
+            #region Swagger
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ThatPlatform.Ugly v1")); 
+            #endregion
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -47,9 +71,23 @@ namespace ThatPlatform.Ugly.Web
 
             app.UseAuthorization();
 
+            // 异常Aop处理
+            app.UseExceptionHandlerMidd();
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapControllers();
+
+                #region gRpc Server
+                // TPF Grpc服务
+                endpoints.MapGrpcServiceOfTPF();
+
+                if (!env.IsProduction())
+                {
+                    // 添加Grpc反射服务终结点
+                    endpoints.MapGrpcReflectionService();
+                }
+                #endregion
             });
         }
     }

@@ -23,34 +23,21 @@ namespace ThatPlatform.Tools.UtilLibrary
         }
 
         /// <summary>
-        /// GetConfig TODO: 待测试
+        /// GetConfig
         /// </summary>
-        /// <param name="masterName"></param>
-        /// <param name="sectionName"></param>
+        /// <param name="configSectionName"></param>
         /// <returns></returns>
-        public static string GetConfig(string masterName, string sectionName = null)
+        public static string GetConfig(string configSectionName)
         {
-            if(string.IsNullOrEmpty(masterName))
+            if(string.IsNullOrEmpty(configSectionName))
             {
                 return string.Empty;
             }
 
-            if (!string.IsNullOrEmpty(masterName) && string.IsNullOrEmpty(sectionName))
+            var section = _configuration.GetSection(configSectionName);
+            if (section != null)
             {
-                return _configuration[masterName];
-            }
-
-            if (!string.IsNullOrEmpty(masterName) && !string.IsNullOrEmpty(sectionName))
-            {
-                var allChildrens = _configuration.GetSection(masterName).GetChildren();
-                if (allChildrens.Any(x => x.Key == sectionName))
-                {
-                    return allChildrens.FirstOrDefault(x => x.Key == sectionName).Value;
-                }
-                foreach (var child in allChildrens)
-                {
-                    return GetConfig(child.Key, sectionName);
-                }
+                return section.Value;
             }
             return string.Empty;
         }

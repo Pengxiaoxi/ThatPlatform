@@ -6,7 +6,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ThatPlatform.BaseInfo.Domain\ThatPlatform.BaseInfo.Domain.csproj" />
+    <ProjectReference Include="..\ThatPlatform.BaseInfo.GrpcApplciation\ThatPlatform.BaseInfo.GrpcApplciation.csproj" />
     <ProjectReference Include="..\ThatPlatform.Grpc\ThatPlatform.Grpc.Client.csproj" />
+    <ProjectReference Include="..\ThatPlatform.Tools.UtilLibrary\ThatPlatform.Tools.UtilLibrary.csproj" />
   </ItemGroup>
 
 </Project>

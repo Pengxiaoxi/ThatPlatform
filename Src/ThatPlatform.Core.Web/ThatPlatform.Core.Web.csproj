@@ -5,6 +5,7 @@
     <UserSecretsId>ee9937e1-f5f4-4e48-b7c1-f641120afd5d</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
+    <Authors>pengxiaoxi</Authors>
   </PropertyGroup>
 
   <ItemGroup>
