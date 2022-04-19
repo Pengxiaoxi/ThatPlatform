@@ -84,13 +84,6 @@ namespace ThatPlatform.Core.Web.Controllers
         }
         #endregion
 
-        #region Grpc
-        [HttpPost]
-        public async Task<ServiceResult<object>> GetOrgByUserByGrpc()
-        {
-            var result = await _userService.GetOrgByUserByGrpc();
-            return ServiceResult<object>.IsSuccess(result);
-        }
-        #endregion
+        
     }
 }
