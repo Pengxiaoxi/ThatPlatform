@@ -16,11 +16,12 @@ namespace ThatPlatform.BaseInfo.Domain.Entity
         [BsonElement("userName")]
         public string UserName { get; set; }
 
+        [BsonElement("account")]
+        public string Account { get; set; }
 
-        public string UserPass{ get; set; }
+        [BsonElement("pass")]
+        public string Pass { get; set; }
 
-
-        public string CompanyId { get; set; }
 
     }
 }

@@ -10,6 +10,13 @@ using System;
 using Microsoft.OpenApi.Models;
 using ThatPlatform.Infrastructure.ServiceExtension.DI;
 using Autofac;
+using ThatPlatform.Infrastructure.CoreExtensions.HostBuilderExtensions;
+using Quartz.Spi;
+using ThatPlatform.Jobs.QuartzNet;
+using Quartz;
+using Quartz.Impl;
+using ProtoBuf.Grpc.Server;
+using ThatPlatform.Grpc.Server;
 
 namespace ThatPlatform.Core.Web
 {
@@ -25,7 +32,13 @@ namespace ThatPlatform.Core.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services
+                .AddControllers()
+                .AddNewtonsoftJson((builder) => 
+                {
+
+                })
+                ;
 
             services.AddSwaggerGen(c =>
             {
@@ -33,16 +46,19 @@ namespace ThatPlatform.Core.Web
             });
 
             // 添加appsettings
-            var configuration = new ConfigurationBuilder()
-                .SetBasePath(AppContext.BaseDirectory)
-                .Add(new JsonConfigurationSource { Path = "appsettings.json", Optional = false, ReloadOnChange = true }) //可以直接读目录里的json文件，修改后自动生效
-                .Build();
-            services.AddSingleton<IConfiguration>(configuration);
+            //var configuration = new ConfigurationBuilder()
+            //    .SetBasePath(AppContext.BaseDirectory)
+            //    .Add(new JsonConfigurationSource { Path = "appsettings.json", Optional = false, ReloadOnChange = true }) //可以直接读目录里的json文件，修改后自动生效
+            //    .Build();
+            //services.AddSingleton<IConfiguration>(configuration);
 
             // 服务注册BackgroundService，项目启动则自动启动
             //services.AddHostedService<DownloadTaskService>();
 
             #region DI
+            //services.AddSingleton<IJobFactory, JobFactory>();
+            services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();//注册ISchedulerFactory的实例。
+
             // 接口服务统一注册
             services.AddModules();
 
@@ -53,7 +69,17 @@ namespace ThatPlatform.Core.Web
             #endregion
 
             services.AddTransient<ITencentCloudDBOperateService, TencentCloudDBOperateService>();
+
+            #region gRpc Server
+            //services.AddGrpc();
+            //// 注册启用了代码优先的Grpc服务
+            //services.AddCodeFirstGrpc();
+            //// 注册启用反射的服务
+            //services.AddGrpcReflectionOfTPF(); 
             #endregion
+
+            #endregion
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,6 +89,7 @@ namespace ThatPlatform.Core.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+            Console.WriteLine($"EnvironmentName: {env.EnvironmentName}");
 
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ThatPlatform v1"));
@@ -73,9 +100,23 @@ namespace ThatPlatform.Core.Web
 
             app.UseAuthorization();
 
+            // 异常Aop处理
+            app.UseExceptionHandlerMidd();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                #region gRpc Server
+                //// TPF Grpc服务
+                //endpoints.MapGrpcServiceOfTPF();
+
+                //if (!env.IsProduction())
+                //{
+                //    // 添加Grpc反射服务终结点
+                //    endpoints.MapGrpcReflectionService();
+                //} 
+                #endregion
             });
         }
 

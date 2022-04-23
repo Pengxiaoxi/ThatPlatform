@@ -11,6 +11,11 @@ namespace ThatPlatform.BaseInfo.Applciation.Svc
 {
     public interface IUserService<T> : IBaseService<T> where T : BaseEntity<string>
     {
+        /// <summary>
+        /// GetOrgByUserByGrpc
+        /// </summary>
+        /// <returns></returns>
+        Task<object> GetOrgByUserByGrpc();
 
     }
 }

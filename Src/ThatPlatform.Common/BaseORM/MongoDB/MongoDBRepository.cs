@@ -40,6 +40,7 @@ namespace ThatPlatform.Common.BaseORM.MongoDB
         }
         #endregion
 
+        #region Ctor
         public MongoDBRepository()
         {
             //var connectionString = "mongodb://42.192.5.10:27017";
@@ -63,10 +64,19 @@ namespace ThatPlatform.Common.BaseORM.MongoDB
             _collection = _database.GetCollection<T>(collectionName);
 
         }
+        #endregion
 
 
         #region Async
-        
+        public async Task<T> FindOneAsync(Expression<Func<T, bool>> expression)
+        {
+            return await this._collection.Find(expression).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<T>> FindAsync(Expression<Func<T, bool>> expression, ProjectionDefinition<T, T> projecter = null, SortDefinition<T> sorter = null)
+        {
+            return (List<T>)await this._collection.FindAsync(expression, new FindOptions<T, T>() { Projection = projecter, Sort = sorter });
+        }
 
         #endregion
 
@@ -167,10 +177,7 @@ namespace ThatPlatform.Common.BaseORM.MongoDB
             return this._collection.Find(filter).Project(projecter).Sort(sorter).ToList();
         }
 
-        public async Task<List<T>> FindAsync(Expression<Func<T, bool>> filter, ProjectionDefinition<T, T> projecter = null, SortDefinition<T> sorter = null)
-        {
-            return this._collection.FindAsync(filter, new FindOptions<T, T>() { Projection = projecter, Sort = sorter }).Result.ToList();
-        }
+        
 
         public List<T> Find(Expression<Func<T, bool>> filter, ProjectionDefinition<T, T> projecter, string sorter)
         {
@@ -310,6 +317,7 @@ namespace ThatPlatform.Common.BaseORM.MongoDB
             throw new NotImplementedException();
         }
 
+        
         #endregion
 
         #region Private

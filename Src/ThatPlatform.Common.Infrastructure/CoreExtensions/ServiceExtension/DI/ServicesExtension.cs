@@ -19,7 +19,6 @@ namespace ThatPlatform.Infrastructure.ServiceExtension.DI
         public static void AddModules(this IServiceCollection services)
         {
             var _modules = new ThatPlatformModulManager().LoadAllModules();
-
             foreach (Type type in _modules)
             {
                 var depandAttribute = type.GetCustomAttribute<DependsOnAttribute>();

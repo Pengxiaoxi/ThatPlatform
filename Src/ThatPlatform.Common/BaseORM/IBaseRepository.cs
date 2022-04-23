@@ -28,6 +28,13 @@ namespace ThatPlatform.Common.BaseORM
         IQueryable<T> Where(Expression<Func<T, bool>> expression);
 
         /// <summary>
+        /// FindOneAsync
+        /// </summary>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        Task<T> FindOneAsync(Expression<Func<T, bool>> expression);
+
+        /// <summary>
         /// 根据条件统计总数
         /// </summary>
         /// <param name="filter">条件Expression,可以空，代表获取表的总数</param>

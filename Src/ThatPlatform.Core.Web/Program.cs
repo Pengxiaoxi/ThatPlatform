@@ -19,9 +19,11 @@ namespace ThatPlatform.Core.Web
             //.UseWindowsService() 
             .ConfigureWebHostDefaults(webBuilder =>
             {
-                webBuilder.UseStartup<Startup>();
+                webBuilder
+                .UseStartup<Startup>()
+                .ConfigureLogging((logging, logger) => {  })
+                ;
             })
             .UseLog4Net();
-
     }
 }

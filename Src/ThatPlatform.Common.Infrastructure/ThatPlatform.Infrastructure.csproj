@@ -7,7 +7,12 @@
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.3.0" />
     <PackageReference Include="log4net" Version="2.0.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ThatPlatform.Middlewares\ThatPlatform.Middlewares.csproj" />
   </ItemGroup>
 
 </Project>

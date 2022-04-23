@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ThatPlatform.Jobs.QuzrtzNet
+namespace ThatPlatform.Logging.Log4Net
 {
-    internal class QuartzNetJob
+    public interface ILog4NetLogging<T> : ILogging<T> where T : class
     {
+
     }
 }

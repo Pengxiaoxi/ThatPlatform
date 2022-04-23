@@ -5,7 +5,7 @@ namespace ThatPlatform.Infrastructure.CommonAttributes
     /// <summary>
     /// DependsOnAttribute
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class DependsOnAttribute : Attribute
     {
         /// <summary>

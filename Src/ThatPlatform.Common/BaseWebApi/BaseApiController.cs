@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using log4net;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,17 @@ namespace ThatPlatform.Common.BaseWebApi
     [Route("api/[controller]/[action]")]
     public class BaseApiController
     {
+        #region Field
+        protected readonly ILog _log;
+        #endregion
 
+        #region Ctor
         public BaseApiController()
         {
-
+            _log = LogManager.GetLogger(typeof(BaseApiController));
         }
+        #endregion
+
+        
     }
 }

@@ -5,6 +5,7 @@
     <UserSecretsId>ee9937e1-f5f4-4e48-b7c1-f641120afd5d</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
+    <Authors>pengxiaoxi</Authors>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,10 +21,12 @@
     <PackageReference Include="Autofac" Version="6.3.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
     <PackageReference Include="log4net" Version="2.0.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="5.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="protobuf-net.Grpc.AspNetCore" Version="1.0.152" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="TencentCloudSDK.Mongodb" Version="3.0.371" />
   </ItemGroup>
@@ -32,6 +35,9 @@
     <ProjectReference Include="..\ThatPlatform.BaseInfo.Applciation\ThatPlatform.BaseInfo.Applciation.csproj" />
     <ProjectReference Include="..\ThatPlatform.Common.Infrastructure\ThatPlatform.Infrastructure.csproj" />
     <ProjectReference Include="..\ThatPlatform.Common\ThatPlatform.Common.csproj" />
+    <ProjectReference Include="..\ThatPlatform.Grpc.Server\ThatPlatform.Grpc.Server.csproj" />
+    <ProjectReference Include="..\ThatPlatform.Jobs\ThatPlatform.Jobs.QuartzNet.csproj" />
+    <ProjectReference Include="..\ThatPlatform.Middlewares\ThatPlatform.Middlewares.csproj" />
     <ProjectReference Include="..\ThatPlatform.Tools.UtilLibrary\ThatPlatform.Tools.UtilLibrary.csproj" />
   </ItemGroup>
 

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ThatPlatform.Jobs.Timer
+namespace ThatPlatform.Infrastructure.DevExtensions.Page
 {
-    internal interface ITimer
+    internal class IPageList
     {
     }
 }
