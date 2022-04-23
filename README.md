@@ -12,7 +12,7 @@ docker 基础使用，缺少docker compross
 基础使用，待完善
 
 # gRpc   CodeFirst
-
+AspDotNet Core gRpc Cdoe First: https://docs.microsoft.com/zh-cn/aspnet/core/grpc/code-first?view=aspnetcore-5.0
 缺少日志与鉴权等
 
 ```c#
