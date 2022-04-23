@@ -5,7 +5,7 @@ using System;
 using System.IO;
 using System.Reflection;
 
-namespace Tpf.Infrastructure.HostBuilderExtension.Log4Net
+namespace Tpf.Core.HostBuilderExtension.Log4Net
 {
     public static class Log4NetExtensions
     {

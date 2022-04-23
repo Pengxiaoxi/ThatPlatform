@@ -1,7 +1,7 @@
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using Tpf.Infrastructure.HostBuilderExtension.Log4Net;
+using Tpf.Core.HostBuilderExtension.Log4Net;
 
 namespace Tpf.Core.Web
 {

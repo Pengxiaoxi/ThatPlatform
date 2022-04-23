@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tpf.Middlewares;
 
-namespace Tpf.Infrastructure.CoreExtensions.HostBuilderExtensions
+namespace Tpf.Core.CoreExtensions.HostBuilderExtensions
 {
     /// <summary>
     /// ExceptionExtension

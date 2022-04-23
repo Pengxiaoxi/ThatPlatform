@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tpf.Infrastructure.CommonAttributes
+namespace Tpf.Core.CommonAttributes
 {
     /// <summary>
     /// DependsOnAttribute

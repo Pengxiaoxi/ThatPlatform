@@ -7,7 +7,7 @@ using Tpf.Common.BaseDomain.Entity;
 using Tpf.Common.BaseDomain.Impl;
 using Tpf.Common.BaseORM.MongoDB;
 using Tpf.Grpc.Client;
-using Tpf.Infrastructure.CommonAttributes;
+using Tpf.Core.CommonAttributes;
 using Tpf.Utils;
 
 namespace Tpf.BaseInfo.Applciation.Impl

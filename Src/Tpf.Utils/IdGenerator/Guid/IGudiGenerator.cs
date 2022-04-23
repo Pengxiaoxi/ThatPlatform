@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tpf.Infrastructure.DevExtensions.Page
+namespace Tpf.Utils.IdGenerator.Guid
 {
-    internal class IPageList
+    internal interface IGudiGenerator
     {
+
     }
 }

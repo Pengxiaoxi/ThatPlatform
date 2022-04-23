@@ -14,7 +14,7 @@ EXPOSE 8000
 #COPY ["Src/Tpf.BaseInfo.Applciation/Tpf.BaseInfo.Applciation.csproj", "Src/Tpf.BaseInfo.Applciation/"]
 #COPY ["Src/Tpf.BaseInfo.Domain/Tpf.BaseInfo.Domain.csproj", "Src/Tpf.BaseInfo.Domain/"]
 #COPY ["Src/Tpf.Common/Tpf.Common.csproj", "Src/Tpf.Common/"]
-#COPY ["Src/Tpf.Common.Infrastructure/Tpf.Infrastructure.csproj", "Src/Tpf.Common.Infrastructure/"]
+#COPY ["Src/Tpf.Common.Core/Tpf.Core.csproj", "Src/Tpf.Common.Core/"]
 #COPY ["Src/Tpf.Utils/Tpf.Utils.csproj", "Src/Tpf.Utils/"]
 #RUN dotnet restore "Src/Tpf.Core.Web/Tpf.Core.Web.csproj"
 

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Tpf.Infrastructure.CommonAttributes;
+using Tpf.Core.CommonAttributes;
 
-namespace Tpf.Infrastructure.ModuleManager
+namespace Tpf.Core.ModuleManager
 {
     public class ThatPlatformModulManager
     {

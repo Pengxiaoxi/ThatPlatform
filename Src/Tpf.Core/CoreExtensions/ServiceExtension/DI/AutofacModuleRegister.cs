@@ -1,24 +1,24 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Autofac;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Tpf.Infrastructure.CommonAttributes;
-using Tpf.Infrastructure.ModuleManager;
+using Tpf.Core.CommonAttributes;
+using Tpf.Core.ModuleManager;
 
-namespace Tpf.Infrastructure.ServiceExtension.DI
+namespace Tpf.Core.ServiceExtension.DI
 {
-    public static class ServicesCollectionExtension
+    /// <summary>
+    /// AutofacModuleRegister
+    /// </summary>
+    public static class AutofacModuleRegister
     {
-        /// <summary>
-        /// 依赖注入（反射实现）
-        /// </summary>
-        /// <param name="services"></param>
-        public static void AddModules(this IServiceCollection services)
+        public static void ModuleRegister(this ContainerBuilder builder)
         {
             var _modules = new ThatPlatformModulManager().LoadAllModules();
+
             foreach (Type type in _modules)
             {
                 var depandAttribute = type.GetCustomAttribute<DependsOnAttribute>();
@@ -26,7 +26,9 @@ namespace Tpf.Infrastructure.ServiceExtension.DI
                 {
                     foreach (var module in depandAttribute?.DependedModuleTypes)
                     {
-                        services.AddTransient(module, type);
+                        //builder.RegisterGeneric(module).As(type).InstancePerDependency();
+
+                        builder.RegisterType(module).As(type).InstancePerDependency();
                     }
                 }
             }

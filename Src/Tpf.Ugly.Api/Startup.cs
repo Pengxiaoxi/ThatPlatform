@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tpf.Grpc.Server;
-using Tpf.Infrastructure.CoreExtensions.HostBuilderExtensions;
+using Tpf.Core.CoreExtensions.HostBuilderExtensions;
 
 namespace Tpf.Ugly.Web
 {

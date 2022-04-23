@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tpf.Infrastructure.CommonAttributes;
-using Tpf.Infrastructure.DevExtensions.ServiceResult;
+using Tpf.Core.CommonAttributes;
+using Tpf.Core.DevExtensions.ServiceResult;
 
 namespace Tpf.Jobs.QuartzNet
 {

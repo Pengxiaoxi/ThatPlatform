@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Tpf.BaseInfo.Applciation.Svc;
 using Tpf.BaseInfo.Domain.Entity;
 using Tpf.Common.BaseWebApi;
-using Tpf.Infrastructure.DevExtensions.ServiceResult;
+using Tpf.Core.DevExtensions.ServiceResult;
 
 namespace Tpf.Core.Web.Controllers
 {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tpf.Common.BaseDomain.Entity;
-using Tpf.Infrastructure.CommonAttributes.Database;
+using Tpf.Core.CommonAttributes.Database;
 
 namespace Tpf.BaseInfo.Domain.Entity
 {

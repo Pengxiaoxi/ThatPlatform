@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Tpf.BaseInfo.GrpcApplciation\Tpf.BaseInfo.GrpcApplciation.csproj" />
-    <ProjectReference Include="..\Tpf.Infrastructure\Tpf.Infrastructure.csproj" />
+    <ProjectReference Include="..\Tpf.Core\Tpf.Core.csproj" />
     <ProjectReference Include="..\Tpf.Common\Tpf.Common.csproj" />
     <ProjectReference Include="..\Tpf.Grpc.Server\Tpf.Grpc.Server.csproj" />
   </ItemGroup>
