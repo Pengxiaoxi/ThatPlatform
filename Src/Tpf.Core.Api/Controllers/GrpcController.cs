@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using ThatPlatform.BaseInfo.Applciation.Svc;
-using ThatPlatform.BaseInfo.Domain.Entity;
-using ThatPlatform.Common.BaseWebApi;
-using ThatPlatform.Infrastructure.DevExtensions.ServiceResult;
+using Tpf.BaseInfo.Applciation.Svc;
+using Tpf.BaseInfo.Domain.Entity;
+using Tpf.Common.BaseWebApi;
+using Tpf.Infrastructure.DevExtensions.ServiceResult;
 
-namespace ThatPlatform.Core.Web.Controllers
+namespace Tpf.Core.Web.Controllers
 {
     /// <summary>
     /// GrpcController
