@@ -44,6 +44,8 @@ namespace Tpf.Core.Web
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tpf", Version = "v1" });
             });
+            // 指定Swagger使用Newtonsoft.Json序列化【避免Swagger接口文档内接口参数与对象属性JsonProperty不符】
+            services.AddSwaggerGenNewtonsoftSupport();
 
             // 添加appsettings
             //var configuration = new ConfigurationBuilder()
