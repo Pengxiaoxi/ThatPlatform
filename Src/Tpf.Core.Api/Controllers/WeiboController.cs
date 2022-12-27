@@ -54,6 +54,7 @@ namespace Tpf.Core.Api.Controllers
         [HttpGet]
         public BlogResult<object> BatchDestoryAutomatic(string sinceId)
         {
+            var result = new BlogResult<object>() { Ok = 1, Message = "全部删除完成" };
             var curPageBlogsResult = this.MyMblog(sinceId);
             if (curPageBlogsResult.Ok != 1)
             {
@@ -63,7 +64,7 @@ namespace Tpf.Core.Api.Controllers
                 || curPageBlogsResult.Data.List == null
                 || curPageBlogsResult.Data.List.Count == 0)
             {
-                return new BlogResult<object>() { Ok = 1, Message = "全部删除完成" };
+                return result;
             }
 
             var curPageBlogs = curPageBlogsResult.Data.List;
@@ -81,7 +82,7 @@ namespace Tpf.Core.Api.Controllers
 
             this.BatchDestoryAutomatic(sinceId);
 
-            return new BlogResult<object>() { Ok = 1 };
+            return result;
         }
         #endregion
     }
