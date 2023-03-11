@@ -3,20 +3,15 @@ using Tpf.Core.Web.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using Microsoft.OpenApi.Models;
 using Tpf.Core.ServiceExtension.DI;
 using Autofac;
-using Tpf.Core.CoreExtensions.HostBuilderExtensions;
-using Quartz.Spi;
-using Tpf.Jobs.QuartzNet;
 using Quartz;
 using Quartz.Impl;
-using ProtoBuf.Grpc.Server;
-using Tpf.Grpc.Server;
+using Tpf.Middleware.Middlewares;
 
 namespace Tpf.Core.Web
 {
@@ -57,6 +52,9 @@ namespace Tpf.Core.Web
             // 服务注册BackgroundService，项目启动则自动启动
             //services.AddHostedService<DownloadTaskService>();
 
+            services.AddSingleton<AuthorizationMiddleware>();
+            services.AddSingleton<ExceptionMiddleware>();
+
             #region DI
             //services.AddSingleton<IJobFactory, JobFactory>();
             services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();//注册ISchedulerFactory的实例。
@@ -71,6 +69,8 @@ namespace Tpf.Core.Web
             #endregion
 
             services.AddTransient<ITencentCloudDBOperateService, TencentCloudDBOperateService>();
+
+
 
             #region gRpc Server
             //services.AddGrpc();
@@ -100,10 +100,16 @@ namespace Tpf.Core.Web
 
             app.UseRouting();
 
+            app.UseExceptionMiddleware();
+
+            app.UseAuthorizationMiddleware();
+
             app.UseAuthorization();
 
             // 异常Aop处理
-            app.UseExceptionHandlerMidd();
+            //app.UseExceptionHandlerMidd();
+
+            //app.UseExceptionMiddleware();
 
             app.UseEndpoints(endpoints =>
             {
@@ -120,6 +126,8 @@ namespace Tpf.Core.Web
                 //} 
                 #endregion
             });
+
+            
         }
 
         public void ConfigureContainer(ContainerBuilder builder)

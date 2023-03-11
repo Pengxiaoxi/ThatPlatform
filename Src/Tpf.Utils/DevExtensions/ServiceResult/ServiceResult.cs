@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tpf.Core.DevExtensions.ServiceResult
+namespace Tpf.Utils.DevExtensions.ServiceResult
 {
     /// <summary>
     /// ServiceResult
@@ -57,7 +57,8 @@ namespace Tpf.Core.DevExtensions.ServiceResult
         {
             return new ServiceResult()
             {
-                Message = $"{message},Exception: {exception?.Message}, StackTrace: {exception?.StackTrace}",
+                //Message = $"{message},Exception: {exception?.Message}, StackTrace: {exception?.StackTrace}",
+                Message = message,
                 Code = ServiceResultCodeEnum.Failed
             };
         }

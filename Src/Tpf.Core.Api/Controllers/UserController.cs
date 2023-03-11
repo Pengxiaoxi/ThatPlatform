@@ -7,7 +7,7 @@ using Tpf.BaseInfo.Applciation.Dto;
 using Tpf.BaseInfo.Applciation.Svc;
 using Tpf.BaseInfo.Domain.Entity;
 using Tpf.Common.BaseWebApi;
-using Tpf.Core.DevExtensions.ServiceResult;
+using Tpf.Utils.DevExtensions.ServiceResult;
 
 namespace Tpf.Core.Web.Controllers
 {

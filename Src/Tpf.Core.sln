@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Jobs.QuartzNet", "Tpf.J
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Logging.Log4Net", "Tpf.Logging.Log4Net\Tpf.Logging.Log4Net.csproj", "{F4273034-587D-41B0-AC17-E8A1F3DAA4FB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Middlewares", "Tpf.Middlewares\Tpf.Middlewares.csproj", "{BD0CB82E-C81E-4043-9EB7-64BE0E87AD17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Middleware", "Tpf.Middlewares\Tpf.Middleware.csproj", "{BD0CB82E-C81E-4043-9EB7-64BE0E87AD17}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Grpc.Client", "Tpf.Grpc.Client\Tpf.Grpc.Client.csproj", "{A80EA55F-C3FC-4E25-BD0F-2760514C3FB5}"
 EndProject

@@ -1,10 +1,12 @@
 ﻿using log4net;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using Tpf.Utils.DevExtensions.ServiceResult;
 
-namespace Tpf.Middlewares
+namespace Tpf.Middleware.DiffWayToCreateMiddleware
 {
     public class ExceptionMiddleware
     {
@@ -34,7 +36,7 @@ namespace Tpf.Middlewares
 
             _log.Error(e.GetBaseException().ToString());
 
-            await WriteExceptionAsync(context, e).ConfigureAwait(false);
+            await WriteExceptionAsync(context, e);
         }
 
         private static async Task WriteExceptionAsync(HttpContext context, Exception e)
@@ -46,10 +48,12 @@ namespace Tpf.Middlewares
 
             context.Response.ContentType = "application/json";
 
-            await context.Response.WriteAsync(e?.Message).ConfigureAwait(false);
+
+            await context.Response.WriteAsync(JsonConvert.SerializeObject(ServiceResult.IsFailed(e?.Message)));
+            //await context.Response.WriteAsync(e?.Message).ConfigureAwait(false);
         }
 
     }
 
-    
+
 }

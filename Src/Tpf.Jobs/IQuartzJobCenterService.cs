@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tpf.Core.DevExtensions.ServiceResult;
+using Tpf.Utils.DevExtensions.ServiceResult;
 
 namespace Tpf.Jobs.QuartzNet
 {

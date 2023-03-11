@@ -38,7 +38,7 @@
     <ProjectReference Include="..\Tpf.Common\Tpf.Common.csproj" />
     <ProjectReference Include="..\Tpf.Grpc.Server\Tpf.Grpc.Server.csproj" />
     <ProjectReference Include="..\Tpf.Jobs\Tpf.Jobs.QuartzNet.csproj" />
-    <ProjectReference Include="..\Tpf.Middlewares\Tpf.Middlewares.csproj" />
+    <ProjectReference Include="..\Tpf.Middlewares\Tpf.Middleware.csproj" />
     <ProjectReference Include="..\Tpf.Utils\Tpf.Utils.csproj" />
   </ItemGroup>
 

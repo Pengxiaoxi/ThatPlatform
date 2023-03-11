@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tpf.Middlewares\Tpf.Middlewares.csproj" />
+    <ProjectReference Include="..\Tpf.Middlewares\Tpf.Middleware.csproj" />
   </ItemGroup>
 
 </Project>

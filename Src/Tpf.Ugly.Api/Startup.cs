@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tpf.Grpc.Server;
-using Tpf.Core.CoreExtensions.HostBuilderExtensions;
+using Tpf.Middleware.Middlewares;
 
 namespace Tpf.Ugly.Web
 {
@@ -71,10 +71,11 @@ namespace Tpf.Ugly.Web
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseExceptionMiddleware(); // 异常Aop处理
 
-            // 异常Aop处理
-            app.UseExceptionHandlerMidd();
+            app.UseAuthorization();
+            
+            
 
             app.UseEndpoints(endpoints =>
             {
