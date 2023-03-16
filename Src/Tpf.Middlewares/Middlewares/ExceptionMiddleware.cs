@@ -1,12 +1,8 @@
-﻿using log4net;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using Tpf.Utils.DevExtensions.ServiceResult;
 
@@ -43,8 +39,6 @@ namespace Tpf.Middleware.Middlewares
                 context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
 
             context.Response.ContentType = "application/json";
-
-
             await context.Response.WriteAsync(JsonConvert.SerializeObject(ServiceResult.IsFailed(e?.Message)));
             //await context.Response.WriteAsync(e?.Message).ConfigureAwait(false);
         }

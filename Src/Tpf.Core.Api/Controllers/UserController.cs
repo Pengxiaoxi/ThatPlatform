@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,9 @@ namespace Tpf.Core.Web.Controllers
         /// Ctor
         /// </summary>
         /// <param name="userService"></param>
-        public UserController(IUserService<UserInfo> userService)
+        public UserController(ILogger<UserController> log
+            , IUserService<UserInfo> userService)
+            : base(log)
         {
             _userService = userService;
         }

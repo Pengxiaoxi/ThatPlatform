@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -12,19 +13,31 @@ namespace Tpf.Core.Web.Controllers
     /// </summary>
     public class TestController : BaseApiController
     {
-        #region Ctor
-        public TestController()
-        {
+        #region Field
+        
+        #endregion
 
+        #region Ctor
+        public TestController(ILogger<TestController> log
+            )
+            : base(log)
+        {
+            
         }
         #endregion
 
         [HttpGet]
         public async Task<Object> GetTest()
         {
+            // 日志示例
+            _log.LogInformation("This is a log message !", "");
+
+            _log.LogWarning("This is a log message !", "");
+            _log.LogError("This is a log message !", "");
+
             //立即执行一次 不执行
             timer.Change(0, Timeout.Infinite);
-            Console.ReadKey();
+            //Console.ReadKey();
 
             var result = new { code = 200, msg = "", isSucess = true, data = new object() };
             return result;

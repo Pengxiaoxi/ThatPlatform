@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using Tpf.Common.BaseWebApi;
 using Tpf.Jobs.QuartzNet;
@@ -17,7 +18,10 @@ namespace Tpf.Core.Web.Controllers
         #endregion
 
         #region Ctor
-        public JobController(IQuartzJobCenterService quartzJobCenterService)
+        public JobController(ILogger<HealthController> log
+            , IQuartzJobCenterService quartzJobCenterService
+            )
+            :base(log)
         {
             _quartzJobCenterService = quartzJobCenterService;
         }

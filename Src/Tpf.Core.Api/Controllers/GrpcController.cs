@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using Tpf.BaseInfo.Applciation.Svc;
 using Tpf.BaseInfo.Domain.Entity;
@@ -19,7 +20,9 @@ namespace Tpf.Core.Web.Controllers
         /// Ctor
         /// </summary>
         /// <param name="userService"></param>
-        public GrpcController(IUserService<UserInfo> userService)
+        public GrpcController(ILogger<GrpcController> log
+            , IUserService<UserInfo> userService)
+            : base(log)
         {
             _userService = userService;
         }

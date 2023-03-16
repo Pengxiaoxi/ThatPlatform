@@ -52,10 +52,12 @@ namespace Tpf.Core.Web
             // 服务注册BackgroundService，项目启动则自动启动
             //services.AddHostedService<DownloadTaskService>();
 
+
+            #region DI
+            // 中间件注入，后续需统一注入
             services.AddSingleton<AuthorizationMiddleware>();
             services.AddSingleton<ExceptionMiddleware>();
 
-            #region DI
             //services.AddSingleton<IJobFactory, JobFactory>();
             services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();//注册ISchedulerFactory的实例。
 
@@ -96,13 +98,13 @@ namespace Tpf.Core.Web
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tpf v1"));
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseExceptionMiddleware();
+            app.UseExceptionMiddleware(); // ExceptionMiddleware
 
-            app.UseAuthorizationMiddleware();
+            app.UseAuthorizationMiddleware(); // Authorization Middleware
 
             app.UseAuthorization();
 

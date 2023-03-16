@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 using Tpf.Common.BaseWebApi;
@@ -10,7 +11,9 @@ namespace Tpf.Core.Web.Controllers
     /// </summary>
     public class HealthController : BaseApiController
     {
-        public HealthController()
+        public HealthController(ILogger<HealthController> log
+            )
+            : base(log)
         {
 
 
