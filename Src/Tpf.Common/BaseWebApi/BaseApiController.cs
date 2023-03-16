@@ -15,7 +15,11 @@ namespace Tpf.Common.BaseWebApi
         #endregion
 
         #region Ctor
-        
+        public BaseApiController()
+        {
+            
+        }
+
         public BaseApiController(ILogger<object> log)
         {
             _log = log; //_log = LogManager.GetLogger(typeof(T));

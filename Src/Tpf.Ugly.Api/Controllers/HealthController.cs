@@ -11,9 +11,7 @@ namespace Tpf.Ugly.Web.Controllers
     /// </summary>
     public class HealthController : BaseApiController
     {
-        public HealthController(ILogger<HealthController> log
-            )
-            : base(log)
+        public HealthController()
         {
 
 
