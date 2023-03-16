@@ -15,11 +15,11 @@ namespace Tpf.Middleware.Middlewares
     {
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
-            var token = context.Request.Headers["token"].ToString();
-            if (string.IsNullOrWhiteSpace(token))
-            {
-                throw new Exception("Access failed !");
-            }
+            //var token = context.Request.Headers["token"].ToString();
+            //if (string.IsNullOrWhiteSpace(token))
+            //{
+            //    throw new Exception("Access failed !");
+            //}
 
             await next(context);
         }

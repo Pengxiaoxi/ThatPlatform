@@ -1,5 +1,4 @@
-﻿using log4net;
-using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -18,16 +17,21 @@ namespace Tpf.Common.BaseDomain.Impl
     public class BaseService<T> : IBaseService<T> where T: BaseEntity<string>
     {
         #region Field
-        protected readonly ILog _log;
+        protected readonly ILogger<T> _log ;
         protected readonly IMongoDBRepository<T> _repository;
         #endregion
 
         #region Ctor
-        public BaseService(
-            IMongoDBRepository<T> repository
+        /// <summary>
+        /// TODO：根据配置需要使用的ORM来条件注册
+        /// 
+        /// </summary>
+        /// <param name="repository"></param>
+        public BaseService(ILogger<T> log
+            , IMongoDBRepository<T> repository
             )
         {
-            _log = LogManager.GetLogger(typeof(BaseService<T>));
+            _log = log;
             _repository = repository;
         }
         #endregion

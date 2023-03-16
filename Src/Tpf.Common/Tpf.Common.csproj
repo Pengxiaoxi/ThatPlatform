@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Tpf.Core\Tpf.Core.csproj" />
-    <ProjectReference Include="..\Tpf.Logging.Log4Net\Tpf.Logging.Log4Net.csproj" />
   </ItemGroup>
 
 </Project>

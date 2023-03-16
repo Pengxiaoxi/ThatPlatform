@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tpf.Logging.Log4Net
 {
+    [Obsolete]
     public interface ILogging<T> where T : class
     {
         void Info(object message);
