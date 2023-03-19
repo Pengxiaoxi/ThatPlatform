@@ -39,7 +39,7 @@ namespace Tpf.Core.Web.Controllers
             timer.Change(0, Timeout.Infinite);
             //Console.ReadKey();
 
-            var result = new { code = 200, msg = "", isSucess = true, data = new object() };
+            var result = new { code = 200, msg = "", success = true, data = new object() };
             return result;
         }
 
@@ -50,7 +50,7 @@ namespace Tpf.Core.Web.Controllers
             //timer.Change(0, Timeout.Infinite);
             //Console.ReadKey();
 
-            //var result = new { code = 200, msg = "", isSucess = true, data = new object() };
+            //var result = new { code = 200, msg = "", success = true, data = new object() };
             //return result;
             Console.WriteLine();
             Console.WriteLine();

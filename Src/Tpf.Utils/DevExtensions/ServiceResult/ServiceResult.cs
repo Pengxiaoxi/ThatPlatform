@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,21 +15,25 @@ namespace Tpf.Utils.DevExtensions.ServiceResult
         /// <summary>
         /// 响应码
         /// </summary>
+        [JsonProperty("code")]
         public ServiceResultCodeEnum Code { get; set; }
 
         /// <summary>
         /// 响应信息
         /// </summary>
+        [JsonProperty("message")]
         public string Message { get; set; }
 
         /// <summary>
         /// 成功
         /// </summary>
+        [JsonProperty("success")]
         public bool Success => Code == ServiceResultCodeEnum.Succeed;
 
         /// <summary>
         /// 时间戳(毫秒)
         /// </summary>
+        [JsonProperty("timestamp")]
         public long Timestamp { get; } = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 
 
