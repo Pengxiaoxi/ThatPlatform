@@ -3,12 +3,13 @@ using System.Threading.Tasks;
 using Tpf.BaseInfo.Applciation.Svc;
 using Tpf.BaseInfo.GrpcApplciation.Client.Dto;
 using Tpf.BaseInfo.GrpcApplciation.Client.Svc;
-using Tpf.Common.BaseDomain.Entity;
 using Tpf.Common.BaseDomain.Impl;
 using Tpf.Common.BaseORM.MongoDB;
 using Tpf.Grpc.Client;
 using Tpf.Core.CommonAttributes;
 using Tpf.Utils;
+using Microsoft.Extensions.Logging;
+using Tpf.Common.BaseDomain.Entity;
 
 namespace Tpf.BaseInfo.Applciation.Impl
 {
@@ -24,9 +25,10 @@ namespace Tpf.BaseInfo.Applciation.Impl
         #endregion
 
         #region Ctor
-        public UserService(IMongoDBRepository<T> repository
+        public UserService(ILogger<UserService<T>> log
+            , IMongoDBRepository<T> repository
             , IGrpcService grpcService
-            ) : base(repository)
+            ) : base(log, repository)
         {
             _grpcService = grpcService;
 
@@ -45,7 +47,7 @@ namespace Tpf.BaseInfo.Applciation.Impl
             
             var orgGrpcServerAddress = ConfigHelper.GetConfig("gRpc:Organization");
             var _client = _grpcService.GetClient<IOrganizationService>(orgGrpcServerAddress);
-            var rsp = await _client.GetOrganization(req);
+            var rsp = await _client.GetOrganization(req);            
 
             System.Console.WriteLine(JsonConvert.SerializeObject(rsp)); ;
             return await Task.FromResult(rsp);

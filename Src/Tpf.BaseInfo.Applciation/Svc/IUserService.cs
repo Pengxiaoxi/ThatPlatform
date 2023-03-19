@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tpf.BaseInfo.Domain.Entity;
+﻿using System.Threading.Tasks;
 using Tpf.Common.BaseDomain.Entity;
 using Tpf.Common.BaseDomain.Svc;
 
