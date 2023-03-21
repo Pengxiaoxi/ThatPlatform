@@ -8,7 +8,8 @@ using Tpf.Common.BaseDomain.Entity;
 
 namespace Tpf.Common.BaseDomain.Svc
 {
-    public interface IBaseService<T> where T : BaseEntity<string>
+    public interface IBaseService<T> 
+        where T : BaseEntity<string>
     {
         Task<T> FindOneAsync(Expression<Func<T, bool>> filter);
 

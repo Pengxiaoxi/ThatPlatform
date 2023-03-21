@@ -8,6 +8,13 @@ using Tpf.Utils.DevExtensions.ServiceResult;
 
 namespace Tpf.Middleware.Middlewares
 {
+    /// <summary>
+    /// ExceptionMiddleware
+    /// 
+    /// 最近面试被提问：Filter 和 Middleware 哪个好 ？ 
+    /// 1、Mvc Filter 可以拿到一些中间件拿不到的数据（？）
+    /// 2、Middler 请求管道所有的异常也可以 catch，Filter 做不到（只能catch接口内的）
+    /// </summary>
     public class ExceptionMiddleware : IMiddleware
     {
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
@@ -27,7 +34,7 @@ namespace Tpf.Middleware.Middlewares
             if (e == null) return;
 
             //_log.Error(e.GetBaseException().ToString());
-
+            await Console.Out.WriteLineAsync(e.GetBaseException().ToString());
             await WriteExceptionAsync(context, e);
         }
 
@@ -39,7 +46,7 @@ namespace Tpf.Middleware.Middlewares
                 context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
 
             context.Response.ContentType = "application/json";
-            await context.Response.WriteAsync(JsonConvert.SerializeObject(ServiceResult.IsFailed(e?.Message)));
+            await context.Response.WriteAsync(JsonConvert.SerializeObject(ServiceResult.IsFailed(e?.Message))); // 此处避免引用其他组件，可更换为拼接的Json字符串
             //await context.Response.WriteAsync(e?.Message).ConfigureAwait(false);
         }
 

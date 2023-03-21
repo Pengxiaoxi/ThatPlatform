@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Tpf.Common\Tpf.Common.csproj" />
+    <ProjectReference Include="..\Tpf.ORM.EntityFrameworkCore\Tpf.ORM.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
 </Project>
