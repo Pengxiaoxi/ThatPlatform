@@ -34,7 +34,7 @@ namespace Tpf.Middleware.Middlewares
             if (e == null) return;
 
             //_log.Error(e.GetBaseException().ToString());
-
+            await Console.Out.WriteLineAsync(e.GetBaseException().ToString());
             await WriteExceptionAsync(context, e);
         }
 

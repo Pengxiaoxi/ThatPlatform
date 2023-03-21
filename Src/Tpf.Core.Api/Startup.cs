@@ -12,6 +12,7 @@ using Autofac;
 using Quartz;
 using Quartz.Impl;
 using Tpf.Middleware.Middlewares;
+using Tpf.BaseInfo.Domain;
 
 namespace Tpf.Core.Web
 {
@@ -54,6 +55,8 @@ namespace Tpf.Core.Web
 
 
             #region DI
+            services.AddDbContext<BaseInfoDbContext>();
+
             // 中间件注入，后续需统一注入
             services.AddSingleton<AuthorizationMiddleware>();
             services.AddSingleton<ExceptionMiddleware>();

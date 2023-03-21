@@ -32,7 +32,8 @@ namespace Tpf.Core.Web.Controllers
         {
             //throw new NotImplementedException();
 
-            var result = await _userService.GetListAsync(x => x.UserName != null);
+            //var result = await _userService.GetListAsync(x => x.UserName != null);
+            var result = await _userService.GetUserInfoList();
             return ServiceResult<List<UserInfo>>.IsSuccess(result);
         }
 
