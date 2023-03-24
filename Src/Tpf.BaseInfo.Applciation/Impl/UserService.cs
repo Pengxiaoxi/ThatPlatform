@@ -14,6 +14,9 @@ using System.Collections.Generic;
 using Tpf.BaseInfo.Domain.Entity;
 using Tpf.BaseInfo.Domain;
 using System.Linq;
+using Tpf.BaseInfo.Applciation.Dto;
+using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace Tpf.BaseInfo.Applciation.Impl
 {
@@ -27,14 +30,12 @@ namespace Tpf.BaseInfo.Applciation.Impl
         #region Field
         private readonly IGrpcService _grpcService;
 
-        //protected readonly BaseInfoDbContext _baseInfoDbContext;
         #endregion
 
         #region Ctor
         public UserService(ILogger<UserService<T>> log
             , IMongoDBRepository<T> repository
 
-            //, BaseInfoDbContext baseInfoDbContext
 
             , IGrpcService grpcService
             ) : base(log, repository)
@@ -61,14 +62,50 @@ namespace Tpf.BaseInfo.Applciation.Impl
             var rsp = await _client.GetOrganization(req);            
 
             System.Console.WriteLine(JsonConvert.SerializeObject(rsp)); ;
-            return await Task.FromResult(rsp);
+            return rsp;
         }
 
         public async Task<List<UserInfo>> GetUserInfoList()
         {
             using (var dbContext = new BaseInfoDbContext())
             {
-                return dbContext.UserInfos.ToList();
+                // inner join example
+                var innerJoinQuery = from user in dbContext.UserInfos
+                            join dept in dbContext.Depts
+                            on user.DeptId equals dept.Id
+                            select new UserInfoOutputDto()
+                            {
+                                Account = user.Account,
+                                UserName = user.UserName,
+                                DeptName = dept.DeptName,
+                            };
+                var innerJoinResult = innerJoinQuery.ToList();
+
+                // left join example
+                var leftJoinQuery = from user in dbContext.UserInfos
+                            join dept in dbContext.Depts
+                            on user.DeptId equals dept.Id into grouping
+                            from dept in grouping.DefaultIfEmpty()
+                            select new UserInfoOutputDto()
+                            {
+                                Account = user.Account,
+                                UserName = user.UserName,
+                                DeptName = dept.DeptName,
+                            };
+                var leftJoinResult = leftJoinQuery.ToList();
+
+                // Execute Sql
+                //var selectSql = "";
+
+                //dbContext.UserInfos.FromSqlRaw(selectSql);
+                //dbContext.UserInfos.FromSqlInterpolated($"{selectSql}");
+
+                //await dbContext.Database.ExecuteSqlRawAsync(selectSql);
+                //await dbContext.Database.ExecuteSqlInterpolatedAsync($"{selectSql}");
+
+
+                var userList = dbContext.UserInfos.ToList();
+                return userList;
             }
             
         }

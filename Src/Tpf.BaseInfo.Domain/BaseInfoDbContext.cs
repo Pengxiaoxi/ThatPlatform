@@ -18,6 +18,7 @@ namespace Tpf.BaseInfo.Domain
 
         #region DbSets
         public DbSet<UserInfo> UserInfos { get; set; }
+        public DbSet<Dept> Depts { get; set; }
         #endregion
 
         #region Ctor
@@ -51,9 +52,13 @@ namespace Tpf.BaseInfo.Domain
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserInfo>().ToTable("tpf_userinfo");
+            modelBuilder.Entity<Dept>().ToTable("tpf_dept");
 
             base.OnModelCreating(modelBuilder);
         } 
+
+
+        
         #endregion
 
 
