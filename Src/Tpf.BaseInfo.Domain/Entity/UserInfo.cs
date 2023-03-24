@@ -22,6 +22,8 @@ namespace Tpf.BaseInfo.Domain.Entity
         [BsonElement("pass")]
         public string Pass { get; set; }
 
+        public string DeptId { get; set; }
+
 
     }
 }

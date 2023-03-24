@@ -49,7 +49,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Ugly.Api", "Tpf.Ugly.Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Utils", "Tpf.Utils\Tpf.Utils.csproj", "{DB5247BE-71E0-4F5B-8B8D-AFD3D60C5CC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tpf.ORM.EntityFrameworkCore", "Tpf.ORM.EntityFrameworkCore\Tpf.ORM.EntityFrameworkCore.csproj", "{CAEA6ADD-7EC3-4212-84FC-4BBD92003F1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.ORM.EntityFrameworkCore", "Tpf.ORM.EntityFrameworkCore\Tpf.ORM.EntityFrameworkCore.csproj", "{CAEA6ADD-7EC3-4212-84FC-4BBD92003F1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

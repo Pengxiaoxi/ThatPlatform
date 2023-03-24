@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Diagnostics;
+using System.Net.Http.Headers;
 
 namespace Tpf.ORM.EntityFrameworkCore
 {
@@ -17,12 +19,12 @@ namespace Tpf.ORM.EntityFrameworkCore
         }
 
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    //optionsBuilder.UseMySql(this.connectionString, ServerVersion.);
-        //    optionsBuilder.UseLoggerFactory(_loggerFactory);
-        //    base.OnConfiguring(optionsBuilder);
-        //}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //optionsBuilder.LogTo(message => Debug.WriteLine(message));
+            optionsBuilder.LogTo(Console.WriteLine, LogLevel.Trace);
+            base.OnConfiguring(optionsBuilder);
+        }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
