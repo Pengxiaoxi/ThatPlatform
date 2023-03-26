@@ -33,18 +33,23 @@ namespace Tpf.BaseInfo.Applciation.Impl
         private readonly IGrpcService _grpcService;
 
         private readonly IDapperRepository _dapperRepository;
+
+        private readonly BaseInfoDbContext _dbContext;
         #endregion
 
         #region Ctor
         public UserService(ILogger<UserService<T>> log
             , IMongoDBRepository<T> repository
             , IDapperRepository dapperRepository
+            , BaseInfoDbContext dbContext
 
             , IGrpcService grpcService
             ) : base(log, repository)
         {
             //_baseInfoDbContext = baseInfoDbContext;
             _dapperRepository = dapperRepository;
+
+            _dbContext = dbContext;
 
             _grpcService = grpcService;
 
@@ -71,48 +76,64 @@ namespace Tpf.BaseInfo.Applciation.Impl
 
         public async Task<List<UserInfoOutputDto>> GetUserInfoList()
         {
-            using (var dbContext = new BaseInfoDbContext())
-            {
-                // inner join example
-                //var innerJoinQuery = from user in dbContext.UserInfos
-                //            join dept in dbContext.Depts
-                //            on user.DeptId equals dept.Id
-                //            select new UserInfoOutputDto()
-                //            {
-                //                Account = user.Account,
-                //                UserName = user.UserName,
-                //                DeptName = dept.DeptName,
-                //            };
-                //var innerJoinResult = innerJoinQuery.ToList();
+            // inner join example
+            var leftJoinQuery = from user in _dbContext.UserInfos
+                                join dept in _dbContext.Depts
+                                on user.DeptId equals dept.Id into grouping
+                                from dept in grouping.DefaultIfEmpty()
+                                select new UserInfoOutputDto()
+                                {
+                                    Account = user.Account,
+                                    UserName = user.UserName,
+                                    DeptName = dept.DeptName,
+                                };
+            var leftJoinResult = leftJoinQuery.ToList();
 
-                //// left join example
-                //var leftJoinQuery = from user in dbContext.UserInfos
-                //            join dept in dbContext.Depts
-                //            on user.DeptId equals dept.Id into grouping
-                //            from dept in grouping.DefaultIfEmpty()
-                //            select new UserInfoOutputDto()
-                //            {
-                //                Account = user.Account,
-                //                UserName = user.UserName,
-                //                DeptName = dept.DeptName,
-                //            };
-                //var leftJoinResult = leftJoinQuery.ToList();
+            //using (var dbContext = new BaseInfoDbContext())
+            //{
+            //    // inner join example
+            //    var innerJoinQuery = from user in dbContext.UserInfos
+            //                         join dept in dbContext.Depts
+            //                         on user.DeptId equals dept.Id
+            //                         select new UserInfoOutputDto()
+            //                         {
+            //                             Account = user.Account,
+            //                             UserName = user.UserName,
+            //                             DeptName = dept.DeptName,
+            //                         };
+            //    var innerJoinResult = innerJoinQuery.ToList();
 
-                // Execute Sql
-                //var selectSql = "";
+            //    //// left join example
+            //    //var leftJoinQuery = from user in dbContext.UserInfos
+            //    //            join dept in dbContext.Depts
+            //    //            on user.DeptId equals dept.Id into grouping
+            //    //            from dept in grouping.DefaultIfEmpty()
+            //    //            select new UserInfoOutputDto()
+            //    //            {
+            //    //                Account = user.Account,
+            //    //                UserName = user.UserName,
+            //    //                DeptName = dept.DeptName,
+            //    //            };
+            //    //var leftJoinResult = leftJoinQuery.ToList();
 
-                //dbContext.UserInfos.FromSqlRaw(selectSql);
-                //dbContext.UserInfos.FromSqlInterpolated($"{selectSql}");
+            //    // Execute Sql
+            //    //var selectSql = "";
 
-                //await dbContext.Database.ExecuteSqlRawAsync(selectSql);
-                //await dbContext.Database.ExecuteSqlInterpolatedAsync($"{selectSql}");
+            //    //dbContext.UserInfos.FromSqlRaw(selectSql);
+            //    //dbContext.UserInfos.FromSqlInterpolated($"{selectSql}");
 
-                var result = await this.GetUserInfoListByDapper();
+            //    //await dbContext.Database.ExecuteSqlRawAsync(selectSql);
+            //    //await dbContext.Database.ExecuteSqlInterpolatedAsync($"{selectSql}");
 
-                //var userList = dbContext.UserInfos.ToList();
-                return result;
-            }
-            
+            //    var result = await this.GetUserInfoListByDapper();
+
+            //    //var userList = dbContext.UserInfos.ToList();
+            //    return result;
+            //}
+
+            var result = await this.GetUserInfoListByDapper();
+            return result;
+
         }
         #endregion
 

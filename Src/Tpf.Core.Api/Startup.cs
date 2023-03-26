@@ -14,6 +14,8 @@ using Quartz.Impl;
 using Tpf.Middleware.Middlewares;
 using Tpf.BaseInfo.Domain;
 using Tpf.ORM.Dapper;
+using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver.Core.Configuration;
 
 namespace Tpf.Core.Web
 {
@@ -56,14 +58,21 @@ namespace Tpf.Core.Web
 
 
             #region DI
-            services.AddDbContext<BaseInfoDbContext>();
-
             // 中间件注入，后续需统一注入
             services.AddSingleton<AuthorizationMiddleware>();
             services.AddSingleton<ExceptionMiddleware>();
 
             //services.AddSingleton<IJobFactory, JobFactory>();
             services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();//注册ISchedulerFactory的实例。
+
+            #region EF Core + Mysql DbContext
+            var MySqlConnName = "Tpf_Mysql";
+            string mysqlDbVersion = "8.0.32";
+            services.AddDbContext<BaseInfoDbContext>(options =>
+            {
+                options.UseMySql(Configuration.GetConnectionString(MySqlConnName), ServerVersion.Parse(mysqlDbVersion));
+            }); 
+            #endregion
 
             // 接口服务统一注册
             services.AddModules();
