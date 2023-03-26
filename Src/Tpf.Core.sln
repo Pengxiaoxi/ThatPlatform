@@ -51,6 +51,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Utils", "Tpf.Utils\Tpf.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.ORM.EntityFrameworkCore", "Tpf.ORM.EntityFrameworkCore\Tpf.ORM.EntityFrameworkCore.csproj", "{CAEA6ADD-7EC3-4212-84FC-4BBD92003F1A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tpf.ORM.Dapper", "Tpf.ORM.Dapper\Tpf.ORM.Dapper.csproj", "{C9083F16-7593-4228-8757-FD915207953B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,6 +127,10 @@ Global
 		{CAEA6ADD-7EC3-4212-84FC-4BBD92003F1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAEA6ADD-7EC3-4212-84FC-4BBD92003F1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAEA6ADD-7EC3-4212-84FC-4BBD92003F1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9083F16-7593-4228-8757-FD915207953B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9083F16-7593-4228-8757-FD915207953B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9083F16-7593-4228-8757-FD915207953B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9083F16-7593-4228-8757-FD915207953B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -153,6 +159,7 @@ Global
 		{AC949E49-87ED-4A4E-B646-41F42A2DC2AC} = {4A2CA3DC-2082-42F2-B3FA-67B203397DDB}
 		{DB5247BE-71E0-4F5B-8B8D-AFD3D60C5CC4} = {33018890-93AD-47CC-A304-AC1ACD31E525}
 		{CAEA6ADD-7EC3-4212-84FC-4BBD92003F1A} = {33018890-93AD-47CC-A304-AC1ACD31E525}
+		{C9083F16-7593-4228-8757-FD915207953B} = {33018890-93AD-47CC-A304-AC1ACD31E525}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48D4C4BC-746F-4767-959F-CB1A9FAD11C8}

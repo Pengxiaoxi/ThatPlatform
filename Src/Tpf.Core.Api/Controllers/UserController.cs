@@ -28,13 +28,13 @@ namespace Tpf.Core.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ServiceResult<List<UserInfo>>> GetUserList()
+        public async Task<ServiceResult<List<UserInfoOutputDto>>> GetUserList()
         {
             //throw new NotImplementedException();
 
             //var result = await _userService.GetListAsync(x => x.UserName != null);
             var result = await _userService.GetUserInfoList();
-            return ServiceResult<List<UserInfo>>.IsSuccess(result);
+            return ServiceResult<List<UserInfoOutputDto>>.IsSuccess(result);
         }
 
         [HttpPost]
