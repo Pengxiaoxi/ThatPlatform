@@ -13,6 +13,9 @@ using Quartz;
 using Quartz.Impl;
 using Tpf.Middleware.Middlewares;
 using Tpf.BaseInfo.Domain;
+using Tpf.ORM.Dapper;
+using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver.Core.Configuration;
 
 namespace Tpf.Core.Web
 {
@@ -55,8 +58,6 @@ namespace Tpf.Core.Web
 
 
             #region DI
-            services.AddDbContext<BaseInfoDbContext>();
-
             // 中间件注入，后续需统一注入
             services.AddSingleton<AuthorizationMiddleware>();
             services.AddSingleton<ExceptionMiddleware>();
@@ -64,9 +65,18 @@ namespace Tpf.Core.Web
             //services.AddSingleton<IJobFactory, JobFactory>();
             services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();//注册ISchedulerFactory的实例。
 
+            #region EF Core + Mysql DbContext
+            var MySqlConnName = "Tpf_Mysql";
+            string mysqlDbVersion = "8.0.32";
+            services.AddDbContext<BaseInfoDbContext>(options =>
+            {
+                options.UseMySql(Configuration.GetConnectionString(MySqlConnName), ServerVersion.Parse(mysqlDbVersion));
+            }); 
+            #endregion
+
             // 接口服务统一注册
             services.AddModules();
-
+            
 
             #region .Net Core默认DI示例
             //services.AddTransient(typeof(IMongoDBRepository<>), typeof(MongoDBRepository<>));
@@ -75,14 +85,15 @@ namespace Tpf.Core.Web
 
             services.AddTransient<ITencentCloudDBOperateService, TencentCloudDBOperateService>();
 
-
+            // Dapper Repository
+            services.AddTpfDapper();
 
             #region gRpc Server
             //services.AddGrpc();
             //// 注册启用了代码优先的Grpc服务
             //services.AddCodeFirstGrpc();
             //// 注册启用反射的服务
-            //services.AddGrpcReflectionOfTPF(); 
+            //services.AddGrpcReflectionOfTPF();
             #endregion
 
             #endregion

@@ -317,7 +317,17 @@ namespace Tpf.Common.BaseORM.MongoDB
             throw new NotImplementedException();
         }
 
-        
+        public Task<IList<T>> FindAsync(Expression<Func<T, bool>> expression)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteAsync(Expression<Func<T, bool>> expression)
+        {
+            throw new NotImplementedException();
+        }
+
+
         #endregion
 
         #region Private
