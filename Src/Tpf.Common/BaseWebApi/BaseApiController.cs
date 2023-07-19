@@ -1,10 +1,5 @@
-﻿using log4net;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Tpf.Common.BaseWebApi
 {
@@ -16,13 +11,20 @@ namespace Tpf.Common.BaseWebApi
     public class BaseApiController
     {
         #region Field
-        protected readonly ILog _log;
+        protected readonly ILogger<object> _log;
         #endregion
 
         #region Ctor
         public BaseApiController()
         {
-            _log = LogManager.GetLogger(typeof(BaseApiController));
+            
+        }
+
+        public BaseApiController(ILogger<object> log)
+        {
+            _log = log; //_log = LogManager.GetLogger(typeof(T));
+
+
         }
         #endregion
 

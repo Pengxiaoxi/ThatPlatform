@@ -1,5 +1,4 @@
-﻿using log4net;
-using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -14,20 +13,27 @@ namespace Tpf.Common.BaseDomain.Impl
     /// 1、每个项目都会有一个主数据库，因此对于主数据库的基础操作使用BaseService来完成较为方便
     /// 2、对于副数据库仓储服务，可以在各自Service层通过构造函数注入对应数据库仓储进行使用
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class BaseService<T> : IBaseService<T> where T: BaseEntity<string>
+    /// <typeparam name="T"> Entity class for repository </typeparam>
+    /// <typeparam name="TService"> Service class for log </typeparam>
+    public class BaseService<T> : IBaseService<T> 
+        where T: BaseEntity<string>
     {
         #region Field
-        protected readonly ILog _log;
+        protected readonly ILogger<BaseService<T>> _log ;
         protected readonly IMongoDBRepository<T> _repository;
         #endregion
 
         #region Ctor
-        public BaseService(
-            IMongoDBRepository<T> repository
+        /// <summary>
+        /// TODO：根据配置需要使用的ORM来条件注册
+        /// 
+        /// </summary>
+        /// <param name="repository"></param>
+        public BaseService(ILogger<BaseService<T>> log = null
+            , IMongoDBRepository<T> repository = null
             )
         {
-            _log = LogManager.GetLogger(typeof(BaseService<T>));
+            _log = log;
             _repository = repository;
         }
         #endregion

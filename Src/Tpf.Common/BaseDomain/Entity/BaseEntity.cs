@@ -21,13 +21,13 @@ namespace Tpf.Common.BaseDomain.Entity
         }
 
 
-        public string CreatedUserId { get; set; }
+        //public string CreatedUserId { get; set; }
 
-        public string CreatedUserName { get; set; }
+        //public string CreatedUserName { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+        //public DateTime CreatedDate { get; set; }
 
-        public string TenantId { get; set; }
+        //public string TenantId { get; set; }
         #endregion
 
         #region Ctor

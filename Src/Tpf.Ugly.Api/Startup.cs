@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tpf.Grpc.Server;
-using Tpf.Core.CoreExtensions.HostBuilderExtensions;
+using Tpf.Middleware.Middlewares;
 
 namespace Tpf.Ugly.Web
 {
@@ -33,13 +33,15 @@ namespace Tpf.Ugly.Web
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tpf.Ugly", Version = "v1" });
             });
+            // 指定Swagger使用Newtonsoft.Json序列化【避免Swagger接口文档内接口参数与对象属性JsonProperty不符】
+            services.AddSwaggerGenNewtonsoftSupport();
 
             #region gRpc Server
             services.AddGrpc();
             // 注册启用了代码优先的Grpc服务
             services.AddCodeFirstGrpc();
             // 注册启用反射的服务
-            services.AddGrpcReflectionOfTPF();
+            //services.AddGrpcReflectionOfTPF();
             #endregion
 
         }
@@ -69,10 +71,11 @@ namespace Tpf.Ugly.Web
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseExceptionMiddleware(); // 异常Aop处理
 
-            // 异常Aop处理
-            app.UseExceptionHandlerMidd();
+            app.UseAuthorization();
+            
+            
 
             app.UseEndpoints(endpoints =>
             {

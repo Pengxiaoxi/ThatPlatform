@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Tpf.BaseInfo.Applciation.Dto;
 using Tpf.BaseInfo.Domain.Entity;
 using Tpf.Common.BaseDomain.Entity;
 using Tpf.Common.BaseDomain.Svc;
@@ -16,6 +15,9 @@ namespace Tpf.BaseInfo.Applciation.Svc
         /// </summary>
         /// <returns></returns>
         Task<object> GetOrgByUserByGrpc();
+
+        Task<List<UserInfoOutputDto>> GetUserInfoList();
+
 
     }
 }

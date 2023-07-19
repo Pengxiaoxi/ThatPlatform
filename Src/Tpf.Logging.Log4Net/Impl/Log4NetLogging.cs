@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Tpf.Logging.Log4Net.Impl
 {
+    [Obsolete]
     public class Log4NetLogging<T> : ILog4NetLogging<T> where T : class
     {
         private readonly ILog _log;

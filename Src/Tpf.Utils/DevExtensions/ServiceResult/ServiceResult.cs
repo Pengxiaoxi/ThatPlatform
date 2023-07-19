@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tpf.Core.DevExtensions.ServiceResult
+namespace Tpf.Utils.DevExtensions.ServiceResult
 {
     /// <summary>
     /// ServiceResult
@@ -14,21 +15,25 @@ namespace Tpf.Core.DevExtensions.ServiceResult
         /// <summary>
         /// 响应码
         /// </summary>
+        [JsonProperty("code")]
         public ServiceResultCodeEnum Code { get; set; }
 
         /// <summary>
         /// 响应信息
         /// </summary>
+        [JsonProperty("message")]
         public string Message { get; set; }
 
         /// <summary>
         /// 成功
         /// </summary>
+        [JsonProperty("success")]
         public bool Success => Code == ServiceResultCodeEnum.Succeed;
 
         /// <summary>
         /// 时间戳(毫秒)
         /// </summary>
+        [JsonProperty("timestamp")]
         public long Timestamp { get; } = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 
 
@@ -57,7 +62,8 @@ namespace Tpf.Core.DevExtensions.ServiceResult
         {
             return new ServiceResult()
             {
-                Message = $"{message},Exception: {exception?.Message}, StackTrace: {exception?.StackTrace}",
+                //Message = $"{message},Exception: {exception?.Message}, StackTrace: {exception?.StackTrace}",
+                Message = message,
                 Code = ServiceResultCodeEnum.Failed
             };
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using Tpf.BaseInfo.Applciation.Dto;
 using Tpf.BaseInfo.Applciation.Svc;
 using Tpf.BaseInfo.Domain.Entity;
 using Tpf.Common.BaseWebApi;
-using Tpf.Core.DevExtensions.ServiceResult;
+using Tpf.Utils.DevExtensions.ServiceResult;
 
 namespace Tpf.Core.Web.Controllers
 {
@@ -19,18 +20,21 @@ namespace Tpf.Core.Web.Controllers
         /// Ctor
         /// </summary>
         /// <param name="userService"></param>
-        public UserController(IUserService<UserInfo> userService)
+        public UserController(ILogger<UserController> log
+            , IUserService<UserInfo> userService)
+            : base(log)
         {
             _userService = userService;
         }
 
         [HttpPost]
-        public async Task<ServiceResult<List<UserInfo>>> GetUserList()
+        public async Task<ServiceResult<List<UserInfoOutputDto>>> GetUserList()
         {
             //throw new NotImplementedException();
 
-            var result = await _userService.GetListAsync(x => x.UserName != null);
-            return ServiceResult<List<UserInfo>>.IsSuccess(result);
+            //var result = await _userService.GetListAsync(x => x.UserName != null);
+            var result = await _userService.GetUserInfoList();
+            return ServiceResult<List<UserInfoOutputDto>>.IsSuccess(result);
         }
 
         [HttpPost]

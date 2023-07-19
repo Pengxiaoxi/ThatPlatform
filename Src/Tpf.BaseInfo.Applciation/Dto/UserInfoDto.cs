@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,19 @@ namespace Tpf.BaseInfo.Applciation.Dto
 
     public class UserInfoOutputDto
     {
+        [BsonElement("userName")]
+        public string UserName { get; set; }
+
+        [BsonElement("account")]
+        public string Account { get; set; }
+
+        [BsonElement("pass")]
+        public string Pass { get; set; }
+
+        public int DeptId { get; set; }
+
+        public string DeptName { get; set; }
+
     }
 
     /// <summary>
@@ -41,4 +55,6 @@ namespace Tpf.BaseInfo.Applciation.Dto
 
 
     }
+
+
 }
