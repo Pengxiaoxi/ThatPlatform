@@ -17,7 +17,7 @@ namespace Tpf.ORM.Dapper.Repository
         #endregion
 
         #region Properties
-        public IDbConnection DbConnection
+        private IDbConnection DbConnection
         {
             get
             {
@@ -32,7 +32,16 @@ namespace Tpf.ORM.Dapper.Repository
         /// <summary>
         /// IDbTransaction
         /// </summary>
-        public IDbTransaction DbTransaction { get; set; }
+        private IDbTransaction DbTransaction { get; set; }
+
+        /// <summary>
+        /// GetDbConnection
+        /// </summary>
+        /// <returns></returns>
+        public IDbConnection Db
+        {
+            get { return this.DbConnection; }
+        }
 
         /// <summary>
         /// 事务是否已被提交
@@ -51,15 +60,6 @@ namespace Tpf.ORM.Dapper.Repository
             _connection = this.DbConnection;
         }
         #endregion
-
-        /// <summary>
-        /// GetDbConnection
-        /// </summary>
-        /// <returns></returns>
-        public IDbConnection GetDbConnection()
-        {
-            return this.DbConnection;
-        }
 
         /// <summary>
         /// 开启事务
@@ -94,19 +94,11 @@ namespace Tpf.ORM.Dapper.Repository
             Dispose();
         }
 
-        /// <summary>
-        /// GetDbTransaction
-        /// </summary>
-        /// <returns></returns>
-        public IDbTransaction GetDbTransaction()
-        {
-            return this.DbTransaction;
-        }
-
+        #region Private Method
         /// <summary>
         /// Dispose
         /// </summary>
-        public void Dispose()
+        private void Dispose()
         {
             DbTransaction?.Dispose();
             if (_connection.State == ConnectionState.Open)
@@ -114,5 +106,7 @@ namespace Tpf.ORM.Dapper.Repository
                 _connection?.Close();
             }
         }
+
+        #endregion
     }
 }

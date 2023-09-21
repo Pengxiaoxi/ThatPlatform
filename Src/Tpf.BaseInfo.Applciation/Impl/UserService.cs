@@ -146,7 +146,7 @@ namespace Tpf.BaseInfo.Applciation.Impl
             var querySql = $"SELECT `t`.`Account`, `t`.`UserName`, `t0`.`DeptName` FROM `tpf_userinfo` AS `t` " +
                             $"LEFT JOIN `tpf_dept` AS `t0` " +
                             $"ON `t`.`DeptId` = `t0`.`Id`";
-            var result = (await _dapperRepository.GetDbConnection().QueryAsync<UserInfoOutputDto>(querySql)).ToList();
+            var result = (await _dapperRepository.Db.QueryAsync<UserInfoOutputDto>(querySql)).ToList();
             return result;
         }
     }

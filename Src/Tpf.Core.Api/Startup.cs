@@ -65,13 +65,9 @@ namespace Tpf.Core.Web
             //services.AddSingleton<IJobFactory, JobFactory>();
             services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();//注册ISchedulerFactory的实例。
 
-            #region EF Core + Mysql DbContext
-            var MySqlConnName = "Tpf_Mysql";
-            string mysqlDbVersion = "8.0.32";
-            services.AddDbContext<BaseInfoDbContext>(options =>
-            {
-                options.UseMySql(Configuration.GetConnectionString(MySqlConnName), ServerVersion.Parse(mysqlDbVersion));
-            }); 
+            #region EF Core DbContext + Mysql
+            services.AddDbContext<BaseInfoDbContext>(); 
+
             #endregion
 
             // 接口服务统一注册
@@ -125,7 +121,7 @@ namespace Tpf.Core.Web
             // 异常Aop处理
             //app.UseExceptionHandlerMidd();
 
-            //app.UseExceptionMiddleware();
+            app.UseExceptionMiddleware();
 
             app.UseEndpoints(endpoints =>
             {

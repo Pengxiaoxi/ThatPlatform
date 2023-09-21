@@ -29,7 +29,7 @@ namespace Tpf.Utils
         /// <returns></returns>
         public static string GetConfig(string configSectionName)
         {
-            if(string.IsNullOrEmpty(configSectionName))
+            if (string.IsNullOrEmpty(configSectionName))
             {
                 return string.Empty;
             }
@@ -40,6 +40,16 @@ namespace Tpf.Utils
                 return section.Value;
             }
             return string.Empty;
+        }
+
+        public static string GetConnectionString(string connName)
+        {
+            if (string.IsNullOrEmpty(connName))
+            {
+                return string.Empty;
+            }
+
+            return _configuration.GetConnectionString(connName);
         }
     }
 }

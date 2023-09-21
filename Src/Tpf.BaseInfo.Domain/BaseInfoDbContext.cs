@@ -1,20 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System.Configuration;
 using Tpf.BaseInfo.Domain.Entity;
 using Tpf.ORM.EntityFrameworkCore;
+using Tpf.Utils;
 
 namespace Tpf.BaseInfo.Domain
 {
+    /// <summary>
+    /// 1、如需支持主从可考虑提供参数or扩展方法
+    /// </summary>
     public class BaseInfoDbContext : TpfDbContextBase
     {
         #region Field
 
-        #endregion
-
-        #region DbSets
-        public DbSet<UserInfo> UserInfos { get; set; }
-        public DbSet<Dept> Depts { get; set; }
         #endregion
 
         #region Ctor
@@ -29,10 +26,13 @@ namespace Tpf.BaseInfo.Domain
         #region override
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder
-            //    //.UseMySql(connectionString, ServerVersion.Parse(mysqlDbVersion))
-            //    .EnableSensitiveDataLogging()
-            //    ;
+            var MySqlConnName = "Tpf_Mysql";
+            string mysqlDbVersion = "8.0.32";
+
+            optionsBuilder
+                .UseMySql(ConfigHelper.GetConnectionString(MySqlConnName), ServerVersion.Parse(mysqlDbVersion))
+                .EnableSensitiveDataLogging()
+                ;
 
             base.OnConfiguring(optionsBuilder);
         }
@@ -43,10 +43,14 @@ namespace Tpf.BaseInfo.Domain
             modelBuilder.Entity<Dept>().ToTable("tpf_dept");
 
             base.OnModelCreating(modelBuilder);
-        } 
+        }
+
+        #region DbSets
+        public DbSet<UserInfo> UserInfos { get; set; }
+        public DbSet<Dept> Depts { get; set; }
+        #endregion
 
 
-        
         #endregion
 
 
