@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
-using Tpf.BaseInfo.Applciation.Svc;
-using Tpf.BaseInfo.Domain.Entity;
 using Tpf.Common.BaseWebApi;
 using Tpf.Utils.DevExtensions.ServiceResult;
 

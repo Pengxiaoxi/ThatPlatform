@@ -60,6 +60,12 @@ namespace Tpf.Core.Web.Controllers
             return "Ok";
         }
 
+        [HttpGet]
+        public async Task<string> TestSqlSugar()
+        {
+
+        }
+
         #region Private
 
         //构建 Timer

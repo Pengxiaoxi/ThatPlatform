@@ -5,7 +5,7 @@
     <UserSecretsId>ee9937e1-f5f4-4e48-b7c1-f641120afd5d</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
-    <Authors>pengxiaoxi</Authors>
+    <Authors>pengxx</Authors>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,7 +34,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tpf.BaseInfo.Applciation\Tpf.BaseInfo.Applciation.csproj" />
+    <ProjectReference Include="..\..\Tpf.Common\Tpf.Common.csproj" />
+    <ProjectReference Include="..\Domain\BaseInfo\Tpf.BaseInfo.Applciation\Tpf.BaseInfo.Applciation.csproj" />
     <ProjectReference Include="..\Tpf.Core\Tpf.Core.csproj" />
     <ProjectReference Include="..\Tpf.Common\Tpf.Common.csproj" />
     <ProjectReference Include="..\Tpf.Grpc.Server\Tpf.Grpc.Server.csproj" />

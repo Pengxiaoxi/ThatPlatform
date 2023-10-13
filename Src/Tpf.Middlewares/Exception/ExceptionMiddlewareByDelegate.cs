@@ -1,5 +1,4 @@
-﻿using log4net;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
 using System.Net;
@@ -8,12 +7,12 @@ using Tpf.Utils.DevExtensions.ServiceResult;
 
 namespace Tpf.Middleware.DiffWayToCreateMiddleware
 {
-    public class ExceptionMiddleware
+    public class ExceptionMiddlewareByDelegate
     {
         private readonly RequestDelegate _next;
-        private static readonly ILog _log = LogManager.GetLogger(typeof(ExceptionMiddleware));
+        //private static readonly ILog _log = LogManager.GetLogger(typeof(ExceptionMiddlewareByDelegate));
 
-        public ExceptionMiddleware(RequestDelegate next)
+        public ExceptionMiddlewareByDelegate(RequestDelegate next)
         {
             _next = next;
         }
@@ -34,7 +33,7 @@ namespace Tpf.Middleware.DiffWayToCreateMiddleware
         {
             if (e == null) return;
 
-            _log.Error(e.GetBaseException().ToString());
+            //_log.Error(e.GetBaseException().ToString());
 
             await WriteExceptionAsync(context, e);
         }
