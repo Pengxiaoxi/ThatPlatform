@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="protobuf-net.Grpc.AspNetCore" Version="1.0.152" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\BaseInfo\Tpf.BaseInfo.GrpcApplciation\Tpf.BaseInfo.GrpcApplciation.csproj" />
+    <ProjectReference Include="..\..\Shared\Utils\Tpf.Core\Tpf.Core.csproj" />
+    <ProjectReference Include="..\..\Common\Tpf.Common\Tpf.Common.csproj" />
+    <ProjectReference Include="..\..\Shared\Component\Tpf.Grpc.Server\Tpf.Grpc.Server.csproj" />
+    <ProjectReference Include="..\..\Shared\Middlewares\Tpf.Middlewares\Tpf.Middlewares.csproj" />
+  </ItemGroup>
+
+</Project>

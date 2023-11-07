@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tpf.BaseInfo.Domain\Tpf.BaseInfo.Domain.csproj" />
+    <ProjectReference Include="..\Tpf.BaseInfo.GrpcApplciation\Tpf.BaseInfo.GrpcApplciation.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Component\Tpf.Grpc.Client\Tpf.Grpc.Client.csproj" />
+    <ProjectReference Include="..\..\..\Shared\ORM\Tpf.ORM.Dapper\Tpf.ORM.Dapper.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Utils\Tpf.Utils\Tpf.Utils.csproj" />
+  </ItemGroup>
+
+</Project>
