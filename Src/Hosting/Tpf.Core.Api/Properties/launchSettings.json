@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Tpf.Api": {
+    "Tpf.Core.Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "http://localhost:8000/swagger/index.html",
