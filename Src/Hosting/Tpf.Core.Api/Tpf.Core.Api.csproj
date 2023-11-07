@@ -34,15 +34,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Tpf.Common\Tpf.Common.csproj" />
-    <ProjectReference Include="..\Domain\BaseInfo\Tpf.BaseInfo.Applciation\Tpf.BaseInfo.Applciation.csproj" />
-    <ProjectReference Include="..\Tpf.Core\Tpf.Core.csproj" />
-    <ProjectReference Include="..\Tpf.Common\Tpf.Common.csproj" />
-    <ProjectReference Include="..\Tpf.Grpc.Server\Tpf.Grpc.Server.csproj" />
-    <ProjectReference Include="..\Tpf.Jobs\Tpf.Jobs.QuartzNet.csproj" />
-    <ProjectReference Include="..\Tpf.Middlewares\Tpf.Middleware.csproj" />
-    <ProjectReference Include="..\Tpf.ORM.Dapper\Tpf.ORM.Dapper.csproj" />
-    <ProjectReference Include="..\Tpf.Utils\Tpf.Utils.csproj" />
+    <ProjectReference Include="..\..\Common\Tpf.Common\Tpf.Common.csproj" />
+    <ProjectReference Include="..\..\Domain\BaseInfo\Tpf.BaseInfo.Applciation\Tpf.BaseInfo.Applciation.csproj" />
+    <ProjectReference Include="..\..\Shared\Utils\Tpf.Core\Tpf.Core.csproj" />
+    <ProjectReference Include="..\..\Shared\Component\Tpf.Grpc.Server\Tpf.Grpc.Server.csproj" />
+    <ProjectReference Include="..\..\Shared\Component\Tpf.Jobs.QuartzNet\Tpf.Jobs.QuartzNet.csproj" />
+    <ProjectReference Include="..\..\Shared\Middlewares\Tpf.Middlewares\Tpf.Middlewares.csproj" />
+    <ProjectReference Include="..\..\Shared\ORM\Tpf.ORM.Dapper\Tpf.ORM.Dapper.csproj" />
+    <ProjectReference Include="..\..\Shared\Utils\Tpf.Utils\Tpf.Utils.csproj" />
   </ItemGroup>
 
   <ItemGroup>

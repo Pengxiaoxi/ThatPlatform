@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tpf.Common\Tpf.Common.csproj" />
-    <ProjectReference Include="..\Tpf.ORM.EntityFrameworkCore\Tpf.ORM.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\..\Common\Tpf.Common\Tpf.Common.csproj" />
+    <ProjectReference Include="..\..\..\Shared\ORM\Tpf.ORM.EntityFrameworkCore\Tpf.ORM.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
 </Project>

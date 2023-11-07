@@ -3,72 +3,88 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosting", "Hosting", "{4A2CA3DC-2082-42F2-B3FA-67B203397DDB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{33018890-93AD-47CC-A304-AC1ACD31E525}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Common", "Common\Tpf.Common\Tpf.Common.csproj", "{1593EEA4-6E47-4251-8FB0-8FCF9148108D}"
+EndProject
+
+
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{9E140917-32C7-4677-A614-910B66BABB90}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BaseInfo", "Domain/BaseInfo", "{61023E70-DE99-4230-A278-1ECBE2844320}"
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BaseDomain", "BaseDomain", "{FDD85AC5-31D2-42C9-AF84-763F4156FBD3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platform_YourPostman", "Platform_YourPostman", "{AE09BE81-10F2-4B19-8EFA-FB6C76FE90C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.BaseDomain.Domain", "Domain\BaseDomain\Tpf.BaseDomain.Domain\Tpf.BaseDomain.Domain.csproj", "{66A9E66E-4706-4C4E-9599-C7046CDAEE49}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.BaseInfo.Domain", "Domain\BaseInfo\Tpf.BaseInfo.Domain\Tpf.BaseInfo.Domain.csproj", "{180623AE-CF30-43BD-B0D9-76C440009CF7}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platform_Ugly", "Platform_Ugly", "{2ADD0F94-BFDB-452B-B3FE-422F60E55BD3}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{810C03AC-F24D-48DF-9AF3-4BE056EA70C3}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Common", "Tpf.Common\Tpf.Common.csproj", "{1593EEA4-6E47-4251-8FB0-8FCF9148108D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{33018890-93AD-47CC-A304-AC1ACD31E525}"
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BaseInfo", "BaseInfo", "{61023E70-DE99-4230-A278-1ECBE2844320}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.BaseInfo.Applciation", "Domain\BaseInfo\Tpf.BaseInfo.Applciation\Tpf.BaseInfo.Applciation.csproj", "{E2707681-2EA7-458C-BB59-F242952AA8F7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.BaseInfo.HttpApi", "Tpf.BaseInfo.HttpApi\Tpf.BaseInfo.HttpApi.csproj", "{FC20FB41-2843-41D5-8ACD-016BD1F397F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.BaseInfo.Domain", "Domain\BaseInfo\Tpf.BaseInfo.Domain\Tpf.BaseInfo.Domain.csproj", "{180623AE-CF30-43BD-B0D9-76C440009CF7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Ugly.Applciation", "Tpf.Ugly.Applciation\Tpf.Ugly.Applciation.csproj", "{E62A0CF2-9CFB-480F-A7B0-673CE6C340D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.BaseInfo.HttpApi", "Domain\BaseInfo\Tpf.BaseInfo.HttpApi\Tpf.BaseInfo.HttpApi.csproj", "{FC20FB41-2843-41D5-8ACD-016BD1F397F6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.YourPostman.Applciation", "Tpf.YourPostman.Applciation\Tpf.YourPostman.Applciation.csproj", "{2E969821-94AA-4267-8750-C59CC24BD715}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.BaseInfo.GrpcApplciation", "Domain\BaseInfo\Tpf.BaseInfo.GrpcApplciation\Tpf.BaseInfo.GrpcApplciation.csproj", "{DE291D88-AC38-4C05-8AAD-B9CBEC144FDB}"
 EndProject
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platform_Ugly", "Platform_Ugly", "{2ADD0F94-BFDB-452B-B3FE-422F60E55BD3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Ugly.Applciation", "Domain/Platform_Ugly/Tpf.Ugly.Applciation\Tpf.Ugly.Applciation.csproj", "{E62A0CF2-9CFB-480F-A7B0-673CE6C340D1}"
+EndProject
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platform_YourPostman", "Platform_YourPostman", "{AE09BE81-10F2-4B19-8EFA-FB6C76FE90C0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.YourPostman.Applciation", "Domain/Platform_YourPostman/Tpf.YourPostman.Applciation\Tpf.YourPostman.Applciation.csproj", "{2E969821-94AA-4267-8750-C59CC24BD715}"
+EndProject
+
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosting", "Hosting", "{4A2CA3DC-2082-42F2-B3FA-67B203397DDB}"
+EndProject
+
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Core.Api", "Hosting\Tpf.Core.Api\Tpf.Core.Api.csproj", "{CDEF4BD9-A54F-4080-92A1-927B5FACE59E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Core", "Tpf.Core\Tpf.Core.csproj", "{039A51C9-E4E2-41C2-8A73-91DF5A2DBE88}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Jobs.QuartzNet", "Tpf.Jobs\Tpf.Jobs.QuartzNet.csproj", "{DEDC1390-7B47-482D-88F3-86CE108E402E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Log.Log4Net", "Tpf.Logging.Log4Net\Tpf.Log.Log4Net.csproj", "{F4273034-587D-41B0-AC17-E8A1F3DAA4FB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Middlewares", "Tpf.Middlewares\Tpf.Middlewares.csproj", "{BD0CB82E-C81E-4043-9EB7-64BE0E87AD17}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Grpc.Client", "Tpf.Grpc.Client\Tpf.Grpc.Client.csproj", "{A80EA55F-C3FC-4E25-BD0F-2760514C3FB5}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Grpc.Server", "Tpf.Grpc.Server\Tpf.Grpc.Server.csproj", "{9BB2DF3D-232B-4B69-86F2-71B1320B30D4}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.BaseInfo.GrpcApplciation", "Tpf.BaseInfo.GrpcApplciation\Tpf.BaseInfo.GrpcApplciation.csproj", "{DE291D88-AC38-4C05-8AAD-B9CBEC144FDB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Ugly.Api", "Hosting\Tpf.Ugly.Api\Tpf.Ugly.Api.csproj", "{AC949E49-87ED-4A4E-B646-41F42A2DC2AC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Utils", "Tpf.Utils\Tpf.Utils.csproj", "{DB5247BE-71E0-4F5B-8B8D-AFD3D60C5CC4}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.ORM.EntityFrameworkCore", "Tpf.ORM.EntityFrameworkCore\Tpf.ORM.EntityFrameworkCore.csproj", "{CAEA6ADD-7EC3-4212-84FC-4BBD92003F1A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.ORM.Dapper", "Tpf.ORM.Dapper\Tpf.ORM.Dapper.csproj", "{C9083F16-7593-4228-8757-FD915207953B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.ORM.SqlSugar", "Common\Tpf.ORM.SqlSugar\Tpf.ORM.SqlSugar.csproj", "{9136D849-E2E7-4F75-8987-F07250447AE7}"
-EndProject
+
+
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{90118215-CC2F-44A3-A214-43548BA5AF4A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BaseDomain", "BaseDomain", "{FDD85AC5-31D2-42C9-AF84-763F4156FBD3}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ORM", "ORM", "{6F3C3BA6-30B7-4955-8D51-2C2C31CE1357}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Middlewares", "Middlewares", "{E8382516-DB8F-4537-9131-F7ACA1791C6C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{9331582C-7E43-4B63-901A-13FF4E1ACA5E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tpf.BaseDomain.Domain", "Domain\BaseDomain\Tpf.BaseDomain.Domain\Tpf.BaseDomain.Domain.csproj", "{66A9E66E-4706-4C4E-9599-C7046CDAEE49}"
-EndProject
+
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Component", "Component", "{0CA5A09A-1517-43B4-AC25-898E6D96F307}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Grpc.Client", "Shared\Component\Tpf.Grpc.Client\Tpf.Grpc.Client.csproj", "{A80EA55F-C3FC-4E25-BD0F-2760514C3FB5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Grpc.Server", "Shared\Component\Tpf.Grpc.Server\Tpf.Grpc.Server.csproj", "{9BB2DF3D-232B-4B69-86F2-71B1320B30D4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Jobs.QuartzNet", "Shared\Component\Tpf.Jobs.QuartzNet\Tpf.Jobs.QuartzNet.csproj", "{DEDC1390-7B47-482D-88F3-86CE108E402E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Log.Log4Net", "Shared\Component\Tpf.Logging.Log4Net\Tpf.Log.Log4Net.csproj", "{F4273034-587D-41B0-AC17-E8A1F3DAA4FB}"
+EndProject
+
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Middlewares", "Middlewares", "{E8382516-DB8F-4537-9131-F7ACA1791C6C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Middlewares", "Shared\Middlewares\Tpf.Middlewares\Tpf.Middlewares.csproj", "{BD0CB82E-C81E-4043-9EB7-64BE0E87AD17}"
+EndProject
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ORM", "ORM", "{6F3C3BA6-30B7-4955-8D51-2C2C31CE1357}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.ORM.EntityFrameworkCore", "Shared\ORM\Tpf.ORM.EntityFrameworkCore\Tpf.ORM.EntityFrameworkCore.csproj", "{CAEA6ADD-7EC3-4212-84FC-4BBD92003F1A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.ORM.Dapper", "Shared\ORM\Tpf.ORM.Dapper\Tpf.ORM.Dapper.csproj", "{C9083F16-7593-4228-8757-FD915207953B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.ORM.SqlSugar", "Shared\ORM\Tpf.ORM.SqlSugar\Tpf.ORM.SqlSugar.csproj", "{9136D849-E2E7-4F75-8987-F07250447AE7}"
+EndProject
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{9331582C-7E43-4B63-901A-13FF4E1ACA5E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Core", "Shared\Utils\Tpf.Core\Tpf.Core.csproj", "{039A51C9-E4E2-41C2-8A73-91DF5A2DBE88}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Utils", "Shared\Utils\Tpf.Utils\Tpf.Utils.csproj", "{DB5247BE-71E0-4F5B-8B8D-AFD3D60C5CC4}"
+EndProject
+
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -160,14 +176,11 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{4A2CA3DC-2082-42F2-B3FA-67B203397DDB} = {810C03AC-F24D-48DF-9AF3-4BE056EA70C3}
-		{9E140917-32C7-4677-A614-910B66BABB90} = {810C03AC-F24D-48DF-9AF3-4BE056EA70C3}
 		{61023E70-DE99-4230-A278-1ECBE2844320} = {9E140917-32C7-4677-A614-910B66BABB90}
 		{AE09BE81-10F2-4B19-8EFA-FB6C76FE90C0} = {9E140917-32C7-4677-A614-910B66BABB90}
 		{180623AE-CF30-43BD-B0D9-76C440009CF7} = {61023E70-DE99-4230-A278-1ECBE2844320}
 		{2ADD0F94-BFDB-452B-B3FE-422F60E55BD3} = {9E140917-32C7-4677-A614-910B66BABB90}
 		{1593EEA4-6E47-4251-8FB0-8FCF9148108D} = {33018890-93AD-47CC-A304-AC1ACD31E525}
-		{33018890-93AD-47CC-A304-AC1ACD31E525} = {810C03AC-F24D-48DF-9AF3-4BE056EA70C3}
 		{E2707681-2EA7-458C-BB59-F242952AA8F7} = {61023E70-DE99-4230-A278-1ECBE2844320}
 		{FC20FB41-2843-41D5-8ACD-016BD1F397F6} = {61023E70-DE99-4230-A278-1ECBE2844320}
 		{E62A0CF2-9CFB-480F-A7B0-673CE6C340D1} = {2ADD0F94-BFDB-452B-B3FE-422F60E55BD3}
@@ -185,7 +198,6 @@ Global
 		{CAEA6ADD-7EC3-4212-84FC-4BBD92003F1A} = {6F3C3BA6-30B7-4955-8D51-2C2C31CE1357}
 		{C9083F16-7593-4228-8757-FD915207953B} = {6F3C3BA6-30B7-4955-8D51-2C2C31CE1357}
 		{9136D849-E2E7-4F75-8987-F07250447AE7} = {6F3C3BA6-30B7-4955-8D51-2C2C31CE1357}
-		{90118215-CC2F-44A3-A214-43548BA5AF4A} = {810C03AC-F24D-48DF-9AF3-4BE056EA70C3}
 		{FDD85AC5-31D2-42C9-AF84-763F4156FBD3} = {9E140917-32C7-4677-A614-910B66BABB90}
 		{6F3C3BA6-30B7-4955-8D51-2C2C31CE1357} = {90118215-CC2F-44A3-A214-43548BA5AF4A}
 		{E8382516-DB8F-4537-9131-F7ACA1791C6C} = {90118215-CC2F-44A3-A214-43548BA5AF4A}

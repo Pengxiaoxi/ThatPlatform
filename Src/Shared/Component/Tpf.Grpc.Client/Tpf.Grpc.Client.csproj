@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tpf.Core\Tpf.Core.csproj" />
+    <ProjectReference Include="..\..\Utils\Tpf.Core\Tpf.Core.csproj" />
   </ItemGroup>
 
 </Project>

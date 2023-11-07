@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tpf.Common\Tpf.Common.csproj" />
+    <ProjectReference Include="..\..\..\Common\Tpf.Common\Tpf.Common.csproj" />
   </ItemGroup>
 
 </Project>

@@ -11,11 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tpf.BaseInfo.GrpcApplciation\Tpf.BaseInfo.GrpcApplciation.csproj" />
-    <ProjectReference Include="..\Tpf.Core\Tpf.Core.csproj" />
-    <ProjectReference Include="..\Tpf.Common\Tpf.Common.csproj" />
-    <ProjectReference Include="..\Tpf.Grpc.Server\Tpf.Grpc.Server.csproj" />
-    <ProjectReference Include="..\Tpf.Middlewares\Tpf.Middleware.csproj" />
+    <ProjectReference Include="..\..\Domain\BaseInfo\Tpf.BaseInfo.GrpcApplciation\Tpf.BaseInfo.GrpcApplciation.csproj" />
+    <ProjectReference Include="..\..\Shared\Utils\Tpf.Core\Tpf.Core.csproj" />
+    <ProjectReference Include="..\..\Common\Tpf.Common\Tpf.Common.csproj" />
+    <ProjectReference Include="..\..\Shared\Component\Tpf.Grpc.Server\Tpf.Grpc.Server.csproj" />
+    <ProjectReference Include="..\..\Shared\Middlewares\Tpf.Middlewares\Tpf.Middlewares.csproj" />
   </ItemGroup>
 
 </Project>

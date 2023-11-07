@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tpf.Grpc.Server\Tpf.Grpc.Server.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Component\Tpf.Grpc.Server\Tpf.Grpc.Server.csproj" />
   </ItemGroup>
 
 </Project>

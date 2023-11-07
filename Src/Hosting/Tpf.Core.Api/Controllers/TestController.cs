@@ -63,7 +63,7 @@ namespace Tpf.Core.Web.Controllers
         [HttpGet]
         public async Task<string> TestSqlSugar()
         {
-
+            return await Task.FromResult(string.Empty);
         }
 
         #region Private
