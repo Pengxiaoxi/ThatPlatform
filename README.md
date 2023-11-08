@@ -25,7 +25,7 @@
 #### Swagger UI （更好用的三方 Swagger UI 组件）
 
 - [ ] fytapi.mui / [https://gitee.com/feiyit/fytapi.mui#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E](https://gitee.com/feiyit/fytapi.mui#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)
-- [ ] knife4j / [https://doc.xiaominfo.com/docs/quick-start](https://doc.xiaominfo.com/docs/quick-start)
+- [x] knife4j / http://localhost:8000/index.html#/home [https://doc.xiaominfo.com/docs/quick-start](https://doc.xiaominfo.com/docs/quick-start) https://doc.xiaominfo.com/docs/action/dotnetcore-knife4j-guid
 #### 工具
 
 - [x] ConfigHelper

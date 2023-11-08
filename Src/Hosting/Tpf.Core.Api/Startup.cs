@@ -16,6 +16,8 @@ using Tpf.BaseInfo.Domain;
 using Tpf.ORM.Dapper;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver.Core.Configuration;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using IGeekFan.AspNetCore.Knife4jUI;
 
 namespace Tpf.Core.Web
 {
@@ -42,6 +44,11 @@ namespace Tpf.Core.Web
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tpf", Version = "v1" });
+                c.CustomOperationIds(apiDesc =>
+                {
+                    var controllerAction = apiDesc.ActionDescriptor as ControllerActionDescriptor;
+                    return controllerAction.ControllerName + "-" + controllerAction.ActionName;
+                });
             });
             // 指定Swagger使用Newtonsoft.Json序列化【避免Swagger接口文档内接口参数与对象属性JsonProperty不符】
             services.AddSwaggerGenNewtonsoftSupport();
@@ -105,8 +112,18 @@ namespace Tpf.Core.Web
             }
             Console.WriteLine($"EnvironmentName: {env.EnvironmentName}");
 
+
+            #region Swagger Knife4UI
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tpf v1"));
+
+            app.UseKnife4UI(c =>
+            {
+                c.RoutePrefix = ""; // serve the UI at root
+                c.SwaggerEndpoint("/v1/api-docs", "V1 Docs");
+            });
+
+            #endregion
 
             //app.UseHttpsRedirection();
 
@@ -137,6 +154,8 @@ namespace Tpf.Core.Web
                 //    endpoints.MapGrpcReflectionService();
                 //} 
                 #endregion
+
+                endpoints.MapSwagger("{documentName}/api-docs");
             });
 
             
