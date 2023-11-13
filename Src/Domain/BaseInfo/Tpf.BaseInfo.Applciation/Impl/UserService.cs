@@ -3,22 +3,19 @@ using System.Threading.Tasks;
 using Tpf.BaseInfo.Applciation.Svc;
 using Tpf.BaseInfo.GrpcApplciation.Client.Dto;
 using Tpf.BaseInfo.GrpcApplciation.Client.Svc;
-using Tpf.Common.BaseDomain.Impl;
-using Tpf.Common.BaseORM.MongoDB;
-using Tpf.Grpc.Client;
-using Tpf.Core.CommonAttributes;
 using Tpf.Utils;
 using Microsoft.Extensions.Logging;
-using Tpf.Common.BaseDomain.Entity;
 using System.Collections.Generic;
-using Tpf.BaseInfo.Domain.Entity;
 using Tpf.BaseInfo.Domain;
 using System.Linq;
 using Tpf.BaseInfo.Applciation.Dto;
-using System;
-using Microsoft.EntityFrameworkCore;
 using Tpf.ORM.Dapper.Repository;
 using Dapper;
+using Tpf.Common.CommonAttributes;
+using Tpf.Common.BaseDomain.Impl;
+using Tpf.Domain.Base.Domain.Entity;
+using Tpf.Domain.Base.Repository;
+using Tpf.Grpc.Client;
 
 namespace Tpf.BaseInfo.Applciation.Impl
 {

@@ -4,7 +4,7 @@ using Grpc.Net.Client.Configuration;
 using ProtoBuf.Grpc.Client;
 using System;
 using System.Net.Http;
-using Tpf.Core.CommonAttributes;
+using Tpf.Common.CommonAttributes;
 
 namespace Tpf.Grpc.Client
 {

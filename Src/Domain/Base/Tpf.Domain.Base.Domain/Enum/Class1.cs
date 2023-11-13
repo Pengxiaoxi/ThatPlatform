@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tpf.Shared.Logging.Log4Net
+namespace Tpf.Domain.Base.Domain.Enum
 {
-    [Obsolete]
-    public interface ILog4NetLogging<T> : ILogging<T> where T : class
+    internal class Class1
     {
-
     }
 }

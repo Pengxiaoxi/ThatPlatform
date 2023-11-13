@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tpf.Shared.Logging.Log4Net
+namespace Tpf.Domain.Base.Repository
 {
-    [Obsolete]
-    public interface ILog4NetLogging<T> : ILogging<T> where T : class
+    public interface ISqlSugerRepository<T> : IBaseRepository<T> where T : class
     {
-
+        
     }
 }

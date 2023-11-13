@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Utils\Tpf.Core\Tpf.Core.csproj" />
+    <ProjectReference Include="..\..\Common\Tpf.Common\Tpf.Common.csproj" />
     <ProjectReference Include="..\..\Utils\Tpf.Utils\Tpf.Utils.csproj" />
   </ItemGroup>
 

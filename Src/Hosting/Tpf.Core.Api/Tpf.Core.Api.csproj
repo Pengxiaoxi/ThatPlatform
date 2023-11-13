@@ -36,9 +36,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Tpf.Common\Tpf.Common.csproj" />
     <ProjectReference Include="..\..\Domain\BaseInfo\Tpf.BaseInfo.Applciation\Tpf.BaseInfo.Applciation.csproj" />
-    <ProjectReference Include="..\..\Shared\Utils\Tpf.Core\Tpf.Core.csproj" />
+    <ProjectReference Include="..\..\Shared\Common\Tpf.Common\Tpf.Common.csproj" />
     <ProjectReference Include="..\..\Shared\Component\Tpf.Grpc.Server\Tpf.Grpc.Server.csproj" />
     <ProjectReference Include="..\..\Shared\Component\Tpf.Jobs.QuartzNet\Tpf.Jobs.QuartzNet.csproj" />
     <ProjectReference Include="..\..\Shared\Middlewares\Tpf.Middlewares\Tpf.Middlewares.csproj" />

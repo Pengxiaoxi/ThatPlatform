@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tpf.Logging.Log4Net
+namespace Tpf.Shared.Logging.Log4Net
 {
     [Obsolete]
     public interface ILogging<T> where T : class

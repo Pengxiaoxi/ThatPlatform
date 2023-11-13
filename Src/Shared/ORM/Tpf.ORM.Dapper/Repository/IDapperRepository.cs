@@ -4,7 +4,6 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tpf.Common.BaseORM;
 
 namespace Tpf.ORM.Dapper.Repository
 {

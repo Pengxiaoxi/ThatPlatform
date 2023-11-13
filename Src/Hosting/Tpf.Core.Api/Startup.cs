@@ -7,15 +7,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using Microsoft.OpenApi.Models;
-using Tpf.Core.ServiceExtension.DI;
+using Tpf.Common.ServiceExtension.DI;
 using Autofac;
 using Quartz;
 using Quartz.Impl;
 using Tpf.Middleware.Middlewares;
 using Tpf.BaseInfo.Domain;
 using Tpf.ORM.Dapper;
-using Microsoft.EntityFrameworkCore;
-using MongoDB.Driver.Core.Configuration;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using IGeekFan.AspNetCore.Knife4jUI;
 

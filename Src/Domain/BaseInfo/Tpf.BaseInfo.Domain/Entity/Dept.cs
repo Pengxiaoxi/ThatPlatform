@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tpf.Common.BaseDomain.Entity;
+using Tpf.Domain.Base.Domain.Entity;
 
 namespace Tpf.BaseInfo.Domain.Entity
 {

@@ -1,11 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tpf.Common.BaseDomain.Entity;
-using Tpf.Core.CommonAttributes.Database;
+using Tpf.Common.CommonAttributes.Database;
+using Tpf.Domain.Base.Domain.Entity;
 
 namespace Tpf.BaseInfo.Domain.Entity
 {

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tpf.BaseInfo.Applciation.Dto;
-using Tpf.BaseInfo.Domain.Entity;
-using Tpf.Common.BaseDomain.Entity;
-using Tpf.Common.BaseDomain.Svc;
+using Tpf.Domain.Base.Domain.Contacts;
+using Tpf.Domain.Base.Domain.Entity;
 
 namespace Tpf.BaseInfo.Applciation.Svc
 {
