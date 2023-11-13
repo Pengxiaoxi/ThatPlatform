@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Tpf.Domain.Base.Repository
+namespace Tpf.ORM.BaseRepository
 {
     /// <summary>
     /// IBaseRepository<T>

@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\ORM\Tpf.ORM.MongoDB\Tpf.ORM.MongoDB.csproj" />
     <ProjectReference Include="..\Tpf.Domain.Base.Application.Contacts\Tpf.Domain.Base.Application.Contacts.csproj" />
-    <ProjectReference Include="..\Tpf.Domain.Base.Reposiotry\Tpf.Domain.Base.Reposiotry.csproj" />
   </ItemGroup>
 
 </Project>

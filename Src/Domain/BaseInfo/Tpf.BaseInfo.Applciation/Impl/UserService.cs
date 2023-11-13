@@ -14,8 +14,8 @@ using Dapper;
 using Tpf.Common.CommonAttributes;
 using Tpf.Common.BaseDomain.Impl;
 using Tpf.Domain.Base.Domain.Entity;
-using Tpf.Domain.Base.Repository;
 using Tpf.Grpc.Client;
+using Tpf.ORM.MongoDB.Respository;
 
 namespace Tpf.BaseInfo.Applciation.Impl
 {

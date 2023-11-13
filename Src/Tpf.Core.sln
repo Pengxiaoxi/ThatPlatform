@@ -59,19 +59,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{600A21
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Common", "Shared\Common\Tpf.Common\Tpf.Common.csproj", "{039A51C9-E4E2-41C2-8A73-91DF5A2DBE88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tpf.Domain.Base.Domain", "Domain\Base\Tpf.Domain.Base.Domain\Tpf.Domain.Base.Domain.csproj", "{B94D5E30-B500-41E5-9721-8AF13C8D5E4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Domain.Base.Domain", "Domain\Base\Tpf.Domain.Base.Domain\Tpf.Domain.Base.Domain.csproj", "{B94D5E30-B500-41E5-9721-8AF13C8D5E4D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Base", "Base", "{400DF086-A9AA-47D3-A2DF-195624A802D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tpf.Domain.Base.Application", "Domain\Base\Tpf.Domain.Base.Application\Tpf.Domain.Base.Application.csproj", "{B635AD1C-D99A-4150-8BAD-F1B6D35F225D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Domain.Base.Application", "Domain\Base\Tpf.Domain.Base.Application\Tpf.Domain.Base.Application.csproj", "{B635AD1C-D99A-4150-8BAD-F1B6D35F225D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tpf.Domain.Base.Application.Contacts", "Domain\Base\Tpf.Domain.Base.Application.Contacts\Tpf.Domain.Base.Application.Contacts.csproj", "{C6B94798-7DBC-4013-9F71-53BC6359DBF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Domain.Base.Application.Contacts", "Domain\Base\Tpf.Domain.Base.Application.Contacts\Tpf.Domain.Base.Application.Contacts.csproj", "{C6B94798-7DBC-4013-9F71-53BC6359DBF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tpf.Domain.Base.Reposiotry", "Domain\Base\Tpf.Domain.Base.Reposiotry\Tpf.Domain.Base.Reposiotry.csproj", "{7FEF7A11-1FEA-477D-BFA7-CC73E29FAAF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Domain.Base.Reposiotry", "Domain\Base\Tpf.Domain.Base.Reposiotry\Tpf.Domain.Base.Reposiotry.csproj", "{7FEF7A11-1FEA-477D-BFA7-CC73E29FAAF9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{90B44DDA-2CAF-4D81-8CC8-81712717A70C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tpf.Domain.BaseInfo.Test", "Test\Tpf.Domain.BaseInfo.Test\Tpf.Domain.BaseInfo.Test.csproj", "{D6DAC190-D026-48AC-BC44-F9828DC48FDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Domain.BaseInfo.Test", "Test\Tpf.Domain.BaseInfo.Test\Tpf.Domain.BaseInfo.Test.csproj", "{D6DAC190-D026-48AC-BC44-F9828DC48FDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tpf.ORM.MongoDB", "Shared\ORM\Tpf.ORM.MongoDB\Tpf.ORM.MongoDB.csproj", "{EE33E836-C2A9-4D4F-B59D-D71EF4FA8C2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tpf.ORM.BaseRepository", "Shared\ORM\Tpf.ORM.BaseReposiotry\Tpf.ORM.BaseRepository.csproj", "{D105150F-F215-48E8-898F-5485C20239FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -167,6 +171,14 @@ Global
 		{D6DAC190-D026-48AC-BC44-F9828DC48FDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6DAC190-D026-48AC-BC44-F9828DC48FDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6DAC190-D026-48AC-BC44-F9828DC48FDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE33E836-C2A9-4D4F-B59D-D71EF4FA8C2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE33E836-C2A9-4D4F-B59D-D71EF4FA8C2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE33E836-C2A9-4D4F-B59D-D71EF4FA8C2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE33E836-C2A9-4D4F-B59D-D71EF4FA8C2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D105150F-F215-48E8-898F-5485C20239FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D105150F-F215-48E8-898F-5485C20239FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D105150F-F215-48E8-898F-5485C20239FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D105150F-F215-48E8-898F-5485C20239FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -203,6 +215,8 @@ Global
 		{C6B94798-7DBC-4013-9F71-53BC6359DBF6} = {400DF086-A9AA-47D3-A2DF-195624A802D8}
 		{7FEF7A11-1FEA-477D-BFA7-CC73E29FAAF9} = {400DF086-A9AA-47D3-A2DF-195624A802D8}
 		{D6DAC190-D026-48AC-BC44-F9828DC48FDD} = {90B44DDA-2CAF-4D81-8CC8-81712717A70C}
+		{EE33E836-C2A9-4D4F-B59D-D71EF4FA8C2E} = {6F3C3BA6-30B7-4955-8D51-2C2C31CE1357}
+		{D105150F-F215-48E8-898F-5485C20239FB} = {6F3C3BA6-30B7-4955-8D51-2C2C31CE1357}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48D4C4BC-746F-4767-959F-CB1A9FAD11C8}

@@ -1,8 +1,9 @@
 ﻿using MongoDB.Driver;
 using System.Linq.Expressions;
 using Tpf.Domain.Base.Domain.Entity;
+using Tpf.ORM.BaseRepository;
 
-namespace Tpf.Domain.Base.Repository
+namespace Tpf.ORM.MongoDB.Respository
 {
     public interface IMongoDBRepository<T> : IBaseRepository<T> where T : BaseEntity<string>
     {
@@ -167,7 +168,7 @@ namespace Tpf.Domain.Base.Repository
         /// <returns>总数</returns>
         long Count(FilterDefinition<T> filter);
 
-        
+
 
         /// <summary>
         /// 根据条件是否存在数据
@@ -176,11 +177,11 @@ namespace Tpf.Domain.Base.Repository
         /// <returns>是否存在，true:是 false：否</returns>
         bool Exists(FilterDefinition<T> filter);
 
-        
 
-        
 
-        
+
+
+
 
         /// <summary>
         /// 单个对象更新操作,底层调用时 FindOneAndUpdate
@@ -234,7 +235,7 @@ namespace Tpf.Domain.Base.Repository
         /// <returns>批量更新结果.</returns>
         UpdateResult UpdateMany(Expression<Func<T, bool>> expression, UpdateDefinition<T> updateDefinition, UpdateOptions options = null);
 
-        
+
 
         /// <summary>
         /// 批量删除根据FilterDefinition 条件
@@ -269,7 +270,7 @@ namespace Tpf.Domain.Base.Repository
         /// <returns></returns>
         T DeleteByIdAndFind(string id, FindOneAndDeleteOptions<T, T> options = null);
 
-        
+
         /// <summary>
         ///  批处理操作,操作的数据条数需要大于0
         /// </summary>

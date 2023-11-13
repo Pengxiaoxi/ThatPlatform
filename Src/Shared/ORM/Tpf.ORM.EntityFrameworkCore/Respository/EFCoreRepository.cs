@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tpf.Domain.Base.Repository
+namespace Tpf.ORM.EntityFrameworkCore.Respository
 {
-    public interface ISqlSugerRepository<T> : IBaseRepository<T> where T : class
+    internal class EFCoreRepository
     {
-        
     }
 }

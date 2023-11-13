@@ -1,11 +1,10 @@
 ﻿using MongoDB.Driver;
 using System.Linq.Expressions;
 using Tpf.Common.CommonAttributes;
-using Tpf.Common.CommonAttributes.Database;
 using Tpf.Domain.Base.Domain.Entity;
-using Tpf.Domain.Base.Repository;
+using Tpf.Common.CommonAttributes.Database;
 
-namespace Tpf.Common.BaseORM.MongoDB
+namespace Tpf.ORM.MongoDB.Respository
 {
     [DependsOn(typeof(IMongoDBRepository<>))]
     public class MongoDBRepository<T> : IMongoDBRepository<T> where T : BaseEntity<string>
@@ -66,12 +65,12 @@ namespace Tpf.Common.BaseORM.MongoDB
         #region Async
         public async Task<T> FindOneAsync(Expression<Func<T, bool>> expression)
         {
-            return await this._collection.Find(expression).FirstOrDefaultAsync();
+            return await _collection.Find(expression).FirstOrDefaultAsync();
         }
 
         public async Task<List<T>> FindAsync(Expression<Func<T, bool>> expression, ProjectionDefinition<T, T> projecter = null, SortDefinition<T> sorter = null)
         {
-            return (List<T>)await this._collection.FindAsync(expression, new FindOptions<T, T>() { Projection = projecter, Sort = sorter });
+            return (List<T>)await _collection.FindAsync(expression, new FindOptions<T, T>() { Projection = projecter, Sort = sorter });
         }
 
         #endregion
@@ -170,10 +169,10 @@ namespace Tpf.Common.BaseORM.MongoDB
 
         public List<T> Find(Expression<Func<T, bool>> filter, ProjectionDefinition<T, T> projecter = null, SortDefinition<T> sorter = null)
         {
-            return this._collection.Find(filter).Project(projecter).Sort(sorter).ToList();
+            return _collection.Find(filter).Project(projecter).Sort(sorter).ToList();
         }
 
-        
+
 
         public List<T> Find(Expression<Func<T, bool>> filter, ProjectionDefinition<T, T> projecter, string sorter)
         {
