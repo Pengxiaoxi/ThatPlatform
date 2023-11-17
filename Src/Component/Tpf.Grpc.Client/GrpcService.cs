@@ -4,7 +4,6 @@ using Grpc.Net.Client.Configuration;
 using ProtoBuf.Grpc.Client;
 using System;
 using System.Net.Http;
-using Tpf.Common.CommonAttributes;
 
 namespace Tpf.Grpc.Client
 {
@@ -13,7 +12,7 @@ namespace Tpf.Grpc.Client
     /// https://docs.microsoft.com/zh-cn/aspnet/core/grpc/client?view=aspnetcore-5.0
     /// https://docs.microsoft.com/zh-cn/aspnet/core/grpc/code-first?view=aspnetcore-5.0
     /// </summary>
-    [DependsOn(typeof(IGrpcService))]
+    //[DependsOn(typeof(IGrpcService))]
     public class GrpcService : IGrpcService
     {
         private string ServerAddress = string.Empty;

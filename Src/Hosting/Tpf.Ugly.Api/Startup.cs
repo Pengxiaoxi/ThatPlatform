@@ -79,7 +79,7 @@ namespace Tpf.Ugly.Web
 
                 #region gRpc Server
                 // TPF Grpc·þÎñ
-                endpoints.MapGrpcServiceOfTPF();
+                endpoints.MapGrpcService();
 
                 if (!env.IsProduction())
                 {

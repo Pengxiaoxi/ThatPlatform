@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Component\Tpf.Grpc.Client\Tpf.Grpc.Client.csproj" />
     <ProjectReference Include="..\..\..\Shared\Component\Tpf.Grpc.Client\Tpf.Grpc.Client.csproj" />
     <ProjectReference Include="..\..\..\Shared\ORM\Tpf.ORM.MongoDB\Tpf.ORM.MongoDB.csproj" />
     <ProjectReference Include="..\..\Base\Tpf.Domain.Base.Application\Tpf.Domain.Base.Application.csproj" />

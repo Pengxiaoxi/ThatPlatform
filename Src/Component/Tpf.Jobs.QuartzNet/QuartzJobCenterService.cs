@@ -3,7 +3,6 @@ using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Tpf.Common.CommonAttributes;
 using Tpf.Utils.DevExtensions.ServiceResult;
 
 namespace Tpf.Jobs.QuartzNet
@@ -12,14 +11,14 @@ namespace Tpf.Jobs.QuartzNet
     /// <summary>
     /// QuartzJobCenterService
     /// </summary>
-    [DependsOn(typeof(IQuartzJobCenterService))]
+    //[DependsOn(typeof(IQuartzJobCenterService))]
     public class QuartzJobCenterService : IQuartzJobCenterService
     {
         #region Field
         private IScheduler _scheduler;
         private readonly ISchedulerFactory _schedulerFactory;
 
-        private readonly ILog _log;
+        private readonly ILog _log; // TODO：避免引用具体组件
         #endregion
 
         #region Ctor

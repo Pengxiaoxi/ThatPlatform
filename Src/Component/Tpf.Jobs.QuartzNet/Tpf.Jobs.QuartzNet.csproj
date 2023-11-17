@@ -5,12 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.13" />
     <PackageReference Include="Quartz" Version="3.3.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Tpf.Common\Tpf.Common.csproj" />
-    <ProjectReference Include="..\..\Utils\Tpf.Utils\Tpf.Utils.csproj" />
+    <ProjectReference Include="..\..\Shared\Utils\Tpf.Utils\Tpf.Utils.csproj" />
   </ItemGroup>
 
 </Project>

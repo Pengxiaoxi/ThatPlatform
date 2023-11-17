@@ -14,10 +14,10 @@ namespace Tpf.Grpc.Server
     public static class GrpcEndpointExtensions
     {
         /// <summary>
-        /// MapGrpcServiceOfTPF 注册所有标记GrpcServiceAttribute的Grpc服务
+        /// MapGrpcService 注册所有标记GrpcServiceAttribute的Grpc服务
         /// </summary>
         /// <param name="builder"></param>
-        public static void MapGrpcServiceOfTPF(this IEndpointRouteBuilder builder)
+        public static void MapGrpcService(this IEndpointRouteBuilder builder)
         {
             Assembly[] assemblies = new Assembly[] { };
             assemblies = assemblies.Append(Assembly.Load("Tpf.BaseInfo.GrpcApplciation")).ToArray();

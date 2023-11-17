@@ -9,8 +9,4 @@
     <PackageReference Include="protobuf-net.Grpc.AspNetCore" Version="1.0.152" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Common\Tpf.Common\Tpf.Common.csproj" />
-  </ItemGroup>
-
 </Project>
