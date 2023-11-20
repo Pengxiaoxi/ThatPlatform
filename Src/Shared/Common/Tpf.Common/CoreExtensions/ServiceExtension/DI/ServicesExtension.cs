@@ -1,14 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Tpf.Common.CommonAttributes;
-using Tpf.Common.ModuleManager;
+using Tpf.Common.CoreExtensions.ModuleManager;
 
-namespace Tpf.Common.ServiceExtension.DI
+namespace Tpf.Common.CoreExtensions.ServiceExtension.DI
 {
     public static class ServicesCollectionExtension
     {

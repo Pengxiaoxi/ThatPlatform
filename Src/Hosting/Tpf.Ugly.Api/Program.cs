@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Tpf.Ugly.Web
+namespace Tpf.Ugly.Api
 {
     public class Program
     {

@@ -1,9 +1,9 @@
 ﻿using System.Linq.Expressions;
 using Tpf.Domain.Base.Domain.Entity;
 
-namespace Tpf.Domain.Base.Domain.Contacts
+namespace Tpf.Domain.Base.Application.Contacts
 {
-    public interface IBaseService<T> 
+    public interface IBaseService<T>
         where T : BaseEntity<string>
     {
         Task<T> FindOneAsync(Expression<Func<T, bool>> filter);

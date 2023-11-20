@@ -1,12 +1,12 @@
-﻿using Tpf.Core.Web.Interface;
-using log4net;
+﻿using log4net;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Tpf.Core.Api.Interface;
 
-namespace Tpf.Core.Web
+namespace Tpf.Core.Api.Job
 {
     public class DownloadTaskService : BackgroundService
     {
@@ -24,7 +24,7 @@ namespace Tpf.Core.Web
             _logger = LogManager.GetLogger(typeof(DownloadTaskService));
             _configuration = configuration;
             _operateService = operateService;
-        } 
+        }
         #endregion
 
         #region override
@@ -35,14 +35,14 @@ namespace Tpf.Core.Web
             if (string.IsNullOrEmpty(isRunDownloadTask) || Convert.ToBoolean(isRunDownloadTask) == false)
             {
                 return;
-            } 
+            }
             #endregion
 
             // 是否固定时间点执行
             var isTimedExecution = Convert.ToBoolean(_configuration["IsTimedExecution"]);
             // 定时任务执行间隔（单位：毫秒）
             var timeIntervalStr = _configuration["BackgroundTaskTimeInterval"];
-            
+
             // 轮询时间间隔（默认1s）,非固定时间点执行则取配置时间间隔
             int timeInterval = 1 * 1000;
             if (!isTimedExecution)
@@ -91,7 +91,7 @@ namespace Tpf.Core.Web
                 // 间隔的时间
                 await Task.Delay(timeInterval);
             }
-        } 
+        }
         #endregion
 
         /// <summary>

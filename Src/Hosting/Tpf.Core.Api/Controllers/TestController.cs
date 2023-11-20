@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Tpf.Common.BaseWebApi;
 
-namespace Tpf.Core.Web.Controllers
+namespace Tpf.Core.Api.Controllers
 {
     /// <summary>
     /// TestController
@@ -14,7 +14,7 @@ namespace Tpf.Core.Web.Controllers
     public class TestController : BaseApiController
     {
         #region Field
-        
+
         #endregion
 
         #region Ctor
@@ -22,12 +22,12 @@ namespace Tpf.Core.Web.Controllers
             )
             : base(log)
         {
-            
+
         }
         #endregion
 
         [HttpGet]
-        public async Task<Object> GetTest()
+        public async Task<object> GetTest()
         {
             // 日志示例
             _log.LogInformation("This is a log message !", "");
@@ -55,7 +55,7 @@ namespace Tpf.Core.Web.Controllers
             Console.WriteLine();
             Console.WriteLine();
 
-            await this.Regex(scriptText);
+            await Regex(scriptText);
 
             return "Ok";
         }

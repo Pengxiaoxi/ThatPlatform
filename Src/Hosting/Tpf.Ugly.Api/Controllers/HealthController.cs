@@ -3,7 +3,7 @@ using System;
 using System.Threading.Tasks;
 using Tpf.Common.BaseWebApi;
 
-namespace Tpf.Ugly.Web.Controllers
+namespace Tpf.Ugly.Api.Controllers
 {
     /// <summary>
     /// HealthController
@@ -17,7 +17,7 @@ namespace Tpf.Ugly.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<Object> GetTest()
+        public async Task<object> GetTest()
         {
             var result = new { code = 200, msg = "", success = true, data = new object() };
 

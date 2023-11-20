@@ -6,10 +6,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using ProtoBuf.Grpc.Server;
 using System;
-using Tpf.Grpc.Server;
-using Tpf.Middleware.Middlewares;
+using Tpf.Grpc.Server.Extensions;
+using Tpf.Middlewares;
 
-namespace Tpf.Ugly.Web
+namespace Tpf.Ugly.Api
 {
     public class Startup
     {
@@ -59,7 +59,7 @@ namespace Tpf.Ugly.Web
 
             #region Swagger
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tpf.Ugly v1")); 
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tpf.Ugly v1"));
             #endregion
 
             app.UseHttpsRedirection();
@@ -70,8 +70,8 @@ namespace Tpf.Ugly.Web
             app.UseExceptionMiddleware(); // Òì³£Aop´¦Àí
 
             app.UseAuthorization();
-            
-            
+
+
 
             app.UseEndpoints(endpoints =>
             {

@@ -5,11 +5,11 @@ using System.Linq;
 using System.Reflection;
 using Tpf.Common.CommonAttributes;
 
-namespace Tpf.Common.ModuleManager
+namespace Tpf.Common.CoreExtensions.ModuleManager
 {
     public class ThatPlatformModulManager
     {
-        
+
         #region Field
         protected readonly ILog _logger;
         #endregion
@@ -23,14 +23,14 @@ namespace Tpf.Common.ModuleManager
         public ThatPlatformModulManager(ILog logger)
         {
             _logger = logger;
-        } 
+        }
         #endregion
 
         public List<Type> LoadAllModules()
         {
             //_logger.Debug("Loading Tpf modules...");
 
-            var _modules = this.FindDependedModules();
+            var _modules = FindDependedModules();
 
             //_logger.Debug($"Found {_modules.Count} Tpf modules in total.");
 
@@ -45,13 +45,13 @@ namespace Tpf.Common.ModuleManager
 
             assemblies = assemblies.Append(Assembly.Load("Tpf.Jobs.QuartzNet")).ToArray();
             assemblies = assemblies.Append(Assembly.Load("Tpf.Grpc.Client")).ToArray();
-            
+
 
 
             List<Type> _modules = assemblies
                 .SelectMany(x => x.GetTypes())
                 .Where(x => x.GetCustomAttributes(typeof(DependsOnAttribute), true).Length > 0
-                            && x.IsClass 
+                            && x.IsClass
                             && !x.IsAbstract)
                 .ToList();
             return _modules;

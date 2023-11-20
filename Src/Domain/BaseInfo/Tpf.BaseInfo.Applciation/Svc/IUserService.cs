@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tpf.BaseInfo.Applciation.Dto;
-using Tpf.Domain.Base.Domain.Contacts;
+using Tpf.Domain.Base.Application.Contacts;
 using Tpf.Domain.Base.Domain.Entity;
 
 namespace Tpf.BaseInfo.Applciation.Svc

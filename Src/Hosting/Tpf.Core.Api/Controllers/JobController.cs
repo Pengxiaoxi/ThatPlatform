@@ -6,7 +6,7 @@ using Tpf.Jobs.QuartzNet;
 using Tpf.Jobs.QuartzNet.Jobs;
 using Tpf.Utils.DevExtensions.ServiceResult;
 
-namespace Tpf.Core.Web.Controllers
+namespace Tpf.Core.Api.Controllers
 {
     /// <summary>
     /// JobController
@@ -21,7 +21,7 @@ namespace Tpf.Core.Web.Controllers
         public JobController(ILogger<HealthController> log
             , IQuartzJobCenterService quartzJobCenterService
             )
-            :base(log)
+            : base(log)
         {
             _quartzJobCenterService = quartzJobCenterService;
         }

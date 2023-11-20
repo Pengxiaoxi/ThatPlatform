@@ -5,7 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Tpf.Utils.DevExtensions.ServiceResult;
 
-namespace Tpf.Middleware.DiffWayToCreateMiddleware
+namespace Tpf.Middlewares
 {
     public class ExceptionMiddlewareByDelegate
     {

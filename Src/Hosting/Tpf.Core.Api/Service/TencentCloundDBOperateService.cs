@@ -1,6 +1,4 @@
-﻿using Tpf.Core.Web.Dto;
-using Tpf.Core.Web.Interface;
-using log4net;
+﻿using log4net;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
@@ -14,8 +12,9 @@ using TencentCloud.Common.Profile;
 using TencentCloud.Mongodb.V20190725;
 using TencentCloud.Mongodb.V20190725.Models;
 using Tpf.Utils;
+using Tpf.Core.Api.Interface;
 
-namespace Tpf.Core.Web.Service
+namespace Tpf.Core.Api.Service
 {
     public class TencentCloudDBOperateService : ITencentCloudDBOperateService
     {
@@ -47,9 +46,9 @@ namespace Tpf.Core.Web.Service
             _logger = LogManager.GetLogger(typeof(TencentCloudDBOperateService));
 
             //初始化配置参数
-            this.Init();
+            Init();
 
-            this._mongodbClient = this.GetMongodbClient();
+            _mongodbClient = GetMongodbClient();
         }
         #endregion
 
@@ -130,7 +129,7 @@ namespace Tpf.Core.Web.Service
         /// 查询腾讯云MongoDB数据库实例备份列表 By SDK
         /// </summary>
         /// <returns></returns>
-        public async Task<TencentCloud.Mongodb.V20190725.Models.BackupInfo> GetDescribeDBBackupsBySDK()
+        public async Task<BackupInfo> GetDescribeDBBackupsBySDK()
         {
             DescribeDBBackupsRequest req = new DescribeDBBackupsRequest
             {
@@ -166,7 +165,7 @@ namespace Tpf.Core.Web.Service
         /// <param name="BackupInfo"></param>
         /// <param name="ReplicaSetInfo"></param>
         /// <returns></returns>
-        public async Task<CreateBackupDownloadTaskResponse> CreateBackupDownloadTaskBySDK(TencentCloud.Mongodb.V20190725.Models.BackupInfo BackupInfo, ReplicaSetInfo[] ReplicaSetInfo)
+        public async Task<CreateBackupDownloadTaskResponse> CreateBackupDownloadTaskBySDK(BackupInfo BackupInfo, ReplicaSetInfo[] ReplicaSetInfo)
         {
             CreateBackupDownloadTaskRequest req = new CreateBackupDownloadTaskRequest()
             {
@@ -184,9 +183,9 @@ namespace Tpf.Core.Web.Service
         /// </summary>
         /// <param name="BackupList"></param>
         /// <returns></returns>
-        public async Task<DescribeBackupDownloadTaskResponse> GetDescribeBackupDownloadTaskSyncBySDK(TencentCloud.Mongodb.V20190725.Models.BackupInfo BackupInfo)
+        public async Task<DescribeBackupDownloadTaskResponse> GetDescribeBackupDownloadTaskSyncBySDK(BackupInfo BackupInfo)
         {
-            
+
             DescribeBackupDownloadTaskRequest req = new DescribeBackupDownloadTaskRequest
             {
                 InstanceId = INSTANCEID,
@@ -204,25 +203,25 @@ namespace Tpf.Core.Web.Service
         public async Task DownloadCloudDBBackupFile()
         {
             // 1、备份文件列表信息
-            var buckUpInfoResult = await this.GetDescribeDBBackupsBySDK();
-            if(buckUpInfoResult is null)
+            var buckUpInfoResult = await GetDescribeDBBackupsBySDK();
+            if (buckUpInfoResult is null)
             {
-                this.LogInfo($"未查询到当前实例备份文件列表信息，实例ID:{INSTANCEID}");
+                LogInfo($"未查询到当前实例备份文件列表信息，实例ID:{INSTANCEID}");
 
                 // 获取配置：是否创建备份，备份方式
                 var isCreateBackupDBInstance = _configuration["isCreateBackupDBInstance"];
                 if (!string.IsNullOrEmpty(isCreateBackupDBInstance) && Convert.ToBoolean(isCreateBackupDBInstance))
                 {
-                    await this.CreateBackupDBInstanceBySDK(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    await CreateBackupDBInstanceBySDK(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 }
                 return;
             }
 
             // 2、获取实例详细信息
-            var instanceDetail = await this.GetDescribeDBInstancesBySDK();
-            if(instanceDetail is null)
+            var instanceDetail = await GetDescribeDBInstancesBySDK();
+            if (instanceDetail is null)
             {
-                this.LogInfo($"未查询到当前实例详细信息，实例ID:{INSTANCEID}");
+                LogInfo($"未查询到当前实例详细信息，实例ID:{INSTANCEID}");
                 return;
             }
 
@@ -242,17 +241,17 @@ namespace Tpf.Core.Web.Service
                 }
                 replicaSetInfoList.Add(new ReplicaSetInfo() { ReplicaSetId = allReplicaSetIds[i] });
             }
-            if(replicaSetInfoList.Count == 0)
+            if (replicaSetInfoList.Count == 0)
             {
-                this.LogInfo($"当前实例最新备份文件已全部下载，无需继续下载，实例ID:{INSTANCEID}");
+                LogInfo($"当前实例最新备份文件已全部下载，无需继续下载，实例ID:{INSTANCEID}");
                 return;
             }
 
-            var createDownTaskResult = await this.CreateBackupDownloadTaskBySDK(buckUpInfoResult, replicaSetInfoList.ToArray());
+            var createDownTaskResult = await CreateBackupDownloadTaskBySDK(buckUpInfoResult, replicaSetInfoList.ToArray());
             var downTasks = createDownTaskResult?.Tasks;
             if (downTasks == null || downTasks.Length == 0)
             {
-                this.LogInfo($"当前实例创建下载任务后未返回下载信息，实例ID:{INSTANCEID}");
+                LogInfo($"当前实例创建下载任务后未返回下载信息，实例ID:{INSTANCEID}");
                 return;
             }
             // 如果response存在创建失败的下载任务，则重新创建失败分区的下载任务 (Status == 3 创建下载任务失败)
@@ -265,7 +264,7 @@ namespace Tpf.Core.Web.Service
                 {
                     faildReplicaIdInfo[i] = new ReplicaSetInfo() { ReplicaSetId = faildReplicaIds[i] };
                 }
-                var reTryDownTasks = await this.CreateBackupDownloadTaskBySDK(buckUpInfoResult, faildReplicaIdInfo);
+                var reTryDownTasks = await CreateBackupDownloadTaskBySDK(buckUpInfoResult, faildReplicaIdInfo);
             }
             #endregion
 
@@ -273,13 +272,13 @@ namespace Tpf.Core.Web.Service
             Thread.Sleep(30 * 1000);
 
             #region 4、下载备份文件（Tasks按分片区分）
-            var taskResult = await this.GetDescribeBackupDownloadTaskSyncBySDK(buckUpInfoResult);
+            var taskResult = await GetDescribeBackupDownloadTaskSyncBySDK(buckUpInfoResult);
             var allSuccessTasks = taskResult?.Tasks.Where(x => x.Status == 2);
             foreach (var task in allSuccessTasks)
             {
                 var fileName = $"{buckUpInfoResult?.BackupName.Replace(':', '-')}_{task?.ReplicaSetId}.tar";
                 FileHelper.DownloadWebServerFile(task?.Url, actualFileDirectory, fileName);
-                this.LogInfo($"备份文件 {fileName} 下载成功");
+                LogInfo($"备份文件 {fileName} 下载成功");
             }
             #endregion
         }
@@ -290,7 +289,7 @@ namespace Tpf.Core.Web.Service
         /// <param name="Message"></param>
         public void LogInfo(string Message = null)
         {
-            if(!string.IsNullOrEmpty(Message))
+            if (!string.IsNullOrEmpty(Message))
             {
                 Message = $"{DateTime.Now}：{Message}";
                 Console.WriteLine(Message);

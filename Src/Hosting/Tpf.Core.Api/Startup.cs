@@ -1,5 +1,3 @@
-using Tpf.Core.Web.Interface;
-using Tpf.Core.Web.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -7,17 +5,19 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using Microsoft.OpenApi.Models;
-using Tpf.Common.ServiceExtension.DI;
 using Autofac;
 using Quartz;
 using Quartz.Impl;
-using Tpf.Middleware.Middlewares;
 using Tpf.BaseInfo.Domain;
 using Tpf.ORM.Dapper;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using IGeekFan.AspNetCore.Knife4jUI;
+using Tpf.Core.Api.Interface;
+using Tpf.Core.Api.Service;
+using Tpf.Common.CoreExtensions.ServiceExtension.DI;
+using Tpf.Middlewares;
 
-namespace Tpf.Core.Web
+namespace Tpf.Core.Api
 {
     public class Startup
     {
@@ -33,7 +33,7 @@ namespace Tpf.Core.Web
         {
             services
                 .AddControllers()
-                .AddNewtonsoftJson((builder) => 
+                .AddNewtonsoftJson((builder) =>
                 {
 
                 })
@@ -71,13 +71,13 @@ namespace Tpf.Core.Web
             services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();//注册ISchedulerFactory的实例。
 
             #region EF Core DbContext + Mysql
-            services.AddDbContext<BaseInfoDbContext>(); 
+            services.AddDbContext<BaseInfoDbContext>();
 
             #endregion
 
             // 接口服务统一注册
             services.AddModules();
-            
+
 
             #region .Net Core默认DI示例
             //services.AddTransient(typeof(IMongoDBRepository<>), typeof(MongoDBRepository<>));
@@ -156,7 +156,7 @@ namespace Tpf.Core.Web
                 endpoints.MapSwagger("{documentName}/api-docs");
             });
 
-            
+
         }
 
         public void ConfigureContainer(ContainerBuilder builder)

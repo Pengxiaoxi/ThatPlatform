@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tpf.Log.Log4Net.Svc;
 
-namespace Tpf.Shared.Logging.Log4Net.Impl
+namespace Tpf.Log.Log4Net.Impl
 {
     [Obsolete]
     public class Log4NetLogging<T> : ILog4NetLogging<T> where T : class

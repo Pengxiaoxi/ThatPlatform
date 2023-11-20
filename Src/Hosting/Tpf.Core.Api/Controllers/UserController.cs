@@ -10,7 +10,7 @@ using Tpf.BaseInfo.Domain.Entity;
 using Tpf.Common.BaseWebApi;
 using Tpf.Utils.DevExtensions.ServiceResult;
 
-namespace Tpf.Core.Web.Controllers
+namespace Tpf.Core.Api.Controllers
 {
     public class UserController : BaseApiController
     {
@@ -88,6 +88,6 @@ namespace Tpf.Core.Web.Controllers
         }
         #endregion
 
-        
+
     }
 }

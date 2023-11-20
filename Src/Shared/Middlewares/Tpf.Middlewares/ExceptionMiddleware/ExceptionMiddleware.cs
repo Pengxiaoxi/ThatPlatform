@@ -6,7 +6,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Tpf.Utils.DevExtensions.ServiceResult;
 
-namespace Tpf.Middleware.Middlewares
+namespace Tpf.Middlewares
 {
     /// <summary>
     /// ExceptionMiddleware
@@ -19,14 +19,14 @@ namespace Tpf.Middleware.Middlewares
     {
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
-			try
-			{
-				await next(context);
-			}
-			catch (Exception ex)
-			{
-                await this.HandleExceptionAsync(context, ex);
-			}
+            try
+            {
+                await next(context);
+            }
+            catch (Exception ex)
+            {
+                await HandleExceptionAsync(context, ex);
+            }
         }
 
         private async Task HandleExceptionAsync(HttpContext context, Exception e)

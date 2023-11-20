@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tpf.ORM.EntityFrameworkCore.Respository
+namespace Tpf.ORM.EntityFrameworkCore.Repository
 {
     internal class EFCoreRepository
     {

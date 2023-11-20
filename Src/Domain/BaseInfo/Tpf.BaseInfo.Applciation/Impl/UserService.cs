@@ -12,10 +12,10 @@ using Tpf.BaseInfo.Applciation.Dto;
 using Tpf.ORM.Dapper.Repository;
 using Dapper;
 using Tpf.Common.CommonAttributes;
-using Tpf.Common.BaseDomain.Impl;
 using Tpf.Domain.Base.Domain.Entity;
 using Tpf.Grpc.Client;
 using Tpf.ORM.MongoDB.Respository;
+using Tpf.Domain.Base.Application;
 
 namespace Tpf.BaseInfo.Applciation.Impl
 {

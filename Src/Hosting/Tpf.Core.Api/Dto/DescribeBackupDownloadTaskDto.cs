@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Tpf.Core.Web.Dto
+namespace Tpf.Core.Api.Dto
 {
     /// <summary>
     /// 查询备份下载任务信息 Reqeust&Reponse Dto

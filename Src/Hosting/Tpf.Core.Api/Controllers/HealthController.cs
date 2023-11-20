@@ -4,7 +4,7 @@ using System;
 using System.Threading.Tasks;
 using Tpf.Common.BaseWebApi;
 
-namespace Tpf.Core.Web.Controllers
+namespace Tpf.Core.Api.Controllers
 {
     /// <summary>
     /// HealthController
@@ -20,11 +20,11 @@ namespace Tpf.Core.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<Object> GetTest()
+        public async Task<object> GetTest()
         {
             var result = new { code = 200, msg = "", success = true, data = new object() };
 
             return await Task.FromResult(result);
-        }    
+        }
     }
 }

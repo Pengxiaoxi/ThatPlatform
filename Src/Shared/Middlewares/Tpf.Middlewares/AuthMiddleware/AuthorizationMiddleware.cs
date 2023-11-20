@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tpf.Middleware.Middlewares
+namespace Tpf.Middlewares
 {
     /// <summary>
     /// AuthorizationMiddleware [Need Config]

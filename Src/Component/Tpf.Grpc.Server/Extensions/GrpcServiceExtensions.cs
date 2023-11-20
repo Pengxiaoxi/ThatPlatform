@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
 
-namespace Tpf.Grpc.Server
+namespace Tpf.Grpc.Server.Extensions
 {
     /// <summary>
     /// GrpcServiceExtension

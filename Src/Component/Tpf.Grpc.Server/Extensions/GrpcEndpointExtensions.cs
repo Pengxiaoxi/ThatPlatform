@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using Tpf.Grpc.Server.Attributes;
 
-namespace Tpf.Grpc.Server
+namespace Tpf.Grpc.Server.Extensions
 {
     /// <summary>
     /// GrpcEndpointExtensions
