@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Tpf.Common.BaseWebApi;
+using Tpf.Domain.Base.HttpApi;
 
 namespace Tpf.BaseInfo.HttpApi
 {

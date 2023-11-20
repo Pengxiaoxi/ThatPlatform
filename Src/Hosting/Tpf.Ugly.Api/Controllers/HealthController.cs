@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
-using Tpf.Common.BaseWebApi;
+using Tpf.Domain.Base.HttpApi;
 
 namespace Tpf.Ugly.Api.Controllers
 {

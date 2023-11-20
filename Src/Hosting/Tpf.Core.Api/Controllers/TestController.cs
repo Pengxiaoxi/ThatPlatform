@@ -4,7 +4,7 @@ using System;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using Tpf.Common.BaseWebApi;
+using Tpf.Domain.Base.HttpApi;
 
 namespace Tpf.Core.Api.Controllers
 {

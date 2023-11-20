@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Tpf.Common.BaseWebApi
+namespace Tpf.Domain.Base.HttpApi
 {
     /// <summary>
     /// BaseApiController
@@ -17,7 +17,7 @@ namespace Tpf.Common.BaseWebApi
         #region Ctor
         public BaseApiController()
         {
-            
+
         }
 
         public BaseApiController(ILogger<object> log)
@@ -28,6 +28,6 @@ namespace Tpf.Common.BaseWebApi
         }
         #endregion
 
-        
+
     }
 }

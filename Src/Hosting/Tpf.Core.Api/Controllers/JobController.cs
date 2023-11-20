@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
-using Tpf.Common.BaseWebApi;
+using Tpf.Domain.Base.HttpApi;
 using Tpf.Jobs.QuartzNet;
 using Tpf.Jobs.QuartzNet.Jobs;
 using Tpf.Utils.DevExtensions.ServiceResult;
