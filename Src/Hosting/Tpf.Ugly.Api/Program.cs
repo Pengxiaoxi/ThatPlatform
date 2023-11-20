@@ -1,26 +1,40 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using ProtoBuf.Grpc.Server;
+using Tpf.BaseInfo.Domain;
+using Tpf.Grpc.Server.Extensions;
+using Tpf.Middlewares;
+using Tpf.ORM.Dapper;
 
-namespace Tpf.Ugly.Api
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+var builder = WebApplication.CreateBuilder(args);
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
-}
+builder.AddCommonServiceExtensions();
+
+#region Add Need ORM
+// Main ORM：EF Core
+builder.Services.AddDbContext<BaseInfoDbContext>();
+
+// ORM：Dapper
+//builder.Services.AddTpfDapper();
+
+#region Add gRpc Server
+builder.Services.AddGrpc();
+
+// 注册启用了代码优先的Grpc服务
+builder.Services.AddCodeFirstGrpc();
+
+// 注册启用反射的服务
+builder.Services.AddGrpcReflectionOfTPF();
+#endregion
+
+#endregion
+
+
+var app = builder.Build();
+
+app.UseCommonAppMiddlewares();
+
+app.Run();
+
+
+

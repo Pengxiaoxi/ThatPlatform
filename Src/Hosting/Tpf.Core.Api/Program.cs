@@ -1,36 +1,35 @@
-using Autofac.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Tpf.BaseInfo.Domain;
+using Tpf.Middlewares;
+using Tpf.ORM.Dapper;
 
-namespace Tpf.Core.Api
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+#region 设置环境变量demo【必须在 CreateBuilder 前才能覆盖 launchSettings.json 中的设置项，否则只能修改已启动进程中的环境变量】
+//Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Production");
+//Console.WriteLine("\n" + "ASPNETCORE_ENVIRONMENT: " + Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") + "\n");
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-            .UseServiceProviderFactory(new AutofacServiceProviderFactory()) // 设置使用Autofac替换IOC容器
-                                                                            // 部署到Windows Service 或 Linux守护进程可启用此项【Nuget: Microsoft.Extensions.Hosting.WindowsServices】
-                                                                            //.UseWindowsService() 
+#endregion
 
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder
-                .UseStartup<Startup>()
-                .ConfigureLogging(configureLogging =>
-                {
-                    configureLogging.ClearProviders();
-                    configureLogging.AddLog4Net($"{AppContext.BaseDirectory}\\Log4Net\\Log4Net.config");
-                })
-                ;
-            })
-            //.UseLog4Net()            
-            ;
-    }
-}
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.AddCommonServiceExtensions();
+
+#region Add Need ORM
+// Main ORM：EF Core
+builder.Services.AddDbContext<BaseInfoDbContext>();
+
+// ORM：Dapper
+builder.Services.AddTpfDapper();
+
+#endregion
+
+
+var app = builder.Build();
+
+app.UseCommonAppMiddlewares();
+
+app.Run();
+
+
+
