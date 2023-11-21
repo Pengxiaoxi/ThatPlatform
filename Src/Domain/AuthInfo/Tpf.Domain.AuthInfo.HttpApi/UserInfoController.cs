@@ -1,37 +1,35 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Tpf.Domain.AuthInfo.Domain.Entity;
+using Tpf.Domain.AuthInfo.Applciation.Svc;
 using Tpf.Domain.Base.HttpApi;
-using Tpf.Domain.UserInfo.Applciation.Dto;
-using Tpf.Domain.UserInfo.Applciation.Svc;
-using Tpf.Utils.DevExtensions.ServiceResult;
+using Tpf.Domain.AuthInfo.Domain.Entity;
+using Tpf.Utils.Extensions.ServiceResult;
+using Tpf.Domain.AuthInfo.Applciation.Dto;
 
-namespace Tpf.Core.Api.Controllers
+namespace Tpf.Domain.AuthInfo.HttpApi
 {
     /// <summary>
     /// 用户管理
     /// </summary>
-    public class UserController : BaseApiController
+    public class UserInfoController : BaseApiController
     {
-        private readonly ILogger<UserController> _logger;
-        private readonly IUserService<UserInfo> _userService;
+        #region Field
+        private readonly ILogger<UserInfoController> _logger;
+        private readonly IUserService<UserInfo> _userService; 
+        #endregion
 
         /// <summary>
         /// Ctor
         /// </summary>
-        /// <param name="userService"></param>
-        public UserController(ILogger<UserController> log
-            , IUserService<UserInfo> userService)
+        public UserInfoController(ILogger<UserInfoController> log
+            , IUserService<UserInfo> userService
+            )
         {
             _logger = log;
             _userService = userService;
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<ServiceResult<List<UserInfoOutputDto>>> GetUserList()
         {
             //throw new NotImplementedException();
@@ -72,26 +70,6 @@ namespace Tpf.Core.Api.Controllers
 
             return ServiceResult.IsSuccess("Delete Success");
         }
-
-        #region About Login
-        [HttpPost]
-        public async Task<ServiceResult<LoginOutputDto>> Login(LoginInputDto loginDto)
-        {
-            var user = await _userService.FindOneAsync(x => x.Account == loginDto.Account);
-            if (user is null)
-            {
-                throw new Exception("User not exist");
-            }
-            if (user.Pass != loginDto.Pass)
-            {
-                throw new Exception("Login error, Pass error");
-            }
-
-            var result = new LoginOutputDto() { Account = user.Account, UserName = user.UserName };
-            return ServiceResult<LoginOutputDto>.IsSuccess(result);
-        }
-        #endregion
-
 
     }
 }

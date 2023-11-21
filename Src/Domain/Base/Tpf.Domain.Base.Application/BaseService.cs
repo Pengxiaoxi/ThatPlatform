@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System.Linq.Expressions;
+using Tpf.BaseRepository;
 using Tpf.Domain.Base.Application.Contacts;
 using Tpf.Domain.Base.Domain.Entity;
 using Tpf.MongoDB.Respository;
@@ -17,7 +19,9 @@ namespace Tpf.Domain.Base.Application
     {
         #region Field
         protected readonly ILogger<BaseService<T>> _log;
-        protected readonly IMongoDBRepository<T> _repository;
+        protected readonly IBaseRepository<T> _repository;
+
+        private const string MAIN_REPOSITORY = "Mongo";
         #endregion
 
         #region Ctor
@@ -26,8 +30,8 @@ namespace Tpf.Domain.Base.Application
         /// 
         /// </summary>
         /// <param name="repository"></param>
-        public BaseService(ILogger<BaseService<T>> log = null
-            , IMongoDBRepository<T> repository = null
+        public BaseService(ILogger<BaseService<T>> log
+            , [FromKeyedServices(MAIN_REPOSITORY)] IBaseRepository<T> repository
             )
         {
             _log = log;
@@ -38,13 +42,13 @@ namespace Tpf.Domain.Base.Application
         #region Public Method
         public async Task<T> FindOneAsync(Expression<Func<T, bool>> filter)
         {
-            var result = await _repository.FindOneAsync(filter);
+            var result = await _repository.GetAsync(filter);
             return result;
         }
 
         public async Task<List<T>> GetListAsync(Expression<Func<T, bool>> filter)
         {
-            var result = await _repository.FindAsync(filter);
+            var result = await _repository.GetListAsync(filter);
             //_log.Info(JsonConvert.SerializeObject(result));
             return result;
         }

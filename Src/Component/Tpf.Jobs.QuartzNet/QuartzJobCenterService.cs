@@ -3,7 +3,7 @@ using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Tpf.Utils.DevExtensions.ServiceResult;
+using Tpf.Utils.Extensions.ServiceResult;
 
 namespace Tpf.Jobs.QuartzNet
 {

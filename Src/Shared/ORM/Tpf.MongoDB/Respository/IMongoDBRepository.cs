@@ -72,7 +72,7 @@ namespace Tpf.MongoDB.Respository
         /// <returns>结果列表</returns>
         List<T> Find(Expression<Func<T, bool>> filter, ProjectionDefinition<T, T> projecter = null, SortDefinition<T> sorter = null);
 
-        Task<List<T>> FindAsync(Expression<Func<T, bool>> filter, ProjectionDefinition<T, T> projecter = null, SortDefinition<T> sorter = null);
+        Task<List<T>> GetListAsync(Expression<Func<T, bool>> filter, ProjectionDefinition<T, T> projecter = null, SortDefinition<T> sorter = null);
 
         /// <summary>
         /// 根据条件获取结果列表

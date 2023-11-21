@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tpf.Utils.DevExtensions.ServiceResult
+namespace Tpf.Utils.Extensions.ServiceResult
 {
     /// <summary>
     /// ServiceResult

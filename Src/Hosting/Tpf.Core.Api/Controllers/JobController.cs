@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Tpf.Domain.Base.HttpApi;
 using Tpf.Jobs.QuartzNet;
 using Tpf.Jobs.QuartzNet.Jobs;
-using Tpf.Utils.DevExtensions.ServiceResult;
+using Tpf.Utils.Extensions.ServiceResult;
 
 namespace Tpf.Core.Api.Controllers
 {

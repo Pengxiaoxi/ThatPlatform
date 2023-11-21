@@ -24,18 +24,18 @@ namespace Tpf.BaseRepository
         IQueryable<T> Where(Expression<Func<T, bool>> expression);
 
         /// <summary>
-        /// FindOneAsync
+        /// GetAsync
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        Task<T> FindOneAsync(Expression<Func<T, bool>> expression);
+        Task<T> GetAsync(Expression<Func<T, bool>> expression);
 
         /// <summary>
-        /// FindAsync
+        /// GetListAsync
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        Task<IList<T>> FindAsync(Expression<Func<T, bool>> expression);
+        Task<List<T>> GetListAsync(Expression<Func<T, bool>> expression);
 
         ///// <summary>
         ///// 根据条件统计总数

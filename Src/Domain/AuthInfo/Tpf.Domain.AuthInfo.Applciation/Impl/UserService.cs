@@ -12,12 +12,12 @@ using Tpf.Dapper.Repository;
 using Tpf.MongoDB.Respository;
 using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Dto;
 using Tpf.Utils;
-using Tpf.Domain.UserInfo.Applciation.Dto;
-using Tpf.Domain.UserInfo.Applciation.Svc;
 using Tpf.Domain.AuthInfo.Domain;
 using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Svc;
+using Tpf.Domain.AuthInfo.Applciation.Dto;
+using Tpf.Domain.AuthInfo.Applciation.Svc;
 
-namespace Tpf.Domain.UserInfo.Applciation.Impl
+namespace Tpf.Domain.AuthInfo.Applciation.Impl
 {
     /// <summary>
     /// UserService
@@ -29,7 +29,7 @@ namespace Tpf.Domain.UserInfo.Applciation.Impl
         #region Field
         private readonly IGrpcService _grpcService;
 
-        private readonly IDapperRepository _dapperRepository;
+        private readonly IDapperRepository<T> _dapperRepository;
 
         private readonly BaseInfoDbContext _dbContext;
         #endregion
@@ -37,7 +37,7 @@ namespace Tpf.Domain.UserInfo.Applciation.Impl
         #region Ctor
         public UserService(ILogger<UserService<T>> log
             , IMongoDBRepository<T> repository
-            , IDapperRepository dapperRepository
+            , IDapperRepository<T> dapperRepository
             , BaseInfoDbContext dbContext
 
             , IGrpcService grpcService

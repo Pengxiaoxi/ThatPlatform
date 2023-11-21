@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using Tpf.Utils.DevExtensions.ServiceResult;
+using Tpf.Utils.Extensions.ServiceResult;
 
 namespace Tpf.Middlewares
 {

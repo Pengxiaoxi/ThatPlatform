@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Domain.Base.Application.Contacts;
 using Tpf.Domain.Base.Domain.Entity;
-using Tpf.Domain.UserInfo.Applciation.Dto;
 
-namespace Tpf.Domain.UserInfo.Applciation.Svc
+namespace Tpf.Domain.AuthInfo.Applciation.Svc
 {
     public interface IUserService<T> : IBaseService<T> where T : BaseEntity<string>
     {

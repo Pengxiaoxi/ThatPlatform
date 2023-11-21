@@ -1,13 +1,15 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Dapper;
+using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.Linq.Expressions;
 
 namespace Tpf.Dapper.Repository
 {
     /// <summary>
     /// DapperRepository + MySql
     /// </summary>
-    public class DapperRepository : IDapperRepository
+    public class DapperRepository<T> : IDapperRepository<T>
     {
         #region Fields
         private readonly IConfiguration _config;
@@ -61,6 +63,49 @@ namespace Tpf.Dapper.Repository
         }
         #endregion
 
+        #region Publich Method
+        public IQueryable<T> All()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IQueryable<T> Where(Expression<Func<T, bool>> expression)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<T> GetAsync(Expression<Func<T, bool>> expression)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<T>> GetListAsync(Expression<Func<T, bool>> expression)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task InsertAsync(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateAsync(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteAsync(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteAsync(Expression<Func<T, bool>> expression)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
         /// <summary>
         /// 开启事务
         /// </summary>
@@ -107,6 +152,7 @@ namespace Tpf.Dapper.Repository
             }
         }
 
+        
         #endregion
     }
 }

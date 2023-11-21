@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tpf.Utils.DevExtensions.ServiceResult
+namespace Tpf.Utils.Extensions.ServiceResult
 {
     /// <summary>
     /// ServiceResultCodeEnum
@@ -21,6 +21,6 @@ namespace Tpf.Utils.DevExtensions.ServiceResult
         /// </summary>
         Succeed = 0,
 
-        
+
     }
 }

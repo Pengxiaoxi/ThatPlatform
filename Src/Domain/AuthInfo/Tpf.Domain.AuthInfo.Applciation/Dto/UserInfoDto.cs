@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tpf.Domain.UserInfo.Applciation.Dto
+namespace Tpf.Domain.AuthInfo.Applciation.Dto
 {
     public class UserInfoInputDto
     {

@@ -63,12 +63,12 @@ namespace Tpf.MongoDB.Respository
 
 
         #region Async
-        public async Task<T> FindOneAsync(Expression<Func<T, bool>> expression)
+        public async Task<T> GetAsync(Expression<Func<T, bool>> expression)
         {
             return await _collection.Find(expression).FirstOrDefaultAsync();
         }
 
-        public async Task<List<T>> FindAsync(Expression<Func<T, bool>> expression, ProjectionDefinition<T, T> projecter = null, SortDefinition<T> sorter = null)
+        public async Task<List<T>> GetListAsync(Expression<Func<T, bool>> expression, ProjectionDefinition<T, T> projecter = null, SortDefinition<T> sorter = null)
         {
             return (List<T>)await _collection.FindAsync(expression, new FindOptions<T, T>() { Projection = projecter, Sort = sorter });
         }
@@ -318,6 +318,11 @@ namespace Tpf.MongoDB.Respository
         }
 
         public Task DeleteAsync(Expression<Func<T, bool>> expression)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<T>> GetListAsync(Expression<Func<T, bool>> expression)
         {
             throw new NotImplementedException();
         }

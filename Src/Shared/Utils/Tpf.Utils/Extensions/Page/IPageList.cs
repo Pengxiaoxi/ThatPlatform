@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tpf.Utils.DevExtensions.Page
+namespace Tpf.Utils.Extensions.Page
 {
     internal class IPageList
     {
