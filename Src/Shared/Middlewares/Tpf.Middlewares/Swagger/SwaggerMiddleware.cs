@@ -15,12 +15,12 @@ namespace Tpf.Middlewares.Swagger
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tpf", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ThatPlatform", Version = "v1" });
 
                 c.AddServer(new OpenApiServer()
                 {
                     Url = "http://localhost:8000",
-                    Description = "Tpf"
+                    Description = "ThatPlatform"
                 });
 
                 c.CustomOperationIds(apiDesc =>
@@ -42,7 +42,7 @@ namespace Tpf.Middlewares.Swagger
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tpf v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ThatPlatform v1");
             });
         }
 
@@ -53,7 +53,6 @@ namespace Tpf.Middlewares.Swagger
         /// <param name="app"></param>
         public static void UseKnife4UI(this WebApplication app)
         {
-            app.UseSwagger();
             app.UseKnife4UI(c =>
             {
                 c.RoutePrefix = ""; // serve the UI at root

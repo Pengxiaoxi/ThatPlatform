@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
-using Tpf.BaseInfo.Applciation.Svc;
-using Tpf.BaseInfo.Domain.Entity;
+using Tpf.Domain.AuthInfo.Domain.Entity;
 using Tpf.Domain.Base.HttpApi;
+using Tpf.Domain.UserInfo.Applciation.Svc;
 using Tpf.Utils.DevExtensions.ServiceResult;
 
 namespace Tpf.Core.Api.Controllers
@@ -13,8 +13,10 @@ namespace Tpf.Core.Api.Controllers
     /// </summary>
     public class GrpcController : BaseApiController
     {
-
-        protected IUserService<UserInfo> _userService;
+        #region Field
+        private readonly ILogger<GrpcController> _log;
+        protected readonly IUserService<UserInfo> _userService; 
+        #endregion
 
         /// <summary>
         /// Ctor
@@ -22,8 +24,8 @@ namespace Tpf.Core.Api.Controllers
         /// <param name="userService"></param>
         public GrpcController(ILogger<GrpcController> log
             , IUserService<UserInfo> userService)
-            : base(log)
         {
+            _log = log;
             _userService = userService;
         }
 

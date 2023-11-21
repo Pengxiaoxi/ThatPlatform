@@ -14,15 +14,14 @@ namespace Tpf.Core.Api.Controllers
     public class TestController : BaseApiController
     {
         #region Field
-
+        private readonly ILogger<TestController> _log;
         #endregion
 
         #region Ctor
         public TestController(ILogger<TestController> log
             )
-            : base(log)
         {
-
+            _log = log;
         }
         #endregion
 

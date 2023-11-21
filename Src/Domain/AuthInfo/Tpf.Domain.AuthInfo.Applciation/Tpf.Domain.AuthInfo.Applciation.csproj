@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Component\Tpf.Grpc.Client\Tpf.Grpc.Client.csproj" />
+    <ProjectReference Include="..\..\..\Shared\ORM\Tpf.MongoDB\Tpf.MongoDB.csproj" />
+    <ProjectReference Include="..\..\Base\Tpf.Domain.Base.Application\Tpf.Domain.Base.Application.csproj" />
+    <ProjectReference Include="..\Tpf.Domain.AuthInfo.Domain\Tpf.Domain.AuthInfo.Domain.csproj" />
+    <ProjectReference Include="..\Tpf.Domain.AuthInfo.GrpcApplciation\Tpf.Domain.AuthInfo.GrpcApplciation.csproj" />
+    <ProjectReference Include="..\..\..\Shared\ORM\Tpf.Dapper\Tpf.Dapper.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Utils\Tpf.Utils\Tpf.Utils.csproj" />
+  </ItemGroup>
+
+</Project>

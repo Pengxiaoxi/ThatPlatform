@@ -27,6 +27,15 @@
       },
       "applicationUrl": "http://127.0.0.1:8000"
     },
+    "Tpf.CloundDB.Api": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:8000/index.html", // Knife4UI
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "CloundDB_Development"
+      },
+      "applicationUrl": "http://127.0.0.1:8000"
+    },
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,

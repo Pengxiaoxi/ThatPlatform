@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using ProtoBuf.Grpc.Server;
-using Tpf.BaseInfo.Domain;
+using Tpf.Domain.AuthInfo.Domain;
 using Tpf.Grpc.Server.Extensions;
 using Tpf.Middlewares;
-using Tpf.ORM.Dapper;
 
 var builder = WebApplication.CreateBuilder(args);
 

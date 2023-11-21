@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tpf.Ugly.Applciation
+namespace Tpf.Domain.Ugly.Applciation
 {
     public class Class1
     {

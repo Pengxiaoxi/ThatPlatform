@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tpf.YourPostman.Applciation
+namespace Tpf.Domain.YourPostman.Applciation
 {
     public class Class1
     {

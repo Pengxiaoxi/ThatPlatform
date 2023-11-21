@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Tpf.Domain.Base.HttpApi
 {
@@ -13,7 +11,7 @@ namespace Tpf.Domain.Base.HttpApi
     public class BaseApiController
     {
         #region Field
-        protected readonly ILogger<object> _log;
+        //protected readonly ILogger<object> _log;
         #endregion
 
         #region Ctor
@@ -22,12 +20,6 @@ namespace Tpf.Domain.Base.HttpApi
 
         }
 
-        public BaseApiController(ILogger<object> log)
-        {
-            _log = log; //_log = LogManager.GetLogger(typeof(T));
-
-
-        }
         #endregion
 
 

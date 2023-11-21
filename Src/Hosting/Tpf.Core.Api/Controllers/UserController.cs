@@ -4,17 +4,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Tpf.BaseInfo.Applciation.Dto;
-using Tpf.BaseInfo.Applciation.Svc;
-using Tpf.BaseInfo.Domain.Entity;
+using Tpf.Domain.AuthInfo.Domain.Entity;
 using Tpf.Domain.Base.HttpApi;
+using Tpf.Domain.UserInfo.Applciation.Dto;
+using Tpf.Domain.UserInfo.Applciation.Svc;
 using Tpf.Utils.DevExtensions.ServiceResult;
 
 namespace Tpf.Core.Api.Controllers
 {
+    /// <summary>
+    /// 用户管理
+    /// </summary>
     public class UserController : BaseApiController
     {
-        protected IUserService<UserInfo> _userService;
+        private readonly ILogger<UserController> _logger;
+        private readonly IUserService<UserInfo> _userService;
 
         /// <summary>
         /// Ctor
@@ -22,8 +26,8 @@ namespace Tpf.Core.Api.Controllers
         /// <param name="userService"></param>
         public UserController(ILogger<UserController> log
             , IUserService<UserInfo> userService)
-            : base(log)
         {
+            _logger = log;
             _userService = userService;
         }
 

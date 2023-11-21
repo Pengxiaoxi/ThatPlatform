@@ -18,10 +18,8 @@ namespace Tpf.Core.Api.Controllers
         #endregion
 
         #region Ctor
-        public JobController(ILogger<HealthController> log
-            , IQuartzJobCenterService quartzJobCenterService
+        public JobController(IQuartzJobCenterService quartzJobCenterService
             )
-            : base(log)
         {
             _quartzJobCenterService = quartzJobCenterService;
         }

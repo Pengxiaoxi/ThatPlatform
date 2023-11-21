@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using Tpf.Domain.Base.Application.Contacts;
 using Tpf.Domain.Base.Domain.Entity;
-using Tpf.ORM.MongoDB.Respository;
+using Tpf.MongoDB.Respository;
 
 namespace Tpf.Domain.Base.Application
 {
