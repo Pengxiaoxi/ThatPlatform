@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Component\Tpf.Grpc.Server\Tpf.Grpc.Server.csproj" />
-    <ProjectReference Include="..\..\Domain\Base\Tpf.Domain.Base.HttpApi\Tpf.Domain.Base.HttpApi\Tpf.Domain.Base.HttpApi.csproj" />
+    <ProjectReference Include="..\..\Domain\Base\Tpf.Domain.Base.HttpApi\Tpf.Domain.Base.HttpApi.csproj" />
     <ProjectReference Include="..\..\Shared\Common\Tpf.Common\Tpf.Common.csproj" />
     <ProjectReference Include="..\..\Component\Tpf.Grpc.Server\Tpf.Grpc.Server.csproj" />
     <ProjectReference Include="..\..\Shared\Middlewares\Tpf.Middlewares\Tpf.Middlewares.csproj" />

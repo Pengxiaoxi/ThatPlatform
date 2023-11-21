@@ -33,7 +33,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Component\Tpf.Jobs.QuartzNet\Tpf.Jobs.QuartzNet.csproj" />
     <ProjectReference Include="..\..\Domain\BaseInfo\Tpf.BaseInfo.Applciation\Tpf.BaseInfo.Applciation.csproj" />
-    <ProjectReference Include="..\..\Domain\Base\Tpf.Domain.Base.HttpApi\Tpf.Domain.Base.HttpApi\Tpf.Domain.Base.HttpApi.csproj" />
+    <ProjectReference Include="..\..\Domain\Base\Tpf.Domain.Base.HttpApi\Tpf.Domain.Base.HttpApi.csproj" />
     <ProjectReference Include="..\..\Shared\Common\Tpf.Common\Tpf.Common.csproj" />
     <ProjectReference Include="..\..\Component\Tpf.Grpc.Server\Tpf.Grpc.Server.csproj" />
     <ProjectReference Include="..\..\Component\Tpf.Jobs.QuartzNet\Tpf.Jobs.QuartzNet.csproj" />

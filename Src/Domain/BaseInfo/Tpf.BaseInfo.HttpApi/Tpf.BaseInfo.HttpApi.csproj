@@ -7,11 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Base\Tpf.Domain.Base.HttpApi\Tpf.Domain.Base.HttpApi\Tpf.Domain.Base.HttpApi.csproj" />
+    <ProjectReference Include="..\..\Base\Tpf.Domain.Base.HttpApi\Tpf.Domain.Base.HttpApi.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Tpf.Domain.Base.HttpApi
@@ -6,8 +7,9 @@ namespace Tpf.Domain.Base.HttpApi
     /// <summary>
     /// BaseApiController
     /// </summary>
-    [ApiController]
     [Route("api/[controller]/[action]")]
+    [ApiController]
+    //[Authorize]
     public class BaseApiController
     {
         #region Field
