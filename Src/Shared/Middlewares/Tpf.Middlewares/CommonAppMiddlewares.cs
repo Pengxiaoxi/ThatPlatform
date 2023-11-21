@@ -19,8 +19,6 @@ namespace Tpf.Middlewares
             }
 
 
-            app.UseSwaggerWithKnife4UI(); // Swagger + Knife4UI
-
             //app.UseStaticFiles();
 
             //app.UseRouting();
@@ -34,6 +32,8 @@ namespace Tpf.Middlewares
             //app.UseAuthorization(); // 授权校验
 
             app.UseHealthChecks("/health"); // HealthCheck
+
+            app.UseKnife4UI(); // Swagger + Knife4UI
 
             app.MapControllers();
 
