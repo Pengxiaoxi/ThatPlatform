@@ -2,7 +2,7 @@
 
 namespace Tpf.SqlSugar.Respository
 {
-    public interface ISqlSugerRepository<T> : IBaseRepository<T> where T : class
+    public interface ISqlSugerRepository<T> : IBaseService<T> where T : class
     {
 
     }

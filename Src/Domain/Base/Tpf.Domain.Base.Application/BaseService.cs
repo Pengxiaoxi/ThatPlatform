@@ -14,12 +14,12 @@ namespace Tpf.Domain.Base.Application
     /// </summary>
     /// <typeparam name="T"> Entity class for repository </typeparam>
     /// <typeparam name="TService"> Service class for log </typeparam>
-    public class BaseService<T> : IBaseService<T>
+    public class BaseService<T> : Contacts.IBaseService<T>
         where T : BaseEntity<string>
     {
         #region Field
         protected readonly ILogger<BaseService<T>> _log;
-        protected readonly IBaseRepository<T> _repository;
+        protected readonly BaseRepository.IBaseService<T> _repository;
 
         private const string MAIN_REPOSITORY = "Mongo";
         #endregion
@@ -31,7 +31,8 @@ namespace Tpf.Domain.Base.Application
         /// </summary>
         /// <param name="repository"></param>
         public BaseService(ILogger<BaseService<T>> log
-            , [FromKeyedServices(MAIN_REPOSITORY)] IBaseRepository<T> repository
+            //, [FromKeyedServices(MAIN_REPOSITORY)] IBaseRepository<T> repository
+            , IMongoDBRepository<T> repository
             )
         {
             _log = log;

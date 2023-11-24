@@ -6,7 +6,7 @@ using Tpf.Domain.AuthInfo.Domain.Entity;
 using Tpf.Utils.Extensions.ServiceResult;
 using Tpf.Domain.AuthInfo.Applciation.Dto;
 
-namespace Tpf.Domain.AuthInfo.HttpApi
+namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
 {
     /// <summary>
     /// 用户管理

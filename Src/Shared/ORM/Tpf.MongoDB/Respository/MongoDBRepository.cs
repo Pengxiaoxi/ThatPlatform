@@ -6,7 +6,7 @@ using Tpf.Common.CommonAttributes.Database;
 
 namespace Tpf.MongoDB.Respository
 {
-    [DependsOn(typeof(IMongoDBRepository<>))]
+    //[DependsOn(typeof(IMongoDBRepository<>))]
     public class MongoDBRepository<T> : IMongoDBRepository<T> where T : BaseEntity<string>
     {
         #region Fields

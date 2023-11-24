@@ -13,21 +13,21 @@ namespace Tpf.Common.CoreExtensions.DI
     {
         public static void ModuleRegister(this ContainerBuilder builder)
         {
-            var _modules = new ThatPlatformModulManager().LoadAllModules();
+            //var _modules = new ThatPlatformModulManager().LoadAllModules();
 
-            foreach (Type type in _modules)
-            {
-                var depandAttribute = type.GetCustomAttribute<DependsOnAttribute>();
-                if (depandAttribute?.DependedModuleTypes != null)
-                {
-                    foreach (var module in depandAttribute?.DependedModuleTypes)
-                    {
-                        //builder.RegisterGeneric(module).As(type).InstancePerDependency();
+            //foreach (Type type in _modules)
+            //{
+            //    var depandAttribute = type.GetCustomAttribute<DependsOnAttribute>();
+            //    if (depandAttribute?.DependedModuleTypes != null)
+            //    {
+            //        foreach (var module in depandAttribute?.DependedModuleTypes)
+            //        {
+            //            //builder.RegisterGeneric(module).As(type).InstancePerDependency();
 
-                        builder.RegisterType(module).As(type).InstancePerDependency();
-                    }
-                }
-            }
+            //            builder.RegisterType(module).As(type).InstancePerDependency();
+            //        }
+            //    }
+            //}
         }
     }
 }

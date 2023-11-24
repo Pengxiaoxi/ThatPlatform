@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Tpf.Common\Tpf.Common.csproj" />
+    <ProjectReference Include="..\..\IOC\Tpf.Autofac\Tpf.Autofac.csproj" />
     <ProjectReference Include="..\..\Utils\Tpf.Utils\Tpf.Utils.csproj" />
   </ItemGroup>
 

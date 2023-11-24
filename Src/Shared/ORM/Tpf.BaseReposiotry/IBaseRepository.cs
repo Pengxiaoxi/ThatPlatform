@@ -6,7 +6,7 @@ namespace Tpf.BaseRepository
     /// IBaseRepository<T>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IBaseRepository<T> // where T : class
+    public interface IBaseService<T> // where T : class
     {
         /// <summary>
         /// 获取列表 ，返回IQueryable

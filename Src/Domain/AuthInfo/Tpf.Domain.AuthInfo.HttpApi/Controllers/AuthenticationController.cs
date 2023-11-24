@@ -13,7 +13,7 @@ using Tpf.Domain.AuthInfo.Domain.Entity;
 using Tpf.Domain.Base.HttpApi;
 using Tpf.Utils.Extensions.ServiceResult;
 
-namespace Tpf.Domain.AuthInfo.HttpApi
+namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
 {
     /// <summary>
     /// Authentication
