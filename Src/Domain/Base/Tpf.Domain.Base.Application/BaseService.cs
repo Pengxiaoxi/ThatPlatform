@@ -1,10 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Autofac;
 using Microsoft.Extensions.Logging;
 using System.Linq.Expressions;
+using Tpf.Autofac;
 using Tpf.BaseRepository;
-using Tpf.Domain.Base.Application.Contacts;
+using Tpf.Common.Enum;
 using Tpf.Domain.Base.Domain.Entity;
-using Tpf.MongoDB.Respository;
 
 namespace Tpf.Domain.Base.Application
 {
@@ -19,9 +19,9 @@ namespace Tpf.Domain.Base.Application
     {
         #region Field
         protected readonly ILogger<BaseService<T>> _log;
-        protected readonly BaseRepository.IBaseService<T> _repository;
+        protected readonly IBaseRepository<T> _repository;
 
-        private const string MAIN_REPOSITORY = "Mongo";
+        private int MAIN_REPOSITORY = RepositoryType.MySqlRepository.GetHashCode();
         #endregion
 
         #region Ctor
@@ -32,11 +32,12 @@ namespace Tpf.Domain.Base.Application
         /// <param name="repository"></param>
         public BaseService(ILogger<BaseService<T>> log
             //, [FromKeyedServices(MAIN_REPOSITORY)] IBaseRepository<T> repository
-            , IMongoDBRepository<T> repository
+            , IBaseRepository<T> repository
             )
         {
             _log = log;
-            _repository = repository;
+            //_repository = repository;
+            _repository = AutofacFactory.GetContainer().ResolveKeyed<IBaseRepository<T>>(MAIN_REPOSITORY);
         }
         #endregion
 

@@ -16,6 +16,7 @@ using Tpf.Domain.AuthInfo.Domain;
 using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Svc;
 using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
+using Tpf.BaseRepository;
 
 namespace Tpf.Domain.AuthInfo.Applciation.Impl
 {
@@ -36,7 +37,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
 
         #region Ctor
         public UserService(ILogger<UserService<T>> log
-            , IMongoDBRepository<T> repository
+            , IBaseRepository<T> repository
             , IDapperRepository<T> dapperRepository
             , BaseInfoDbContext dbContext
 

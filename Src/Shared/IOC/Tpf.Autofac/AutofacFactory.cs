@@ -7,12 +7,12 @@ namespace Tpf.Autofac
     {
         private static IContainer? _container;
 
-        public static IContainer GetFCContainer()
+        public static IContainer GetContainer()
         {
             return _container;
         }
 
-        public static void SetFCContainer(IContainer container)
+        public static void SetContainer(IContainer container)
         {
             _container = container;
         }

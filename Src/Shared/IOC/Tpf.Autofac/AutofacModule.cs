@@ -8,8 +8,6 @@ namespace Tpf.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterGeneric(typeof(BaseService<>)).As(typeof(IBaseService<>)).InstancePerDependency();//注册基础服务
-
             base.Load(builder);
         }
     }

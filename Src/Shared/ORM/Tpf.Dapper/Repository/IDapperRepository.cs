@@ -13,7 +13,7 @@ namespace Tpf.Dapper.Repository
     /// 暴露原生 IDbConnection 及接口，若需自定义可基于原生方法进行仓储默认接口的封装
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IDapperRepository<T> : IBaseService<T>
+    public interface IDapperRepository<T> : IBaseRepository<T>
     {
         /// <summary>
         /// GetDbConnection

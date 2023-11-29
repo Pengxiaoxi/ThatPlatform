@@ -34,23 +34,23 @@ namespace Tpf.Middlewares
                 var autofacModuleType = typeof(AutofacModule);
                 var assemblies = AppDomain.CurrentDomain.GetAssemblies();
                 var modules = assemblies.SelectMany(x => x.GetTypes())
-                    .Where(x => x.IsAssignableFrom(autofacModuleType) && x != autofacModuleType && x.IsClass && !x.IsAbstract)
+                    .Where(x => x.IsAssignableTo(autofacModuleType) && x != autofacModuleType && x.IsClass && !x.IsAbstract)
                     .ToList();
 
                 foreach (Type type in modules)
                 {
-                    var module = Activator.CreateInstance(type, null) as AutofacModule;
+                    var module = Activator.CreateInstance(type, (object[])null) as AutofacModule;
                     if (module != null)
                     {
                         containerBuilder.RegisterModule(module);
                     }
-                    
+
                 }
 
-                //containerBuilder.RegisterModule(new AutofacModule());
+                //containerBuilder.RegisterModule(new DependencyInjectionModule());
                 containerBuilder.RegisterBuildCallback(container =>
                 {
-                    AutofacFactory.SetFCContainer((IContainer)container);
+                    AutofacFactory.SetContainer((IContainer)container);
                 });
             });
 
@@ -78,7 +78,7 @@ namespace Tpf.Middlewares
 
             //.Net Core默认DI示例
             //services.AddTransient(typeof(IMongoDBRepository<>), typeof(MongoDBRepository<>));
-            //services.AddTransient(typeof(IBaseService<>), typeof(BaseService<>)); 
+            //services.AddTransient(typeof(IBaseRepository<>), typeof(BaseService<>)); 
             #endregion
 
 

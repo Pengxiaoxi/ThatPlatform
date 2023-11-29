@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Tpf.Common.Enum
+{
+    public enum RepositoryType
+    {
+        MySqlRepository = 0,
+
+        DapperRepository = 1,
+
+        MongoRepository = 2,
+    }
+}
