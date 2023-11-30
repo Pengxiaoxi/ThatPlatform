@@ -18,12 +18,12 @@ namespace Tpf.Domain.AuthInfo.HttpApi
             //    .AsImplementedInterfaces();
 
             builder.RegisterGeneric(typeof(UserService<>)).As(typeof(IUserService<>)).InstancePerDependency();
-            builder.RegisterGeneric(typeof(DapperRepository<>)).As(typeof(IDapperRepository<>)).InstancePerLifetimeScope();
+            
             //builder.RegisterType(typeof(TpfDbContextBase)).InstancePerLifetimeScope();
             builder.RegisterType(typeof(BaseInfoDbContext)).InstancePerLifetimeScope();
 
 
-            base.Load(builder);
+            //base.Load(builder);
         }
     }
 }

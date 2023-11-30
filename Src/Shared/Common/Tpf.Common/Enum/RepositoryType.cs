@@ -8,10 +8,25 @@ namespace Tpf.Common.Enum
 {
     public enum RepositoryType
     {
-        MySqlRepository = 0,
+        /// <summary>
+        /// EFCore
+        /// </summary>
+        EFRepository = 0,
 
-        DapperRepository = 1,
+        /// <summary>
+        /// Dapper
+        /// </summary>
+        DapperRepository,
 
-        MongoRepository = 2,
+        /// <summary>
+        /// SqlSuagr
+        /// </summary>
+        SqlSugarRepository,
+
+        /// <summary>
+        /// MongoDB
+        /// </summary>
+        MongoRepository,
+
     }
 }

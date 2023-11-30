@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Common\Tpf.Common\Tpf.Common.csproj" />
     <ProjectReference Include="..\..\Shared\IOC\Tpf.IOC\Tpf.IOC.csproj" />
   </ItemGroup>
 

@@ -7,10 +7,7 @@ using Tpf.Middlewares.Swagger;
 //using Tpf.Common.CoreExtensions.DI;
 using Autofac;
 using Tpf.Autofac;
-using System.Reflection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Tpf.Middlewares.Log4Net;
 
 namespace Tpf.Middlewares
 {
@@ -27,34 +24,11 @@ namespace Tpf.Middlewares
             // 设置使用Autofac替换IOC容器
             builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
-            builder.Host.ConfigureContainer<ContainerBuilder>(AutofacFactory.Register);
-
-            builder.Host.ConfigureContainer<ContainerBuilder>((hostBuilder, containerBuilder) =>
-            {
-                var autofacModuleType = typeof(AutofacModule);
-                var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-                var modules = assemblies.SelectMany(x => x.GetTypes())
-                    .Where(x => x.IsAssignableTo(autofacModuleType) && x != autofacModuleType && x.IsClass && !x.IsAbstract)
-                    .ToList();
-
-                foreach (Type type in modules)
-                {
-                    var module = Activator.CreateInstance(type, (object[])null) as AutofacModule;
-                    if (module != null)
-                    {
-                        containerBuilder.RegisterModule(module);
-                    }
-
-                }
-
-                //containerBuilder.RegisterModule(new DependencyInjectionModule());
-                containerBuilder.RegisterBuildCallback(container =>
-                {
-                    AutofacFactory.SetContainer((IContainer)container);
-                });
-            });
+            builder.Host.ConfigureContainer<ContainerBuilder>(AutofacFactory.RegisterConfigureAction);
 
             #endregion
+
+            builder.Host.UseLog4Net();
 
             builder.Services.AddHealthChecks(); // HealthCheck
 
@@ -69,7 +43,7 @@ namespace Tpf.Middlewares
             //services.AddSingleton<IJobFactory, JobFactory>();
             //builder.Services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();//注册ISchedulerFactory的实例。
 
-
+            
             #endregion
 
             #region 接口服务统一注册

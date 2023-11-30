@@ -89,7 +89,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IOC", "IOC", "{20F2B730-6B1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Autofac", "Shared\IOC\Tpf.Autofac\Tpf.Autofac.csproj", "{A922C3AF-2D9C-4719-8158-DFA57F74F748}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tpf.IOC", "Shared\IOC\Tpf.IOC\Tpf.IOC.csproj", "{6519F166-0C7E-4569-900E-57B23A8D824B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.IOC", "Shared\IOC\Tpf.IOC\Tpf.IOC.csproj", "{6519F166-0C7E-4569-900E-57B23A8D824B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

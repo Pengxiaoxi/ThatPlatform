@@ -9,6 +9,11 @@ namespace Tpf.BaseRepository
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
+        public BaseRepository()
+        {
+            
+        }
+
         public IQueryable<T> All()
         {
             throw new NotImplementedException();

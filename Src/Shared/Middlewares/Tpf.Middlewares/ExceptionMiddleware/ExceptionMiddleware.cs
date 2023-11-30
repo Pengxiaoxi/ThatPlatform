@@ -40,10 +40,24 @@ namespace Tpf.Middlewares
 
         private static async Task WriteExceptionAsync(HttpContext context, Exception e)
         {
+            //switch (e.GetType())
+            //{
+
+            //        break;
+            //}
+
             if (e is UnauthorizedAccessException)
+            {
                 context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+            }
             else if (e is Exception)
-                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            {
+                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            }
+
+            
+            // TODO: ParamException + 三方接口Exception
+            
 
             context.Response.ContentType = "application/json";
             await context.Response.WriteAsync(JsonConvert.SerializeObject(ServiceResult.IsFailed(e?.Message))); // 此处避免引用其他组件，可更换为拼接的Json字符串

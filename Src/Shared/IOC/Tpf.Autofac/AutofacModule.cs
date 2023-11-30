@@ -1,6 +1,4 @@
 ﻿using Autofac;
-using Tpf.BaseRepository;
-using Tpf.Domain.Base.Application;
 
 namespace Tpf.Autofac
 {

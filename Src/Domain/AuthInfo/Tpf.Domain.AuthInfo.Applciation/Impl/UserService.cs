@@ -4,19 +4,17 @@ using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using Dapper;
-using Tpf.Common.CommonAttributes;
-using Tpf.Domain.Base.Domain.Entity;
 using Tpf.Grpc.Client;
-using Tpf.Domain.Base.Application;
 using Tpf.Dapper.Repository;
-using Tpf.MongoDB.Respository;
-using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Dto;
 using Tpf.Utils;
+using Tpf.BaseRepository;
+using Tpf.Domain.Base.Application;
+using Tpf.Domain.Base.Domain.Entity;
+using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Dto;
 using Tpf.Domain.AuthInfo.Domain;
 using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Svc;
 using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
-using Tpf.BaseRepository;
 
 namespace Tpf.Domain.AuthInfo.Applciation.Impl
 {
@@ -36,13 +34,18 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
         #endregion
 
         #region Ctor
+        public UserService()
+        {
+            
+        }
+
         public UserService(ILogger<UserService<T>> log
             , IBaseRepository<T> repository
             , IDapperRepository<T> dapperRepository
             , BaseInfoDbContext dbContext
 
             , IGrpcService grpcService
-            ) : base(log, repository)
+            )
         {
             //_baseInfoDbContext = baseInfoDbContext;
             _dapperRepository = dapperRepository;
@@ -75,17 +78,17 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
         public async Task<List<UserInfoOutputDto>> GetUserInfoList()
         {
             // inner join example
-            var leftJoinQuery = from user in _dbContext.UserInfos
-                                join dept in _dbContext.Depts
-                                on user.DeptId equals dept.Id into grouping
-                                from dept in grouping.DefaultIfEmpty()
-                                select new UserInfoOutputDto()
-                                {
-                                    Account = user.Account,
-                                    UserName = user.UserName,
-                                    DeptName = dept.DeptName,
-                                };
-            var leftJoinResult = leftJoinQuery.ToList();
+            //var leftJoinQuery = from user in _dbContext.UserInfos
+            //                    join dept in _dbContext.Depts
+            //                    on user.DeptId equals dept.Id into grouping
+            //                    from dept in grouping.DefaultIfEmpty()
+            //                    select new UserInfoOutputDto()
+            //                    {
+            //                        Account = user.Account,
+            //                        UserName = user.UserName,
+            //                        DeptName = dept.DeptName,
+            //                    };
+            //var leftJoinResult = leftJoinQuery.ToList();
 
             //using (var dbContext = new BaseInfoDbContext())
             //{

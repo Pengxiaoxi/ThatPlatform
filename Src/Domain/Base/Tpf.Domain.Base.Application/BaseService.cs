@@ -18,10 +18,9 @@ namespace Tpf.Domain.Base.Application
         where T : BaseEntity<string>
     {
         #region Field
-        protected readonly ILogger<BaseService<T>> _log;
         protected readonly IBaseRepository<T> _repository;
 
-        private int MAIN_REPOSITORY = RepositoryType.MySqlRepository.GetHashCode();
+        private readonly RepositoryType Main_RepositoryType = RepositoryType.DapperRepository;
         #endregion
 
         #region Ctor
@@ -30,14 +29,13 @@ namespace Tpf.Domain.Base.Application
         /// 
         /// </summary>
         /// <param name="repository"></param>
-        public BaseService(ILogger<BaseService<T>> log
+        public BaseService(
             //, [FromKeyedServices(MAIN_REPOSITORY)] IBaseRepository<T> repository
-            , IBaseRepository<T> repository
+            //IBaseRepository<T> repository
             )
         {
-            _log = log;
             //_repository = repository;
-            _repository = AutofacFactory.GetContainer().ResolveKeyed<IBaseRepository<T>>(MAIN_REPOSITORY);
+            _repository = AutofacFactory.GetContainer().ResolveKeyed<IBaseRepository<T>>(Main_RepositoryType);
         }
         #endregion
 
