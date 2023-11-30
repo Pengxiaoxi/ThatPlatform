@@ -9,7 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="7.1.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="IGeekFan.AspNetCore.Knife4jUI" Version="0.0.16" />
     <PackageReference Include="log4net" Version="2.0.13" />

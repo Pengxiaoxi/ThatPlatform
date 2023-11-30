@@ -25,15 +25,15 @@ namespace Tpf.Autofac
                 .Where(x => x.IsAssignableTo(autofacModuleType) && x != autofacModuleType && x.IsClass && !x.IsAbstract)
                 .ToList();
 
-            foreach (Type type in modules)
-            {
-                var module = Activator.CreateInstance(type, null) as AutofacModule;
-                if (module != null)
-                {
-                    containerBuilder.RegisterModule(module);
-                }
-            }
-            //containerBuilder.RegisterAssemblyModules<AutofacModule>(assemblies);
+            //foreach (Type type in modules)
+            //{
+            //    var module = Activator.CreateInstance(type) as AutofacModule;
+            //    if (module != null)
+            //    {
+            //        containerBuilder.RegisterModule(module);
+            //    }
+            //}
+            containerBuilder.RegisterAssemblyModules<AutofacModule>(assemblies);
 
 
             //var assemblyCollection = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName != null && x.FullName.ToLower().StartsWith("tpf."));

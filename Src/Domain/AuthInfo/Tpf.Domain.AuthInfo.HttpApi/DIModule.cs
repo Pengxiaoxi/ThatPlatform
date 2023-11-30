@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Tpf.Autofac;
 using Tpf.Dapper.Repository;
 using Tpf.Domain.AuthInfo.Applciation.Impl;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
@@ -8,7 +9,7 @@ using Tpf.IOC;
 
 namespace Tpf.Domain.AuthInfo.HttpApi
 {
-    internal class DIModule : DependencyInjectionModule
+    internal class DIModule : AutofacModule
     {
         protected override void Load(ContainerBuilder builder)
         {

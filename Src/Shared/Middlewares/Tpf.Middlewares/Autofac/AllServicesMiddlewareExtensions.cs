@@ -1,8 +1,13 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Linq;
 
-namespace Tpf.IOC
+namespace Tpf.Middlewares
 {
-    public static class AllServicesMiddleware
+    public static class AllServicesMiddlewareExtensions
     {
         public static void UseAllServicesMiddle(this IApplicationBuilder app, IServiceCollection _services)
         {
@@ -38,7 +43,7 @@ namespace Tpf.IOC
                         await context.Response.WriteAsync("<tr>");
                         await context.Response.WriteAsync($"<td>{typeArray?.Description}</td>");
                         await context.Response.WriteAsync($"<td>{item.Lifetime}</td>");
-                        await context.Response.WriteAsync($"<td>{item?.Target.Activator.ObjToString().Replace("(ReflectionActivator)", "")}</td>");
+                        //await context.Response.WriteAsync($"<td>{item?.Target.Activator.ObjToString().Replace("(ReflectionActivator)", "")}</td>");
                         await context.Response.WriteAsync("</tr>");
                     }
                 }

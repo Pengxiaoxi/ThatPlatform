@@ -8,6 +8,7 @@ using Tpf.Middlewares.Swagger;
 using Autofac;
 using Tpf.Autofac;
 using Tpf.Middlewares.Log4Net;
+using Tpf.Middlewares.Newtonsoft;
 
 namespace Tpf.Middlewares
 {
@@ -20,19 +21,13 @@ namespace Tpf.Middlewares
         /// <returns></returns>
         public static void AddCommonServiceExtensions(this WebApplicationBuilder builder)
         {
-            #region IOC
-            // 设置使用Autofac替换IOC容器
-            builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
-
-            builder.Host.ConfigureContainer<ContainerBuilder>(AutofacFactory.RegisterConfigureAction);
-
-            #endregion
+            
 
             builder.Host.UseLog4Net();
 
             builder.Services.AddHealthChecks(); // HealthCheck
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddNewtonsoftJsonMiddleware();
 
             builder.Services.AddSwaggerMiddleware(); // Swagger
 
@@ -43,6 +38,13 @@ namespace Tpf.Middlewares
             //services.AddSingleton<IJobFactory, JobFactory>();
             //builder.Services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();//注册ISchedulerFactory的实例。
 
+            #endregion
+
+            #region IOC
+            // 设置使用Autofac替换IOC容器
+            builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+
+            builder.Host.ConfigureContainer<ContainerBuilder>(AutofacFactory.RegisterConfigureAction);
             
             #endregion
 

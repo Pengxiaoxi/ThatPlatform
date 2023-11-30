@@ -34,11 +34,6 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
         #endregion
 
         #region Ctor
-        public UserService()
-        {
-            
-        }
-
         public UserService(ILogger<UserService<T>> log
             , IBaseRepository<T> repository
             , IDapperRepository<T> dapperRepository

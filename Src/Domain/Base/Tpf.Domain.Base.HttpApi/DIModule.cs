@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Microsoft.Extensions.Logging;
+using Tpf.Autofac;
 using Tpf.BaseRepository;
 using Tpf.Common.Enum;
 using Tpf.Dapper.Repository;
@@ -11,7 +12,7 @@ using Tpf.SqlSugar.Respository;
 
 namespace Tpf.Domain.Base.HttpApi
 {
-    public class DIModule : DependencyInjectionModule
+    public class DIModule : AutofacModule
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -36,6 +37,8 @@ namespace Tpf.Domain.Base.HttpApi
             // Your Service
 
             #endregion
+
+            base.Load(builder);
         }
     }
 }

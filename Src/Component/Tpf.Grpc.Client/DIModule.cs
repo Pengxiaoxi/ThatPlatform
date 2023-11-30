@@ -1,9 +1,10 @@
 ﻿using Autofac;
+using Tpf.Autofac;
 using Tpf.IOC;
 
 namespace Tpf.Grpc.Client
 {
-    public class DIModule : DependencyInjectionModule
+    public class DIModule : AutofacModule
     {
         protected override void Load(ContainerBuilder builder)
         {
