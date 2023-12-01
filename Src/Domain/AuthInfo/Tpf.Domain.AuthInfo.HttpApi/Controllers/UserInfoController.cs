@@ -6,7 +6,7 @@ using Tpf.Domain.AuthInfo.Domain.Entity;
 using Tpf.Utils.Extensions.ServiceResult;
 using Tpf.Domain.AuthInfo.Applciation.Dto;
 
-namespace Tpf.Domain.AuthInfo.HttpApi
+namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
 {
     /// <summary>
     /// 用户管理
@@ -15,14 +15,14 @@ namespace Tpf.Domain.AuthInfo.HttpApi
     {
         #region Field
         private readonly ILogger<UserInfoController> _logger;
-        private readonly IUserService<UserInfo> _userService; 
+        private readonly IUserService _userService; 
         #endregion
 
         /// <summary>
         /// Ctor
         /// </summary>
         public UserInfoController(ILogger<UserInfoController> log
-            , IUserService<UserInfo> userService
+            , IUserService userService
             )
         {
             _logger = log;

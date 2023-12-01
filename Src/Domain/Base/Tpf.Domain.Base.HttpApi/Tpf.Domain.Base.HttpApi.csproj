@@ -11,4 +11,10 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\ORM\Tpf.Dapper\Tpf.Dapper.csproj" />
+    <ProjectReference Include="..\..\..\Shared\ORM\Tpf.SqlSugar\Tpf.SqlSugar.csproj" />
+    <ProjectReference Include="..\Tpf.Domain.Base.Application\Tpf.Domain.Base.Application.csproj" />
+  </ItemGroup>
+
 </Project>

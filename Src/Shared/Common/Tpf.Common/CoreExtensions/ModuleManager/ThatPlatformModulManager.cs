@@ -40,21 +40,23 @@ namespace Tpf.Common.CoreExtensions.ModuleManager
 
         public List<Type> FindDependedModules()
         {
-            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
-            //assemblies = assemblies.Append(Assembly.Load("Tpf.Logging.Log4Net")).ToArray();
+            //Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            ////assemblies = assemblies.Append(Assembly.Load("Tpf.Logging.Log4Net")).ToArray();
 
-            assemblies = assemblies.Append(Assembly.Load("Tpf.Jobs.QuartzNet")).ToArray();
-            assemblies = assemblies.Append(Assembly.Load("Tpf.Grpc.Client")).ToArray();
+            //assemblies = assemblies.Append(Assembly.Load("Tpf.Jobs.QuartzNet")).ToArray();
+            //assemblies = assemblies.Append(Assembly.Load("Tpf.Grpc.Client")).ToArray();
 
 
 
-            List<Type> _modules = assemblies
-                .SelectMany(x => x.GetTypes())
-                .Where(x => x.GetCustomAttributes(typeof(DependsOnAttribute), true).Length > 0
-                            && x.IsClass
-                            && !x.IsAbstract)
-                .ToList();
-            return _modules;
+            //List<Type> _modules = assemblies
+            //    .SelectMany(x => x.GetTypes())
+            //    .Where(x => x.GetCustomAttributes(typeof(DependsOnAttribute), true).Length > 0
+            //                && x.IsClass
+            //                && !x.IsAbstract)
+            //    .ToList();
+            //return _modules;
+
+            throw new NotImplementedException();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Tpf.Dapper
         /// <param name="services"></param>
         public static void AddTpfDapper(this IServiceCollection services)
         {
-            services.AddScoped(typeof(IDapperRepository<>), typeof(DapperRepository<>));
+            //services.AddScoped(typeof(IDapperRepository<>), typeof(DapperRepository<>));
         }
     }
 }

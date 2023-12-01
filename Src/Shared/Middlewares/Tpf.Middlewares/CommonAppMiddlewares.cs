@@ -35,8 +35,12 @@ namespace Tpf.Middlewares
 
             app.UseKnife4UI(); // Swagger + Knife4UI
 
+            
+
             app.MapControllers();
 
+
+            
         }
 
     }

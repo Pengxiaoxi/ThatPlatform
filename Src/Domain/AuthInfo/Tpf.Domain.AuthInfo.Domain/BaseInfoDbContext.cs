@@ -15,6 +15,10 @@ namespace Tpf.Domain.AuthInfo.Domain
         #endregion
 
         #region Ctor
+        public BaseInfoDbContext()
+        {
+            
+        }
 
         public BaseInfoDbContext(DbContextOptions options
             ) : base(options)

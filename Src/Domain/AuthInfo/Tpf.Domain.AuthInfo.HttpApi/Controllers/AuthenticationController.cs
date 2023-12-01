@@ -13,7 +13,7 @@ using Tpf.Domain.AuthInfo.Domain.Entity;
 using Tpf.Domain.Base.HttpApi;
 using Tpf.Utils.Extensions.ServiceResult;
 
-namespace Tpf.Domain.AuthInfo.HttpApi
+namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
 {
     /// <summary>
     /// Authentication
@@ -23,14 +23,14 @@ namespace Tpf.Domain.AuthInfo.HttpApi
     {
         #region Field
         private readonly ILogger<AuthenticationController> _logger;
-        private readonly IUserService<UserInfo> _userService;
+        private readonly IUserService _userService;
         #endregion
 
         /// <summary>
         /// Ctor
         /// </summary>
         public AuthenticationController(ILogger<AuthenticationController> log
-            , IUserService<UserInfo> userService
+            , IUserService userService
             )
         {
             _logger = log;

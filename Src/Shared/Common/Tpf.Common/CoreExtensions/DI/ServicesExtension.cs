@@ -14,18 +14,18 @@ namespace Tpf.Common.CoreExtensions.DI
         /// <param name="services"></param>
         public static void AddModules(this IServiceCollection services)
         {
-            var _modules = new ThatPlatformModulManager().LoadAllModules();
-            foreach (Type type in _modules)
-            {
-                var depandAttribute = type.GetCustomAttribute<DependsOnAttribute>();
-                if (depandAttribute?.DependedModuleTypes != null)
-                {
-                    foreach (var module in depandAttribute?.DependedModuleTypes)
-                    {
-                        services.AddTransient(module, type);
-                    }
-                }
-            }
+            //var _modules = new ThatPlatformModulManager().LoadAllModules();
+            //foreach (Type type in _modules)
+            //{
+            //    var depandAttribute = type.GetCustomAttribute<DependsOnAttribute>();
+            //    if (depandAttribute?.DependedModuleTypes != null)
+            //    {
+            //        foreach (var module in depandAttribute?.DependedModuleTypes)
+            //        {
+            //            services.AddTransient(module, type);
+            //        }
+            //    }
+            //}
         }
     }
 }

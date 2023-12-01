@@ -29,10 +29,10 @@ namespace Tpf.Core.Api.Controllers
         public async Task<object> GetTest()
         {
             // 日志示例
-            _log.LogInformation("This is a log message !", "");
+            _log.LogInformation("This is a log message !");
 
-            _log.LogWarning("This is a log message !", "");
-            _log.LogError("This is a log message !", "");
+            _log.LogWarning("This is a log message !");
+            _log.LogError("This is a log message !");
 
             //立即执行一次 不执行
             timer.Change(0, Timeout.Infinite);

@@ -1,10 +1,15 @@
 ﻿using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Quartz;
-using Quartz.Impl;
+//using Quartz;
+//using Quartz.Impl;
 using Tpf.Middlewares.Swagger;
-using Tpf.Common.CoreExtensions.DI;
+//using Tpf.Common.CoreExtensions.DI;
+using Autofac;
+using Tpf.Autofac;
+using Tpf.Middlewares.Log4Net;
+using Tpf.Middlewares.Newtonsoft;
+using Microsoft.Extensions.Hosting;
 
 namespace Tpf.Middlewares
 {
@@ -17,22 +22,13 @@ namespace Tpf.Middlewares
         /// <returns></returns>
         public static void AddCommonServiceExtensions(this WebApplicationBuilder builder)
         {
-            #region IOC
-            builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()); // 设置使用Autofac替换IOC容器
+            
 
-            //builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
-            //{
-            //    //containerBuilder.RegisterModule(new AutofacModuleRegister());
-            //    //containerBuilder.RegisterBuildCallback(container =>
-            //    //{
-            //    //    AutofacFactory.SetFCContainer((IContainer)container);
-            //    //});
-            //}); 
-            #endregion
+            builder.Host.UseLog4Net();
 
             builder.Services.AddHealthChecks(); // HealthCheck
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddNewtonsoftJsonMiddleware();
 
             builder.Services.AddSwaggerMiddleware(); // Swagger
 
@@ -41,20 +37,26 @@ namespace Tpf.Middlewares
             builder.Services.AddSingleton<ExceptionMiddleware>();
 
             //services.AddSingleton<IJobFactory, JobFactory>();
-            builder.Services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();//注册ISchedulerFactory的实例。
+            //builder.Services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();//注册ISchedulerFactory的实例。
 
+            #endregion
+
+            #region IOC
+            // 设置使用Autofac替换IOC容器
+            builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+
+            builder.Host.ConfigureContainer<ContainerBuilder>(AutofacFactory.RegisterConfigure);
 
             #endregion
 
             #region 接口服务统一注册
 
-            builder.Services.AddModules();
+            //builder.Services.AddModules();
 
             //.Net Core默认DI示例
             //services.AddTransient(typeof(IMongoDBRepository<>), typeof(MongoDBRepository<>));
-            //services.AddTransient(typeof(IBaseService<>), typeof(BaseService<>)); 
+            //services.AddTransient(typeof(IBaseRepository<>), typeof(BaseService<>)); 
             #endregion
-
 
             #region Old (TODO: Drop)
             //builder.Services.AddTransient<ITencentCloudDBOperateService, TencentCloudDBOperateService>();
