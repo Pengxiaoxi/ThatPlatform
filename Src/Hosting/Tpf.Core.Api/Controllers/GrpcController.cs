@@ -15,7 +15,7 @@ namespace Tpf.Core.Api.Controllers
     {
         #region Field
         private readonly ILogger<GrpcController> _log;
-        protected readonly IUserService<UserInfo> _userService; 
+        protected readonly IUserService _userService; 
         #endregion
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace Tpf.Core.Api.Controllers
         /// </summary>
         /// <param name="userService"></param>
         public GrpcController(ILogger<GrpcController> log
-            , IUserService<UserInfo> userService)
+            , IUserService userService)
         {
             _log = log;
             _userService = userService;

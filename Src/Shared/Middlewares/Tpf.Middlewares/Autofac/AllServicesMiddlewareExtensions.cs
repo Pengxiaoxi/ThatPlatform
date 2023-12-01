@@ -29,6 +29,11 @@ namespace Tpf.Middlewares
 
                 foreach (var svc in _services)
                 {
+                    if (string.IsNullOrEmpty(svc.ServiceType.FullName) || !svc.ServiceType.FullName.StartsWith("Tpf", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        continue;
+                    }
+
                     await context.Response.WriteAsync("<tr>");
                     await context.Response.WriteAsync($"<td>{svc.ServiceType.FullName}</td>");
                     await context.Response.WriteAsync($"<td>{svc.Lifetime}</td>");
@@ -40,10 +45,16 @@ namespace Tpf.Middlewares
                     var interfaceType = item.Services;
                     foreach (var typeArray in interfaceType)
                     {
+                        if (string.IsNullOrEmpty(typeArray.Description) || !typeArray.Description.StartsWith("Tpf", StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            continue;
+                        }
+
                         await context.Response.WriteAsync("<tr>");
                         await context.Response.WriteAsync($"<td>{typeArray?.Description}</td>");
                         await context.Response.WriteAsync($"<td>{item.Lifetime}</td>");
                         //await context.Response.WriteAsync($"<td>{item?.Target.Activator.ObjToString().Replace("(ReflectionActivator)", "")}</td>");
+                        await context.Response.WriteAsync($"<td></td>");
                         await context.Response.WriteAsync("</tr>");
                     }
                 }

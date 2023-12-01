@@ -23,14 +23,14 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
     {
         #region Field
         private readonly ILogger<AuthenticationController> _logger;
-        private readonly IUserService<UserInfo> _userService;
+        private readonly IUserService _userService;
         #endregion
 
         /// <summary>
         /// Ctor
         /// </summary>
         public AuthenticationController(ILogger<AuthenticationController> log
-            , IUserService<UserInfo> userService
+            , IUserService userService
             )
         {
             _logger = log;

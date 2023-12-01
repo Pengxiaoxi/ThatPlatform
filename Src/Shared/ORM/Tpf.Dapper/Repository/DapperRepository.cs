@@ -3,13 +3,14 @@ using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 using System.Data;
 using System.Linq.Expressions;
+using Tpf.BaseRepository;
 
 namespace Tpf.Dapper.Repository
 {
     /// <summary>
-    /// DapperRepository + MySql
+    /// DapperRepository
     /// </summary>
-    public class DapperRepository<T> : IDapperRepository<T>
+    public class DapperRepository<T> : IDapperRepository<T> where T : class
     {
         #region Fields
         private readonly IConfiguration _config;

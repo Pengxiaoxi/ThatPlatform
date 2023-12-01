@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Shared\IOC\Tpf.IOC\Tpf.IOC.csproj" />
     <ProjectReference Include="..\..\..\Shared\ORM\Tpf.Dapper\Tpf.Dapper.csproj" />
     <ProjectReference Include="..\..\..\Shared\ORM\Tpf.SqlSugar\Tpf.SqlSugar.csproj" />
     <ProjectReference Include="..\Tpf.Domain.Base.Application\Tpf.Domain.Base.Application.csproj" />

@@ -1,11 +1,6 @@
 ﻿using Autofac;
 using Tpf.Autofac;
-using Tpf.Dapper.Repository;
-using Tpf.Domain.AuthInfo.Applciation.Impl;
-using Tpf.Domain.AuthInfo.Applciation.Svc;
 using Tpf.Domain.AuthInfo.Domain;
-using Tpf.EntityFrameworkCore;
-using Tpf.IOC;
 
 namespace Tpf.Domain.AuthInfo.HttpApi
 {
@@ -13,18 +8,12 @@ namespace Tpf.Domain.AuthInfo.HttpApi
     {
         protected override void Load(ContainerBuilder builder)
         {
-            //var dataAccess = Assembly.GetExecutingAssembly();
-            //builder.RegisterAssemblyTypes(dataAccess)
-            //    .Where(t => t.Name.StartsWith("Tpf"))
-            //    .AsImplementedInterfaces();
-
-            builder.RegisterGeneric(typeof(UserService<>)).As(typeof(IUserService<>)).InstancePerDependency();
-            
-            //builder.RegisterType(typeof(TpfDbContextBase)).InstancePerLifetimeScope();
             builder.RegisterType(typeof(BaseInfoDbContext)).InstancePerLifetimeScope();
 
+            // 业务服务接口无需单独注册，已在 AutofacFactory 内批量注册
+            //builder.RegisterType<UserService>().As<IUserService>().InstancePerDependency();
 
-            //base.Load(builder);
+            //builder.RegisterType(typeof(TpfDbContextBase)).InstancePerLifetimeScope();
         }
     }
 }

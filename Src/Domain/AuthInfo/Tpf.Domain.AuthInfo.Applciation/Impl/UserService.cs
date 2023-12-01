@@ -9,12 +9,12 @@ using Tpf.Dapper.Repository;
 using Tpf.Utils;
 using Tpf.BaseRepository;
 using Tpf.Domain.Base.Application;
-using Tpf.Domain.Base.Domain.Entity;
 using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Dto;
 using Tpf.Domain.AuthInfo.Domain;
 using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Svc;
 using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
+using Tpf.Domain.AuthInfo.Domain.Entity;
 
 namespace Tpf.Domain.AuthInfo.Applciation.Impl
 {
@@ -23,20 +23,20 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
     /// </summary>
     /// <typeparam name="T"></typeparam>
     //[DependsOn(typeof(IUserService<>))]
-    public class UserService<T> : BaseService<T>, IUserService<T> where T : BaseEntity<string>
+    public class UserService : BaseService<UserInfo>, IUserService
     {
         #region Field
         private readonly IGrpcService _grpcService;
 
-        private readonly IDapperRepository<T> _dapperRepository;
+        private readonly IDapperRepository<UserInfo> _dapperRepository;
 
         private readonly BaseInfoDbContext _dbContext;
         #endregion
 
         #region Ctor
-        public UserService(ILogger<UserService<T>> log
-            , IBaseRepository<T> repository
-            , IDapperRepository<T> dapperRepository
+        public UserService(ILogger<UserService> log
+            , IBaseRepository<UserInfo> repository
+            , IDapperRepository<UserInfo> dapperRepository
             , BaseInfoDbContext dbContext
 
             , IGrpcService grpcService
@@ -62,7 +62,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
         {
             var req = new GetOrgRequest() { OrgName = "pxx" };
 
-            var orgGrpcServerAddress = ConfigHelper.GetConfig("gRpc:Organization");
+            var orgGrpcServerAddress = ConfigHelper.Get("gRpc:Organization");
             var _client = _grpcService.GetClient<IOrganizationService>(orgGrpcServerAddress);
             var rsp = await _client.GetOrganization(req);
 

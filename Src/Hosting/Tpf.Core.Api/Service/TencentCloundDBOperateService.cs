@@ -46,9 +46,9 @@ namespace Tpf.Core.Api.Service
             _logger = LogManager.GetLogger(typeof(TencentCloudDBOperateService));
 
             //初始化配置参数
-            Init();
+            //Init();
 
-            _mongodbClient = GetMongodbClient();
+            //_mongodbClient = GetMongodbClient();
         }
         #endregion
 

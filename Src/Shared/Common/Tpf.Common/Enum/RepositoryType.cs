@@ -9,14 +9,14 @@ namespace Tpf.Common.Enum
     public enum RepositoryType
     {
         /// <summary>
-        /// EFCore
-        /// </summary>
-        EFRepository = 0,
-
-        /// <summary>
         /// Dapper
         /// </summary>
         DapperRepository,
+
+        /// <summary>
+        /// EFCore
+        /// </summary>
+        EFRepository,
 
         /// <summary>
         /// SqlSuagr

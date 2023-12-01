@@ -49,7 +49,7 @@ namespace Tpf.Jobs.QuartzNet.Jobs
         {
             //创建一个触发器（0 15 10 ? * * 每天的10:15执行）
             //var mongoBackCronConfig = "0/5 * * * * ? ";
-            var mongoBackCron = ConfigHelper.GetConfig("JobConfig:MongoDBBackupCron");
+            var mongoBackCron = ConfigHelper.Get("JobConfig:MongoDBBackupCron");
             var trigger = TriggerBuilder.Create()
                 .WithCronSchedule(mongoBackCron)
                 //.WithSimpleSchedule(x => x.WithIntervalInSeconds(2).RepeatForever())//每两秒执行一次

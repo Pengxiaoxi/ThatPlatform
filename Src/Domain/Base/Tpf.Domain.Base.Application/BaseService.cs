@@ -1,10 +1,11 @@
 ﻿using Autofac;
-using Microsoft.Extensions.Logging;
 using System.Linq.Expressions;
 using Tpf.Autofac;
 using Tpf.BaseRepository;
+using Tpf.Common.Config;
 using Tpf.Common.Enum;
-using Tpf.Domain.Base.Domain.Entity;
+using Tpf.Domain.Base.Application.Contacts;
+using Tpf.Utils;
 
 namespace Tpf.Domain.Base.Application
 {
@@ -14,13 +15,13 @@ namespace Tpf.Domain.Base.Application
     /// </summary>
     /// <typeparam name="T"> Entity class for repository </typeparam>
     /// <typeparam name="TService"> Service class for log </typeparam>
-    public class BaseService<T> : Contacts.IBaseService<T>
-        where T : BaseEntity<string>
+    public class BaseService<T> : IBaseService<T> where T : class
     {
         #region Field
         protected readonly IBaseRepository<T> _repository;
 
-        private readonly RepositoryType Main_RepositoryType = RepositoryType.DapperRepository;
+        private static readonly RepositoryType Main_RepositoryType = ConfigHelper.GetMainORM();
+
         #endregion
 
         #region Ctor
@@ -29,41 +30,36 @@ namespace Tpf.Domain.Base.Application
         /// 
         /// </summary>
         /// <param name="repository"></param>
-        public BaseService(
-            //, [FromKeyedServices(MAIN_REPOSITORY)] IBaseRepository<T> repository
-            //IBaseRepository<T> repository
-            )
+        public BaseService()
         {
-            //_repository = repository;
             _repository = AutofacFactory.GetContainer().ResolveKeyed<IBaseRepository<T>>(Main_RepositoryType);
         }
         #endregion
 
         #region Public Method
-        public async Task<T> FindOneAsync(Expression<Func<T, bool>> filter)
+        public virtual async Task<T> FindOneAsync(Expression<Func<T, bool>> filter)
         {
             var result = await _repository.GetAsync(filter);
             return result;
         }
 
-        public async Task<List<T>> GetListAsync(Expression<Func<T, bool>> filter)
+        public virtual async Task<List<T>> GetListAsync(Expression<Func<T, bool>> filter)
         {
             var result = await _repository.GetListAsync(filter);
-            //_log.Info(JsonConvert.SerializeObject(result));
             return result;
         }
 
-        public async Task InsertAsync(T entity)
+        public virtual async Task InsertAsync(T entity)
         {
             await _repository.InsertAsync(entity);
         }
 
-        public async Task UpdateAsync(T entity)
+        public virtual async Task UpdateAsync(T entity)
         {
             await _repository.UpdateAsync(entity);
         }
 
-        public async Task DeleteAsync(T entity)
+        public virtual async Task DeleteAsync(T entity)
         {
             await _repository.DeleteAsync(entity);
         }

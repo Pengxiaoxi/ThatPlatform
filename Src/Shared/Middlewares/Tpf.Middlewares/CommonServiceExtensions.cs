@@ -9,6 +9,7 @@ using Autofac;
 using Tpf.Autofac;
 using Tpf.Middlewares.Log4Net;
 using Tpf.Middlewares.Newtonsoft;
+using Microsoft.Extensions.Hosting;
 
 namespace Tpf.Middlewares
 {
@@ -44,8 +45,8 @@ namespace Tpf.Middlewares
             // 设置使用Autofac替换IOC容器
             builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
-            builder.Host.ConfigureContainer<ContainerBuilder>(AutofacFactory.RegisterConfigureAction);
-            
+            builder.Host.ConfigureContainer<ContainerBuilder>(AutofacFactory.RegisterConfigure);
+
             #endregion
 
             #region 接口服务统一注册
@@ -56,7 +57,6 @@ namespace Tpf.Middlewares
             //services.AddTransient(typeof(IMongoDBRepository<>), typeof(MongoDBRepository<>));
             //services.AddTransient(typeof(IBaseRepository<>), typeof(BaseService<>)); 
             #endregion
-
 
             #region Old (TODO: Drop)
             //builder.Services.AddTransient<ITencentCloudDBOperateService, TencentCloudDBOperateService>();

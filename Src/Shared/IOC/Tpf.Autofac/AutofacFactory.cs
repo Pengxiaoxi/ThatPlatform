@@ -1,9 +1,9 @@
 ﻿using Autofac;
-using Microsoft.Extensions.Hosting;
+using Tpf.Utils.Helpers;
 
 namespace Tpf.Autofac
 {
-    public class AutofacFactory
+    public static class AutofacFactory
     {
         private static IContainer? _container;
 
@@ -17,14 +17,24 @@ namespace Tpf.Autofac
             _container = container;
         }
 
-        public static void RegisterConfigureAction(HostBuilderContext hostBuilder, ContainerBuilder containerBuilder)
+        public static void RegisterConfigure(this ContainerBuilder containerBuilder)
         {
-            var autofacModuleType = typeof(AutofacModule);
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-            var modules = assemblies.SelectMany(x => x.GetTypes())
-                .Where(x => x.IsAssignableTo(autofacModuleType) && x != autofacModuleType && x.IsClass && !x.IsAbstract)
-                .ToList();
+            // Load并获取当前运行路径下 tpf 相关程序集
+            var assemblies = AssemblyHelper.GetSolutionAssemblies()
+                .Where(x => x.FullName != null && x.FullName.StartsWith("tpf", StringComparison.CurrentCultureIgnoreCase))
+                .ToArray();
 
+            // 按程序集批量注册模块（按Key|Name注册、泛型接口、或其他生命周期的服务等）
+            containerBuilder.RegisterAssemblyModules<AutofacModule>(assemblies);
+
+            // 批量注册非模块内的服务（默认瞬时）
+            containerBuilder.RegisterAssemblyTypes(assemblies)
+                          .AsImplementedInterfaces()
+                          .InstancePerDependency()
+                          .PropertiesAutowired();
+            //.EnableInterfaceInterceptors(); // 如需使用 Interceptor 引用Autofac.Extras.DynamicProxy;
+
+            #region Tips: 按程序集批量注册模块 等同于如下（获取程序集内所有模块然后逐个注册）
             //foreach (Type type in modules)
             //{
             //    var module = Activator.CreateInstance(type) as AutofacModule;
@@ -33,45 +43,13 @@ namespace Tpf.Autofac
             //        containerBuilder.RegisterModule(module);
             //    }
             //}
-            containerBuilder.RegisterAssemblyModules<AutofacModule>(assemblies);
+            #endregion
 
-
-            //var assemblyCollection = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName != null && x.FullName.ToLower().StartsWith("tpf."));
-            //foreach (var assembly in assemblyCollection)
-            //{
-            //    //var startModule = assembly.GetExportedTypes().FirstOrDefault(x => x.GetInterfaces().Contains(typeof(IModuleByAutoFac)));
-            //    //if (startModule == null) continue;
-
-            //    //var module = Activator.CreateInstance(startModule, null) as IModuleByAutoFac;
-
-            //    //module?.ResolveType(container);
-            //    //module?.RegisterType(container);
-
-            //    containerBuilder.RegisterAssemblyModules(assembly);
-            //}
-
+            // 获取 container（便于后续手动注入使用）
             containerBuilder.RegisterBuildCallback(container =>
             {
                 SetContainer((IContainer)container);
             });
         }
-
-        #region Other way
-        //public static void RegisterConfigureAction(ContainerBuilder container)
-        //{
-        //    var assemblyCollection = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName != null && x.FullName.ToLower().StartsWith("tpf."));
-        //    foreach (var assembly in assemblyCollection)
-        //    {
-        //        var startModule = assembly.GetExportedTypes().FirstOrDefault(x => x.GetInterfaces().Contains(typeof(IModuleByAutoFac)));
-        //        if (startModule == null) continue;
-
-        //        var module = Activator.CreateInstance(startModule, null) as IModuleByAutoFac;
-
-        //        module?.ResolveType(container);
-        //        module?.RegisterType(container);
-        //    }
-        //} 
-        #endregion
-
     }
 }

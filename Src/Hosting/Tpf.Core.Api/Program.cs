@@ -14,8 +14,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddCommonServiceExtensions();
 
-
-
 #region Add Need ORM
 // Main ORM£ºEF Core
 //builder.Services.AddDbContext<BaseInfoDbContext>();

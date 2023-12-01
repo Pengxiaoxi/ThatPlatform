@@ -6,7 +6,7 @@ namespace Tpf.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            base.Load(builder);
+            //base.Load(builder);
         }
     }
 }

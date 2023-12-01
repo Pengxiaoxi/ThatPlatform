@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tpf.Common.Config;
+using Tpf.Common.Enum;
 
 namespace Tpf.Utils
 {
@@ -23,11 +25,11 @@ namespace Tpf.Utils
         }
 
         /// <summary>
-        /// GetConfig
+        /// Get
         /// </summary>
         /// <param name="configSectionName"></param>
         /// <returns></returns>
-        public static string GetConfig(string configSectionName)
+        public static string Get(string configSectionName)
         {
             if (string.IsNullOrEmpty(configSectionName))
             {
@@ -50,6 +52,20 @@ namespace Tpf.Utils
             }
 
             return _configuration.GetConnectionString(connName);
+        }
+
+        public static RepositoryType GetMainORM()
+        {
+            // 默认 Dapper
+            var mainORM = default(RepositoryType);
+
+            var configMainORM = ConfigHelper.Get(AppConfig.ORM_MainORM);
+            if (!string.IsNullOrEmpty(configMainORM)) 
+            {
+                Enum.TryParse<RepositoryType>(configMainORM, out mainORM);
+            }
+
+            return mainORM;
         }
     }
 }

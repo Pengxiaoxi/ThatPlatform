@@ -19,7 +19,7 @@
     },
     "Tpf.Core.Api": {
       "commandName": "Project",
-      "launchBrowser": true,
+      "launchBrowser": false,
       //"launchUrl": "http://localhost:8000/swagger/index.html", // Swagegr
       "launchUrl": "http://localhost:8000/index.html", // Knife4UI
       "environmentVariables": {
