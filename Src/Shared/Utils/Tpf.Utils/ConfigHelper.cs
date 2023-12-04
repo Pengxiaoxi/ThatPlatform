@@ -54,7 +54,7 @@ namespace Tpf.Utils
             return _configuration.GetConnectionString(connName);
         }
 
-        public static RepositoryType GetMainORM()
+        public static RepositoryType GetMainORMRepository()
         {
             // 默认 Dapper
             var mainORM = default(RepositoryType);

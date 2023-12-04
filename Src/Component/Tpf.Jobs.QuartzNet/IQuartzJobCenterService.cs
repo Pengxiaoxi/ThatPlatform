@@ -1,10 +1,5 @@
-﻿using Quartz;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tpf.Utils.Extensions.ServiceResult;
+﻿using System.Threading.Tasks;
+using Tpf.Common.ResponseExtensions.ServiceResult;
 
 namespace Tpf.Jobs.QuartzNet
 {

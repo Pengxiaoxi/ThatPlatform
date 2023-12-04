@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tpf.Utils.Extensions.ServiceResult
+namespace Tpf.Common.ResponseExtensions.ServiceResult
 {
     /// <summary>
     /// ServiceResultCodeEnum

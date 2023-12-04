@@ -3,8 +3,8 @@ using Microsoft.Extensions.Logging;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
 using Tpf.Domain.Base.HttpApi;
 using Tpf.Domain.AuthInfo.Domain.Entity;
-using Tpf.Utils.Extensions.ServiceResult;
 using Tpf.Domain.AuthInfo.Applciation.Dto;
+using Tpf.Common.ResponseExtensions.ServiceResult;
 
 namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
 {

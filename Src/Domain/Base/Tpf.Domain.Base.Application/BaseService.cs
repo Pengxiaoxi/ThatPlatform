@@ -20,7 +20,7 @@ namespace Tpf.Domain.Base.Application
         #region Field
         protected readonly IBaseRepository<T> _repository;
 
-        private static readonly RepositoryType Main_RepositoryType = ConfigHelper.GetMainORM();
+        private static readonly RepositoryType Main_RepositoryType = ConfigHelper.GetMainORMRepository();
 
         #endregion
 

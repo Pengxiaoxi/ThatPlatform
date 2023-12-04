@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tpf.Utils.Extensions.Page
+namespace Tpf.Common.ResponseExtensions.Page
 {
-    internal class IPageList
+    internal class PageResult
     {
     }
 }
