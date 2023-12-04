@@ -49,10 +49,7 @@ namespace Tpf.Middlewares
 
             #endregion
 
-            #region 接口服务统一注册
-
-            //builder.Services.AddModules();
-
+            #region 接口服务注册 Demo
             //.Net Core默认DI示例
             //services.AddTransient(typeof(IMongoDBRepository<>), typeof(MongoDBRepository<>));
             //services.AddTransient(typeof(IBaseRepository<>), typeof(BaseService<>)); 

@@ -27,7 +27,7 @@ namespace Tpf.Autofac
             // 按程序集批量注册模块（按Key|Name注册、泛型接口、或其他生命周期的服务等）
             containerBuilder.RegisterAssemblyModules<AutofacModule>(assemblies);
 
-            // 批量注册非模块内的服务（默认瞬时）
+            // 批量注册非DI模块内的服务（服务生命周期默认瞬时）
             containerBuilder.RegisterAssemblyTypes(assemblies)
                           .AsImplementedInterfaces()
                           .InstancePerDependency()
@@ -45,7 +45,7 @@ namespace Tpf.Autofac
             //}
             #endregion
 
-            // 获取 container（便于后续手动注入使用）
+            // 设置 container（便于后续手动注入使用）
             containerBuilder.RegisterBuildCallback(container =>
             {
                 SetContainer((IContainer)container);

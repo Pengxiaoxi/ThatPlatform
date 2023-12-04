@@ -22,7 +22,6 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
     /// UserService
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    //[DependsOn(typeof(IUserService<>))]
     public class UserService : BaseService<UserInfo>, IUserService
     {
         #region Field
