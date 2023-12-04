@@ -8,12 +8,12 @@
 - [ ] Ids4
 
 #### 数据库操作之仓储方法，均以原生使用方式提供
-- [] EFCore / TpfDbContextBase
+- [ ] EFCore / TpfDbContextBase
 - [x] Dapper / IDapperRepository
 - [x] MongoDB / IMongoDBRepository
 - [ ] SqlSugar
 - [ ] FreeSql
-
+ 
 #### 定时作业
 - [x] Quartz.Net
 - [ ] Hangfire
@@ -28,21 +28,21 @@
 - [ ] fytapi.mui / [https://gitee.com/feiyit/fytapi.mui#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E](https://gitee.com/feiyit/fytapi.mui#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)
 
 #### Micro Service
-- [] Ocelot
-- [] Nacos
-- [] Console
-- [] Neety
+- [ ] Ocelot
+- [ ] Nacos
+- [ ] Console
+- [ ] Neety
 
 ### DevOps
-- [] Jenkins
-- [] K8s
+- [ ] Jenkins
+- [ ] K8s
 
 
 #### IOC 容器
 - [x] Autofac
 
 #### 对象映射
-- [] AutoMapper
+- [ ] AutoMapper
 
 #### 工具
 - [x] ConfigHelper
