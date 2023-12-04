@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
+using Tpf.Common.ResponseExtensions.ServiceResult;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
-using Tpf.Domain.AuthInfo.Domain.Entity;
 using Tpf.Domain.Base.HttpApi;
-using Tpf.Utils.Extensions.ServiceResult;
 
 namespace Tpf.Core.Api.Controllers
 {

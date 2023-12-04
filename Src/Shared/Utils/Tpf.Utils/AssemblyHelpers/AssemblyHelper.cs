@@ -3,12 +3,13 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace Tpf.Utils.Helpers
+namespace Tpf.Utils.AssemblyHelpers
 {
     public class AssemblyHelper
     {
         /// <summary>
         /// 当前运行路径下所有程序集
+        /// TODO: 防 DLL 注入安全问题
         /// </summary>
         /// <returns></returns>
         public static Assembly[] GetSolutionAssemblies()

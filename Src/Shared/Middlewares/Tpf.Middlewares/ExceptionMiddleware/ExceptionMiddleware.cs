@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using Tpf.Utils.Extensions.ServiceResult;
+using Tpf.Common.ResponseExtensions.ServiceResult;
 
 namespace Tpf.Middlewares
 {

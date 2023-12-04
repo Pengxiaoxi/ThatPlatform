@@ -1,12 +1,12 @@
 ﻿using Autofac;
-using Tpf.Utils.Helpers;
+using Tpf.Utils.AssemblyHelpers;
 
 namespace Tpf.Autofac
 {
     public static class AutofacFactory
     {
         private static IContainer? _container;
-
+        
         public static IContainer GetContainer()
         {
             return _container;
