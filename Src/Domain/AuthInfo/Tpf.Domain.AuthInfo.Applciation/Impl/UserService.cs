@@ -33,11 +33,12 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
         #endregion
 
         #region Ctor
-        public UserService(ILogger<UserService> log
-            , IBaseRepository<UserInfo> repository
-            , IDapperRepository<UserInfo> dapperRepository
+        public UserService(
+            //ILogger<UserService> log
+            
+            IBaseRepository<UserInfo> repository
             , BaseInfoDbContext dbContext
-
+            , IDapperRepository<UserInfo> dapperRepository
             , IGrpcService grpcService
             )
         {
@@ -126,8 +127,11 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             //    return result;
             //}
 
-            var result = await GetUserInfoListByDapper();
-            return result;
+            //var result = await GetUserInfoListByDapper();
+
+            var result = await base.GetListAsync();
+
+            return new List<UserInfoOutputDto>();
 
         }
         #endregion
@@ -138,10 +142,16 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
         /// <returns></returns>
         private async Task<List<UserInfoOutputDto>> GetUserInfoListByDapper()
         {
-            var querySql = $"SELECT `t`.`Account`, `t`.`UserName`, `t0`.`DeptName` FROM `tpf_userinfo` AS `t` " +
-                            $"LEFT JOIN `tpf_dept` AS `t0` " +
-                            $"ON `t`.`DeptId` = `t0`.`Id`";
+            //var querySql = $"SELECT `t`.`Account`, `t`.`UserName`, `t0`.`DeptName` FROM `base_user` AS `t` " +
+            //                $"LEFT JOIN `tpf_dept` AS `t0` " +
+            //                $"ON `t`.`DeptId` = `t0`.`Id`";
+
+            var querySql = $"SELECT `t`.* FROM `base_user` AS `t` ";
+             
             var result = (await _dapperRepository.Db.QueryAsync<UserInfoOutputDto>(querySql)).ToList();
+
+
+
             return result;
         }
     }

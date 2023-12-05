@@ -5,7 +5,7 @@ using Tpf.Domain.Base.Domain.Entity;
 
 namespace Tpf.MongoDB.Respository
 {
-    public interface IMongoDBRepository<T> : IBaseRepository<T> where T : BaseEntity<string>
+    public interface IMongoDBRepository<T> : IBaseRepository<T> where T : BaseMongoDBEntity<string>
     {
         IMongoDatabase Database { get; }
 

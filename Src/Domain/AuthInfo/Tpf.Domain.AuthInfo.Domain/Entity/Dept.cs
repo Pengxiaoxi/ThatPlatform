@@ -7,7 +7,7 @@ using Tpf.Domain.Base.Domain.Entity;
 
 namespace Tpf.Domain.AuthInfo.Domain.Entity
 {
-    public class Dept : BaseEntity<string>
+    public class Dept : BaseMongoDBEntity<string>
     {
 
         public string Code { get; set; }

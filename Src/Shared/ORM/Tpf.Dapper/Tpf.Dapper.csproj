@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Tpf.Common\Tpf.Common.csproj" />
     <ProjectReference Include="..\Tpf.BaseReposiotry\Tpf.BaseRepository.csproj" />
   </ItemGroup>
 

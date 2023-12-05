@@ -12,9 +12,12 @@ namespace Tpf.Common.Config
 
         public const string SlaveORM = "ORM:SlaveORM";
 
-        public const string Database_DBType = "Database:DBType";
+        //public const string Database_DBType = "Database:DBType";
 
-        public const string Database_ConnectionString = "Database:ConnectionString";
+        //public const string Database_ConnectionString = "Database:ConnectionString";
+
+        public const string ConnectionString_Mysql = "Mysql";
+        public const string ConnectionString_MongoDB = "MongoDB";
 
     }
 }

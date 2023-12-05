@@ -43,7 +43,7 @@ namespace Tpf.Domain.Base.Application
             return result;
         }
 
-        public virtual async Task<List<T>> GetListAsync(Expression<Func<T, bool>> filter)
+        public virtual async Task<List<T>> GetListAsync(Expression<Func<T, bool>> filter = null)
         {
             var result = await _repository.GetListAsync(filter);
             return result;

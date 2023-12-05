@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 using System.Data;
 using System.Linq.Expressions;
-using Tpf.BaseRepository;
+using Tpf.Common.Config;
 
 namespace Tpf.Dapper.Repository
 {
@@ -16,7 +16,7 @@ namespace Tpf.Dapper.Repository
         private readonly IConfiguration _config;
         private readonly IDbConnection _connection;
 
-        private readonly string ConnectionStringName = "Tpf_Mysql";
+        
         #endregion
 
         #region Properties
@@ -26,7 +26,7 @@ namespace Tpf.Dapper.Repository
             {
                 if (_connection == null)
                 {
-                    return new MySqlConnection(_config.GetConnectionString(ConnectionStringName)); // MySql
+                    return new MySqlConnection(_config.GetConnectionString(AppConfig.ConnectionString_Mysql)); // MySql
                 }
                 return _connection;
             }
@@ -82,6 +82,7 @@ namespace Tpf.Dapper.Repository
 
         public Task<List<T>> GetListAsync(Expression<Func<T, bool>> expression)
         {
+            //return this.Db.QueryAsync<T>();
             throw new NotImplementedException();
         }
 

@@ -1,9 +1,4 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
 namespace Tpf.Domain.AuthInfo.Applciation.Dto
 {
@@ -15,17 +10,19 @@ namespace Tpf.Domain.AuthInfo.Applciation.Dto
 
     public class UserInfoOutputDto
     {
-        [BsonElement("userName")]
+        [JsonProperty("userName")]
         public string UserName { get; set; }
 
-        [BsonElement("account")]
+        [JsonProperty("account")]
         public string Account { get; set; }
 
-        [BsonElement("pass")]
+        [JsonProperty("pass")]
         public string Pass { get; set; }
 
+        [JsonProperty("deptId")]
         public int DeptId { get; set; }
 
+        [JsonProperty("deptName")]
         public string DeptName { get; set; }
 
     }
