@@ -42,7 +42,7 @@
 - [x] Autofac
 
 #### 对象映射
-- [ ] AutoMapper
+- [x] AutoMapper
 
 #### 工具
 - [x] ConfigHelper
