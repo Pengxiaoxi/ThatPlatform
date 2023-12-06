@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Shared\IOC\Tpf.Autofac\Tpf.Autofac.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Middlewares\Tpf.Autofac\Tpf.Autofac.csproj" />
     <ProjectReference Include="..\..\..\Shared\ORM\Tpf.MongoDB\Tpf.MongoDB.csproj" />
     <ProjectReference Include="..\Tpf.Domain.Base.Application.Contacts\Tpf.Domain.Base.Application.Contacts.csproj" />
   </ItemGroup>

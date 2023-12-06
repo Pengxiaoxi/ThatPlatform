@@ -1,5 +1,4 @@
-﻿using Autofac.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 //using Quartz;
 //using Quartz.Impl;
@@ -10,6 +9,8 @@ using Tpf.Autofac;
 using Tpf.Middlewares.Log4Net;
 using Tpf.Middlewares.Newtonsoft;
 using Microsoft.Extensions.Hosting;
+using Autofac.Extensions.DependencyInjection;
+using Tpf.AutoMapper;
 
 namespace Tpf.Middlewares
 {
@@ -39,6 +40,7 @@ namespace Tpf.Middlewares
             //services.AddSingleton<IJobFactory, JobFactory>();
             //builder.Services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();//注册ISchedulerFactory的实例。
 
+            builder.Services.AddAutoMapperMiddleware();
             #endregion
 
             #region IOC

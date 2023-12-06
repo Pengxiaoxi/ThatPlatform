@@ -3,6 +3,9 @@ using Tpf.Utils.AssemblyHelpers;
 
 namespace Tpf.Autofac
 {
+    /// <summary>
+    /// Autofac Doc: https://docs.autofac.org/en/latest/register/scanning.html
+    /// </summary>
     public static class AutofacFactory
     {
         private static IContainer? _container;

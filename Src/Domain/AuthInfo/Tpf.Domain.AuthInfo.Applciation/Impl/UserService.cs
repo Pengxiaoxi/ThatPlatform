@@ -15,6 +15,8 @@ using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Svc;
 using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
 using Tpf.Domain.AuthInfo.Domain.Entity;
+using Autofac.Core;
+using AutoMapper;
 
 namespace Tpf.Domain.AuthInfo.Applciation.Impl
 {
@@ -30,17 +32,19 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
         private readonly IDapperRepository<UserInfo> _dapperRepository;
 
         private readonly BaseInfoDbContext _dbContext;
+
+        private readonly IMapper _mapper;
         #endregion
 
         #region Ctor
         public UserService(
             //ILogger<UserService> log
-            
+
             IBaseRepository<UserInfo> repository
             , BaseInfoDbContext dbContext
             , IDapperRepository<UserInfo> dapperRepository
             , IGrpcService grpcService
-            )
+            , IMapper mapper)
         {
             //_baseInfoDbContext = baseInfoDbContext;
             _dapperRepository = dapperRepository;
@@ -48,7 +52,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             _dbContext = dbContext;
 
             _grpcService = grpcService;
-
+            _mapper = mapper;
         }
         #endregion
 
@@ -127,11 +131,13 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             //    return result;
             //}
 
-            //var result = await GetUserInfoListByDapper();
+            var userList = await GetUserInfoListByDapper();
 
-            var result = await base.GetListAsync();
+            //var userList = await base.GetListAsync();
 
-            return new List<UserInfoOutputDto>();
+            var result = _mapper.Map<List<UserInfoOutputDto>>(userList);
+
+            return result;
 
         }
         #endregion
@@ -140,7 +146,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
         /// Dapper 查询示例
         /// </summary>
         /// <returns></returns>
-        private async Task<List<UserInfoOutputDto>> GetUserInfoListByDapper()
+        private async Task<List<UserInfo>> GetUserInfoListByDapper()
         {
             //var querySql = $"SELECT `t`.`Account`, `t`.`UserName`, `t0`.`DeptName` FROM `base_user` AS `t` " +
             //                $"LEFT JOIN `tpf_dept` AS `t0` " +
@@ -148,7 +154,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
 
             var querySql = $"SELECT `t`.* FROM `base_user` AS `t` ";
              
-            var result = (await _dapperRepository.Db.QueryAsync<UserInfoOutputDto>(querySql)).ToList();
+            var result = (await _dapperRepository.Db.QueryAsync<UserInfo>(querySql)).ToList();
 
 
 

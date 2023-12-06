@@ -31,7 +31,7 @@ var app = builder.Build();
 
 app.UseCommonAppMiddlewares();
 
-app.UseAllServicesMiddle(builder.Services);
+app.UseAllServicesMiddleware(builder.Services);
 
 app.Run();
 

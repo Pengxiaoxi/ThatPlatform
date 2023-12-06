@@ -7,9 +7,9 @@ using System.Linq;
 
 namespace Tpf.Middlewares
 {
-    public static class AllServicesMiddlewareExtensions
+    public static class ShowAllServicesMiddlewareExtensions
     {
-        public static void UseAllServicesMiddle(this IApplicationBuilder app, IServiceCollection _services)
+        public static void UseAllServicesMiddleware(this IApplicationBuilder app, IServiceCollection _services)
         {
             if (app == null) throw new ArgumentNullException(nameof(app));
 

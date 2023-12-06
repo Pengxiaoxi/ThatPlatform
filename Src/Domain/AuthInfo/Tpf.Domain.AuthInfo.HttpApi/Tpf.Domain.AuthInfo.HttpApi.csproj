@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Shared\IOC\Tpf.Autofac\Tpf.Autofac.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Middlewares\Tpf.Autofac\Tpf.Autofac.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Middlewares\Tpf.AutoMapper\Tpf.AutoMapper.csproj" />
     <ProjectReference Include="..\..\Base\Tpf.Domain.Base.HttpApi\Tpf.Domain.Base.HttpApi.csproj" />
     <ProjectReference Include="..\Tpf.Domain.AuthInfo.Applciation\Tpf.Domain.AuthInfo.Applciation.csproj" />
     <ProjectReference Include="..\Tpf.Domain.AuthInfo.Domain\Tpf.Domain.AuthInfo.Domain.csproj" />
