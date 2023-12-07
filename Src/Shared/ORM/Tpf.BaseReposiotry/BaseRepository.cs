@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 
 namespace Tpf.BaseRepository
 {
@@ -19,7 +14,7 @@ namespace Tpf.BaseRepository
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(T entity)
+        public Task<bool> DeleteAsync(T entity)
         {
             throw new NotImplementedException();
         }
@@ -39,12 +34,22 @@ namespace Tpf.BaseRepository
             throw new NotImplementedException();
         }
 
-        public Task InsertAsync(T entity)
+        public Task Insert(T entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateAsync(T entity)
+        public void Insert(IEnumerable<T> entities)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> Update(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> Update(IEnumerable<T> entities)
         {
             throw new NotImplementedException();
         }

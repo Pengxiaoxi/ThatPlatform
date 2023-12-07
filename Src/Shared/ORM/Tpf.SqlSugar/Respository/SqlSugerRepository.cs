@@ -19,7 +19,7 @@ namespace Tpf.SqlSugar.Respository
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(T entity)
+        public Task<bool> DeleteAsync(T entity)
         {
             throw new NotImplementedException();
         }
@@ -39,12 +39,22 @@ namespace Tpf.SqlSugar.Respository
             throw new NotImplementedException();
         }
 
-        public Task InsertAsync(T entity)
+        public Task Insert(T entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateAsync(T entity)
+        public void Insert(IEnumerable<T> entities)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> Update(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> Update(IEnumerable<T> entities)
         {
             throw new NotImplementedException();
         }

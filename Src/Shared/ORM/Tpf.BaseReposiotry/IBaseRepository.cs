@@ -6,7 +6,7 @@ namespace Tpf.BaseRepository
     /// IBaseRepository<T>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IBaseRepository<T> // where T : class
+    public interface IBaseRepository<T>  where T : class
     {
         /// <summary>
         /// 获取列表 ，返回IQueryable
@@ -58,13 +58,13 @@ namespace Tpf.BaseRepository
         ///// <param name="isAsync">是否异步处理，默认：false : 否  ,true: 是</param>
         //T Insert(T entity, bool isAsync = false);
 
-        ///// <summary>
-        ///// Insert entities
-        ///// </summary>
-        ///// <param name="entities">Entities</param>
-        //void Insert(IEnumerable<T> entities);
+        Task Insert(T entity);
 
-        Task InsertAsync(T entity);
+        /// <summary>
+        /// Insert entities
+        /// </summary>
+        /// <param name="entities">Entities</param>
+        void Insert(IEnumerable<T> entities);
 
         ///// <summary>
         ///// 批量插入数据，和Insert的区别是会判断插入大小不要超过GridFS大小
@@ -80,13 +80,13 @@ namespace Tpf.BaseRepository
         ///// <param name="entity">Entity</param>
         //T Update(T entity);
 
-        Task<bool> UpdateAsync(T entity);
+        Task<bool> Update(T entity);
 
-        ///// <summary>
-        ///// Update entities
-        ///// </summary>
-        ///// <param name="entities">Entities</param>
-        //void Update(IEnumerable<T> entities);
+        /// <summary>
+        /// Update entities
+        /// </summary>
+        /// <param name="entities">Entities</param>
+        Task<bool> Update(IEnumerable<T> entities);
 
         ///// <summary>
         /////  根据id更新对象，若不存id则会添加
@@ -130,7 +130,7 @@ namespace Tpf.BaseRepository
         ///// <param name="ids">id列表</param>
         //void DeleteByIds(IEnumerable<string> ids);
 
-        Task DeleteAsync(T entity);
+        Task<bool> DeleteAsync(T entity);
 
         Task DeleteAsync(Expression<Func<T, bool>> expression);
 

@@ -116,9 +116,10 @@ namespace Tpf.MongoDB.Respository
             throw new NotImplementedException();
         }
 
-        public async Task DeleteAsync(T entity)
+        public async Task<bool> DeleteAsync(T entity)
         {
-            await _collection.DeleteOneAsync(x => x.Id == entity.Id);
+            var result = await _collection.DeleteOneAsync(x => x.Id == entity.Id);
+            return result.DeletedCount >= 0;
         }
 
         public Task<DeleteResult> DeleteAsync(Expression<Func<T, bool>> expression, bool isOne = false)
@@ -238,7 +239,7 @@ namespace Tpf.MongoDB.Respository
             throw new NotImplementedException();
         }
 
-        public async Task InsertAsync(T entity)
+        public async Task Insert(T entity)
         {
             await _collection.InsertOneAsync(entity);
         }
@@ -270,18 +271,13 @@ namespace Tpf.MongoDB.Respository
             throw new NotImplementedException();
         }
 
-        public T Update(T entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<bool> UpdateAsync(T entity)
+        public async Task<bool> Update(T entity)
         {
             var result = await _collection.ReplaceOneAsync(x => x.Id == entity.Id, entity);
             return result.ModifiedCount > 0;
         }
 
-        public void Update(IEnumerable<T> entities)
+        public Task<bool> Update(IEnumerable<T> entities)
         {
             throw new NotImplementedException();
         }
@@ -322,6 +318,11 @@ namespace Tpf.MongoDB.Respository
         }
 
         public Task<List<T>> GetListAsync(Expression<Func<T, bool>> expression)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task IMongoDBRepository<T>.DeleteAsync(T entity)
         {
             throw new NotImplementedException();
         }

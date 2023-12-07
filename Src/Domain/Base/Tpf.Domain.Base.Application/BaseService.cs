@@ -51,12 +51,12 @@ namespace Tpf.Domain.Base.Application
 
         public virtual async Task InsertAsync(T entity)
         {
-            await _repository.InsertAsync(entity);
+            await _repository.Insert(entity);
         }
 
         public virtual async Task UpdateAsync(T entity)
         {
-            await _repository.UpdateAsync(entity);
+            await _repository.Update(entity);
         }
 
         public virtual async Task DeleteAsync(T entity)

@@ -2,6 +2,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
 using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace Tpf.Domain.Base.Domain.Entity
 {
@@ -13,6 +14,7 @@ namespace Tpf.Domain.Base.Domain.Entity
     public class BaseEntity<T> where T : class
     {
         #region Field
+        //[Key]
         [JsonProperty("id")]
         public string Id
         {

@@ -1,14 +1,18 @@
 ﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 using System.Data;
 using System.Linq.Expressions;
 using Tpf.Common.Config;
+using static Dapper.SqlMapper;
 
 namespace Tpf.Dapper.Repository
 {
     /// <summary>
     /// DapperRepository
+    /// Dapper 原生方法 + 扩展 Dapper.Contrib
+    /// https://github.com/DapperLib/Dapper.Contrib
     /// </summary>
     public class DapperRepository<T> : IDapperRepository<T> where T : class
     {
@@ -16,16 +20,26 @@ namespace Tpf.Dapper.Repository
         private readonly IConfiguration _config;
         private readonly IDbConnection _connection;
 
-        
+
         #endregion
 
         #region Properties
+        /// <summary>
+        /// GetDbConnection
+        /// </summary>
+        /// <returns></returns>
+        public IDbConnection Db
+        {
+            get { return DbConnection; }
+        }
+
         private IDbConnection DbConnection
         {
             get
             {
                 if (_connection == null)
                 {
+                    //or ConfigHeler.Get(AppConfig.ConnectionString_Mysql)
                     return new MySqlConnection(_config.GetConnectionString(AppConfig.ConnectionString_Mysql)); // MySql
                 }
                 return _connection;
@@ -36,15 +50,6 @@ namespace Tpf.Dapper.Repository
         /// IDbTransaction
         /// </summary>
         private IDbTransaction DbTransaction { get; set; }
-
-        /// <summary>
-        /// GetDbConnection
-        /// </summary>
-        /// <returns></returns>
-        public IDbConnection Db
-        {
-            get { return DbConnection; }
-        }
 
         /// <summary>
         /// 事务是否已被提交
@@ -86,19 +91,29 @@ namespace Tpf.Dapper.Repository
             throw new NotImplementedException();
         }
 
-        public Task InsertAsync(T entity)
+        public async Task Insert(T entity)
         {
-            throw new NotImplementedException();
+            await Db.InsertAsync(entity);
         }
 
-        public Task<bool> UpdateAsync(T entity)
+        public async void Insert(IEnumerable<T> entities)
         {
-            throw new NotImplementedException();
+            await Db.InsertAsync(entities);
         }
 
-        public Task DeleteAsync(T entity)
+        public async Task<bool> Update(T entity)
         {
-            throw new NotImplementedException();
+            return await Db.UpdateAsync(entity);
+        }
+
+        public async Task<bool> Update(IEnumerable<T> entities)
+        {
+            return await Db.UpdateAsync(entities.AsList());
+        }
+
+        public async Task<bool> DeleteAsync(T entity)
+        {
+            return await Db.DeleteAsync(entity);
         }
 
         public Task DeleteAsync(Expression<Func<T, bool>> expression)
@@ -108,15 +123,16 @@ namespace Tpf.Dapper.Repository
 
         #endregion
 
+        #region Transaction Operate
         /// <summary>
         /// 开启事务
         /// </summary>
         public void BeginTransaction()
         {
             Committed = false;
-            bool isClosed = DbConnection.State == ConnectionState.Closed;
-            if (isClosed) DbConnection.Open();
-            DbTransaction = DbConnection.BeginTransaction();
+            bool isClosed = Db.State == ConnectionState.Closed;
+            if (isClosed) Db.Open();
+            DbTransaction = Db.BeginTransaction();
         }
 
         /// <summary>
@@ -139,7 +155,8 @@ namespace Tpf.Dapper.Repository
             Committed = true;
 
             Dispose();
-        }
+        } 
+        #endregion
 
         #region Private Method
         /// <summary>
@@ -155,6 +172,8 @@ namespace Tpf.Dapper.Repository
         }
 
         
+
+
         #endregion
     }
 }
