@@ -6,7 +6,7 @@ namespace Tpf.Core.Api.DI
     /// <summary>
     /// 
     /// </summary>
-    public class DIModule : AutofacModule
+    public class ApiRegisterModule : AutofacRegisterModule
     {
         /// <summary>
         /// Load

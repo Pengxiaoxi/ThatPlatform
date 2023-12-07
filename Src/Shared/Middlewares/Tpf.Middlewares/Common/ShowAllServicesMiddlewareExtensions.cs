@@ -9,7 +9,7 @@ namespace Tpf.Middlewares
 {
     public static class ShowAllServicesMiddlewareExtensions
     {
-        public static void UseAllServicesMiddleware(this IApplicationBuilder app, IServiceCollection _services)
+        public static void UseShowAllServicesMiddleware(this IApplicationBuilder app, IServiceCollection _services)
         {
             if (app == null) throw new ArgumentNullException(nameof(app));
 

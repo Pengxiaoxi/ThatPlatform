@@ -2,7 +2,7 @@
 
 namespace Tpf.Grpc.Client
 {
-    public class GrpcClientModule : TpfModule
+    public class GrpcClientModule : AppModule
     {
 
     }

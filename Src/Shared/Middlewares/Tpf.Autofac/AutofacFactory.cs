@@ -28,7 +28,7 @@ namespace Tpf.Autofac
                 .ToArray();
 
             // 按程序集批量注册模块（按Key|Name注册、泛型接口、或其他生命周期的服务等）
-            containerBuilder.RegisterAssemblyModules<AutofacModule>(assemblies);
+            containerBuilder.RegisterAssemblyModules<AutofacRegisterModule>(assemblies);
 
             // 批量注册非DI模块内的服务（服务生命周期默认瞬时）
             containerBuilder.RegisterAssemblyTypes(assemblies)
@@ -40,7 +40,7 @@ namespace Tpf.Autofac
             #region Tips: 按程序集批量注册模块 等同于如下（获取程序集内所有模块然后逐个注册）
             //foreach (Type type in modules)
             //{
-            //    var module = Activator.CreateInstance(type) as AutofacModule;
+            //    var module = Activator.CreateInstance(type) as AutofacRegisterModule;
             //    if (module != null)
             //    {
             //        containerBuilder.RegisterModule(module);

@@ -10,7 +10,7 @@ namespace Tpf.Core.Api
     [DependsOn(
         typeof(AuthInfoHttpApiModule)
         )]
-    public class TpfCoreApiModule : TpfModule
+    public class TpfCoreApiModule : AppModule
     {
     }
 }

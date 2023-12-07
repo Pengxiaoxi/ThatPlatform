@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
@@ -88,6 +88,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Autofac", "Shared\Middlewares\Tpf.Autofac\Tpf.Autofac.csproj", "{A922C3AF-2D9C-4719-8158-DFA57F74F748}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.AutoMapper", "Shared\Middlewares\Tpf.AutoMapper\Tpf.AutoMapper.csproj", "{479661C5-FBEA-4782-B70B-1F52B9B549D7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.FileServer.Minio", "Component\Tpf.FileServer.Minio\Tpf.FileServer.Minio.csproj", "{812F43B2-1665-4C77-A7B5-430B03B2FB97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -211,6 +213,10 @@ Global
 		{479661C5-FBEA-4782-B70B-1F52B9B549D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{479661C5-FBEA-4782-B70B-1F52B9B549D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{479661C5-FBEA-4782-B70B-1F52B9B549D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{812F43B2-1665-4C77-A7B5-430B03B2FB97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{812F43B2-1665-4C77-A7B5-430B03B2FB97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{812F43B2-1665-4C77-A7B5-430B03B2FB97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{812F43B2-1665-4C77-A7B5-430B03B2FB97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -254,6 +260,7 @@ Global
 		{44BAF2A4-4590-47D1-A91F-BCFD29C6B5F7} = {C6CDA193-D56A-4F0F-A625-8C112533627C}
 		{A922C3AF-2D9C-4719-8158-DFA57F74F748} = {E8382516-DB8F-4537-9131-F7ACA1791C6C}
 		{479661C5-FBEA-4782-B70B-1F52B9B549D7} = {E8382516-DB8F-4537-9131-F7ACA1791C6C}
+		{812F43B2-1665-4C77-A7B5-430B03B2FB97} = {0CA5A09A-1517-43B4-AC25-898E6D96F307}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48D4C4BC-746F-4767-959F-CB1A9FAD11C8}

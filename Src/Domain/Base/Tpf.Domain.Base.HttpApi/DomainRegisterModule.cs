@@ -10,7 +10,7 @@ using Tpf.SqlSugar.Respository;
 
 namespace Tpf.Domain.Base.HttpApi
 {
-    public class DIModule : AutofacModule
+    public class DomainRegisterModule : AutofacRegisterModule
     {
         protected override void Load(ContainerBuilder builder)
         {

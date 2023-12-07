@@ -4,7 +4,7 @@ using Tpf.Domain.AuthInfo.Domain;
 
 namespace Tpf.Domain.AuthInfo.HttpApi
 {
-    internal class DIModule : AutofacModule
+    internal class DomainRegisterModule : AutofacRegisterModule
     {
         protected override void Load(ContainerBuilder builder)
         {

@@ -7,7 +7,7 @@ namespace Tpf.Domain.AuthInfo.Applciation
     [DependsOn(
         typeof(GrpcClientModule)
         )]
-    public class AuthInfoApplicationModule : TpfModule
+    public class AuthInfoApplicationModule : AppModule
     {
     }
 }

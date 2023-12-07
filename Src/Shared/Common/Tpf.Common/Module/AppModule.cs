@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tpf.Common.Module
 {
-    public class TpfModule
+    public class AppModule
     {
     }
 }
