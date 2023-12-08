@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Tpf.Autofac;
 
-namespace Tpf.Core.Api.DI
+namespace Tpf.Tool.DbOperate.Api.DI
 {
     /// <summary>
     /// 

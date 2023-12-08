@@ -4,9 +4,9 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Tpf.Core.Api.Interface;
+using Tpf.Tool.DbOperate.Api.Interface;
 
-namespace Tpf.Core.Api.Job
+namespace Tpf.Tool.DbOperate.Api.Job
 {
     public class DownloadTaskService : BackgroundService
     {

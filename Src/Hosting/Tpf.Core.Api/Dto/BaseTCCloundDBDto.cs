@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Tpf.Core.Api.Dto
+namespace Tpf.Tool.DbOperate.Api.Dto
 {
     /// <summary>
     /// BaseTCCloudDBDto 固定公共参数

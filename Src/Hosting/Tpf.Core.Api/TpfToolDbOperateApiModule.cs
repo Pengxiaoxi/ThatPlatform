@@ -1,16 +1,15 @@
 ﻿using Tpf.Common.CommonAttributes;
 using Tpf.Common.Module;
-using Tpf.Domain.AuthInfo.HttpApi;
 
-namespace Tpf.Core.Api
+namespace Tpf.Tool.DbOperate.Api
 {
     /// <summary>
     /// TpfCoreApiModule
     /// </summary>
     [DependsOn(
-        typeof(AuthInfoHttpApiModule)
+        //typeof(AuthInfoHttpApiModule)
         )]
-    public class TpfCoreApiModule : AppModule
+    public class TpfToolDbOperateApiModule : AppModule
     {
     }
 }

@@ -12,9 +12,9 @@ using TencentCloud.Common.Profile;
 using TencentCloud.Mongodb.V20190725;
 using TencentCloud.Mongodb.V20190725.Models;
 using Tpf.Utils;
-using Tpf.Core.Api.Interface;
+using Tpf.Tool.DbOperate.Api.Interface;
 
-namespace Tpf.Core.Api.Service
+namespace Tpf.Tool.DbOperate.Api.Service
 {
     public class TencentCloudDBOperateService : ITencentCloudDBOperateService
     {

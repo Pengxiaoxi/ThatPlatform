@@ -5,7 +5,7 @@ using Tpf.Common.ResponseExtensions.ServiceResult;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
 using Tpf.Domain.Base.HttpApi;
 
-namespace Tpf.Core.Api.Controllers
+namespace Tpf.Tool.DbOperate.Api.Controllers
 {
     /// <summary>
     /// GrpcController
@@ -14,7 +14,7 @@ namespace Tpf.Core.Api.Controllers
     {
         #region Field
         private readonly ILogger<GrpcController> _log;
-        protected readonly IUserService _userService; 
+        protected readonly IUserService _userService;
         #endregion
 
         /// <summary>

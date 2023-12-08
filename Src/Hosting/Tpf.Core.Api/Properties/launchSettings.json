@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Tpf.Core.Api": {
+    "Tool.DbOperate.Api": {
       "commandName": "Project",
       "launchBrowser": false,
       //"launchUrl": "http://localhost:8000/swagger/index.html", // Swagegr
@@ -25,7 +25,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://127.0.0.1:8000"
+      "applicationUrl": "http://127.0.0.1:9000"
     },
     "Tpf.CloundDB.Api": {
       "commandName": "Project",

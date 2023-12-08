@@ -5,7 +5,7 @@ using Tpf.Domain.Base.HttpApi;
 using Tpf.Jobs.QuartzNet;
 using Tpf.Jobs.QuartzNet.Jobs;
 
-namespace Tpf.Core.Api.Controllers
+namespace Tpf.Tool.DbOperate.Api.Controllers
 {
     /// <summary>
     /// JobController

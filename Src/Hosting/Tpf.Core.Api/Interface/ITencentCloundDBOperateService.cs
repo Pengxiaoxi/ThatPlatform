@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using TencentCloud.Mongodb.V20190725.Models;
 
-namespace Tpf.Core.Api.Interface
+namespace Tpf.Tool.DbOperate.Api.Interface
 {
     public interface ITencentCloudDBOperateService
     {

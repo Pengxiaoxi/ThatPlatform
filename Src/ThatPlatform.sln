@@ -1,4 +1,3 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
@@ -35,7 +34,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Domain.YourPostman.Appl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosting", "Hosting", "{4A2CA3DC-2082-42F2-B3FA-67B203397DDB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Core.Api", "Hosting\Tpf.Core.Api\Tpf.Core.Api.csproj", "{CDEF4BD9-A54F-4080-92A1-927B5FACE59E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Tool.DbOperate.Api", "Hosting\Tpf.Core.Api\Tpf.Tool.DbOperate.Api.csproj", "{CDEF4BD9-A54F-4080-92A1-927B5FACE59E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Ugly.Api", "Hosting\Tpf.Ugly.Api\Tpf.Ugly.Api.csproj", "{AC949E49-87ED-4A4E-B646-41F42A2DC2AC}"
 EndProject
@@ -89,7 +88,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Autofac", "Shared\Middl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.AutoMapper", "Shared\Middlewares\Tpf.AutoMapper\Tpf.AutoMapper.csproj", "{479661C5-FBEA-4782-B70B-1F52B9B549D7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.FileServer.Minio", "Component\Tpf.FileServer.Minio\Tpf.FileServer.Minio.csproj", "{812F43B2-1665-4C77-A7B5-430B03B2FB97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.BlobStoring.Minio", "Component\Tpf.BlobStoring.Minio\Tpf.BlobStoring.Minio.csproj", "{812F43B2-1665-4C77-A7B5-430B03B2FB97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tpf.Auth.Api", "Hosting\Tpf.Auth.Api\Tpf.Auth.Api.csproj", "{20B28881-98BA-4604-A241-BBD3149411D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tpf.Platform.Api", "Hosting\Tpf.Platform.Api\Tpf.Platform.Api.csproj", "{5671803A-3264-49F9-8BAF-F4277BBFC30E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tpf.Aot.Api", "Hosting\Tpf.Aot.Api\Tpf.Aot.Api.csproj", "{6FA6AD63-3915-4A80-BE8C-B47606AC956B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -217,6 +222,18 @@ Global
 		{812F43B2-1665-4C77-A7B5-430B03B2FB97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{812F43B2-1665-4C77-A7B5-430B03B2FB97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{812F43B2-1665-4C77-A7B5-430B03B2FB97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20B28881-98BA-4604-A241-BBD3149411D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20B28881-98BA-4604-A241-BBD3149411D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20B28881-98BA-4604-A241-BBD3149411D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20B28881-98BA-4604-A241-BBD3149411D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5671803A-3264-49F9-8BAF-F4277BBFC30E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5671803A-3264-49F9-8BAF-F4277BBFC30E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5671803A-3264-49F9-8BAF-F4277BBFC30E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5671803A-3264-49F9-8BAF-F4277BBFC30E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FA6AD63-3915-4A80-BE8C-B47606AC956B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FA6AD63-3915-4A80-BE8C-B47606AC956B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FA6AD63-3915-4A80-BE8C-B47606AC956B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FA6AD63-3915-4A80-BE8C-B47606AC956B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -261,6 +278,9 @@ Global
 		{A922C3AF-2D9C-4719-8158-DFA57F74F748} = {E8382516-DB8F-4537-9131-F7ACA1791C6C}
 		{479661C5-FBEA-4782-B70B-1F52B9B549D7} = {E8382516-DB8F-4537-9131-F7ACA1791C6C}
 		{812F43B2-1665-4C77-A7B5-430B03B2FB97} = {0CA5A09A-1517-43B4-AC25-898E6D96F307}
+		{20B28881-98BA-4604-A241-BBD3149411D1} = {4A2CA3DC-2082-42F2-B3FA-67B203397DDB}
+		{5671803A-3264-49F9-8BAF-F4277BBFC30E} = {4A2CA3DC-2082-42F2-B3FA-67B203397DDB}
+		{6FA6AD63-3915-4A80-BE8C-B47606AC956B} = {4A2CA3DC-2082-42F2-B3FA-67B203397DDB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48D4C4BC-746F-4767-959F-CB1A9FAD11C8}

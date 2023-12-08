@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Tpf.Domain.Base.HttpApi;
 
-namespace Tpf.Core.Api.Controllers
+namespace Tpf.Tool.DbOperate.Api.Controllers
 {
     /// <summary>
     /// TestController
