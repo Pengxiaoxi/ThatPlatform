@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System.IO;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Tpf.Middlewares.Swagger
 {
@@ -29,7 +31,14 @@ namespace Tpf.Middlewares.Swagger
                     return controllerAction.ControllerName + "-" + controllerAction.ActionName;
                 });
 
-                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Tpf.Core.Api.xml"), true);
+                var apiDocFiles = GetApiDocFilePaths();
+                if (apiDocFiles.Any())
+                {
+                    apiDocFiles.ForEach(apiDoc =>
+                    {
+                        c.IncludeXmlComments(apiDoc, true);
+                    });
+                }
             });
 
             // 指定Swagger使用Newtonsoft.Json序列化【避免Swagger接口文档内接口参数与对象属性JsonProperty不符】
@@ -61,5 +70,13 @@ namespace Tpf.Middlewares.Swagger
 
             app.MapSwagger("{documentName}/api-docs");
         }
+
+        #region 
+        private static List<string> GetApiDocFilePaths()
+        {
+            var apiDocXmlFiles = new DirectoryInfo(AppContext.BaseDirectory).GetFiles("*.xml", SearchOption.TopDirectoryOnly);
+            return apiDocXmlFiles.Select(x => x.FullName).ToList();
+        }
+        #endregion
     }
 }
