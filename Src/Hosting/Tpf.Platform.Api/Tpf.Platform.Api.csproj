@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -8,7 +8,16 @@
     <UserSecretsId>b37c44e2-89ca-4e0e-b614-21b7a7565f26</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Log4Net\Log4Net.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Log4Net\Log4Net.config" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />

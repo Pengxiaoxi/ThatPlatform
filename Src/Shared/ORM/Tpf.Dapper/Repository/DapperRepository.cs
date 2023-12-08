@@ -2,9 +2,11 @@
 using Dapper.Contrib.Extensions;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
+using Sikiro.Dapper.Extension.MySql;
 using System.Data;
 using System.Linq.Expressions;
 using Tpf.Common.Config;
+using Tpf.Domain.Base.Domain.Entity;
 using static Dapper.SqlMapper;
 
 namespace Tpf.Dapper.Repository
@@ -14,7 +16,7 @@ namespace Tpf.Dapper.Repository
     /// Dapper 原生方法 + 扩展 Dapper.Contrib
     /// https://github.com/DapperLib/Dapper.Contrib
     /// </summary>
-    public class DapperRepository<T> : IDapperRepository<T> where T : class
+    public class DapperRepository<T> : IDapperRepository<T> where T : BaseEntity<string>
     {
         #region Fields
         private readonly IConfiguration _config;
@@ -70,45 +72,48 @@ namespace Tpf.Dapper.Repository
         #endregion
 
         #region Publich Method
-        public IQueryable<T> All()
+        public async Task<T> GetAsync(Expression<Func<T, bool>> expression)
         {
-            throw new NotImplementedException();
+            return await Db.QuerySet<T>().Where(expression).GetAsync();
         }
 
-        public IQueryable<T> Where(Expression<Func<T, bool>> expression)
+        public async Task<List<T>> GetListAsync(Expression<Func<T, bool>> expression)
         {
-            throw new NotImplementedException();
+            return (await Db.QuerySet<T>().Where(expression).ToListAsync()).ToList();
         }
 
-        public Task<T> GetAsync(Expression<Func<T, bool>> expression)
+        public async Task<bool> InsertAsync(T entity)
         {
-            throw new NotImplementedException();
+            return (await Db.InsertAsync(entity)) > 0;
         }
 
-        public Task<List<T>> GetListAsync(Expression<Func<T, bool>> expression)
+        public async Task<bool> InsertManyAsync(IEnumerable<T> entities)
         {
-            //return this.Db.QueryAsync<T>();
-            throw new NotImplementedException();
+            //var result = false;
+            //foreach (var entity in entities)
+            //{
+            //    result = (await Db.InsertAsync(entity)) > 0;
+            //}
+
+            //return result;
+
+            Db.CommandSet<T>()
+                .BatchInsert(entities);
+
+            return await Task.FromResult(true);
+                
         }
 
-        public async Task Insert(T entity)
-        {
-            await Db.InsertAsync(entity);
-        }
-
-        public async void Insert(IEnumerable<T> entities)
-        {
-            await Db.InsertAsync(entities);
-        }
-
-        public async Task<bool> Update(T entity)
+        public async Task<bool> UpdateAsync(T entity)
         {
             return await Db.UpdateAsync(entity);
         }
 
-        public async Task<bool> Update(IEnumerable<T> entities)
+        public async Task<bool> UpdateAsync(Expression<Func<T, bool>> whereExpression, Expression<Func<T, T>> updateExpression)
         {
-            return await Db.UpdateAsync(entities.AsList());
+            return (await Db.CommandSet<T>()
+                .Where(whereExpression)
+                .UpdateAsync(updateExpression)) >= 0;
         }
 
         public async Task<bool> DeleteAsync(T entity)
@@ -116,9 +121,37 @@ namespace Tpf.Dapper.Repository
             return await Db.DeleteAsync(entity);
         }
 
-        public Task DeleteAsync(Expression<Func<T, bool>> expression)
+        public async Task<bool> DeleteByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            Expression<Func<T, bool>> whereExpression = x => x.Id == id;
+
+            return await Db.DeleteAsync(whereExpression);
+        }
+
+        public async Task<bool> DeleteAsync(Expression<Func<T, bool>> whereExpression)
+        {
+            return await Db.DeleteAsync(whereExpression);
+        }
+
+        public async Task<bool> UpdateManyAsync(IEnumerable<T> entities)
+        {
+            return await Db.UpdateAsync(entities.AsList());
+        }
+
+        public async Task<long> CountAsync(Expression<Func<T, bool>> whereExpression = null)
+        {
+            var result = Db.QuerySet<T>()
+                .Where(whereExpression)
+                .Count();
+            return await Task.FromResult(result);
+        }
+
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>> whereExpression)
+        {
+            var result = Db.QuerySet<T>()
+                .Where(whereExpression)
+                .Exists();
+            return await Task.FromResult(result);
         }
 
         #endregion
@@ -172,8 +205,6 @@ namespace Tpf.Dapper.Repository
         }
 
         
-
-
         #endregion
     }
 }

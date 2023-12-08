@@ -5,6 +5,7 @@ using Tpf.BaseRepository;
 using Tpf.Common.Config;
 using Tpf.Common.Enum;
 using Tpf.Domain.Base.Application.Contacts;
+using Tpf.Domain.Base.Domain.Entity;
 using Tpf.Utils;
 
 namespace Tpf.Domain.Base.Application
@@ -15,7 +16,7 @@ namespace Tpf.Domain.Base.Application
     /// </summary>
     /// <typeparam name="T"> Entity class for repository </typeparam>
     /// <typeparam name="TService"> Service class for log </typeparam>
-    public class BaseService<T> : IBaseService<T> where T : class
+    public class BaseService<T> : IBaseService<T> where T : BaseEntity<string>
     {
         #region Field
         protected readonly IBaseRepository<T> _repository;
@@ -51,12 +52,12 @@ namespace Tpf.Domain.Base.Application
 
         public virtual async Task InsertAsync(T entity)
         {
-            await _repository.Insert(entity);
+            await _repository.InsertAsync(entity);
         }
 
         public virtual async Task UpdateAsync(T entity)
         {
-            await _repository.Update(entity);
+            await _repository.UpdateAsync(entity);
         }
 
         public virtual async Task DeleteAsync(T entity)

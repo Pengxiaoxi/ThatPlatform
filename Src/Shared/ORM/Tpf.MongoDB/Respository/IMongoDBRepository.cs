@@ -5,7 +5,7 @@ using Tpf.Domain.Base.Domain.Entity;
 
 namespace Tpf.MongoDB.Respository
 {
-    public interface IMongoDBRepository<T> : IBaseRepository<T> where T : BaseMongoDBEntity<string>
+    public interface IMongoDBRepository<T> //: IBaseRepository<T> where T : BaseMongoDBEntity<string>
     {
         IMongoDatabase Database { get; }
 
@@ -202,7 +202,7 @@ namespace Tpf.MongoDB.Respository
         T UpdateById(string id, UpdateDefinition<T> updateDefinition, IEnumerable<ArrayFilterDefinition> arrayFilters = null);
 
         /// <summary>
-        /// 单个对象修改操作，Update record by specified filer. 
+        /// 单个对象修改操作，UpdateAsync record by specified filer. 
         /// </summary>
         /// <param name="filter">The filter expression which used to search the record to update.</param>
         /// <param name="updateDefinition">The update value expression.</param>

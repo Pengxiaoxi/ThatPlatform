@@ -13,6 +13,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Log4Net\Log4Net.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Log4Net\Log4Net.config" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
   </ItemGroup>
 

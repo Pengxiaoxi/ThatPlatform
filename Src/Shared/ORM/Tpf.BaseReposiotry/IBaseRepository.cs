@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using Tpf.Domain.Base.Domain.Entity;
 
 namespace Tpf.BaseRepository
 {
@@ -6,87 +7,106 @@ namespace Tpf.BaseRepository
     /// IBaseRepository<T>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IBaseRepository<T>  where T : class
+    public interface IBaseRepository<T>  where T : BaseEntity<string>
     {
-        /// <summary>
-        /// 获取列表 ，返回IQueryable
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        IQueryable<T> All();
-
-        /// <summary>
-        /// 获取查询列表 ，返回IQueryable
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="expression"></param>
-        /// <returns></returns>
-        IQueryable<T> Where(Expression<Func<T, bool>> expression);
-
         /// <summary>
         /// GetAsync
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        Task<T> GetAsync(Expression<Func<T, bool>> expression);
+        Task<T> GetAsync(Expression<Func<T, bool>> whereExpression);
 
         /// <summary>
         /// GetListAsync
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        Task<List<T>> GetListAsync(Expression<Func<T, bool>> expression);
-
-        ///// <summary>
-        ///// 根据条件统计总数
-        ///// </summary>
-        ///// <param name="filter">条件Expression,可以空，代表获取表的总数</param>
-        ///// <returns>总数</returns>
-        //long Count(Expression<Func<T, bool>> expression = null);
-
-        ///// <summary>
-        ///// 根据条件是否存在数据
-        ///// </summary>
-        ///// <param name="filter">条件Expression</param>
-        ///// <returns>是否存在，true:是 false：否</returns>
-        //bool Exists(Expression<Func<T, bool>> expression);
-
-        ///// <summary>
-        ///// Insert entity
-        ///// </summary>
-        ///// <param name="entity">Entity</param>
-        ///// <param name="isAsync">是否异步处理，默认：false : 否  ,true: 是</param>
-        //T Insert(T entity, bool isAsync = false);
-
-        Task Insert(T entity);
+        Task<List<T>> GetListAsync(Expression<Func<T, bool>> whereExpression);
 
         /// <summary>
-        /// Insert entities
+        /// InsertAsync
         /// </summary>
-        /// <param name="entities">Entities</param>
-        void Insert(IEnumerable<T> entities);
-
-        ///// <summary>
-        ///// 批量插入数据，和Insert的区别是会判断插入大小不要超过GridFS大小
-        ///// 正常情况使用Insert
-        ///// </summary>
-        ///// <param name="entities"></param>
-        //void InsertMany(IEnumerable<T> entities);
-
-
-        ///// <summary>
-        ///// 单个对象Update entity
-        ///// </summary>
-        ///// <param name="entity">Entity</param>
-        //T Update(T entity);
-
-        Task<bool> Update(T entity);
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        Task<bool> InsertAsync(T entity);
 
         /// <summary>
-        /// Update entities
+        /// InsertManyAsync
         /// </summary>
         /// <param name="entities">Entities</param>
-        Task<bool> Update(IEnumerable<T> entities);
+        Task<bool> InsertManyAsync(IEnumerable<T> entities);
+
+        /// <summary>
+        /// UpdateAsync
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        Task<bool> UpdateAsync(T entity);
+
+        /// <summary>
+        /// UpdateAsync
+        /// </summary>
+        /// <param name="whereExpression"></param>
+        /// <param name="updateExpression"></param>
+        /// <returns></returns>
+        Task<bool> UpdateAsync(Expression<Func<T, bool>> whereExpression, Expression<Func<T, T>> updateExpression);
+
+        /// <summary>
+        /// UpdateManyAsync
+        /// </summary>
+        /// <param name="entities">entities</param>
+        Task<bool> UpdateManyAsync(IEnumerable<T> entities);
+
+        /// <summary>
+        /// DeleteAsync
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        Task<bool> DeleteAsync(T entity);
+
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="id"></param>
+        Task<bool> DeleteByIdAsync(string id);
+
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        Task<bool> DeleteAsync(Expression<Func<T, bool>> whereExpression);
+
+        /// <summary>
+        /// 根据条件统计总数
+        /// </summary>
+        /// <param name="filter">条件Expression,可以空，代表获取表的总数</param>
+        /// <returns>总数</returns>
+        Task<long> CountAsync(Expression<Func<T, bool>> whereExpression = null);
+
+        /// <summary>
+        /// 根据条件是否存在数据
+        /// </summary>
+        /// <param name="filter">条件Expression</param>
+        /// <returns>是否存在，true:是 false：否</returns>
+        Task<bool> AnyAsync(Expression<Func<T, bool>> whereExpression);
+
+
+        #region Extensions
+        ///// <summary>
+        ///// 获取列表 ，返回IQueryable
+        ///// </summary>
+        ///// <typeparam name="T"></typeparam>
+        ///// <returns></returns>
+        //IQueryable<T> All();
+
+        ///// <summary>
+        ///// 获取查询列表 ，返回IQueryable
+        ///// </summary>
+        ///// <typeparam name="T"></typeparam>
+        ///// <param name="expression"></param>
+        ///// <returns></returns>
+        //IQueryable<T> Where(Expression<Func<T, bool>> expression);
 
         ///// <summary>
         /////  根据id更新对象，若不存id则会添加
@@ -115,24 +135,8 @@ namespace Tpf.BaseRepository
         ///// <param name="expression"></param>
         ///// <param name="isOne">是否删除一条数据，默认:false 代表 多条 ， true: 单条</param>
         ///// <returns>DeleteResult</returns>
-        //int Delete(Expression<Func<T, bool>> expression, bool isOne = false);
-
-        ///// <summary>
-        ///// 根据id删除对象
-        ///// </summary>
-        ///// <param name="id"></param>
-        //void DeleteById(string id);
-
-
-        ///// <summary>
-        ///// 根据id列表批量删除 对象
-        ///// </summary>
-        ///// <param name="ids">id列表</param>
-        //void DeleteByIds(IEnumerable<string> ids);
-
-        Task<bool> DeleteAsync(T entity);
-
-        Task DeleteAsync(Expression<Func<T, bool>> expression);
+        //int Delete(Expression<Func<T, bool>> expression, bool isOne = false); 
+        #endregion
 
     }
 }
