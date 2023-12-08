@@ -31,6 +31,7 @@ namespace Tpf.Middlewares.Swagger
                     return controllerAction.ControllerName + "-" + controllerAction.ActionName;
                 });
 
+                // 批量添加接口注释 xml 文档到 swagger
                 var apiDocFiles = GetApiDocFilePaths();
                 if (apiDocFiles.Any())
                 {
@@ -72,10 +73,14 @@ namespace Tpf.Middlewares.Swagger
         }
 
         #region 
+        /// <summary>
+        /// 获取所有 xml 注释文档路径
+        /// </summary>
+        /// <returns></returns>
         private static List<string> GetApiDocFilePaths()
         {
             var apiDocXmlFiles = new DirectoryInfo(AppContext.BaseDirectory).GetFiles("*.xml", SearchOption.TopDirectoryOnly);
-            return apiDocXmlFiles.Select(x => x.FullName).ToList();
+            return apiDocXmlFiles.Select(x => x.FullName)?.ToList();
         }
         #endregion
     }
