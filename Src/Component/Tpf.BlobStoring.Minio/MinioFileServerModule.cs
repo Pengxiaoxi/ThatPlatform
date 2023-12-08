@@ -1,6 +1,6 @@
 ﻿using Tpf.Common.Module;
 
-namespace Tpf.FileServer.Minio
+namespace Tpf.BlobStoring.Minio
 {
     public class MinioFileServerModule : AppModule
     {

@@ -3,7 +3,7 @@ using Minio.DataModel.Args;
 using Tpf.Common.Config;
 using Tpf.Utils;
 
-namespace Tpf.FileServer.Minio
+namespace Tpf.BlobStoring.Minio
 {
     public class MinioService : IMinioService
     {

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Tpf.FileServer.Minio
+namespace Tpf.BlobStoring.Minio
 {
     public class UploadFileArg
     {

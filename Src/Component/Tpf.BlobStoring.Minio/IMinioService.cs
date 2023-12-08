@@ -1,6 +1,6 @@
 ﻿using Minio;
 
-namespace Tpf.FileServer.Minio
+namespace Tpf.BlobStoring.Minio
 {
     /// <summary>
     /// Minio FileServer
