@@ -1,60 +1,14 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
-using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
+using MongoDB.Bson;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Tpf.Domain.Base.Domain.Entity
 {
-    /// <summary>
-    /// BaseEntity<T>
-    /// TODO: 考虑区分关系型数据库和非关系型数据库 BaseEntity
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class BaseEntity<T> where T : class
-    {
-        #region Field
-        //[Key]
-        [JsonProperty("id")]
-        public string Id
-        {
-            get;
-            set;
-        }
-
-
-        //public string CreatedUserId { get; set; }
-
-        //public string CreatedUserName { get; set; }
-
-        //public DateTime CreatedDate { get; set; }
-
-        //public string TenantId { get; set; }
-        #endregion
-
-        #region Ctor
-        public BaseEntity()
-        {
-            if (string.IsNullOrEmpty(this.Id))
-            {
-                this.Id = Guid.NewGuid().ToString();
-            }
-        }
-        #endregion
-
-        #region Extensions Method
-        public void Create()
-        {
-            this.Id = Guid.NewGuid().ToString();
-        }
-
-        public void Modify()
-        {
-            
-        }
-        #endregion
-    }
-
     /// <summary>
     /// BaseEntity<T>
     /// TODO: 考虑区分关系型数据库和非关系型数据库 BaseEntity
@@ -113,18 +67,4 @@ namespace Tpf.Domain.Base.Domain.Entity
         //} 
         #endregion
     }
-
-
-
-    public enum ORMEnum
-    {
-        EntityFramework = 1,
-
-        Dapper = 2,
-
-        SqlSuger = 3,
-
-        MongoDB = 4,
-    }
-
 }
