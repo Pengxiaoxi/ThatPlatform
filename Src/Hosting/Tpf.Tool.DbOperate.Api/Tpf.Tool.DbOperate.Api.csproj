@@ -7,6 +7,7 @@
     <DockerfileContext>..\..</DockerfileContext>
     <Authors>pengxx</Authors>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <PublishAot>False</PublishAot>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
     <PackageReference Include="TencentCloudSDK.Mongodb" Version="3.0.371" />
   </ItemGroup>
 

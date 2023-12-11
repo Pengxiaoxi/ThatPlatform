@@ -34,7 +34,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Domain.YourPostman.Appl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosting", "Hosting", "{4A2CA3DC-2082-42F2-B3FA-67B203397DDB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Tool.DbOperate.Api", "Hosting\Tpf.Core.Api\Tpf.Tool.DbOperate.Api.csproj", "{CDEF4BD9-A54F-4080-92A1-927B5FACE59E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Tool.DbOperate.Api", "Hosting\Tpf.Tool.DbOperate.Api\Tpf.Tool.DbOperate.Api.csproj", "{CDEF4BD9-A54F-4080-92A1-927B5FACE59E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Ugly.Api", "Hosting\Tpf.Ugly.Api\Tpf.Ugly.Api.csproj", "{AC949E49-87ED-4A4E-B646-41F42A2DC2AC}"
 EndProject
