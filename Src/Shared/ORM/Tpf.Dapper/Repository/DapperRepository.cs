@@ -7,7 +7,6 @@ using System.Data;
 using System.Linq.Expressions;
 using Tpf.Common.Config;
 using Tpf.Domain.Base.Domain.Entity;
-using static Dapper.SqlMapper;
 
 namespace Tpf.Dapper.Repository
 {
