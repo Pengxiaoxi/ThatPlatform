@@ -45,7 +45,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
             var userInfo = new UserInfo()
             {
                 UserName = "pxx",
-                Pass = Guid.NewGuid().ToString(),
+                Password = Guid.NewGuid().ToString(),
             };
             await _userService.InsertAsync(userInfo);
 

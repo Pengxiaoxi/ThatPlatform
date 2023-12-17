@@ -10,7 +10,7 @@ namespace Tpf.Common.ResponseExtensions.ServiceResult
     /// <summary>
     /// ServiceResult
     /// </summary>
-    public class ServiceResult<T> : ServiceResult where T : class
+    public class ServiceResult<T> : ServiceResult
     {
         /// <summary>
         /// 返回结果

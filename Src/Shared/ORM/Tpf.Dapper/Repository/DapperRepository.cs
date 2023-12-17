@@ -76,9 +76,12 @@ namespace Tpf.Dapper.Repository
             return await Db.QuerySet<T>().Where(expression).GetAsync();
         }
 
-        public async Task<List<T>> GetListAsync(Expression<Func<T, bool>> expression)
+        public async Task<List<T>> GetListAsync(Expression<Func<T, bool>>? expression = null)
         {
-            return (await Db.QuerySet<T>().Where(expression).ToListAsync()).ToList();
+            return (expression == null
+                ? await Db.QuerySet<T>().ToListAsync()
+                : await Db.QuerySet<T>().Where(expression).ToListAsync()
+                ).ToList();
         }
 
         public async Task<bool> InsertAsync(T entity)

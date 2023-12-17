@@ -21,7 +21,7 @@ namespace Tpf.BaseRepository
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        Task<List<T>> GetListAsync(Expression<Func<T, bool>> whereExpression);
+        Task<List<T>> GetListAsync(Expression<Func<T, bool>>? whereExpression = null);
 
         /// <summary>
         /// InsertAsync
