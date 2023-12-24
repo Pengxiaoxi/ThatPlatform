@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Tpf.Common.ResponseExtensions.ServiceResult;
 
 namespace Tpf.Domain.Base.HttpApi
 {
@@ -20,6 +21,23 @@ namespace Tpf.Domain.Base.HttpApi
 
         }
 
+        #endregion
+
+        #region Response
+        public ServiceResult<T> Success<T>(T data = default, string? message = default)
+        {
+            return ServiceResult<T>.IsSuccess(data, message);
+        }
+
+        public ServiceResult<T> Failed<T>(T data = default, string? message = default)
+        {
+            return ServiceResult<T>.IsFailed(data, message);
+        }
+
+        public ServiceResult<T> Failed<T>(string? message = default)
+        {
+            return ServiceResult<T>.IsFailed(default, message);
+        }
         #endregion
 
 

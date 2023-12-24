@@ -62,7 +62,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
             user.Password = GeneratePassBySecretkey(dto.Password, user.Secretkey);
             var result = await _userService.InsertAsync(user);
 
-            return ServiceResult<bool>.IsSuccess(result);
+            return Success(result);
         }
 
         /// <summary>
@@ -77,18 +77,18 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
             var user = await _userService.GetAsync(x => x.Account == dto.Account);
             if (user is null)
             {
-                return ServiceResult<LoginOutputDto>.IsFailed(null, "用户不存在");
+                return Failed<LoginOutputDto>("用户不存在");
             }
 
             var password = GeneratePassBySecretkey(dto.Password, user.Secretkey);
             if (!user.Password.Equals(password))
             {
-                return ServiceResult<LoginOutputDto>.IsFailed(null, "登录失败，密码错误");
+                return Failed<LoginOutputDto>("登录失败，密码错误");
             }
 
             // TODO: generate token
             var result = new LoginOutputDto() { Token = user.Account, RefreshToken = user.UserName };
-            return ServiceResult<LoginOutputDto>.IsSuccess(result);
+            return Success(result);
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
                 throw new ArgumentNullException("参数错误");
             }
 
-            return ServiceResult<bool>.IsSuccess(true);
+            return Success(true);
         }
 
 

@@ -69,7 +69,7 @@ namespace Tpf.Jobs.QuartzNet
             {
                 var message = $"StartJobAsync Faild: {typeof(T).Name}";
                 _log.Error(message);
-                return ServiceResult<string>.IsFailed(null, message, ex);
+                return ServiceResult<string>.IsFailed(message, ex);
             }
         }
 
@@ -99,7 +99,7 @@ namespace Tpf.Jobs.QuartzNet
             {
                 var message = $"StopJobAsync Faild: {typeof(T).Name}";
                 _log.Error(message);
-                return ServiceResult<string>.IsFailed(null, message, ex);
+                return ServiceResult<string>.IsFailed(message, ex);
             }
         }
 
@@ -140,7 +140,7 @@ namespace Tpf.Jobs.QuartzNet
             {
                 var message = $"StopAllJobsAsync Faild";
                 _log.Error(message);
-                return ServiceResult<string>.IsFailed(null, message, ex);
+                return ServiceResult<string>.IsFailed(message, ex);
             }
         }
 

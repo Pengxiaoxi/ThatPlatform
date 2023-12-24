@@ -60,7 +60,7 @@ namespace Tpf.Middlewares
             
 
             context.Response.ContentType = "application/json";
-            await context.Response.WriteAsync(JsonConvert.SerializeObject(ServiceResult.IsFailed(e?.Message))); // 此处避免引用其他组件，可更换为拼接的Json字符串
+            await context.Response.WriteAsync(JsonConvert.SerializeObject(ServiceResult<string>.IsFailed(e?.Message))); // 此处避免引用其他组件，可更换为拼接的Json字符串
             //await context.Response.WriteAsync(e?.Message).ConfigureAwait(false);
         }
 

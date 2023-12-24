@@ -10,20 +10,14 @@ namespace Tpf.Common.ResponseExtensions.ServiceResult
     /// <summary>
     /// ServiceResult
     /// </summary>
-    public class ServiceResult<T> : ServiceResult
+    public partial class ServiceResult<T> // : ServiceResult
     {
-        /// <summary>
-        /// 返回结果
-        /// </summary>
-        [JsonProperty("data")]
-        public T Data { get; set; }
-
         /// <summary>
         /// 响应成功
         /// </summary>
         /// <param name="data"></param>
         /// <param name="message"></param>
-        public static ServiceResult<T> IsSuccess(T data = null, string message = "")
+        public static ServiceResult<T> IsSuccess(T data = default, string message = "")
         {
             return new ServiceResult<T>()
             {
@@ -38,11 +32,11 @@ namespace Tpf.Common.ResponseExtensions.ServiceResult
         /// </summary>
         /// <param name="data"></param>
         /// <param name="message"></param>
-        public static ServiceResult<T> IsFailed(T data = null, string message = "", Exception exception = null)
+        public static ServiceResult<T> IsFailed(string message, Exception exception = null)
         {
             return new ServiceResult<T>()
             {
-                Message = $"{message},Exception: {exception?.Message}, StackTrace: {exception?.StackTrace}",
+                Message = $"Exception: {exception?.Message}, StackTrace: {exception?.StackTrace}",
                 Code = ServiceResultCodeEnum.Failed,
             };
         }
@@ -52,7 +46,7 @@ namespace Tpf.Common.ResponseExtensions.ServiceResult
         /// </summary>
         /// <param name="data"></param>
         /// <param name="message"></param>
-        public static ServiceResult<T> IsFailed(T data = null, string message = "")
+        public static ServiceResult<T> IsFailed(T data = default, string message = "")
         {
             var innerResult = new ServiceResult<T>()
             {
@@ -64,7 +58,7 @@ namespace Tpf.Common.ResponseExtensions.ServiceResult
                 && string.IsNullOrWhiteSpace(message))
             {
                 innerResult.Message = data as string;
-                innerResult.Data = null;
+                innerResult.Data = default;
             }
             else
             {
@@ -74,5 +68,39 @@ namespace Tpf.Common.ResponseExtensions.ServiceResult
 
             return innerResult;
         }
+    }
+
+    public partial class ServiceResult<T>
+    {
+        /// <summary>
+        /// 返回结果
+        /// </summary>
+        [JsonProperty("data")]
+        public T Data { get; set; }
+
+        // <summary>
+        /// 响应码
+        /// </summary>
+        [JsonProperty("code")]
+        public ServiceResultCodeEnum Code { get; set; }
+
+        /// <summary>
+        /// 响应信息
+        /// </summary>
+        [JsonProperty("message")]
+        public string Message { get; set; }
+
+        /// <summary>
+        /// 成功
+        /// </summary>
+        [JsonProperty("success")]
+        public bool Success => Code == ServiceResultCodeEnum.Succeed;
+
+        /// <summary>
+        /// 时间戳(毫秒)
+        /// </summary>
+        [JsonProperty("timestamp")]
+        public long Timestamp { get; } = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+
     }
 }
