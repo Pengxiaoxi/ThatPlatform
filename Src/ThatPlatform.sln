@@ -90,11 +90,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.AutoMapper", "Shared\Mi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.BlobStoring.Minio", "Component\Tpf.BlobStoring.Minio\Tpf.BlobStoring.Minio.csproj", "{812F43B2-1665-4C77-A7B5-430B03B2FB97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tpf.Auth.Api", "Hosting\Tpf.Auth.Api\Tpf.Auth.Api.csproj", "{20B28881-98BA-4604-A241-BBD3149411D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Auth.Api", "Hosting\Tpf.Auth.Api\Tpf.Auth.Api.csproj", "{20B28881-98BA-4604-A241-BBD3149411D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tpf.Platform.Api", "Hosting\Tpf.Platform.Api\Tpf.Platform.Api.csproj", "{5671803A-3264-49F9-8BAF-F4277BBFC30E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Platform.Api", "Hosting\Tpf.Platform.Api\Tpf.Platform.Api.csproj", "{5671803A-3264-49F9-8BAF-F4277BBFC30E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tpf.Aot.Api", "Hosting\Tpf.Aot.Api\Tpf.Aot.Api.csproj", "{6FA6AD63-3915-4A80-BE8C-B47606AC956B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Aot.Api", "Hosting\Tpf.Aot.Api\Tpf.Aot.Api.csproj", "{6FA6AD63-3915-4A80-BE8C-B47606AC956B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tpf.Authentication", "Shared\Middlewares\Tpf.Authentication\Tpf.Authentication.csproj", "{D1C1D406-915E-4196-BDE3-93B616F69334}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -234,6 +236,10 @@ Global
 		{6FA6AD63-3915-4A80-BE8C-B47606AC956B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FA6AD63-3915-4A80-BE8C-B47606AC956B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FA6AD63-3915-4A80-BE8C-B47606AC956B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1C1D406-915E-4196-BDE3-93B616F69334}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1C1D406-915E-4196-BDE3-93B616F69334}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1C1D406-915E-4196-BDE3-93B616F69334}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1C1D406-915E-4196-BDE3-93B616F69334}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -281,6 +287,7 @@ Global
 		{20B28881-98BA-4604-A241-BBD3149411D1} = {4A2CA3DC-2082-42F2-B3FA-67B203397DDB}
 		{5671803A-3264-49F9-8BAF-F4277BBFC30E} = {4A2CA3DC-2082-42F2-B3FA-67B203397DDB}
 		{6FA6AD63-3915-4A80-BE8C-B47606AC956B} = {4A2CA3DC-2082-42F2-B3FA-67B203397DDB}
+		{D1C1D406-915E-4196-BDE3-93B616F69334} = {E8382516-DB8F-4537-9131-F7ACA1791C6C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48D4C4BC-746F-4767-959F-CB1A9FAD11C8}

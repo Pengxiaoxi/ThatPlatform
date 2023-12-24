@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Tpf.Common.Config;
@@ -42,6 +43,11 @@ namespace Tpf.Utils
                 return section.Value;
             }
             return string.Empty;
+        }
+
+        public static string Get(string[] args)
+        {
+            return Get(string.Join(':', args));
         }
 
         public static string GetConnectionString(string connName)
