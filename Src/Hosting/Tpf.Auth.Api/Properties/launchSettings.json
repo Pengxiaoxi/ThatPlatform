@@ -2,8 +2,8 @@
   "profiles": {
     "Auth.Api": {
       "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "index",
+      "launchBrowser": false,
+      "launchUrl": "index.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

@@ -40,35 +40,35 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ServiceResult> Insert()
+        public async Task<ServiceResult<bool>> Insert()
         {
             var userInfo = new UserInfo()
             {
                 UserName = "pxx",
-                Pass = Guid.NewGuid().ToString(),
+                Password = Guid.NewGuid().ToString(),
             };
             await _userService.InsertAsync(userInfo);
 
-            return ServiceResult.IsSuccess("Insert Success");
+            return Success(true);
         }
 
         [HttpPost]
-        public async Task<ServiceResult> Update()
+        public async Task<ServiceResult<bool>> Update()
         {
             var users = await _userService.GetListAsync(x => x.UserName != null);
             users.FirstOrDefault().UserName = $"pxx_{new Random().Next(1, int.MaxValue)}";
             await _userService.UpdateAsync(users.FirstOrDefault());
 
-            return ServiceResult.IsSuccess("Update Success");
+            return Success(true);
         }
 
         [HttpPost]
-        public async Task<ServiceResult> Delete()
+        public async Task<ServiceResult<bool>> Delete()
         {
             var deleteUsers = await _userService.GetListAsync(x => x.UserName != null);
             await _userService.DeleteAsync(deleteUsers.FirstOrDefault());
 
-            return ServiceResult.IsSuccess("Delete Success");
+            return Success(true);
         }
 
     }

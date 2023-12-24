@@ -40,7 +40,7 @@ namespace Tpf.BaseRepository
             throw new NotImplementedException();
         }
 
-        public Task<List<T>> GetListAsync(Expression<Func<T, bool>> whereExpression)
+        public Task<List<T>> GetListAsync(Expression<Func<T, bool>>? whereExpression = null)
         {
             throw new NotImplementedException();
         }

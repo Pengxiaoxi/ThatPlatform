@@ -1,13 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
-using System.Linq;
-using Dapper;
 using Tpf.Grpc.Client;
 using Tpf.Dapper.Repository;
 using Tpf.Utils;
-using Tpf.BaseRepository;
 using Tpf.Domain.Base.Application;
 using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Dto;
 using Tpf.Domain.AuthInfo.Domain;
@@ -15,7 +11,6 @@ using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Svc;
 using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
 using Tpf.Domain.AuthInfo.Domain.Entity;
-using Autofac.Core;
 using AutoMapper;
 
 namespace Tpf.Domain.AuthInfo.Applciation.Impl
@@ -40,8 +35,8 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
         public UserService(
             //ILogger<UserService> log
 
-            IBaseRepository<UserInfo> repository
-            , BaseInfoDbContext dbContext
+            //IBaseRepository<UserInfo> repository
+            BaseInfoDbContext dbContext
             , IDapperRepository<UserInfo> dapperRepository
             , IGrpcService grpcService
             , IMapper mapper)
@@ -152,11 +147,11 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             //                $"LEFT JOIN `tpf_dept` AS `t0` " +
             //                $"ON `t`.`DeptId` = `t0`.`Id`";
 
-            var querySql = $"SELECT `t`.* FROM `base_user` AS `t` ";
+            //var querySql = $"SELECT `t`.* FROM `base_user` AS `t` ";
              
-            var result = (await _dapperRepository.Db.QueryAsync<UserInfo>(querySql)).ToList();
+            //var result = (await _dapperRepository.Db.QueryAsync<UserInfo>(querySql)).ToList();
 
-
+            var result = await base.GetListAsync();
 
             return result;
         }

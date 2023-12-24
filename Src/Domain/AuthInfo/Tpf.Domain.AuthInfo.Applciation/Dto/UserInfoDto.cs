@@ -16,8 +16,11 @@ namespace Tpf.Domain.AuthInfo.Applciation.Dto
         [JsonProperty("account")]
         public string Account { get; set; }
 
-        [JsonProperty("pass")]
-        public string Pass { get; set; }
+        [JsonProperty("password")]
+        public string Password { get; set; }
+
+        [JsonProperty("phone")]
+        public string Phone { get; set; }
 
         [JsonProperty("deptId")]
         public int DeptId { get; set; }
@@ -27,31 +30,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Dto
 
     }
 
-    /// <summary>
-    /// LoginDto
-    /// </summary>
-    public class LoginInputDto
-    {
-        public string Account { get; set; }
-
-        public string Pass { get; set; }
-
-
-    }
-
-    /// <summary>
-    /// LoginOutDto
-    /// </summary>
-    public class LoginOutputDto
-    {
-        public string UserName { get; set; }
-
-        public string Account { get; set; }
-
-        //public string Pass { get; set; }
-
-
-    }
+    
 
 
 }

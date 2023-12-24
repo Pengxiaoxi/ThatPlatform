@@ -35,36 +35,68 @@ namespace Tpf.Domain.Base.Application
         {
             _repository = AutofacFactory.GetContainer().ResolveKeyed<IBaseRepository<T>>(Main_RepositoryType);
         }
+
         #endregion
 
-        #region Public Method
-        public virtual async Task<T> FindOneAsync(Expression<Func<T, bool>> filter)
+        public async Task<T> GetAsync(Expression<Func<T, bool>> whereExpression)
         {
-            var result = await _repository.GetAsync(filter);
-            return result;
+            return await _repository.GetAsync(whereExpression);
         }
 
-        public virtual async Task<List<T>> GetListAsync(Expression<Func<T, bool>> filter = null)
+        public async Task<List<T>> GetListAsync(Expression<Func<T, bool>>? whereExpression = null)
         {
-            var result = await _repository.GetListAsync(filter);
-            return result;
+            return await _repository.GetListAsync(whereExpression);
         }
 
-        public virtual async Task InsertAsync(T entity)
+        public async Task<bool> InsertAsync(T entity)
         {
-            await _repository.InsertAsync(entity);
+            return await _repository.InsertAsync(entity);
         }
 
-        public virtual async Task UpdateAsync(T entity)
+        public async Task<bool> InsertManyAsync(IEnumerable<T> entities)
         {
-            await _repository.UpdateAsync(entity);
+            return await _repository.InsertManyAsync(entities);
         }
 
-        public virtual async Task DeleteAsync(T entity)
+        public async Task<bool> UpdateAsync(T entity)
         {
-            await _repository.DeleteAsync(entity);
+            return await _repository.UpdateAsync(entity);
         }
-        #endregion
+
+        public async Task<bool> UpdateAsync(Expression<Func<T, bool>> whereExpression, Expression<Func<T, T>> updateExpression)
+        {
+            return await _repository.UpdateAsync(whereExpression, updateExpression);
+        }
+
+        public async Task<bool> UpdateManyAsync(IEnumerable<T> entities)
+        {
+            return await _repository.UpdateManyAsync(entities);
+        }
+
+        public async Task<bool> DeleteAsync(T entity)
+        {
+            return await _repository.DeleteAsync(entity);
+        }
+
+        public async Task<bool> DeleteByIdAsync(string id)
+        {
+            return await _repository.DeleteByIdAsync(id);
+        }
+
+        public async Task<bool> DeleteAsync(Expression<Func<T, bool>> whereExpression)
+        {
+            return await _repository.DeleteAsync(whereExpression);
+        }
+
+        public async Task<long> CountAsync(Expression<Func<T, bool>> whereExpression = null)
+        {
+            return await _repository.CountAsync(whereExpression);
+        }
+
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>> whereExpression)
+        {
+            return await _repository.AnyAsync(whereExpression);
+        }
 
 
     }

@@ -8,6 +8,10 @@ namespace Tpf.Common.Config
 {
     public partial class AppConfig
     {
+        public const string Security = "App:Security";
+
+
+
         public const string ORM_MainORM = "ORM:MainORM";
 
         public const string SlaveORM = "ORM:SlaveORM";

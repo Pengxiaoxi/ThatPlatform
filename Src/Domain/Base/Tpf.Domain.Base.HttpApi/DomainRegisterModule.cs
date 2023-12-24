@@ -20,9 +20,9 @@ namespace Tpf.Domain.Base.HttpApi
 
             builder.RegisterGeneric(typeof(BaseRepository<>)).As(typeof(IBaseRepository<>)).InstancePerLifetimeScope();
 
-            builder.RegisterGeneric(typeof(SqlSugerRepository<>)).Keyed(RepositoryType.SqlSugarRepository, typeof(IBaseRepository<>)).InstancePerLifetimeScope();
+            //builder.RegisterGeneric(typeof(SqlSugerRepository<>)).Keyed(RepositoryType.SqlSugarRepository, typeof(IBaseRepository<>)).InstancePerLifetimeScope();
             builder.RegisterGeneric(typeof(DapperRepository<>)).Keyed(RepositoryType.DapperRepository, typeof(IBaseRepository<>)).InstancePerLifetimeScope();
-            builder.RegisterGeneric(typeof(MongoDBRepository<>)).Keyed(RepositoryType.MongoRepository, typeof(IBaseRepository<>)).InstancePerLifetimeScope();
+            //builder.RegisterGeneric(typeof(MongoDBRepository<>)).Keyed(RepositoryType.MongoRepository, typeof(IBaseRepository<>)).InstancePerLifetimeScope();
 
             builder.RegisterGeneric(typeof(SqlSugerRepository<>)).As(typeof(ISqlSugerRepository<>)).InstancePerLifetimeScope();
             builder.RegisterGeneric(typeof(DapperRepository<>)).As(typeof(IDapperRepository<>)).InstancePerLifetimeScope();
