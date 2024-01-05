@@ -2,11 +2,14 @@
 using Dapper.Contrib.Extensions;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
+using Npgsql;
 using Sikiro.Dapper.Extension.MySql;
 using System.Data;
+using System.Data.Common;
 using System.Linq.Expressions;
-using Tpf.Common.Config;
+using Tpf.Common.Enum;
 using Tpf.Domain.Base.Domain.Entity;
+using Tpf.Utils;
 
 namespace Tpf.Dapper.Repository
 {
@@ -40,8 +43,9 @@ namespace Tpf.Dapper.Repository
             {
                 if (_connection == null)
                 {
-                    //or ConfigHeler.Get(AppConfig.ConnectionString_Mysql)
-                    return new MySqlConnection(_config.GetConnectionString(AppConfig.ConnectionString_Mysql)); // MySql
+                    var db = GetDbConnection();
+
+                    return db;
                 }
                 return _connection;
             }
@@ -206,7 +210,25 @@ namespace Tpf.Dapper.Repository
             }
         }
 
-        
+        private static DbConnection GetDbConnection()
+        {
+            var dbType = ConfigHelper.GetMainDB();
+
+            var conn = ConfigHelper.GetConnectionString(dbType.ToString()) ?? throw new Exception("未配置主数据库对应的连接字符串");
+
+            switch (dbType)
+            {
+                case DBType.MySql:
+                    return new MySqlConnection(conn);
+                case DBType.PgSql:
+                    return new NpgsqlConnection(conn);
+                case DBType.MongoDB:
+                case DBType.SqlServer:
+                default:
+                    throw new Exception("获取 DbConnection失败, 仅支持 Mysql|PgSql");
+            }
+        }
+
         #endregion
     }
 }

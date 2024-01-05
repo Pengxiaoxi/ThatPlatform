@@ -11,17 +11,27 @@ namespace Tpf.Common.Config
         public const string Security = "App:Security";
 
 
+        #region Database|ConnectionString
 
-        public const string ORM_MainORM = "ORM:MainORM";
+        public const string Database_Main = "Database:Main";
+        public const string Database_Slave = "Database:Slave";
 
-        public const string SlaveORM = "ORM:SlaveORM";
 
-        //public const string Database_DBType = "Database:DBType";
-
-        //public const string Database_ConnectionString = "Database:ConnectionString";
+        public const string ConnectionString_Default = "Default";
 
         public const string ConnectionString_Mysql = "Mysql";
+
         public const string ConnectionString_MongoDB = "MongoDB";
+
+        #endregion
+
+
+        #region ORM
+        public const string ORM_Main = "ORM:Main";
+
+        public const string ORM_Slave = "ORM:Slave"; 
+        #endregion
+
 
     }
 }
