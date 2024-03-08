@@ -11,7 +11,10 @@ using Tpf.Common.Enum;
 
 namespace Tpf.Utils
 {
-    public static class ConfigHelper
+    /// <summary>
+    /// 基础获取配置方法
+    /// </summary>
+    public static partial class ConfigHelper
     {
         #region Field
         private static IConfiguration _configuration;
@@ -50,6 +53,14 @@ namespace Tpf.Utils
             return Get(string.Join(':', args));
         }
 
+        
+    }
+
+    /// <summary>
+    /// 获取配置的业务参数方法
+    /// </summary>
+    public static partial class ConfigHelper
+    {
         public static string GetConnectionString(string connName)
         {
             if (string.IsNullOrEmpty(connName))
@@ -60,18 +71,35 @@ namespace Tpf.Utils
             return _configuration.GetConnectionString(connName);
         }
 
+        /// <summary>
+        /// 获取配置的默认 ORM 类型
+        /// </summary>
+        /// <returns></returns>
         public static RepositoryType GetMainORMRepository()
         {
             // 默认 Dapper
             var mainORM = default(RepositoryType);
 
-            var configMainORM = ConfigHelper.Get(AppConfig.ORM_MainORM);
-            if (!string.IsNullOrEmpty(configMainORM)) 
+            var configMainORM = ConfigHelper.Get(AppConfig.ORM_Main);
+            if (!string.IsNullOrEmpty(configMainORM))
             {
                 Enum.TryParse<RepositoryType>(configMainORM, out mainORM);
             }
 
             return mainORM;
+        }
+
+        public static DBType GetMainDB()
+        {
+            var mainDB = default(DBType);
+
+            var configMainDB = ConfigHelper.Get(AppConfig.Database_Main);
+            if (!string.IsNullOrEmpty(configMainDB))
+            {
+                Enum.TryParse<DBType>(configMainDB, out mainDB);
+            }
+
+            return mainDB;
         }
     }
 }

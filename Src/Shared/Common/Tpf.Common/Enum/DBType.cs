@@ -8,6 +8,15 @@ namespace Tpf.Common.Enum
 {
     public enum DBType
     {
+        MySql,
+
+        SqlServer,
+
+        PgSql,
+
+        MongoDB,
+
+        // Anything else...
 
     }
 }
