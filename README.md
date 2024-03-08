@@ -31,6 +31,8 @@
 ### 服务通信
 - [x] gRpc / 提供 Tpf.Grpc.Client 与 Serve，帮助访问 gRpc 服务 和 发布 gRpc 服务
 - [ ] Refit / 基于Http的服务间通信组件
+- [ ] WebApiClient / 基于Http的服务间通信组件 / https://github.com/dotnetcore/WebApiClient
+
 
 ### 文件服务（File Servcie）
 - [x] Minio
