@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tpf.Domain.Base.Domain.Entity
 {
@@ -12,6 +13,7 @@ namespace Tpf.Domain.Base.Domain.Entity
         #region Field
         //[Key]
         [JsonProperty("id")]
+        [Column("id")]
         public string Id
         {
             get;

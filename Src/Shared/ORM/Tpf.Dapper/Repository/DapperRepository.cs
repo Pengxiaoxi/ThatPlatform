@@ -157,7 +157,7 @@ namespace Tpf.Dapper.Repository
         {
             var result = Db.QuerySet<T>()
                 .Where(whereExpression)
-                .Exists();
+                .Count() > 0;
             return await Task.FromResult(result);
         }
 

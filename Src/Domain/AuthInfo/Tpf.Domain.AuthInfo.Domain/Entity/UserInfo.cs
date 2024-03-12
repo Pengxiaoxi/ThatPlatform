@@ -31,7 +31,6 @@ namespace Tpf.Domain.AuthInfo.Domain.Entity
         public string Phone { get; set; }
 
 
-
     }
 
     [BsonIgnoreExtraElements]

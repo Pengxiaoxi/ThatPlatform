@@ -36,7 +36,7 @@ namespace Tpf.Middlewares
 
             //_log.Error(e.GetBaseException().ToString());
             //await Console.Out.WriteLineAsync($"{DateTime.Now}: " + e.GetBaseException().ToString());
-            ConsoleHelper.WriteErrorLine($"{DateTime.Now.ToString()}: /n" + e.GetBaseException().ToString());
+            ConsoleHelper.WriteErrorLine($"{DateTime.Now.ToString()}: \n" + e.GetBaseException().ToString());
             await WriteExceptionAsync(context, e);
         }
 
