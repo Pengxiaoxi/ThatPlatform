@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using IdentityModel;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -40,8 +41,8 @@ namespace Tpf.Authentication.Jwt
                     ValidAudience = jwtOptions.Audience, // 有效的受众，即验证Jwt的Payload部分的aud。默认为null。
                     ValidateAudience = true, // 是否验证受众。默认为true。注意，如果设置了TokenValidationParameters.AudienceValidator，则该参数无论是何值，都会执行。
 
-                    IssuerSigningKey = jwtOptions.SymmetricSecurityKey, // 用于验证Jwt签名的密钥。对于对称加密来说，加签和验签都是使用的同一个密钥；对于非对称加密来说，使用私钥加签，然后使用公钥验签。
-                    ValidateIssuerSigningKey = true, // 是否使用验证密钥验证签名。默认为false。注意，如果设置了TokenValidationParameters.IssuerSigningKeyValidator，则该参数无论是何值，都会执行。
+                    //IssuerSigningKey = jwtOptions.SymmetricSecurityKey, // 用于验证Jwt签名的密钥。对于对称加密来说，加签和验签都是使用的同一个密钥；对于非对称加密来说，使用私钥加签，然后使用公钥验签。
+                    //ValidateIssuerSigningKey = true, // 是否使用验证密钥验证签名。默认为false。注意，如果设置了TokenValidationParameters.IssuerSigningKeyValidator，则该参数无论是何值，都会执行。
 
                     ValidateLifetime = true, // 是否验证token是否在有效期内，即验证Jwt的Payload部分的nbf和exp。
 

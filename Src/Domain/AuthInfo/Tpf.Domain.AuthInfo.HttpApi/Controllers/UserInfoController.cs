@@ -29,8 +29,12 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
             _userService = userService;
         }
 
+        /// <summary>
+        /// 1、列表
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public async Task<ServiceResult<List<UserInfoOutputDto>>> GetUserList()
+        public async Task<ServiceResult<List<UserInfoOutputDto>>> GetList()
         {
             //throw new NotImplementedException();
 

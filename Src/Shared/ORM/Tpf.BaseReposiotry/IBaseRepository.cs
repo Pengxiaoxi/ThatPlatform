@@ -82,7 +82,7 @@ namespace Tpf.BaseRepository
         /// </summary>
         /// <param name="filter">条件Expression,可以空，代表获取表的总数</param>
         /// <returns>总数</returns>
-        Task<long> CountAsync(Expression<Func<T, bool>> whereExpression = null);
+        Task<long> CountAsync(Expression<Func<T, bool>>? whereExpression = null);
 
         /// <summary>
         /// 根据条件是否存在数据

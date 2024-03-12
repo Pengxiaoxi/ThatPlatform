@@ -11,6 +11,7 @@ using Tpf.Middlewares.Newtonsoft;
 using Microsoft.Extensions.Hosting;
 using Autofac.Extensions.DependencyInjection;
 using Tpf.AutoMapper;
+using Tpf.Authentication.Jwt;
 
 namespace Tpf.Middlewares
 {
@@ -32,6 +33,8 @@ namespace Tpf.Middlewares
             builder.Services.AddControllers().AddNewtonsoftJsonMiddleware();
 
             builder.Services.AddSwaggerMiddleware(); // Swagger
+
+            builder.Services.AddJwtBearerAuthentication();
 
             #region Add Middlewares
             //builder.Services.AddSingleton<AuthorizationMiddleware>();

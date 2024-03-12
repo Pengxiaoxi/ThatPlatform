@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
-namespace Tpf.Middlewares
+namespace Tpf.Middlewares.AuthMiddleware
 {
     /// <summary>
     /// AuthorizationMiddleware [Need Config]

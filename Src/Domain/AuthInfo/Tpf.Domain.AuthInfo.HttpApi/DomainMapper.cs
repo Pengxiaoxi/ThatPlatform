@@ -16,6 +16,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi
         {
             CreateMap<UserInfo, UserInfoOutputDto>();
             CreateMap<RegisterDto, UserInfo>();
+            CreateMap<UserInfo, UserInfoOutputDto>();
 
         }
     }

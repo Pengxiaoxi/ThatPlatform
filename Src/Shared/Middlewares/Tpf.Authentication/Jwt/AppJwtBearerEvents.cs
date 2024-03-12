@@ -5,6 +5,12 @@ namespace Tpf.Authentication.Jwt
 {
     public class AppJwtBearerEvents : JwtBearerEvents
     {
+        /// <summary>
+        /// 当收到请求时回调，注意，此时还未获取到token。我们可以在该方法内自定义token的获取方式，然后将获取到的token赋值到context.Token（不包含Scheme）。
+        /// 只要我们取到的token既非Null也非Empty，那后续验证就会使用该token
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public override Task MessageReceived(MessageReceivedContext context)
         {
             // 从 Http Request Header 中获取 Authorization
@@ -31,11 +37,21 @@ namespace Tpf.Authentication.Jwt
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// token验证通过后回调
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public override Task TokenValidated(TokenValidatedContext context)
         {
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// 由于认证过程中抛出异常，导致身份认证失败后回调
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public override Task AuthenticationFailed(AuthenticationFailedContext context)
         {
             Console.WriteLine($"Exception: {context.Exception}");
@@ -43,6 +59,11 @@ namespace Tpf.Authentication.Jwt
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// 质询时回调
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public override Task Challenge(JwtBearerChallengeContext context)
         {
             Console.WriteLine($"Authenticate Failure: {context.AuthenticateFailure}");
@@ -53,6 +74,11 @@ namespace Tpf.Authentication.Jwt
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// 当出现403（Forbidden，禁止）时回调
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public override Task Forbidden(ForbiddenContext context)
         {
             return Task.CompletedTask;

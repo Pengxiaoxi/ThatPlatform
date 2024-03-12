@@ -7,6 +7,7 @@ using Sikiro.Dapper.Extension.MySql;
 using System.Data;
 using System.Data.Common;
 using System.Linq.Expressions;
+using System.Xml.Linq;
 using Tpf.Common.Enum;
 using Tpf.Domain.Base.Domain.Entity;
 using Tpf.Utils;
@@ -214,7 +215,9 @@ namespace Tpf.Dapper.Repository
         {
             var dbType = ConfigHelper.GetMainDB();
 
-            var conn = ConfigHelper.GetConnectionString(dbType.ToString()) ?? throw new Exception("未配置主数据库对应的连接字符串");
+            //var conn = ConfigHelper.GetConnectionString(dbType.ToString()) ?? throw new Exception("未配置主数据库对应的连接字符串");
+
+            var conn = ConfigHelper.Get($"ConnectionStrings:{dbType.ToString()}") ?? throw new Exception("未配置主数据库对应的连接字符串");
 
             switch (dbType)
             {
@@ -225,7 +228,7 @@ namespace Tpf.Dapper.Repository
                 case DBType.MongoDB:
                 case DBType.SqlServer:
                 default:
-                    throw new Exception("获取 DbConnection失败, 仅支持 Mysql|PgSql");
+                    throw new Exception("获取 DbConnection 失败, 目前仅支持 Mysql|PgSql");
             }
         }
 

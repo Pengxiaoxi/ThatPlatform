@@ -1,11 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using Tpf.Common.Config;
 using Tpf.Common.Enum;
 
@@ -22,9 +17,17 @@ namespace Tpf.Utils
 
         static ConfigHelper()
         {
+            // 根据环境变量加载对应配置
+            var path = "appsettings.json";
+            var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            if (!string.IsNullOrEmpty(env))
+            {
+                path = $"appsettings.{env}.json";
+            }
+
             _configuration = new ConfigurationBuilder()
                 .SetBasePath(AppContext.BaseDirectory)
-                .Add(new JsonConfigurationSource { Path = "appsettings.json", Optional = false, ReloadOnChange = true }) //可以直接读目录里的json文件，修改后自动生效
+                .Add(new JsonConfigurationSource { Path = path, Optional = false, ReloadOnChange = true }) //可以直接读目录里的json文件，修改后自动生效
                 .Build();
         }
 
@@ -65,7 +68,7 @@ namespace Tpf.Utils
         {
             if (string.IsNullOrEmpty(connName))
             {
-                return string.Empty;
+                return null;
             }
 
             return _configuration.GetConnectionString(connName);

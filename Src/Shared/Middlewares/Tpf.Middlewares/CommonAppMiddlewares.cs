@@ -27,7 +27,7 @@ namespace Tpf.Middlewares
 
             //app.UseAuthorizationMiddleware(); // Authorization Middleware
 
-            //app.UseAuthentication(); // 鉴权校验
+            app.UseAuthentication(); // 鉴权校验
 
             //app.UseAuthorization(); // 授权校验
 

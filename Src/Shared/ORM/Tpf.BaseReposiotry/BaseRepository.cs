@@ -15,7 +15,7 @@ namespace Tpf.BaseRepository
             throw new NotImplementedException();
         }
 
-        public Task<long> CountAsync(Expression<Func<T, bool>> whereExpression = null)
+        public Task<long> CountAsync(Expression<Func<T, bool>>? whereExpression = null)
         {
             throw new NotImplementedException();
         }

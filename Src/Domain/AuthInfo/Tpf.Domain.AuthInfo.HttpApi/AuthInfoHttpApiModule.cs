@@ -5,6 +5,9 @@ using Tpf.Domain.Base.HttpApi;
 
 namespace Tpf.Domain.AuthInfo.HttpApi
 {
+    /// <summary>
+    /// AuthInfoHttpApiModule
+    /// </summary>
     [DependsOn(
         typeof(AuthInfoApplicationModule),
         typeof(DomainBaseApiModule)
