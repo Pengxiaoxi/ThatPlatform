@@ -104,5 +104,12 @@ namespace Tpf.Utils
 
             return mainDB;
         }
+
+        public static string GetSecorityKey()
+        {
+            return ConfigHelper.Get(AppConfig.SecurityKey);
+        }
     }
+
+
 }

@@ -10,6 +10,7 @@ using System.Linq.Expressions;
 using System.Xml.Linq;
 using Tpf.Common.Enum;
 using Tpf.Domain.Base.Domain.Entity;
+using Tpf.Security;
 using Tpf.Utils;
 
 namespace Tpf.Dapper.Repository
@@ -218,6 +219,8 @@ namespace Tpf.Dapper.Repository
             //var conn = ConfigHelper.GetConnectionString(dbType.ToString()) ?? throw new Exception("未配置主数据库对应的连接字符串");
 
             var conn = ConfigHelper.Get($"ConnectionStrings:{dbType.ToString()}") ?? throw new Exception("未配置主数据库对应的连接字符串");
+
+            conn = AESHelper.Decrypt(conn, ConfigHelper.GetSecorityKey());
 
             switch (dbType)
             {

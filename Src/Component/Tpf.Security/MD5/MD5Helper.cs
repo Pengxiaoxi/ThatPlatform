@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Tpf.Utils.Security
+namespace Tpf.Security
 {
     public class MD5Helper
     {

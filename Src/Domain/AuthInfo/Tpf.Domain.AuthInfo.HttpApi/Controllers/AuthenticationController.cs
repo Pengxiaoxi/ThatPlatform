@@ -8,8 +8,8 @@ using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
 using Tpf.Domain.AuthInfo.Domain.Entity;
 using Tpf.Domain.Base.HttpApi;
+using Tpf.Security;
 using Tpf.Utils;
-using Tpf.Utils.Security;
 
 namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
 {
@@ -63,7 +63,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
             }
 
             var user = _mapper.Map<UserInfo>(dto);
-            user.Secretkey = MD5Helper.MD5Encrypt32($"{user.Password}#{ConfigHelper.Get(AppConfig.Security)}");
+            user.Secretkey = MD5Helper.MD5Encrypt32($"{user.Password}#{ConfigHelper.Get(AppConfig.SecurityKey)}");
             user.Password = GeneratePassBySecretkey(dto.Password, user.Secretkey);
             user.Create();
             var result = await _userService.InsertAsync(user);

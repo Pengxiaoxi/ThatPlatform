@@ -1,4 +1,4 @@
-﻿namespace Tpf.Utils.Security
+﻿namespace Tpf.Security
 {
     public class UrlHelper
     {

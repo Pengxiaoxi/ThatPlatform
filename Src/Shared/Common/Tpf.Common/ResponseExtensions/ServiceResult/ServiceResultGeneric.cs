@@ -36,7 +36,7 @@ namespace Tpf.Common.ResponseExtensions.ServiceResult
         {
             return new ServiceResult<T>()
             {
-                Message = $"Exception: {exception?.Message}",
+                Message = $"Exception: {message}",
                 Code = ServiceResultCodeEnum.Failed,
             };
         }

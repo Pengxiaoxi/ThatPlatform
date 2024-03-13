@@ -39,6 +39,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
             //throw new NotImplementedException();
 
             //var result = await _userService.GetListAsync(x => x.UserName != null);
+
             var result = await _userService.GetUserInfoList();
             return ServiceResult<List<UserInfoOutputDto>>.IsSuccess(result);
         }

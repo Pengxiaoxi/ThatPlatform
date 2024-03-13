@@ -9,7 +9,7 @@ namespace Tpf.Domain.Base.HttpApi
     /// </summary>
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class BaseApiController
     {
         #region Field

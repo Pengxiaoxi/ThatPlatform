@@ -1,5 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿//using MongoDB.Bson.Serialization.IdGenerators;
+using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Tpf.Utils.Guids;
 
 namespace Tpf.Domain.Base.Domain.Entity
 {
@@ -14,6 +17,7 @@ namespace Tpf.Domain.Base.Domain.Entity
         //[Key]
         [JsonProperty("id")]
         [Column("id")]
+        [Key]
         public string Id
         {
             get;
@@ -52,7 +56,7 @@ namespace Tpf.Domain.Base.Domain.Entity
         #region Extensions Method
         public void Create()
         {
-            this.Id = Guid.NewGuid().ToString();
+            this.Id = GuidGenerator.Create();
         }
 
         public void Modify()
