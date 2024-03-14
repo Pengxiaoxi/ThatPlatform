@@ -88,7 +88,7 @@ namespace Tpf.Domain.Base.Application
             return await _repository.DeleteAsync(whereExpression);
         }
 
-        public async Task<long> CountAsync(Expression<Func<T, bool>> whereExpression = null)
+        public async Task<int> CountAsync(Expression<Func<T, bool>>? whereExpression = null)
         {
             return await _repository.CountAsync(whereExpression);
         }

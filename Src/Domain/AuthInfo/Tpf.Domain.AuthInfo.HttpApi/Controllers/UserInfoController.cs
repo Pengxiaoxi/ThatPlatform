@@ -41,6 +41,9 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
             //var result = await _userService.GetListAsync(x => x.UserName != null);
 
             var result = await _userService.GetUserInfoList();
+
+            //await _userService.AnyAsync();
+
             return ServiceResult<List<UserInfoOutputDto>>.IsSuccess(result);
         }
 

@@ -14,13 +14,13 @@ builder.AddCommonServiceExtensions();
 
 #region Test Code: Add Need ORM By NetCore Dependence Injection
 // Main ORM£ºEF Core
-//builder.Services.AddDbContext<BaseInfoDbContext>();
+//builder.Services.AddDbContext<AuthInfoDbContext>();
 
 // ORM£ºDapper
 //builder.Services.AddTpfDapper();
 
 //builder.Services.AddKeyedScoped(typeof(IBaseRepository<>), "Mongo", typeof(MongoDBRepository<>));
-//builder.Services.AddKeyedScoped(typeof(IBaseRepository<>), "Dapper", typeof(DapperRepository<>));
+//builder.Services.AddKeyedScoped(typeof(IBaseRepository<>), "Dapper", typeof(Dapper<>));
 
 #endregion
 

@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\ORM\Tpf.Dapper\Tpf.Dapper.csproj" />
+    <ProjectReference Include="..\..\..\Shared\ORM\Tpf.EntityFrameworkCore\Tpf.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\..\..\Shared\ORM\Tpf.SqlSugar\Tpf.SqlSugar.csproj" />
     <ProjectReference Include="..\Tpf.Domain.Base.Application\Tpf.Domain.Base.Application.csproj" />
   </ItemGroup>

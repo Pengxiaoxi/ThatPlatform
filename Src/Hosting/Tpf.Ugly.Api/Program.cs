@@ -11,7 +11,7 @@ builder.AddCommonServiceExtensions();
 
 #region Add Need ORM
 // Main ORM£ºEF Core
-//builder.Services.AddDbContext<BaseInfoDbContext>();
+//builder.Services.AddDbContext<AuthInfoDbContext>();
 
 // ORM£ºDapper
 //builder.Services.AddTpfDapper();

@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
 using System;
+using System.Data;
 using Tpf.Common.Config;
 using Tpf.Common.Enum;
+using Tpf.Security;
 
 namespace Tpf.Utils
 {
@@ -71,7 +73,17 @@ namespace Tpf.Utils
                 return null;
             }
 
-            return _configuration.GetConnectionString(connName);
+            var conn = _configuration.GetConnectionString(connName) ?? throw new Exception($"未配置名称为'{connName}'数据库连接字符串，");
+
+            // TODO：Allow Config
+            return AESHelper.Decrypt(conn, ConfigHelper.GetSecorityKey());
+        }
+
+        public static string GetMainDBConnectionString()
+        {
+            var dbType = ConfigHelper.GetMainDB();
+
+            return ConfigHelper.GetConnectionString(dbType.ToString());
         }
 
         /// <summary>

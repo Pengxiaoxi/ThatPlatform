@@ -26,7 +26,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
 
         private readonly IDapperRepository<UserInfo> _dapperRepository;
 
-        private readonly BaseInfoDbContext _dbContext;
+        private readonly AuthInfoDbContext _dbContext;
 
         private readonly IMapper _mapper;
         #endregion
@@ -36,7 +36,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             //ILogger<UserService> log
 
             //IBaseRepository<UserInfo> repository
-            BaseInfoDbContext dbContext
+            AuthInfoDbContext dbContext
             , IDapperRepository<UserInfo> dapperRepository
             , IGrpcService grpcService
             , IMapper mapper)
@@ -84,7 +84,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             //                    };
             //var leftJoinResult = leftJoinQuery.ToList();
 
-            //using (var dbContext = new BaseInfoDbContext())
+            //using (var dbContext = new AuthInfoDbContext())
             //{
             //    // inner join example
             //    var innerJoinQuery = from user in dbContext.UserInfos
@@ -126,9 +126,9 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             //    return result;
             //}
 
-            var userList = await GetUserInfoListByDapper();
+            //var userList = await GetUserInfoListByDapper();
 
-            //var userList = await base.GetListAsync();
+            var userList = await base.GetListAsync();
 
             var result = _mapper.Map<List<UserInfoOutputDto>>(userList);
 
