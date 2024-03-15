@@ -24,7 +24,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
         #region Field
         private readonly IGrpcService _grpcService;
 
-        private readonly IDapperRepository<UserInfo> _dapperRepository;
+        //private readonly IDapperRepository<UserInfo> _dapperRepository;
 
         private readonly AuthInfoDbContext _dbContext;
 
@@ -37,12 +37,12 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
 
             //IBaseRepository<UserInfo> repository
             AuthInfoDbContext dbContext
-            , IDapperRepository<UserInfo> dapperRepository
+            //, IDapperRepository<UserInfo> dapperRepository
             , IGrpcService grpcService
             , IMapper mapper)
         {
             //_baseInfoDbContext = baseInfoDbContext;
-            _dapperRepository = dapperRepository;
+            //_dapperRepository = dapperRepository;
 
             _dbContext = dbContext;
 

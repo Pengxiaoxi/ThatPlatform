@@ -1,9 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading.Tasks;
+using Autofac;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Tpf.Autofac;
 using Tpf.BaseRepository;
 using Tpf.Domain.Base.Domain.Entity;
 
@@ -14,10 +18,10 @@ namespace Tpf.EntityFrameworkCore.Repository
         IEFCoreRepository<TEntity>
         where TEntity : BaseEntity<string>
     {
-        private readonly TpfDbContextBase _context;
+        private DbContext _context;
         private DbSet<TEntity> _entities;
 
-        public EFCoreRepository(TpfDbContextBase dbContext)
+        public EFCoreRepository(DbContext dbContext)
         {
             _context = dbContext;
         }
@@ -34,7 +38,7 @@ namespace Tpf.EntityFrameworkCore.Repository
 
         public override async Task<bool> AnyAsync(Expression<Func<TEntity, bool>> whereExpression)
         {
-            if (whereExpression == null) { throw new ArgumentNullException(nameof(whereExpression)); }
+            if (whereExpression is null) { throw new ArgumentNullException(nameof(whereExpression)); }
             
             return await DbSet.AnyAsync(whereExpression);
         }
@@ -46,6 +50,8 @@ namespace Tpf.EntityFrameworkCore.Repository
 
         public override async Task<bool> DeleteAsync(TEntity entity)
         {
+            if (entity is null) { throw new ArgumentNullException(nameof(entity)); }
+
             _context.Remove(entity);
 
             return await SaveChangesAsync();
@@ -53,6 +59,8 @@ namespace Tpf.EntityFrameworkCore.Repository
 
         public override async Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> whereExpression)
         {
+            if (whereExpression is null) { throw new ArgumentNullException(nameof(whereExpression)); }
+
             _context.RemoveRange(DbSet.Where(whereExpression));
 
             return await SaveChangesAsync();
@@ -60,6 +68,8 @@ namespace Tpf.EntityFrameworkCore.Repository
 
         public override async Task<bool> DeleteByIdAsync(string id)
         {
+            if (id is null) { throw new ArgumentNullException(nameof(id)); }
+
             _context.RemoveRange(DbSet.Where(x => x.Id == id));
 
             return await SaveChangesAsync();
@@ -67,19 +77,22 @@ namespace Tpf.EntityFrameworkCore.Repository
 
         public override async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> whereExpression)
         {
-            return await DbSet.FirstOrDefaultAsync(whereExpression);
+            return whereExpression is null
+                ? await DbSet.FirstOrDefaultAsync()
+                : await DbSet.FirstOrDefaultAsync(whereExpression);
         }
 
         public override async Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> whereExpression = null)
         {
-            return await DbSet
-                .AsNoTracking()
-                .Where(whereExpression)
-                .ToListAsync();
+            return whereExpression is null
+                ? await DbSet.AsNoTracking().ToListAsync()
+                : await DbSet.AsNoTracking().Where(whereExpression).ToListAsync();
         }
 
         public override async Task<bool> InsertAsync(TEntity entity)
         {
+            if (entity is null) { throw new ArgumentNullException(nameof(entity)); }
+
             await DbSet.AddAsync(entity);
 
             return await SaveChangesAsync();
@@ -87,6 +100,8 @@ namespace Tpf.EntityFrameworkCore.Repository
 
         public override async Task<bool> InsertManyAsync(IEnumerable<TEntity> entities)
         {
+            if (entities is null) { throw new ArgumentNullException(nameof(entities)); }
+
             await DbSet.AddRangeAsync(entities);
 
             return await SaveChangesAsync();
@@ -94,6 +109,8 @@ namespace Tpf.EntityFrameworkCore.Repository
 
         public override async Task<bool> UpdateAsync(TEntity entity)
         {
+            if (entity is null) { throw new ArgumentNullException(nameof(entity)); }
+
             DbSet.Update(entity);
 
             return await SaveChangesAsync();
@@ -101,6 +118,8 @@ namespace Tpf.EntityFrameworkCore.Repository
 
         public override async Task<bool> UpdateManyAsync(IEnumerable<TEntity> entities)
         {
+            if (entities is null) { throw new ArgumentNullException(nameof(entities)); }
+
             DbSet.UpdateRange(entities);
 
             return await SaveChangesAsync();
@@ -115,17 +134,42 @@ namespace Tpf.EntityFrameworkCore.Repository
 
         public async Task<bool> SaveChangesAsync()
         {
-            //return await _context.SaveChangesAsync() >= 0;
+            // 未开启事务则直接保存 
+            if ((DbContext)_context.Database.CurrentTransaction is null)
+            {
+                return await _context.SaveChangesAsync() >= 0;
+            }
 
-            // 此处不直接 SaveChangesAsync；通过 Uow 统计提交以便于实现事务
             return await Task.FromResult(true);
         }
 
 
         #region Private Method
-        protected virtual DbSet<TEntity> DbSet => _entities ?? (_entities = _context.Set<TEntity>());
+        protected virtual DbSet<TEntity> DbSet => _entities ?? (_entities = GetEntityDbContext(typeof(TEntity)).Set<TEntity>());
 
-        
+        /// <summary>
+        /// 获取实体 DbContextAttribute 特性中设置的 DbContext
+        /// </summary>
+        /// <param name="entityType"></param>
+        /// <returns></returns>
+        protected DbContext GetEntityDbContext(Type entityType)
+        {
+            //return _context;
+
+            if (entityType.IsDefined(typeof(DbContextAttribute)))
+            {
+                var entityDbContextType = entityType.GetCustomAttribute<DbContextAttribute>().ContextType;
+                if (entityDbContextType.Equals(_context.GetType()))
+                {
+                    return _context;
+                }
+
+                _context = (TpfDbContextBase)AutofacFactory.GetContainer().Resolve(entityDbContextType);
+            }
+
+            return _context;
+        }
+
         #endregion
 
     }

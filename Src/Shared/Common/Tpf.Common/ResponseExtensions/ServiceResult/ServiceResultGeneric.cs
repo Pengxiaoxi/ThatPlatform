@@ -22,7 +22,7 @@ namespace Tpf.Common.ResponseExtensions.ServiceResult
             return new ServiceResult<T>()
             {
                 Message = message,
-                Code = ServiceResultCodeEnum.Succeed,
+                Code = ServiceResultCodeEnum.Succeed.GetHashCode(),
                 Data = data
             };
         }
@@ -37,7 +37,7 @@ namespace Tpf.Common.ResponseExtensions.ServiceResult
             return new ServiceResult<T>()
             {
                 Message = $"Exception: {message}",
-                Code = ServiceResultCodeEnum.Failed,
+                Code = ServiceResultCodeEnum.Failed.GetHashCode(),
             };
         }
 
@@ -50,7 +50,7 @@ namespace Tpf.Common.ResponseExtensions.ServiceResult
         {
             var innerResult = new ServiceResult<T>()
             {
-                Code = ServiceResultCodeEnum.Failed
+                Code = ServiceResultCodeEnum.Failed.GetHashCode(),
             };
 
             //此处判断是为了避免错误的使用重载方法
@@ -82,7 +82,7 @@ namespace Tpf.Common.ResponseExtensions.ServiceResult
         /// 响应码
         /// </summary>
         [JsonProperty("code")]
-        public ServiceResultCodeEnum Code { get; set; }
+        public int Code { get; set; }
 
         /// <summary>
         /// 响应信息
@@ -94,7 +94,7 @@ namespace Tpf.Common.ResponseExtensions.ServiceResult
         /// 成功
         /// </summary>
         [JsonProperty("success")]
-        public bool Success => Code == ServiceResultCodeEnum.Succeed;
+        public bool Success => Code == ServiceResultCodeEnum.Succeed.GetHashCode();
 
         /// <summary>
         /// 时间戳(毫秒)

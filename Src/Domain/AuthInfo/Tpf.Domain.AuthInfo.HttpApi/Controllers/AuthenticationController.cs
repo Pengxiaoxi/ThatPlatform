@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Tpf.Common.Config;
@@ -8,6 +9,7 @@ using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
 using Tpf.Domain.AuthInfo.Domain.Entity;
 using Tpf.Domain.Base.HttpApi;
+using Tpf.EntityFrameworkCore.Uow;
 using Tpf.Security;
 using Tpf.Utils;
 
@@ -21,6 +23,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
         #region Field
         private readonly ILogger<AuthenticationController> _logger;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
 
         private readonly IUserService _userService;
         private readonly IAuthticationService _authticationService;
@@ -32,11 +35,15 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
         /// </summary>
         public AuthenticationController(ILogger<AuthenticationController> log
             , IMapper mapper
+            , IUnitOfWork unitOfWork
             , IUserService userService
-            , IAuthticationService authticationService)
+            , IAuthticationService authticationService
+            )
         {
             _logger = log;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
+
             _userService = userService;
             _authticationService = authticationService;
         }
@@ -66,9 +73,17 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
             user.Secretkey = MD5Helper.MD5Encrypt32($"{user.Password}#{ConfigHelper.Get(AppConfig.SecurityKey)}");
             user.Password = GeneratePassBySecretkey(dto.Password, user.Secretkey);
             user.Create();
-            var result = await _userService.InsertAsync(user);
 
-            return Success(result);
+            using (var trans = await _unitOfWork.BeginTransaction())
+            {
+                var result = await _userService.InsertAsync(user);
+                //await _unitOfWork.SaveChangesAsync();
+
+                await trans.CommitAsync();
+            }
+            
+
+            return Success(true);
         }
 
         /// <summary>

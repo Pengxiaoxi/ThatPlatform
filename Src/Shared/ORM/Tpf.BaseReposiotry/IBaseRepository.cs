@@ -54,6 +54,7 @@ namespace Tpf.BaseRepository
         /// <param name="whereExpression"></param>
         /// <param name="updateExpression"></param>
         /// <returns></returns>
+        [Obsolete]
         Task<bool> UpdateAsync(Expression<Func<TEntity, bool>> whereExpression, Expression<Func<TEntity, TEntity>> updateExpression);
 
         /// <summary>

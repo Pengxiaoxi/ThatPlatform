@@ -27,9 +27,9 @@ namespace Tpf.EntityFrameworkCore
                 .EnableSensitiveDataLogging()
                 ;
 
+            // Log
+            optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);
 
-            //optionsBuilder.LogTo(message => Debug.WriteLine(message));
-            optionsBuilder.LogTo(Console.WriteLine, LogLevel.Trace);
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -38,5 +38,6 @@ namespace Tpf.EntityFrameworkCore
         {
             base.OnModelCreating(modelBuilder);
         }
+
     }
 }
