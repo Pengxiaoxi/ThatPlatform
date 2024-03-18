@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Tpf.Autofac;
 using Tpf.BaseRepository;
 using Tpf.Domain.Base.Domain.Entity;
+using Tpf.EntityFrameworkCore.Uow;
 
 namespace Tpf.EntityFrameworkCore.Repository
 {
@@ -18,12 +19,15 @@ namespace Tpf.EntityFrameworkCore.Repository
         IEFCoreRepository<TEntity>
         where TEntity : BaseEntity<string>
     {
-        private DbContext _context;
+        private TpfDbContextBase _context;
         private DbSet<TEntity> _entities;
+        private IUnitOfWork _unitOfWork;
 
-        public EFCoreRepository(DbContext dbContext)
+        public EFCoreRepository(TpfDbContextBase dbContext
+            , IUnitOfWork unitOfWork)
         {
             _context = dbContext;
+            _unitOfWork = unitOfWork;
         }
 
         /// <summary>
@@ -134,11 +138,13 @@ namespace Tpf.EntityFrameworkCore.Repository
 
         public async Task<bool> SaveChangesAsync()
         {
-            // 未开启事务则直接保存 
+            //// 未开启事务则直接保存 
             if ((DbContext)_context.Database.CurrentTransaction is null)
             {
-                return await _context.SaveChangesAsync() >= 0;
+                //return await _context.SaveChangesAsync() >= 0;
             }
+
+            //_unitOfWork.SaveChangesAsync
 
             return await Task.FromResult(true);
         }
@@ -154,7 +160,7 @@ namespace Tpf.EntityFrameworkCore.Repository
         /// <returns></returns>
         protected DbContext GetEntityDbContext(Type entityType)
         {
-            //return _context;
+            return _context;
 
             if (entityType.IsDefined(typeof(DbContextAttribute)))
             {

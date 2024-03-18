@@ -35,6 +35,7 @@ namespace Tpf.Domain.Base.HttpApi
             builder.RegisterGeneric(typeof(MongoDBRepository<>)).As(typeof(IMongoDBRepository<>)).InstancePerLifetimeScope();
 
             // TpfDbContextBase
+            builder.RegisterType(typeof(TpfDbContextBase)).InstancePerLifetimeScope();
             builder.RegisterType(typeof(TpfDbContextBase)).As(typeof(DbContext)).InstancePerLifetimeScope();
 
             // IUnitOfWork

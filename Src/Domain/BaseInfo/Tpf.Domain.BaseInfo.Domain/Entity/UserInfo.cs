@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Tpf.Common.CommonAttributes.Database;
 using Tpf.Domain.Base.Domain.Entity;
 
-namespace Tpf.Domain.AuthInfo.Domain.Entity
+namespace Tpf.Domain.BaseInfo.Domain.Entity
 {
 
     [Table("base_user")]

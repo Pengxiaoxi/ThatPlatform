@@ -10,9 +10,9 @@ namespace Tpf.EntityFrameworkCore.Uow
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DbContext _context;
+        private readonly TpfDbContextBase _context;
 
-        public UnitOfWork(DbContext context)
+        public UnitOfWork(TpfDbContextBase context)
         {
             _context = context;
         }

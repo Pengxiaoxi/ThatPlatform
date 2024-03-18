@@ -26,7 +26,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
 
         //private readonly IDapperRepository<UserInfo> _dapperRepository;
 
-        private readonly AuthInfoDbContext _dbContext;
+        //private readonly AuthInfoDbContext _dbContext;
 
         private readonly IMapper _mapper;
         #endregion
@@ -36,15 +36,15 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             //ILogger<UserService> log
 
             //IBaseRepository<UserInfo> repository
-            AuthInfoDbContext dbContext
+            //AuthInfoDbContext dbContext
             //, IDapperRepository<UserInfo> dapperRepository
-            , IGrpcService grpcService
+            IGrpcService grpcService
             , IMapper mapper)
         {
             //_baseInfoDbContext = baseInfoDbContext;
             //_dapperRepository = dapperRepository;
 
-            _dbContext = dbContext;
+            //_dbContext = dbContext;
 
             _grpcService = grpcService;
             _mapper = mapper;

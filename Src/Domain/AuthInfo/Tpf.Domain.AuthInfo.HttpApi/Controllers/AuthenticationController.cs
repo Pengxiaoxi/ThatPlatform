@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Tpf.Common.Config;
@@ -74,12 +73,22 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
             user.Password = GeneratePassBySecretkey(dto.Password, user.Secretkey);
             user.Create();
 
-            using (var trans = await _unitOfWork.BeginTransaction())
+            var trans = await _unitOfWork.BeginTransaction();
+            try
             {
                 var result = await _userService.InsertAsync(user);
+
+                await _unitOfWork.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
                 //await _unitOfWork.SaveChangesAsync();
 
-                await trans.CommitAsync();
+                await trans.RollbackAsync();
+            }
+            finally
+            {
+                await trans.RollbackAsync();
             }
             
 

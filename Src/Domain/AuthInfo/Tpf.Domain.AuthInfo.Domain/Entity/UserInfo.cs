@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
-using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations.Schema;
 using Tpf.Common.CommonAttributes.Database;
@@ -7,7 +6,7 @@ using Tpf.Domain.Base.Domain.Entity;
 
 namespace Tpf.Domain.AuthInfo.Domain.Entity
 {
-    [DbContext(typeof(AuthInfoDbContext))]
+    //[DbContext(typeof(AuthInfoDbContext))]
     [Table("base_user")]
     public class UserInfo : BaseEntity<string>
     {

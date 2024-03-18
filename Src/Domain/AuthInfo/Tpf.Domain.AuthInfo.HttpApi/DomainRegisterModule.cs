@@ -14,7 +14,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi
 
 
             // 测试使用，待删除
-            builder.RegisterType(typeof(AuthInfoDbContext)).InstancePerLifetimeScope();
+            //builder.RegisterType(typeof(AuthInfoDbContext)).InstancePerLifetimeScope();
 
             
         }
