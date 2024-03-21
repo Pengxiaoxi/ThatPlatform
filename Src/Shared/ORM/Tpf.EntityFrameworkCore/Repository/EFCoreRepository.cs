@@ -1,16 +1,15 @@
-﻿using System;
+﻿using Autofac;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
-using Autofac;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using Tpf.Autofac;
 using Tpf.BaseRepository;
 using Tpf.Domain.Base.Domain.Entity;
-using Tpf.EntityFrameworkCore.Uow;
 
 namespace Tpf.EntityFrameworkCore.Repository
 {
@@ -21,13 +20,11 @@ namespace Tpf.EntityFrameworkCore.Repository
     {
         private TpfDbContextBase _context;
         private DbSet<TEntity> _entities;
-        private IUnitOfWork _unitOfWork;
 
         public EFCoreRepository(TpfDbContextBase dbContext
-            , IUnitOfWork unitOfWork)
+            )
         {
             _context = dbContext;
-            _unitOfWork = unitOfWork;
         }
 
         /// <summary>

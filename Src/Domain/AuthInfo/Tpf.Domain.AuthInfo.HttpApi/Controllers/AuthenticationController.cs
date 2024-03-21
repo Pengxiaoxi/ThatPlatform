@@ -8,7 +8,6 @@ using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
 using Tpf.Domain.AuthInfo.Domain.Entity;
 using Tpf.Domain.Base.HttpApi;
-using Tpf.EntityFrameworkCore.Uow;
 using Tpf.Security;
 using Tpf.Utils;
 
@@ -22,7 +21,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
         #region Field
         private readonly ILogger<AuthenticationController> _logger;
         private readonly IMapper _mapper;
-        private readonly IUnitOfWork _unitOfWork;
+        
 
         private readonly IUserService _userService;
         private readonly IAuthticationService _authticationService;
@@ -34,15 +33,12 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
         /// </summary>
         public AuthenticationController(ILogger<AuthenticationController> log
             , IMapper mapper
-            , IUnitOfWork unitOfWork
             , IUserService userService
             , IAuthticationService authticationService
             )
         {
             _logger = log;
             _mapper = mapper;
-            _unitOfWork = unitOfWork;
-
             _userService = userService;
             _authticationService = authticationService;
         }
@@ -73,26 +69,9 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
             user.Password = GeneratePassBySecretkey(dto.Password, user.Secretkey);
             user.Create();
 
-            var trans = await _unitOfWork.BeginTransaction();
-            try
-            {
-                var result = await _userService.InsertAsync(user);
+            var result = await _userService.AddUser(user);
 
-                await _unitOfWork.SaveChangesAsync();
-            }
-            catch (Exception)
-            {
-                //await _unitOfWork.SaveChangesAsync();
-
-                await trans.RollbackAsync();
-            }
-            finally
-            {
-                await trans.RollbackAsync();
-            }
-            
-
-            return Success(true);
+            return Success(result);
         }
 
         /// <summary>

@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Threading.Tasks;
 
-namespace Tpf.EntityFrameworkCore.Uow
+namespace Tpf.Uow
 {
     /// <summary>
     /// Uow

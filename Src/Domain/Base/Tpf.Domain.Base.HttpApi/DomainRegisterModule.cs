@@ -3,14 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using Tpf.Autofac;
 using Tpf.BaseRepository;
 using Tpf.Common.Enum;
-using Tpf.Dapper.Repository;
 using Tpf.Domain.Base.Application;
 using Tpf.Domain.Base.Application.Contacts;
 using Tpf.EntityFrameworkCore;
 using Tpf.EntityFrameworkCore.Repository;
-using Tpf.EntityFrameworkCore.Uow;
 using Tpf.MongoDB.Respository;
 using Tpf.SqlSugar.Respository;
+using Tpf.Uow;
 
 namespace Tpf.Domain.Base.HttpApi
 {

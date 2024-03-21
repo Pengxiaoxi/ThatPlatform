@@ -1,17 +1,17 @@
-﻿using Newtonsoft.Json;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using Tpf.Grpc.Client;
-using Tpf.Dapper.Repository;
-using Tpf.Utils;
-using Tpf.Domain.Base.Application;
-using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Dto;
-using Tpf.Domain.AuthInfo.Domain;
-using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Svc;
+using System.Threading.Tasks;
 using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
 using Tpf.Domain.AuthInfo.Domain.Entity;
-using AutoMapper;
+using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Dto;
+using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Svc;
+using Tpf.Domain.Base.Application;
+using Tpf.Grpc.Client;
+using Tpf.Uow;
+using Tpf.Utils;
 
 namespace Tpf.Domain.AuthInfo.Applciation.Impl
 {
@@ -29,6 +29,8 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
         //private readonly AuthInfoDbContext _dbContext;
 
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
+
         #endregion
 
         #region Ctor
@@ -49,6 +51,8 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             _grpcService = grpcService;
             _mapper = mapper;
         }
+
+        
         #endregion
 
         #region Public Method
@@ -135,6 +139,31 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             return result;
 
         }
+
+        public async Task<bool> AddUser(UserInfo model)
+        {
+            var result = true;
+
+            var trans = await _unitOfWork.BeginTransaction();
+            try
+            {
+                result = await base.InsertAsync(model);
+
+                await _unitOfWork.SaveChangesAsync();
+
+                throw new Exception();
+
+                await trans.CommitAsync();
+            }
+            catch (Exception)
+            {
+                await trans.RollbackAsync();
+            }
+
+            return result;
+        }
+
+
         #endregion
 
         /// <summary>
