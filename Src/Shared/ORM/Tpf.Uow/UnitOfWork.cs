@@ -8,9 +8,9 @@ namespace Tpf.Uow
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly TpfDbContextBase _context;
+        private readonly DbContext _context;
 
-        public UnitOfWork(TpfDbContextBase context)
+        public UnitOfWork(DbContext context)
         {
             _context = context;
         }

@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Domain\AuthInfo\Tpf.Domain.AuthInfo.Domain\Tpf.Domain.AuthInfo.Domain.csproj" />
     <ProjectReference Include="..\..\Middlewares\Tpf.Autofac\Tpf.Autofac.csproj" />
     <ProjectReference Include="..\Tpf.BaseReposiotry\Tpf.BaseRepository.csproj" />
   </ItemGroup>

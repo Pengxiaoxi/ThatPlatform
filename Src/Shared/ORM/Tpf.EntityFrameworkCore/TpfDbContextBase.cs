@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
-using Tpf.Domain.AuthInfo.Domain.Entity;
 using Tpf.Utils;
 
 namespace Tpf.EntityFrameworkCore
@@ -37,8 +36,7 @@ namespace Tpf.EntityFrameworkCore
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserInfo>().ToTable("base_user");
-
+            
             base.OnModelCreating(modelBuilder);
         }
 

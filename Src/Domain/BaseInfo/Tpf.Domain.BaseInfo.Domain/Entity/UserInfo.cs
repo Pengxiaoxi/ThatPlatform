@@ -12,23 +12,23 @@ namespace Tpf.Domain.BaseInfo.Domain.Entity
     {
         [JsonProperty("username")]
         [Column("username")]
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
 
         [JsonProperty("account")]
         [Column("account")]
-        public string Account { get; set; }
+        public string? Account { get; set; }
 
         [JsonProperty("password")]
         [Column("password")]
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
         [JsonProperty("secretkey")]
         [Column("secretkey")]
-        public string Secretkey { get; set; }
+        public string? Secretkey { get; set; }
 
         [JsonProperty("phone")]
         [Column("phone")]
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
 
 
 
@@ -40,16 +40,16 @@ namespace Tpf.Domain.BaseInfo.Domain.Entity
     {
         [JsonProperty("username")]
         [BsonElement("userName")]
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
 
         [JsonProperty("username")]
         [BsonElement("account")]
-        public string Account { get; set; }
+        public string? Account { get; set; }
 
         [BsonElement("pass")]
-        public string Pass { get; set; }
+        public string? Pass { get; set; }
 
-        public string DeptId { get; set; }
+        public string? DeptId { get; set; }
 
 
     }

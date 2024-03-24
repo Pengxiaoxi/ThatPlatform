@@ -157,7 +157,7 @@ namespace Tpf.EntityFrameworkCore.Repository
         /// <returns></returns>
         protected DbContext GetEntityDbContext(Type entityType)
         {
-            return _context;
+            //return _context;
 
             if (entityType.IsDefined(typeof(DbContextAttribute)))
             {

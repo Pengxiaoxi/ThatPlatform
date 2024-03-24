@@ -3,12 +3,15 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Transactions;
 using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
+using Tpf.Domain.AuthInfo.Domain;
 using Tpf.Domain.AuthInfo.Domain.Entity;
 using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Dto;
 using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Svc;
 using Tpf.Domain.Base.Application;
+using Tpf.EntityFrameworkCore;
 using Tpf.Grpc.Client;
 using Tpf.Uow;
 using Tpf.Utils;
@@ -41,7 +44,9 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             //AuthInfoDbContext dbContext
             //, IDapperRepository<UserInfo> dapperRepository
             IGrpcService grpcService
-            , IMapper mapper)
+            , IMapper mapper
+            , IUnitOfWork unitOfWork
+            )
         {
             //_baseInfoDbContext = baseInfoDbContext;
             //_dapperRepository = dapperRepository;
@@ -50,6 +55,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
 
             _grpcService = grpcService;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
         
@@ -144,21 +150,47 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
         {
             var result = true;
 
-            var trans = await _unitOfWork.BeginTransaction();
+            #region TODO: Uow
+            //var trans = await _unitOfWork.BeginTransaction();
+            //try
+            //{
+            //    result = await base.InsertAsync(model);
+
+            //    await _unitOfWork.SaveChangesAsync();
+
+            //    throw new Exception();
+
+            //    await trans.CommitAsync();
+            //}
+            //catch (Exception ex)
+            //{
+            //    await trans.RollbackAsync();
+            //    throw ex;
+            //} 
+            #endregion
+
+            #region DbContext
+
+            using var _context = new AuthInfoDbContext();
+            using var _trans = await _context.Database.BeginTransactionAsync();
             try
             {
-                result = await base.InsertAsync(model);
+                await _context.AddAsync(model);
+                await _context.SaveChangesAsync();
 
-                await _unitOfWork.SaveChangesAsync();
 
                 throw new Exception();
 
-                await trans.CommitAsync();
+                await _trans.CommitAsync();
+
+                
             }
-            catch (Exception)
+            catch
             {
-                await trans.RollbackAsync();
+                await _trans.RollbackAsync();
+                throw;
             }
+            #endregion
 
             return result;
         }
