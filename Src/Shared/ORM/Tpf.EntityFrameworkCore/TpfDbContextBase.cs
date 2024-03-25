@@ -36,7 +36,9 @@ namespace Tpf.EntityFrameworkCore
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            //modelBuilder.Entity<Blog>().HasQueryFilter(b => EF.Property<string>(b, "_tenantId") == _tenantId);
+            //modelBuilder.Entity<Post>().HasQueryFilter(p => !p.IsDeleted);
+
             base.OnModelCreating(modelBuilder);
         }
 
