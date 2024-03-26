@@ -8,33 +8,39 @@ using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
 using Tpf.Domain.AuthInfo.Domain.Entity;
 using Tpf.Domain.Base.HttpApi;
+using Tpf.Security;
 using Tpf.Utils;
-using Tpf.Utils.Security;
 
 namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
 {
     /// <summary>
     /// Authentication
     /// </summary>
-    [AllowAnonymous]
     public class AuthenticationController : BaseApiController
     {
         #region Field
         private readonly ILogger<AuthenticationController> _logger;
-        private readonly IUserService _userService;
         private readonly IMapper _mapper;
+        
+
+        private readonly IUserService _userService;
+        private readonly IAuthticationService _authticationService;
+
         #endregion
 
         /// <summary>
         /// Ctor
         /// </summary>
         public AuthenticationController(ILogger<AuthenticationController> log
+            , IMapper mapper
             , IUserService userService
-            , IMapper mapper)
+            , IAuthticationService authticationService
+            )
         {
             _logger = log;
-            _userService = userService;
             _mapper = mapper;
+            _userService = userService;
+            _authticationService = authticationService;
         }
 
         /// <summary>
@@ -44,6 +50,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ServiceResult<bool>> Register(RegisterDto dto)
         {
             if (dto is null || string.IsNullOrEmpty(dto.Account) || string.IsNullOrEmpty(dto.Password))
@@ -58,9 +65,11 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
             }
 
             var user = _mapper.Map<UserInfo>(dto);
-            user.Secretkey = MD5Helper.MD5Encrypt32($"{user.Password}#{ConfigHelper.Get(AppConfig.Security)}");
+            user.Secretkey = MD5Helper.MD5Encrypt32($"{user.Password}#{ConfigHelper.Get(AppConfig.SecurityKey16)}");
             user.Password = GeneratePassBySecretkey(dto.Password, user.Secretkey);
-            var result = await _userService.InsertAsync(user);
+            user.Create();
+
+            var result = await _userService.AddUser(user);
 
             return Success(result);
         }
@@ -72,6 +81,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ServiceResult<LoginOutputDto>> Login(LoginInputDto dto)
         {
             var user = await _userService.GetAsync(x => x.Account == dto.Account);
@@ -86,8 +96,12 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
                 return Failed<LoginOutputDto>("登录失败，密码错误");
             }
 
-            // TODO: generate token
-            var result = new LoginOutputDto() { Token = user.Account, RefreshToken = user.UserName };
+            #region generate token
+            var userDto = _mapper.Map<UserInfoOutputDto>(user);
+            var token = _authticationService.CreateJwtToken(userDto); 
+            #endregion
+
+            var result = new LoginOutputDto() { Token = token };
             return Success(result);
         }
 
@@ -99,8 +113,8 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
         [HttpPost]
         public async Task<ServiceResult<bool>> Logout(string account)
         {
-            //由于 token 无状态且一次性，注销登录简单做法直接前端清空缓存的 token；
-            //但为了避免token泄露被非法一直使用，因此可使用 redis/ db 兜底，注销登录的token加入过期黑名单
+            // 由于 token 无状态且一次性，注销登录简单做法直接前端清空缓存的 token；
+            // 但为了避免token泄露被非法一直使用，因此可使用 redis/ db 兜底，注销登录的token加入过期黑名单
 
             if (string.IsNullOrEmpty(account))
             {

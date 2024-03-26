@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tpf.Utils.IdGenerator.Guid
+namespace Tpf.Utils.Linq
 {
-    internal class GudiGenerator
+    public static class LinqExtensions
     {
-
+        
     }
 }

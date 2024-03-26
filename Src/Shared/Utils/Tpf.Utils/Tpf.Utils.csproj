@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Component\Tpf.Security\Tpf.Security.csproj" />
     <ProjectReference Include="..\..\Common\Tpf.Common\Tpf.Common.csproj" />
   </ItemGroup>
 

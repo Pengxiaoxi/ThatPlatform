@@ -7,6 +7,7 @@ using Sikiro.Dapper.Extension.MySql;
 using System.Data;
 using System.Data.Common;
 using System.Linq.Expressions;
+using Tpf.BaseRepository;
 using Tpf.Common.Enum;
 using Tpf.Domain.Base.Domain.Entity;
 using Tpf.Utils;
@@ -14,11 +15,14 @@ using Tpf.Utils;
 namespace Tpf.Dapper.Repository
 {
     /// <summary>
-    /// DapperRepository
+    /// Dapper
     /// Dapper 原生方法 + 扩展 Dapper.Contrib
     /// https://github.com/DapperLib/Dapper.Contrib
     /// </summary>
-    public class DapperRepository<T> : IDapperRepository<T> where T : BaseEntity<string>
+    public class DapperRepository<TEntity> :
+        BaseRepository<TEntity>,
+        IDapperRepository<TEntity>
+        where TEntity : BaseEntity<string>
     {
         #region Fields
         private readonly IConfiguration _config;
@@ -64,7 +68,7 @@ namespace Tpf.Dapper.Repository
 
         #region Ctor
         /// <summary>
-        /// DapperRepository
+        /// Dapper
         /// </summary>
         /// <param name="config"></param>
         public DapperRepository(IConfiguration config)
@@ -75,25 +79,25 @@ namespace Tpf.Dapper.Repository
         #endregion
 
         #region Publich Method
-        public async Task<T> GetAsync(Expression<Func<T, bool>> expression)
+        public override async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> expression)
         {
-            return await Db.QuerySet<T>().Where(expression).GetAsync();
+            return await Db.QuerySet<TEntity>().Where(expression).GetAsync();
         }
 
-        public async Task<List<T>> GetListAsync(Expression<Func<T, bool>>? expression = null)
+        public override async Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>>? expression = null)
         {
             return (expression == null
-                ? await Db.QuerySet<T>().ToListAsync()
-                : await Db.QuerySet<T>().Where(expression).ToListAsync()
+                ? await Db.QuerySet<TEntity>().ToListAsync()
+                : await Db.QuerySet<TEntity>().Where(expression).ToListAsync()
                 ).ToList();
         }
 
-        public async Task<bool> InsertAsync(T entity)
+        public override async Task<bool> InsertAsync(TEntity entity)
         {
             return (await Db.InsertAsync(entity)) > 0;
         }
 
-        public async Task<bool> InsertManyAsync(IEnumerable<T> entities)
+        public override async Task<bool> InsertManyAsync(IEnumerable<TEntity> entities)
         {
             //var result = false;
             //foreach (var entity in entities)
@@ -103,60 +107,60 @@ namespace Tpf.Dapper.Repository
 
             //return result;
 
-            Db.CommandSet<T>()
+            Db.CommandSet<TEntity>()
                 .BatchInsert(entities);
 
             return await Task.FromResult(true);
                 
         }
 
-        public async Task<bool> UpdateAsync(T entity)
+        public override async Task<bool> UpdateAsync(TEntity entity)
         {
             return await Db.UpdateAsync(entity);
         }
 
-        public async Task<bool> UpdateAsync(Expression<Func<T, bool>> whereExpression, Expression<Func<T, T>> updateExpression)
+        public override async Task<bool> UpdateAsync(Expression<Func<TEntity, bool>> whereExpression, Expression<Func<TEntity, TEntity>> updateExpression)
         {
-            return (await Db.CommandSet<T>()
+            return (await Db.CommandSet<TEntity>()
                 .Where(whereExpression)
                 .UpdateAsync(updateExpression)) >= 0;
         }
 
-        public async Task<bool> DeleteAsync(T entity)
+        public override async Task<bool> DeleteAsync(TEntity entity)
         {
             return await Db.DeleteAsync(entity);
         }
 
-        public async Task<bool> DeleteByIdAsync(string id)
+        public override async Task<bool> DeleteByIdAsync(string id)
         {
-            Expression<Func<T, bool>> whereExpression = x => x.Id == id;
+            Expression<Func<TEntity, bool>> whereExpression = x => x.Id == id;
 
             return await Db.DeleteAsync(whereExpression);
         }
 
-        public async Task<bool> DeleteAsync(Expression<Func<T, bool>> whereExpression)
+        public override async Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> whereExpression)
         {
             return await Db.DeleteAsync(whereExpression);
         }
 
-        public async Task<bool> UpdateManyAsync(IEnumerable<T> entities)
+        public override async Task<bool> UpdateManyAsync(IEnumerable<TEntity> entities)
         {
             return await Db.UpdateAsync(entities.AsList());
         }
 
-        public async Task<long> CountAsync(Expression<Func<T, bool>> whereExpression = null)
+        public override async Task<int> CountAsync(Expression<Func<TEntity, bool>>? whereExpression = null)
         {
-            var result = Db.QuerySet<T>()
+            var result = Db.QuerySet<TEntity>()
                 .Where(whereExpression)
                 .Count();
             return await Task.FromResult(result);
         }
 
-        public async Task<bool> AnyAsync(Expression<Func<T, bool>> whereExpression)
+        public override async Task<bool> AnyAsync(Expression<Func<TEntity, bool>> whereExpression)
         {
-            var result = Db.QuerySet<T>()
+            var result = Db.QuerySet<TEntity>()
                 .Where(whereExpression)
-                .Exists();
+                .Count() > 0;
             return await Task.FromResult(result);
         }
 
@@ -214,7 +218,7 @@ namespace Tpf.Dapper.Repository
         {
             var dbType = ConfigHelper.GetMainDB();
 
-            var conn = ConfigHelper.GetConnectionString(dbType.ToString()) ?? throw new Exception("未配置主数据库对应的连接字符串");
+            var conn = ConnectionString;
 
             switch (dbType)
             {
@@ -225,7 +229,7 @@ namespace Tpf.Dapper.Repository
                 case DBType.MongoDB:
                 case DBType.SqlServer:
                 default:
-                    throw new Exception("获取 DbConnection失败, 仅支持 Mysql|PgSql");
+                    throw new Exception("获取 DbConnection 失败, 目前仅支持 Mysql|PgSql");
             }
         }
 

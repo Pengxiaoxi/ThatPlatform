@@ -29,13 +29,21 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
             _userService = userService;
         }
 
+        /// <summary>
+        /// 1、列表
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public async Task<ServiceResult<List<UserInfoOutputDto>>> GetUserList()
+        public async Task<ServiceResult<List<UserInfoOutputDto>>> GetList()
         {
             //throw new NotImplementedException();
 
             //var result = await _userService.GetListAsync(x => x.UserName != null);
+
             var result = await _userService.GetUserInfoList();
+
+            //await _userService.AnyAsync();
+
             return ServiceResult<List<UserInfoOutputDto>>.IsSuccess(result);
         }
 

@@ -1,71 +1,82 @@
 ﻿using System.Linq.Expressions;
 using Tpf.Domain.Base.Domain.Entity;
+using Tpf.Utils;
 
 namespace Tpf.BaseRepository
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity<string>
+    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : BaseEntity<string>
     {
         public BaseRepository()
         {
             
         }
 
-        public Task<bool> AnyAsync(Expression<Func<T, bool>> whereExpression)
+        public static string ConnectionString
+        {
+            get
+            {
+                var dbType = ConfigHelper.GetMainDB();
+
+                return ConfigHelper.GetConnectionString(dbType.ToString());
+            }
+        }
+
+        public virtual Task<bool> AnyAsync(Expression<Func<TEntity, bool>> whereExpression)
         {
             throw new NotImplementedException();
         }
 
-        public Task<long> CountAsync(Expression<Func<T, bool>> whereExpression = null)
+        public virtual Task<int> CountAsync(Expression<Func<TEntity, bool>>? whereExpression = null)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(T entity)
+        public virtual Task<bool> DeleteAsync(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(Expression<Func<T, bool>> whereExpression)
+        public virtual Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> whereExpression)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteByIdAsync(string id)
+        public virtual Task<bool> DeleteByIdAsync(string id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<T> GetAsync(Expression<Func<T, bool>> whereExpression)
+        public virtual Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> whereExpression)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<T>> GetListAsync(Expression<Func<T, bool>>? whereExpression = null)
+        public virtual Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>>? whereExpression = null)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> InsertAsync(T entity)
+        public virtual Task<bool> InsertAsync(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> InsertManyAsync(IEnumerable<T> entities)
+        public virtual Task<bool> InsertManyAsync(IEnumerable<TEntity> entities)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateAsync(T entity)
+        public virtual Task<bool> UpdateAsync(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateAsync(Expression<Func<T, bool>> whereExpression, Expression<Func<T, T>> updateExpression)
+        public virtual Task<bool> UpdateAsync(Expression<Func<TEntity, bool>> whereExpression, Expression<Func<TEntity, TEntity>> updateExpression)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateManyAsync(IEnumerable<T> entities)
+        public virtual Task<bool> UpdateManyAsync(IEnumerable<TEntity> entities)
         {
             throw new NotImplementedException();
         }

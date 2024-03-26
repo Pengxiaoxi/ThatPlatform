@@ -1,47 +1,52 @@
-﻿using System.Linq.Expressions;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq.Expressions;
 using Tpf.Domain.Base.Domain.Entity;
+using Tpf.Security;
+using Tpf.Utils;
 
 namespace Tpf.BaseRepository
 {
     /// <summary>
-    /// IBaseRepository<T>
+    /// IBaseRepository<TEntity>
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public interface IBaseRepository<T>  where T : BaseEntity<string>
+    /// <typeparam name="TEntity"></typeparam>
+    public interface IBaseRepository<TEntity>  where TEntity : BaseEntity<string>
     {
+        static string? ConnectionString { get; }
+
         /// <summary>
         /// GetAsync
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        Task<T> GetAsync(Expression<Func<T, bool>> whereExpression);
+        Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> whereExpression);
 
         /// <summary>
         /// GetListAsync
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        Task<List<T>> GetListAsync(Expression<Func<T, bool>>? whereExpression = null);
+        Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>>? whereExpression = null);
 
         /// <summary>
         /// InsertAsync
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        Task<bool> InsertAsync(T entity);
+        Task<bool> InsertAsync(TEntity entity);
 
         /// <summary>
         /// InsertManyAsync
         /// </summary>
         /// <param name="entities">Entities</param>
-        Task<bool> InsertManyAsync(IEnumerable<T> entities);
+        Task<bool> InsertManyAsync(IEnumerable<TEntity> entities);
 
         /// <summary>
         /// UpdateAsync
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        Task<bool> UpdateAsync(T entity);
+        Task<bool> UpdateAsync(TEntity entity);
 
         /// <summary>
         /// UpdateAsync
@@ -49,20 +54,21 @@ namespace Tpf.BaseRepository
         /// <param name="whereExpression"></param>
         /// <param name="updateExpression"></param>
         /// <returns></returns>
-        Task<bool> UpdateAsync(Expression<Func<T, bool>> whereExpression, Expression<Func<T, T>> updateExpression);
+        [Obsolete]
+        Task<bool> UpdateAsync(Expression<Func<TEntity, bool>> whereExpression, Expression<Func<TEntity, TEntity>> updateExpression);
 
         /// <summary>
         /// UpdateManyAsync
         /// </summary>
         /// <param name="entities">entities</param>
-        Task<bool> UpdateManyAsync(IEnumerable<T> entities);
+        Task<bool> UpdateManyAsync(IEnumerable<TEntity> entities);
 
         /// <summary>
         /// DeleteAsync
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        Task<bool> DeleteAsync(T entity);
+        Task<bool> DeleteAsync(TEntity entity);
 
         /// <summary>
         /// Delete
@@ -75,38 +81,38 @@ namespace Tpf.BaseRepository
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        Task<bool> DeleteAsync(Expression<Func<T, bool>> whereExpression);
+        Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> whereExpression);
 
         /// <summary>
         /// 根据条件统计总数
         /// </summary>
         /// <param name="filter">条件Expression,可以空，代表获取表的总数</param>
         /// <returns>总数</returns>
-        Task<long> CountAsync(Expression<Func<T, bool>> whereExpression = null);
+        Task<int> CountAsync(Expression<Func<TEntity, bool>>? whereExpression = null);
 
         /// <summary>
         /// 根据条件是否存在数据
         /// </summary>
         /// <param name="filter">条件Expression</param>
         /// <returns>是否存在，true:是 false：否</returns>
-        Task<bool> AnyAsync(Expression<Func<T, bool>> whereExpression);
+        Task<bool> AnyAsync([NotNull] Expression<Func<TEntity, bool>> whereExpression);
 
 
         #region Extensions
         ///// <summary>
         ///// 获取列表 ，返回IQueryable
         ///// </summary>
-        ///// <typeparam name="T"></typeparam>
+        ///// <typeparam name="TEntity"></typeparam>
         ///// <returns></returns>
-        //IQueryable<T> All();
+        //IQueryable<TEntity> All();
 
         ///// <summary>
         ///// 获取查询列表 ，返回IQueryable
         ///// </summary>
-        ///// <typeparam name="T"></typeparam>
+        ///// <typeparam name="TEntity"></typeparam>
         ///// <param name="expression"></param>
         ///// <returns></returns>
-        //IQueryable<T> Where(Expression<Func<T, bool>> expression);
+        //IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> expression);
 
         ///// <summary>
         /////  根据id更新对象，若不存id则会添加
@@ -115,19 +121,19 @@ namespace Tpf.BaseRepository
         ///// <param name="entity">操作对象</param>
         ///// <param name="expression">Lambda查询表达式</param>
         ///// <returns></returns>
-        //T UpdateOrInsert(T entity, Expression<Func<T, bool>> expression = null);
+        //TEntity UpdateOrInsert(TEntity entity, Expression<Func<TEntity, bool>> expression = null);
 
         ///// <summary>
         ///// Delete entity
         ///// </summary>
         ///// <param name="entity">Entity</param>
-        //void Delete(T entity);
+        //void Delete(TEntity entity);
 
         ///// <summary>
         ///// Delete entities
         ///// </summary>
         ///// <param name="entities">Entities</param>
-        //void Delete(IEnumerable<T> entities);
+        //void Delete(IEnumerable<TEntity> entities);
 
         ///// <summary>
         ///// 删除对象根据Expression表达式
@@ -135,7 +141,7 @@ namespace Tpf.BaseRepository
         ///// <param name="expression"></param>
         ///// <param name="isOne">是否删除一条数据，默认:false 代表 多条 ， true: 单条</param>
         ///// <returns>DeleteResult</returns>
-        //int Delete(Expression<Func<T, bool>> expression, bool isOne = false); 
+        //int Delete(Expression<Func<TEntity, bool>> expression, bool isOne = false); 
         #endregion
 
     }

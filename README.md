@@ -1,8 +1,14 @@
+## How To Run It
+> 1、Tpf.Auth.Api 可 F5 运行 <br />
+> 2、目前 BaseApiController 已添加 [Authorize] 以进行登陆验证，可自行注册、登录操作 or 取消 Authorize <br />
+
 ## Plan
-> Done & Todo
+> Done & Todo <br />
+> 
+> 即将开始 SqlSugar ⌛️
 
 ### 鉴权（Authentication）*
-- [ ] JWT
+- [x] JWT
 - [ ] OAuth 2.0
 - [ ] OpenId
 - [ ] Ids4
@@ -11,8 +17,8 @@
 - [ ] RBAC
 
 ### 泛型仓储（Generic Repository）*
-- [ ] EFCore / TpfDbContextBase
-- [x] Dapper / IDapperRepository
+- [x] EFCore / TpfDbContextBase
+- [x] Dapper / IDapperRepository (80%)
 - [x] MongoDB / IMongoDBRepository
 - [ ] SqlSugar
 - [ ] FreeSql
@@ -24,13 +30,15 @@
 - [x] AutoMapper
  
 ### 定时任务（Schedule Task）
-- [x] Quartz.Net
+- [ ] Quartz.Net
 - [ ] Hangfire
 - [ ] Timer
 
 ### 服务通信
 - [x] gRpc / 提供 Tpf.Grpc.Client 与 Serve，帮助访问 gRpc 服务 和 发布 gRpc 服务
 - [ ] Refit / 基于Http的服务间通信组件
+- [ ] WebApiClient / 基于Http的服务间通信组件 / https://github.com/dotnetcore/WebApiClient
+
 
 ### 文件服务（File Servcie）
 - [x] Minio

@@ -17,5 +17,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Svc
         Task<List<UserInfoOutputDto>> GetUserInfoList();
 
 
+        Task<bool> AddUser(UserInfo model);
+
     }
 }

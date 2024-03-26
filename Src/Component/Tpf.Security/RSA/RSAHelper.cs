@@ -3,7 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Tpf.Utils.Security
+namespace Tpf.Security
 {
     /// <summary>
 	/// RSA加解密 使用OpenSSL的公钥加密/私钥解密 
@@ -103,7 +103,7 @@ namespace Tpf.Utils.Security
             {
                 throw new Exception("_privateKeyRsaProvider is null");
             }
-            var bufferSize = (_privateKeyRsaProvider.KeySize / 8);
+            var bufferSize = _privateKeyRsaProvider.KeySize / 8;
             byte[] buffer = new byte[bufferSize];//待解密块  
             using (MemoryStream msInput = new MemoryStream(Convert.FromBase64String(cipherText)))
             {
@@ -149,7 +149,7 @@ namespace Tpf.Utils.Security
             {
                 throw new Exception("_publicKeyRsaProvider is null");
             }
-            var bufferSize = (_publicKeyRsaProvider.KeySize / 8 - 11);
+            var bufferSize = _publicKeyRsaProvider.KeySize / 8 - 11;
             byte[] buffer = new byte[bufferSize];//待加密块
 
             using (MemoryStream msInput = new MemoryStream(_encoding.GetBytes(text)))
@@ -300,7 +300,7 @@ namespace Tpf.Utils.Security
 
                     if (binr.ReadByte() != 0x02)            //expect an Integer for the exponent data
                         return null;
-                    int expbytes = (int)binr.ReadByte();        // should only need one byte for actual exponent data (for all useful values)
+                    int expbytes = binr.ReadByte();        // should only need one byte for actual exponent data (for all useful values)
                     byte[] exponent = binr.ReadBytes(expbytes);
 
                     // ------- create RSACryptoServiceProvider instance and initialize with public key -----

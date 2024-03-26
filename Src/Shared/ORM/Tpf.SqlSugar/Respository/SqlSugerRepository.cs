@@ -7,59 +7,59 @@ using System.Threading.Tasks;
 
 namespace Tpf.SqlSugar.Respository
 {
-    public class SqlSugerRepository<T> : ISqlSugerRepository<T> where T : class
+    public class SqlSugerRepository<TEntity> : ISqlSugerRepository<TEntity> where TEntity : class
     {
         public SqlSugerRepository()
         {
             
         }
 
-        public IQueryable<T> All()
+        public IQueryable<TEntity> All()
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(T entity)
+        public Task<bool> DeleteAsync(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(Expression<Func<T, bool>> expression)
+        public Task DeleteAsync(Expression<Func<TEntity, bool>> expression)
         {
             throw new NotImplementedException();
         }
 
-        public Task<T> GetAsync(Expression<Func<T, bool>> expression)
+        public Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> expression)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<T>> GetListAsync(Expression<Func<T, bool>> expression)
+        public Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> expression)
         {
             throw new NotImplementedException();
         }
 
-        public Task Insert(T entity)
+        public Task Insert(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(IEnumerable<T> entities)
+        public void Insert(IEnumerable<TEntity> entities)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> Update(T entity)
+        public Task<bool> Update(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> Update(IEnumerable<T> entities)
+        public Task<bool> Update(IEnumerable<TEntity> entities)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<T> Where(Expression<Func<T, bool>> expression)
+        public IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> expression)
         {
             throw new NotImplementedException();
         }

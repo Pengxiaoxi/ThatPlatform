@@ -6,11 +6,15 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Component\Tpf.Grpc.Client\Tpf.Grpc.Client.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Middlewares\Tpf.Authentication\Tpf.Authentication.csproj" />
+    <ProjectReference Include="..\..\..\Shared\ORM\Tpf.EntityFrameworkCore\Tpf.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\..\..\Shared\ORM\Tpf.MongoDB\Tpf.MongoDB.csproj" />
+    <ProjectReference Include="..\..\..\Shared\ORM\Tpf.Uow\Tpf.Uow.csproj" />
     <ProjectReference Include="..\..\Base\Tpf.Domain.Base.Application\Tpf.Domain.Base.Application.csproj" />
     <ProjectReference Include="..\Tpf.Domain.AuthInfo.Domain\Tpf.Domain.AuthInfo.Domain.csproj" />
     <ProjectReference Include="..\Tpf.Domain.AuthInfo.GrpcApplciation\Tpf.Domain.AuthInfo.GrpcApplciation.csproj" />

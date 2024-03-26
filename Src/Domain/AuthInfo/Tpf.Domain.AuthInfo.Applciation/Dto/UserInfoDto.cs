@@ -4,7 +4,11 @@ namespace Tpf.Domain.AuthInfo.Applciation.Dto
 {
     public class UserInfoInputDto
     {
+        [JsonProperty("userName")]
+        public string UserName { get; set; }
 
+        [JsonProperty("account")]
+        public string Account { get; set; }
     }
 
 

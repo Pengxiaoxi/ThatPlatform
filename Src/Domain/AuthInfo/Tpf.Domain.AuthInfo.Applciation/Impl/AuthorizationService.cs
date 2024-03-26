@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tpf.Utils.IdGenerator.Guid
+namespace Tpf.Domain.AuthInfo.Applciation.Impl
 {
-    internal interface IGudiGenerator
+    internal class AuthorizationService
     {
-
     }
 }

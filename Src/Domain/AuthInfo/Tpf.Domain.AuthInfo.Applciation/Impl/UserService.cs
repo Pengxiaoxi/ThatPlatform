@@ -1,17 +1,20 @@
-﻿using Newtonsoft.Json;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using Tpf.Grpc.Client;
-using Tpf.Dapper.Repository;
-using Tpf.Utils;
-using Tpf.Domain.Base.Application;
-using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Dto;
-using Tpf.Domain.AuthInfo.Domain;
-using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Svc;
+using System.Threading.Tasks;
+using System.Transactions;
 using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
+using Tpf.Domain.AuthInfo.Domain;
 using Tpf.Domain.AuthInfo.Domain.Entity;
-using AutoMapper;
+using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Dto;
+using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Svc;
+using Tpf.Domain.Base.Application;
+using Tpf.EntityFrameworkCore;
+using Tpf.Grpc.Client;
+using Tpf.Uow;
+using Tpf.Utils;
 
 namespace Tpf.Domain.AuthInfo.Applciation.Impl
 {
@@ -24,11 +27,13 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
         #region Field
         private readonly IGrpcService _grpcService;
 
-        private readonly IDapperRepository<UserInfo> _dapperRepository;
+        //private readonly IDapperRepository<UserInfo> _dapperRepository;
 
-        private readonly BaseInfoDbContext _dbContext;
+        //private readonly AuthInfoDbContext _dbContext;
 
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
+
         #endregion
 
         #region Ctor
@@ -36,19 +41,24 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             //ILogger<UserService> log
 
             //IBaseRepository<UserInfo> repository
-            BaseInfoDbContext dbContext
-            , IDapperRepository<UserInfo> dapperRepository
-            , IGrpcService grpcService
-            , IMapper mapper)
+            //AuthInfoDbContext dbContext
+            //, IDapperRepository<UserInfo> dapperRepository
+            IGrpcService grpcService
+            , IMapper mapper
+            , IUnitOfWork unitOfWork
+            )
         {
             //_baseInfoDbContext = baseInfoDbContext;
-            _dapperRepository = dapperRepository;
+            //_dapperRepository = dapperRepository;
 
-            _dbContext = dbContext;
+            //_dbContext = dbContext;
 
             _grpcService = grpcService;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
+
+        
         #endregion
 
         #region Public Method
@@ -84,7 +94,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             //                    };
             //var leftJoinResult = leftJoinQuery.ToList();
 
-            //using (var dbContext = new BaseInfoDbContext())
+            //using (var dbContext = new AuthInfoDbContext())
             //{
             //    // inner join example
             //    var innerJoinQuery = from user in dbContext.UserInfos
@@ -126,15 +136,63 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             //    return result;
             //}
 
-            var userList = await GetUserInfoListByDapper();
+            //var userList = await GetUserInfoListByDapper();
 
-            //var userList = await base.GetListAsync();
+            var userList = await base.GetListAsync();
 
             var result = _mapper.Map<List<UserInfoOutputDto>>(userList);
 
             return result;
 
         }
+
+        public async Task<bool> AddUser(UserInfo model)
+        {
+            var result = true;
+
+            #region TODO: Uow
+            //var trans = await _unitOfWork.BeginTransaction();
+            //try
+            //{
+            //    result = await base.InsertAsync(model);
+
+            //    await _unitOfWork.SaveChangesAsync();
+
+            //    throw new Exception();
+
+            //    await trans.CommitAsync();
+            //}
+            //catch (Exception ex)
+            //{
+            //    await trans.RollbackAsync();
+            //    throw ex;
+            //} 
+            #endregion
+
+            #region DbContext
+
+            using var _context = new AuthInfoDbContext();
+            using var _trans = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                await _context.AddAsync(model);
+                await _context.SaveChangesAsync();
+
+                //throw new Exception();
+
+                await _trans.CommitAsync();                
+            }
+            catch
+            {
+                await _trans.RollbackAsync();
+                throw;
+            }
+            #endregion
+
+            return result;
+        }
+
+
         #endregion
 
         /// <summary>

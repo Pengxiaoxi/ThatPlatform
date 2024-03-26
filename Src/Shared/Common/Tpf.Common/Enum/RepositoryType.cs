@@ -11,22 +11,22 @@ namespace Tpf.Common.Enum
         /// <summary>
         /// Dapper
         /// </summary>
-        DapperRepository,
+        Dapper,
 
         /// <summary>
         /// EFCore
         /// </summary>
-        EFRepository,
+        EFCore,
 
         /// <summary>
         /// SqlSuagr
         /// </summary>
-        SqlSugarRepository,
+        SqlSugar,
 
         /// <summary>
         /// MongoDB
         /// </summary>
-        MongoRepository,
+        Mongo,
 
     }
 }
