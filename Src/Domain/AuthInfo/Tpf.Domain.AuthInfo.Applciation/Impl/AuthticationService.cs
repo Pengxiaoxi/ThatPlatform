@@ -18,16 +18,13 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
     {
         private readonly JwtBearerOptions _jwtBearerOptions;
         private readonly JwtOptions _jwtOptions;
-        //private readonly SigningCredentials _signingCredentials;
 
         public AuthticationService(IOptionsSnapshot<JwtBearerOptions> jwtBearerOptions
             , IOptionsSnapshot<JwtOptions> jwtOptions
-            //, SigningCredentials signingCredentials
             )
         {
             _jwtBearerOptions = jwtBearerOptions.Get(JwtBearerDefaults.AuthenticationScheme);
             _jwtOptions = jwtOptions.Value;
-            //_signingCredentials = signingCredentials;
         }
 
         public string CreateJwtToken(UserInfoOutputDto user)
@@ -44,6 +41,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
                 {
                     new Claim(JwtClaimTypes.Id, user.Account),
                     new Claim(JwtClaimTypes.Name, user.UserName),
+                    new Claim(JwtClaimTypes.PhoneNumber, user.Phone),
                 }),
                 Issuer = _jwtOptions.Issuer,
                 Audience = _jwtOptions.Audience,
@@ -54,7 +52,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             var handler = _jwtBearerOptions.SecurityTokenValidators.OfType<JwtSecurityTokenHandler>().FirstOrDefault()
                 ?? new JwtSecurityTokenHandler();
             var securityToken = handler.CreateJwtSecurityToken(tokenDescriptor);
-            token = handler.WriteToken(securityToken); 
+            token = handler.WriteToken(securityToken);
             #endregion
 
 
@@ -63,6 +61,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             //{
             //    new Claim(JwtClaimTypes.Id, user.Account),
             //    new Claim(JwtClaimTypes.Name, user.UserName),
+            //    new Claim(JwtClaimTypes.PhoneNumber, user.Phone),
             //};
 
             //token = JwtHelper.Issue(claims); 

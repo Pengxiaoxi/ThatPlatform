@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Net.Http.Headers;
+using Tpf.Utils;
 
 namespace Tpf.Authentication.Jwt
 {

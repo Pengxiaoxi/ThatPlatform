@@ -15,6 +15,7 @@ namespace Tpf.Authentication.Jwt
         /// </summary>
         /// <param name="tokenModel"></param>
         /// <returns></returns>
+        [Obsolete]
         public static string Issue(List<Claim> claims)
         {
             // 1. 定义需要使用到的Claims

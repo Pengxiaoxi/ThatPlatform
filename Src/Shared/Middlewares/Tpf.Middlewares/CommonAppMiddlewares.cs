@@ -29,7 +29,7 @@ namespace Tpf.Middlewares
 
             app.UseAuthentication(); // 鉴权校验
 
-            //app.UseAuthorization(); // 授权校验
+            app.UseAuthorization(); // 授权校验
 
             app.UseHealthChecks("/health"); // HealthCheck
 
