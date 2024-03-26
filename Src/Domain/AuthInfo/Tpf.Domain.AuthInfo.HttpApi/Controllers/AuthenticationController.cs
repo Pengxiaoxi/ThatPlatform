@@ -65,7 +65,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
             }
 
             var user = _mapper.Map<UserInfo>(dto);
-            user.Secretkey = MD5Helper.MD5Encrypt32($"{user.Password}#{ConfigHelper.Get(AppConfig.SecurityKey)}");
+            user.Secretkey = MD5Helper.MD5Encrypt32($"{user.Password}#{ConfigHelper.Get(AppConfig.SecurityKey16)}");
             user.Password = GeneratePassBySecretkey(dto.Password, user.Secretkey);
             user.Create();
 

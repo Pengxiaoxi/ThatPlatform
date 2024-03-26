@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using System;
 using System.Threading.Tasks;
 
 namespace Tpf.Middlewares.AuthMiddleware
@@ -7,6 +8,7 @@ namespace Tpf.Middlewares.AuthMiddleware
     /// <summary>
     /// AuthorizationMiddleware [Need Config]
     /// </summary>
+    [Obsolete]
     public class AuthorizationMiddleware : IMiddleware
     {
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)

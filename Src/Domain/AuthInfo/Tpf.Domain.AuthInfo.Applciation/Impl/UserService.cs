@@ -178,12 +178,9 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
                 await _context.AddAsync(model);
                 await _context.SaveChangesAsync();
 
+                //throw new Exception();
 
-                throw new Exception();
-
-                await _trans.CommitAsync();
-
-                
+                await _trans.CommitAsync();                
             }
             catch
             {

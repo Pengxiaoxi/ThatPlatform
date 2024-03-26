@@ -10,6 +10,7 @@ using System.Security.Claims;
 using Tpf.Authentication.Jwt;
 using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
+using Tpf.Utils;
 
 namespace Tpf.Domain.AuthInfo.Applciation.Impl
 {
@@ -31,6 +32,12 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
 
         public string CreateJwtToken(UserInfoOutputDto user)
         {
+            var token = string.Empty;
+
+            #region A
+
+            _jwtOptions.SymmetricSecurityKeyString = ConfigHelper.GetSecurityKey32();
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new List<Claim>
@@ -41,13 +48,25 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
                 Issuer = _jwtOptions.Issuer,
                 Audience = _jwtOptions.Audience,
                 Expires = DateTime.UtcNow.AddMinutes(_jwtOptions.ExpiresMinutes),
-                //SigningCredentials = _signingCredentials
+                SigningCredentials = new SigningCredentials(_jwtOptions.SymmetricSecurityKey, SecurityAlgorithms.HmacSha256),
             };
 
             var handler = _jwtBearerOptions.SecurityTokenValidators.OfType<JwtSecurityTokenHandler>().FirstOrDefault()
                 ?? new JwtSecurityTokenHandler();
             var securityToken = handler.CreateJwtSecurityToken(tokenDescriptor);
-            var token = handler.WriteToken(securityToken);
+            token = handler.WriteToken(securityToken); 
+            #endregion
+
+
+            #region B: JwtHelper
+            //var claims = new List<Claim>
+            //{
+            //    new Claim(JwtClaimTypes.Id, user.Account),
+            //    new Claim(JwtClaimTypes.Name, user.UserName),
+            //};
+
+            //token = JwtHelper.Issue(claims); 
+            #endregion
 
             return token;
         }

@@ -58,7 +58,7 @@ namespace Tpf.Utils
             return Get(string.Join(':', args));
         }
 
-        
+
     }
 
     /// <summary>
@@ -76,7 +76,7 @@ namespace Tpf.Utils
             var conn = _configuration.GetConnectionString(connName) ?? throw new Exception($"未配置名称为'{connName}'数据库连接字符串，");
 
             // TODO：Allow Config
-            return AESHelper.Decrypt(conn, ConfigHelper.GetSecorityKey());
+            return AESHelper.Decrypt(conn, ConfigHelper.GetSecurityKey16());
         }
 
         public static string GetMainDBConnectionString()
@@ -117,11 +117,15 @@ namespace Tpf.Utils
             return mainDB;
         }
 
-        public static string GetSecorityKey()
+        public static string GetSecurityKey16()
         {
-            return ConfigHelper.Get(AppConfig.SecurityKey);
+            return ConfigHelper.Get(AppConfig.SecurityKey16);
         }
+
+        public static string GetSecurityKey32()
+        {
+            return ConfigHelper.Get(AppConfig.SecurityKey32);
+        }
+
     }
-
-
 }

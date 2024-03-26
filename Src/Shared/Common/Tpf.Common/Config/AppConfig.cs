@@ -8,7 +8,8 @@ namespace Tpf.Common.Config
 {
     public partial class AppConfig
     {
-        public const string SecurityKey = "App:Security";
+        public const string SecurityKey16 = "App:Security16";
+        public const string SecurityKey32 = "App:Security32";
 
 
         #region Database|ConnectionString

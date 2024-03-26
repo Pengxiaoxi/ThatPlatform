@@ -7,7 +7,7 @@ namespace Tpf.Authentication.Jwt
     {
         public const string Name = "Jwt";
         public readonly static Encoding DefaultEncoding = Encoding.UTF8;
-        public readonly static double DefaultExpiresMinutes = 30d;
+        public readonly static double DefaultExpiresMinutes = 1d;
 
         public string? Audience { get; set; }
 
@@ -17,8 +17,9 @@ namespace Tpf.Authentication.Jwt
 
         public Encoding Encoding { get; set; } = DefaultEncoding;
 
-        //public string? SymmetricSecurityKeyString { get; set; }
+        public string? SymmetricSecurityKeyString { get; set; }
 
-        //public SymmetricSecurityKey SymmetricSecurityKey => new(Encoding.GetBytes(SymmetricSecurityKeyString));
+        public SymmetricSecurityKey SymmetricSecurityKey => new(Encoding.UTF8.GetBytes(SymmetricSecurityKeyString));
+
     }
 }
