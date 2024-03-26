@@ -16,7 +16,7 @@
 ### 授权（Authorization）*
 - [ ] RBAC
 
-### 泛型仓储（Generic Repository）*
+### 仓储（Generic Repository）*
 - [x] EFCore / TpfDbContextBase
 - [x] Dapper / IDapperRepository (80%)
 - [x] MongoDB / IMongoDBRepository
@@ -28,6 +28,7 @@
 
 ### 对象映射 （Objetc Mapper）*
 - [x] AutoMapper
+- [ ] Mapster
  
 ### 定时任务（Schedule Task）
 - [ ] Quartz.Net
@@ -38,6 +39,7 @@
 - [x] gRpc / 提供 Tpf.Grpc.Client 与 Serve，帮助访问 gRpc 服务 和 发布 gRpc 服务
 - [ ] Refit / 基于Http的服务间通信组件
 - [ ] WebApiClient / 基于Http的服务间通信组件 / https://github.com/dotnetcore/WebApiClient
+- [x] WebService / 基于 SoapCore
 
 
 ### 文件服务（File Servcie）
