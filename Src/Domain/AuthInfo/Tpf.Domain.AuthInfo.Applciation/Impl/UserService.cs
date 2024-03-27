@@ -11,6 +11,7 @@ using Tpf.Domain.AuthInfo.Domain.Entity;
 using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Dto;
 using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Svc;
 using Tpf.Domain.Base.Application.Impl;
+using Tpf.Domain.Base.Domain.Context;
 using Tpf.EntityFrameworkCore;
 using Tpf.Grpc.Client;
 using Tpf.Uow;
@@ -138,6 +139,8 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
 
             //var userList = await GetUserInfoListByDapper();
 
+            var curUserAccount = UserContext.CurrentUserAccount;
+
             var userList = await base.GetListAsync();
 
             var result = _mapper.Map<List<UserInfoOutputDto>>(userList);
@@ -149,6 +152,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
         public async Task<bool> AddUser(UserInfo model)
         {
             var result = true;
+            model.Create();
 
             #region TODO: Uow
             //var trans = await _unitOfWork.BeginTransaction();

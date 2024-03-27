@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.Net.Http.Headers;
 using Tpf.Utils;
 
@@ -45,6 +46,36 @@ namespace Tpf.Authentication.Jwt
         /// <returns></returns>
         public override Task TokenValidated(TokenValidatedContext context)
         {
+            Console.WriteLine("-------------- TokenValidated Begin --------------");
+
+            base.TokenValidated(context);
+            if (context.Result != null)
+            {
+                return Task.CompletedTask;
+            }
+
+            Console.WriteLine($"User Name: {context.Principal.Identity.Name}");
+            Console.WriteLine($"Scheme: {context.Scheme.Name}");
+
+            var token = context.SecurityToken;
+            Console.WriteLine($"Token Id: {token.Id}");
+            Console.WriteLine($"Token Issuer: {token.Issuer}");
+            Console.WriteLine($"Token Valid From: {token.ValidFrom}");
+            Console.WriteLine($"Token Valid To: {token.ValidTo}");
+
+            Console.WriteLine($"Token SecurityKey: {token.SecurityKey}");
+
+            //if (token.SigningKey is SymmetricSecurityKey ssk)
+            //{
+            //    Console.WriteLine($"Token SigningKey: {_jwtOptions.Encoding.GetString(ssk.Key)}");
+            //}
+            //else
+            //{
+            //    Console.WriteLine($"Token SigningKey: {token.SigningKey}");
+            //}
+
+            Console.WriteLine("-------------- TokenValidated End --------------");
+
             return Task.CompletedTask;
         }
 
@@ -55,7 +86,18 @@ namespace Tpf.Authentication.Jwt
         /// <returns></returns>
         public override Task AuthenticationFailed(AuthenticationFailedContext context)
         {
+            Console.WriteLine("-------------- AuthenticationFailed Begin --------------");
+
+            base.AuthenticationFailed(context);
+            if (context.Result != null)
+            {
+                return Task.CompletedTask;
+            }
+
+            Console.WriteLine($"Scheme: {context.Scheme.Name}");
             Console.WriteLine($"Exception: {context.Exception}");
+
+            Console.WriteLine("-------------- AuthenticationFailed End --------------");
 
             return Task.CompletedTask;
         }
@@ -67,10 +109,21 @@ namespace Tpf.Authentication.Jwt
         /// <returns></returns>
         public override Task Challenge(JwtBearerChallengeContext context)
         {
+            Console.WriteLine("-------------- Challenge Begin --------------");
+
+            base.Challenge(context);
+            if (context.Handled)
+            {
+                return Task.CompletedTask;
+            }
+
+            Console.WriteLine($"Scheme: {context.Scheme.Name}");
             Console.WriteLine($"Authenticate Failure: {context.AuthenticateFailure}");
             Console.WriteLine($"Error: {context.Error}");
             Console.WriteLine($"Error Description: {context.ErrorDescription}");
             Console.WriteLine($"Error Uri: {context.ErrorUri}");
+
+            Console.WriteLine("-------------- Challenge End --------------");
 
             return Task.CompletedTask;
         }
@@ -82,6 +135,18 @@ namespace Tpf.Authentication.Jwt
         /// <returns></returns>
         public override Task Forbidden(ForbiddenContext context)
         {
+            Console.WriteLine("-------------- Forbidden Begin --------------");
+
+            base.Forbidden(context);
+            if (context.Result != null)
+            {
+                return Task.CompletedTask;
+            }
+
+            Console.WriteLine($"Scheme: {context.Scheme.Name}");
+
+            Console.WriteLine("-------------- Forbidden End --------------");
+
             return Task.CompletedTask;
         }
     }

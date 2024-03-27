@@ -36,6 +36,8 @@ namespace Tpf.Middlewares
 
             builder.Services.AddJwtBearerAuthentication();
 
+            builder.Services.AddHttpContextAccessor(); // IHttpContextAccessor
+
             #region Add Middlewares
             //builder.Services.AddSingleton<AuthorizationMiddleware>();
             builder.Services.AddSingleton<ExceptionMiddleware>();
