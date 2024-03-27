@@ -10,7 +10,7 @@ using Tpf.Domain.AuthInfo.Domain;
 using Tpf.Domain.AuthInfo.Domain.Entity;
 using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Dto;
 using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Svc;
-using Tpf.Domain.Base.Application;
+using Tpf.Domain.Base.Application.Impl;
 using Tpf.EntityFrameworkCore;
 using Tpf.Grpc.Client;
 using Tpf.Uow;

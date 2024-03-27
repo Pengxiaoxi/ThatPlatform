@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Domain.AuthInfo.Domain.Entity;
-using Tpf.Domain.Base.Application.Contacts;
+using Tpf.Domain.Base.Application.Svc;
 
 namespace Tpf.Domain.AuthInfo.Applciation.Svc
 {

@@ -2,13 +2,12 @@
 using System.Linq.Expressions;
 using Tpf.Autofac;
 using Tpf.BaseRepository;
-using Tpf.Common.Config;
 using Tpf.Common.Enum;
-using Tpf.Domain.Base.Application.Contacts;
+using Tpf.Domain.Base.Application.Svc;
 using Tpf.Domain.Base.Domain.Entity;
 using Tpf.Utils;
 
-namespace Tpf.Domain.Base.Application
+namespace Tpf.Domain.Base.Application.Impl
 {
     /// <summary>
     /// 1、每个项目都会有一个主数据库，因此对于主数据库的基础操作使用BaseService来完成较为方便
