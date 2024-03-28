@@ -196,8 +196,22 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             return result;
         }
 
+        public async Task<UserContextInfo> GetCurrentUserInfo()
+        {
+            var account = UserContext.CurrentUserAccount;
+            var model = await base.GetAsync(x => x.Account == account);
+
+            var result = _mapper.Map<UserContextInfo>(model);
+
+            // TODO： 一些其他属性
+
+            return result;
+        }
 
         #endregion
+
+
+        #region Private Method
 
         /// <summary>
         /// Dapper 查询示例
@@ -210,12 +224,15 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             //                $"ON `t`.`DeptId` = `t0`.`Id`";
 
             //var querySql = $"SELECT `t`.* FROM `base_user` AS `t` ";
-             
+
             //var result = (await _dapperRepository.Db.QueryAsync<UserInfo>(querySql)).ToList();
 
             var result = await base.GetListAsync();
 
             return result;
         }
+
+        #endregion
+
     }
 }

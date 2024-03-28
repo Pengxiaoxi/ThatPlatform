@@ -11,14 +11,20 @@ namespace Tpf.Domain.Base.Domain.Context
     public class UserContext
     {
         /// <summary>
-        /// 当前登陆者账号
+        /// 当前登录者账号
         /// </summary>
         public static string? CurrentUserAccount => GetCurrentUserAccount();
 
         /// <summary>
-        /// 当前登陆者账号
+        /// 当前登录者账号
         /// </summary>
         public static string? CurrentUserName => GetCurrentUserName();
+
+        ///// <summary>
+        ///// 当前登录用户信息
+        ///// </summary>
+        //public static UserContextInfo CurrentUserInfo => GetCurrentUserContextInfo();
+
 
         public static HttpContext? HttpContext => AutofacFactory.GetContainer().Resolve<IHttpContextAccessor>()?.HttpContext;
 
@@ -37,6 +43,7 @@ namespace Tpf.Domain.Base.Domain.Context
         {
             return HttpContext?.User?.Claims?.FirstOrDefault(t => t.Type.Equals(JwtClaimTypes.Name))?.Value;
         }
+
         #endregion
 
 
