@@ -14,6 +14,14 @@ namespace Tpf.Domain.Base.Domain.Entity
     /// <typeparam name="T"></typeparam>
     public class BaseEntity<T> where T : class //, IDelete
     {
+        #region Ctor
+        public BaseEntity()
+        {
+            
+        }
+        #endregion
+
+
         #region Field
         [Key]
         [JsonProperty("id")]
@@ -48,15 +56,6 @@ namespace Tpf.Domain.Base.Domain.Entity
         //public string? TenantId { get; set; }
         #endregion
 
-        #region Ctor
-        /// <summary>
-        /// Ctor
-        /// </summary>
-        public BaseEntity()
-        {
-            
-        }
-        #endregion
 
         #region Extensions Method
         public void Create()
