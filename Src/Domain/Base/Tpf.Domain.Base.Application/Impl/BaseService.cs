@@ -42,6 +42,11 @@ namespace Tpf.Domain.Base.Application.Impl
             return await _repository.GetAsync(whereExpression);
         }
 
+        public async Task<T> GetByIdAsync(string id)
+        {
+            return await _repository.GetAsync(x => x.Id == id);
+        }
+
         public async Task<List<T>> GetListAsync(Expression<Func<T, bool>>? whereExpression = null)
         {
             return await _repository.GetListAsync(whereExpression);

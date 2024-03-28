@@ -15,10 +15,9 @@ namespace Tpf.Domain.Base.Domain.Entity
     public class BaseEntity<T> where T : class //, IDelete
     {
         #region Field
-        //[Key]
+        [Key]
         [JsonProperty("id")]
         [Column("id")]
-        [Key]
         public string Id
         {
             get;
@@ -43,19 +42,19 @@ namespace Tpf.Domain.Base.Domain.Entity
 
         [Column("is_deleted")]
         [JsonProperty("is_deleted")]
-        public bool? IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
 
         //[JsonProperty("tenant_id")]
         //public string? TenantId { get; set; }
         #endregion
 
         #region Ctor
+        /// <summary>
+        /// Ctor
+        /// </summary>
         public BaseEntity()
         {
-            if (string.IsNullOrEmpty(this.Id))
-            {
-                this.Id = Guid.NewGuid().ToString();
-            }
+            
         }
         #endregion
 

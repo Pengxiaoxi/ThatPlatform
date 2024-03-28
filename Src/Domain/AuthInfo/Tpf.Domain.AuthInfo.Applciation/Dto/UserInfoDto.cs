@@ -14,14 +14,14 @@ namespace Tpf.Domain.AuthInfo.Applciation.Dto
 
     public class UserInfoOutputDto
     {
+        [JsonProperty("id")]
+        public string? Id { get; set; }
+
         [JsonProperty("userName")]
         public string UserName { get; set; }
 
         [JsonProperty("account")]
         public string Account { get; set; }
-
-        [JsonProperty("password")]
-        public string Password { get; set; }
 
         [JsonProperty("phone")]
         public string Phone { get; set; }

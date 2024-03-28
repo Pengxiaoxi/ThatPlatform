@@ -13,5 +13,11 @@ namespace Tpf.Domain.AuthInfo.Applciation.Dto
         /// </summary>
         public string? Account { get; set; }
 
+        /// <summary>
+        /// 用户名称
+        /// </summary>
+        public string UserName { get; set; }
+
+
     }
 }

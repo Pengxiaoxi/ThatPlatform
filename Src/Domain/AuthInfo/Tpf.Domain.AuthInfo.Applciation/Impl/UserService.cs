@@ -1,18 +1,18 @@
 ﻿using AutoMapper;
+using Masuit.Tools;
+using Masuit.Tools.Linq;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
-using System.Transactions;
 using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
-using Tpf.Domain.AuthInfo.Domain;
 using Tpf.Domain.AuthInfo.Domain.Entity;
 using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Dto;
 using Tpf.Domain.AuthInfo.GrpcApplciation.Client.Svc;
 using Tpf.Domain.Base.Application.Impl;
 using Tpf.Domain.Base.Domain.Context;
-using Tpf.EntityFrameworkCore;
 using Tpf.Grpc.Client;
 using Tpf.Uow;
 using Tpf.Utils;
@@ -80,8 +80,9 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             return rsp;
         }
 
-        public async Task<List<UserInfoOutputDto>> GetUserInfoList()
+        public async Task<List<UserInfoOutputDto>> GetUserInfoList(UserInfoQueryDto query)
         {
+            #region TEST CODE
             // inner join example
             //var leftJoinQuery = from user in _dbContext.UserInfos
             //                    join dept in _dbContext.Depts
@@ -139,9 +140,13 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
 
             //var userList = await GetUserInfoListByDapper();
 
-            var curUserAccount = UserContext.CurrentUserAccount;
+            // TEST: UserContext
+            //var curUserAccount = UserContext.CurrentUserAccount;
 
-            var userList = await base.GetListAsync();
+            #endregion
+
+            var exp = this.CreateExpression(query);
+            var userList = await base.GetListAsync(exp);
 
             var result = _mapper.Map<List<UserInfoOutputDto>>(userList);
 
@@ -149,10 +154,10 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
 
         }
 
-        public async Task<bool> AddUser(UserInfo model)
+        public async Task<bool> Save(UserInfo model)
         {
             var result = true;
-            model.Create();
+            
 
             #region TODO: Uow
             //var trans = await _unitOfWork.BeginTransaction();
@@ -173,25 +178,41 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             //} 
             #endregion
 
-            #region DbContext
+            #region EFCore DbContext
 
-            using var _context = new AuthInfoDbContext();
-            using var _trans = await _context.Database.BeginTransactionAsync();
-            try
-            {
-                await _context.AddAsync(model);
-                await _context.SaveChangesAsync();
+            //using var _context = new AuthInfoDbContext();
+            //using var _trans = await _context.Database.BeginTransactionAsync();
+            //try
+            //{
+            //    await _context.AddAsync(model);
+            //    await _context.SaveChangesAsync();
 
-                //throw new Exception();
+            //    //throw new Exception();
 
-                await _trans.CommitAsync();                
-            }
-            catch
-            {
-                await _trans.RollbackAsync();
-                throw;
-            }
+            //    await _trans.CommitAsync();                
+            //}
+            //catch
+            //{
+            //    await _trans.RollbackAsync();
+            //    throw;
+            //}
             #endregion
+
+            if (model.Id.IsNullOrEmpty())
+            {
+                model.Create();
+                await base.InsertAsync(model);
+            }
+            else
+            {
+                var entity = await base.GetByIdAsync(model.Id);
+
+                model.Password = entity.Password;
+                model.Secretkey = entity.Secretkey;
+                model.Modify(model.Id);
+                await base.UpdateAsync(model);
+            }
+            
 
             return result;
         }
@@ -212,6 +233,17 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
 
 
         #region Private Method
+        private Expression<Func<UserInfo, bool>> CreateExpression(UserInfoQueryDto query)
+        {
+            Expression<Func<UserInfo, bool>> exp = x => x.IsDeleted == false;
+
+            if (!query.Account.IsNullOrEmpty())
+            {
+                exp = exp.And(x => x.Account.Contains(query.Account));
+            }
+
+            return exp;
+        }
 
         /// <summary>
         /// Dapper 查询示例

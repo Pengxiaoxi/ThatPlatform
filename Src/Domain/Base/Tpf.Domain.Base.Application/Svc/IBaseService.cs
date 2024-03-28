@@ -9,6 +9,13 @@ namespace Tpf.Domain.Base.Application.Svc
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
+        Task<T> GetByIdAsync(string id);
+
+        /// <summary>
+        /// GetAsync
+        /// </summary>
+        /// <param name="expression"></param>
+        /// <returns></returns>
         Task<T> GetAsync(Expression<Func<T, bool>> whereExpression);
 
         /// <summary>

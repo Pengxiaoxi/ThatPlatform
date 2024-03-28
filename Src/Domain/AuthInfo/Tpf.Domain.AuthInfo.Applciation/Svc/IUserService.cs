@@ -19,7 +19,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Svc
         /// 列表
         /// </summary>
         /// <returns></returns>
-        Task<List<UserInfoOutputDto>> GetUserInfoList();
+        Task<List<UserInfoOutputDto>> GetUserInfoList(UserInfoQueryDto query);
 
         /// <summary>
         /// 获取当前用户信息
@@ -32,7 +32,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Svc
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        Task<bool> AddUser(UserInfo model);
+        Task<bool> Save(UserInfo model);
 
     }
 }
