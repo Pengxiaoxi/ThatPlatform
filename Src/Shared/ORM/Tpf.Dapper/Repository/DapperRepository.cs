@@ -217,7 +217,7 @@ namespace Tpf.Dapper.Repository
             {
                 case DBType.MySql:
                     return new MySqlConnection(conn);
-                case DBType.PgSql:
+                case DBType.PostgreSQL:
                     return new NpgsqlConnection(conn);
                 case DBType.MongoDB:
                 case DBType.SqlServer:

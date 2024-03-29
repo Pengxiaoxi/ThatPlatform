@@ -1,7 +1,9 @@
 ﻿//using MongoDB.Bson.Serialization.IdGenerators;
 using Newtonsoft.Json;
+using SqlSugar;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using Tpf.Domain.Base.Domain.Context;
 using Tpf.Utils.Guids;
 
@@ -17,38 +19,43 @@ namespace Tpf.Domain.Base.Domain.Entity
         #region Ctor
         public BaseEntity()
         {
-            
+
         }
         #endregion
 
 
         #region Field
+        /// <summary>
+        /// Key
+        /// </summary>
         [Key]
+        [Column("id")] // EFCore、Dapper
+        [SugarColumn(ColumnName = "id", IsPrimaryKey = true)] // SqlSugar
         [JsonProperty("id")]
-        [Column("id")]
-        public string Id
-        {
-            get;
-            set;
-        }
+        public string Id { get; set; }
 
         [Column("created_user_id")]
+        [SugarColumn(ColumnName = "created_user_id")]
         [JsonProperty("created_user_id")]
         public string? CreatedUserId { get; set; }
 
         [Column("created_date")]
+        [SugarColumn(ColumnName = "created_date")]
         [JsonProperty("created_date")]
         public DateTime? CreatedDate { get; set; }
 
         [Column("update_user_id")]
+        [SugarColumn(ColumnName = "update_user_id")]
         [JsonProperty("update_user_id")]
         public string? UpdateUserId { get; set; }
 
         [Column("update_date")]
+        [SugarColumn(ColumnName = "update_date")]
         [JsonProperty("update_date")]
         public DateTime? UpdateDate { get; set; }
 
         [Column("is_deleted")]
+        [SugarColumn(ColumnName = "is_deleted")]
         [JsonProperty("is_deleted")]
         public bool IsDeleted { get; set; }
 

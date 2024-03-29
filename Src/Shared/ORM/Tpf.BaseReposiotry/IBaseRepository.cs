@@ -95,7 +95,7 @@ namespace Tpf.BaseRepository
         /// </summary>
         /// <param name="filter">条件Expression</param>
         /// <returns>是否存在，true:是 false：否</returns>
-        Task<bool> AnyAsync([NotNull] Expression<Func<TEntity, bool>> whereExpression);
+        Task<bool> AnyAsync(Expression<Func<TEntity, bool>> whereExpression);
 
 
         #region Extensions

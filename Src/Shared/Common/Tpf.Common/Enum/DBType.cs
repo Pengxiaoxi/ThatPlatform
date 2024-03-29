@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Tpf.Common.Enum
+﻿namespace Tpf.Common.Enum
 {
+    /// <summary>
+    /// DBType
+    /// </summary>
     public enum DBType
     {
-        MySql,
+        MySql = 0,
 
-        SqlServer,
+        SqlServer = 1,
 
-        PgSql,
+        PostgreSQL = 4,
 
-        MongoDB,
+        Dm = 5,
+
+        MongoDB = 99,
 
         // Anything else...
 

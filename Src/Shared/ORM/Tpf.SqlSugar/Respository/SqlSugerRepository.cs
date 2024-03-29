@@ -86,7 +86,7 @@ namespace Tpf.SqlSugar.Respository
         public override async Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> whereExpression)
         {
             return await _db.Deleteable<TEntity>()
-                .WhereIF(whereExpression != null, whereExpression)
+                .Where(whereExpression)
                 .ExecuteCommandHasChangeAsync();
         }
 
