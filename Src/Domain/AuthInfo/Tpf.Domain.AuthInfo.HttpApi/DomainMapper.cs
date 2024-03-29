@@ -1,6 +1,7 @@
 ﻿using Tpf.AutoMapper;
 using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Domain.AuthInfo.Domain.Entity;
+using Tpf.Domain.Base.Domain.Context;
 
 namespace Tpf.Domain.AuthInfo.HttpApi
 {
@@ -17,6 +18,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi
             CreateMap<UserInfo, UserInfoOutputDto>();
             CreateMap<RegisterDto, UserInfo>();
             CreateMap<UserInfo, UserInfoOutputDto>();
+            CreateMap<UserInfo, UserContextInfo>();
 
         }
     }

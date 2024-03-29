@@ -7,7 +7,7 @@ namespace Tpf.Authentication.Jwt
     {
         public const string Name = "Jwt";
         public readonly static Encoding DefaultEncoding = Encoding.UTF8;
-        public readonly static double DefaultExpiresMinutes = 2 * 60;
+        public readonly static double DefaultExpiresMinutes = 6 * 60;
 
         public string? Audience { get; set; }
 

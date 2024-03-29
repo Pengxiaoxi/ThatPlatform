@@ -16,8 +16,9 @@ namespace Tpf.Dapper.Repository
 {
     /// <summary>
     /// Dapper
-    /// Dapper 原生方法 + 扩展 Dapper.Contrib
-    /// https://github.com/DapperLib/Dapper.Contrib
+    /// Dapper 原生方法 + Dapper.Contrib + Linq 扩展
+    /// Dapper.Contrib：https://github.com/DapperLib/Dapper.Contrib
+    /// Linq 扩展：https://github.com/SkyChenSky/Sikiro.Dapper.Extension
     /// </summary>
     public class DapperRepository<TEntity> :
         BaseRepository<TEntity>,
@@ -94,29 +95,19 @@ namespace Tpf.Dapper.Repository
 
         public override async Task<bool> InsertAsync(TEntity entity)
         {
-            return (await Db.InsertAsync(entity)) > 0;
+            return (await Db.CommandSet<TEntity>().InsertAsync(entity)) > 0;
         }
 
         public override async Task<bool> InsertManyAsync(IEnumerable<TEntity> entities)
         {
-            //var result = false;
-            //foreach (var entity in entities)
-            //{
-            //    result = (await Db.InsertAsync(entity)) > 0;
-            //}
-
-            //return result;
-
-            Db.CommandSet<TEntity>()
-                .BatchInsert(entities);
+            Db.CommandSet<TEntity>().BatchInsert(entities);
 
             return await Task.FromResult(true);
-                
         }
 
         public override async Task<bool> UpdateAsync(TEntity entity)
         {
-            return await Db.UpdateAsync(entity);
+            return await Db.CommandSet<TEntity>().UpdateAsync(entity) >= 0;
         }
 
         public override async Task<bool> UpdateAsync(Expression<Func<TEntity, bool>> whereExpression, Expression<Func<TEntity, TEntity>> updateExpression)
@@ -128,19 +119,21 @@ namespace Tpf.Dapper.Repository
 
         public override async Task<bool> DeleteAsync(TEntity entity)
         {
-            return await Db.DeleteAsync(entity);
+            return await this.DeleteByIdAsync(entity.Id);
         }
 
         public override async Task<bool> DeleteByIdAsync(string id)
         {
             Expression<Func<TEntity, bool>> whereExpression = x => x.Id == id;
 
-            return await Db.DeleteAsync(whereExpression);
+            return await this.DeleteAsync(whereExpression);
         }
 
         public override async Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> whereExpression)
         {
-            return await Db.DeleteAsync(whereExpression);
+            return await Db.CommandSet<TEntity>()
+                .Where(whereExpression)
+                .DeleteAsync() >= 0;
         }
 
         public override async Task<bool> UpdateManyAsync(IEnumerable<TEntity> entities)

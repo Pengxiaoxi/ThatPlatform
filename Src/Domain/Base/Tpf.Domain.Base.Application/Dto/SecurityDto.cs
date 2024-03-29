@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tpf.Utils.Context
+namespace Tpf.Domain.Base.Application.Dto
 {
-    internal class UserContext
+    public class SecurityInputDto
     {
+
+
+
     }
 }

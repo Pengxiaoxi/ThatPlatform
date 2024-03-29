@@ -30,53 +30,42 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
         }
 
         /// <summary>
-        /// 1、列表
+        /// 1、GetList
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ServiceResult<List<UserInfoOutputDto>>> GetList()
+        public async Task<ServiceResult<List<UserInfoOutputDto>>> GetList([FromQuery] UserInfoQueryDto query)
         {
-            //throw new NotImplementedException();
-
-            //var result = await _userService.GetListAsync(x => x.UserName != null);
-
-            var result = await _userService.GetUserInfoList();
-
-            //await _userService.AnyAsync();
+            var result = await _userService.GetUserInfoList(query);
 
             return ServiceResult<List<UserInfoOutputDto>>.IsSuccess(result);
         }
 
+        /// <summary>
+        /// 3、Save
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
-        public async Task<ServiceResult<bool>> Insert()
+        public async Task<ServiceResult<bool>> Save(UserInfo model)
         {
-            var userInfo = new UserInfo()
-            {
-                UserName = "pxx",
-                Password = Guid.NewGuid().ToString(),
-            };
-            await _userService.InsertAsync(userInfo);
+            var result = await _userService.Save(model);
 
-            return Success(true);
+            return Success(result);
         }
 
+        /// <summary>
+        /// 4、Delete
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
-        public async Task<ServiceResult<bool>> Update()
+        public async Task<ServiceResult<bool>> Delete([FromBody] string id)
         {
-            var users = await _userService.GetListAsync(x => x.UserName != null);
-            users.FirstOrDefault().UserName = $"pxx_{new Random().Next(1, int.MaxValue)}";
-            await _userService.UpdateAsync(users.FirstOrDefault());
+            //var result = await _userService.DeleteAsync(x => ids.Contains(x.Id)); 
 
-            return Success(true);
-        }
+            var result = await _userService.DeleteAsync(x => x.Id == id);
 
-        [HttpPost]
-        public async Task<ServiceResult<bool>> Delete()
-        {
-            var deleteUsers = await _userService.GetListAsync(x => x.UserName != null);
-            await _userService.DeleteAsync(deleteUsers.FirstOrDefault());
-
-            return Success(true);
+            return Success(result);
         }
 
     }

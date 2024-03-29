@@ -39,6 +39,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             {
                 Subject = new ClaimsIdentity(new List<Claim>
                 {
+                    new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(JwtClaimTypes.Id, user.Account),
                     new Claim(JwtClaimTypes.Name, user.UserName),
                     new Claim(JwtClaimTypes.PhoneNumber, user.Phone),
