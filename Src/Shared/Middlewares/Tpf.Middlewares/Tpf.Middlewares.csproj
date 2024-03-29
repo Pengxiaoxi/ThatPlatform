@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Tpf.Common\Tpf.Common.csproj" />
+    <ProjectReference Include="..\..\ORM\Tpf.SqlSugar\Tpf.SqlSugar.csproj" />
     <ProjectReference Include="..\..\Utils\Tpf.Utils\Tpf.Utils.csproj" />
     <ProjectReference Include="..\Tpf.Authentication\Tpf.Authentication.csproj" />
     <ProjectReference Include="..\Tpf.Autofac\Tpf.Autofac.csproj" />

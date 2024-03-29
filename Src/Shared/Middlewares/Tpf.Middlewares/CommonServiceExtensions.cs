@@ -1,17 +1,15 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-//using Quartz;
-//using Quartz.Impl;
-using Tpf.Middlewares.Swagger;
-//using Tpf.Common.CoreExtensions.DI;
-using Autofac;
+using Microsoft.Extensions.Hosting;
+using Tpf.Authentication.Jwt;
 using Tpf.Autofac;
+using Tpf.AutoMapper;
 using Tpf.Middlewares.Log4Net;
 using Tpf.Middlewares.Newtonsoft;
-using Microsoft.Extensions.Hosting;
-using Autofac.Extensions.DependencyInjection;
-using Tpf.AutoMapper;
-using Tpf.Authentication.Jwt;
+using Tpf.Middlewares.Swagger;
+using Tpf.SqlSugar;
 
 namespace Tpf.Middlewares
 {
@@ -46,6 +44,10 @@ namespace Tpf.Middlewares
             //builder.Services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();//注册ISchedulerFactory的实例。
 
             builder.Services.AddAutoMapperMiddleware();
+
+            // ORM: SqlSugar
+            builder.Services.AddSqlSugar();
+
             #endregion
 
             #region IOC

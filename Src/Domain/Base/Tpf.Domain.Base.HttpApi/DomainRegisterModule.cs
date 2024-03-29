@@ -27,12 +27,12 @@ namespace Tpf.Domain.Base.HttpApi
 
             builder.RegisterGeneric(typeof(EFCoreRepository<>)).Keyed(RepositoryType.EFCore, typeof(IBaseRepository<>)).InstancePerLifetimeScope();
             builder.RegisterGeneric(typeof(DapperRepository<>)).Keyed(RepositoryType.Dapper, typeof(IBaseRepository<>)).InstancePerLifetimeScope();
-            //builder.RegisterGeneric(typeof(SqlSugerRepository<>)).Keyed(RepositoryType.SqlSugar, typeof(IBaseRepository<>)).InstancePerLifetimeScope();
+            builder.RegisterGeneric(typeof(SqlSugerRepository<>)).Keyed(RepositoryType.SqlSugar, typeof(IBaseRepository<>)).InstancePerLifetimeScope();
             //builder.RegisterGeneric(typeof(MongoDBRepository<>)).Keyed(RepositoryType.Mongo, typeof(IBaseRepository<>)).InstancePerLifetimeScope();
 
             builder.RegisterGeneric(typeof(EFCoreRepository<>)).As(typeof(IEFCoreRepository<>)).InstancePerLifetimeScope();
             builder.RegisterGeneric(typeof(DapperRepository<>)).As(typeof(IDapperRepository<>)).InstancePerLifetimeScope();
-            //builder.RegisterGeneric(typeof(SqlSugerRepository<>)).As(typeof(ISqlSugerRepository<>)).InstancePerLifetimeScope();
+            builder.RegisterGeneric(typeof(SqlSugerRepository<>)).As(typeof(ISqlSugerRepository<>)).InstancePerLifetimeScope();
             //builder.RegisterGeneric(typeof(MongoDBRepository<>)).As(typeof(IMongoDBRepository<>)).InstancePerLifetimeScope();
 
             // TpfDbContextBase
