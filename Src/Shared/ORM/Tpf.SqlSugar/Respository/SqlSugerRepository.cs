@@ -1,12 +1,5 @@
-﻿using IdentityModel;
-using SqlSugar;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using SqlSugar;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using Tpf.BaseRepository;
 using Tpf.Domain.Base.Domain.Entity;
 using Tpf.SqlSugar.Uow;
