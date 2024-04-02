@@ -1,12 +1,8 @@
 ﻿using Autofac;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Threading.Tasks;
 using Tpf.Autofac;
 using Tpf.BaseRepository;
 using Tpf.Domain.Base.Domain.Entity;

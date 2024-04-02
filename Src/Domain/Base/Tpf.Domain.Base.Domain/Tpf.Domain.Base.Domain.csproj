@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Shared\Middlewares\Tpf.Autofac\Tpf.Autofac.csproj" />
+    <ProjectReference Include="..\..\..\Component\Tpf.Autofac\Tpf.Autofac.csproj" />
     <ProjectReference Include="..\..\..\Shared\Utils\Tpf.Utils\Tpf.Utils.csproj" />
   </ItemGroup>
 
