@@ -8,6 +8,7 @@ namespace Tpf.Domain.Base.HttpApi.Controllers
     /// 加解密接口
     /// </summary>
     //[AllowAnonymous]
+    //[Route("api/security/[action]")]
     public class SecurityController : BaseApiController
     {
         /// <summary>
@@ -16,7 +17,8 @@ namespace Tpf.Domain.Base.HttpApi.Controllers
         /// <param name="content"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<string> AESEncrypt([FromBody] string content)
+        //[ActionName("encryptByAES")]
+        public async Task<string> EncryptByAES([FromBody] string content)
         {
             var result = AESHelper.Encrypt(content, ConfigHelper.GetSecurityKey16());
 
@@ -29,7 +31,8 @@ namespace Tpf.Domain.Base.HttpApi.Controllers
         /// <param name="content"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<string> AESDecrypt([FromBody] string content)
+        //[ActionName("decryptByAES")]
+        public async Task<string> DecryptByAES([FromBody] string content)
         {
             var result = AESHelper.Decrypt(content, ConfigHelper.GetSecurityKey16());
 

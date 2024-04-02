@@ -128,4 +128,16 @@ namespace Tpf.Utils
         }
 
     }
+
+    //public static partial class ConfigHelper
+    //{
+
+    //    public static T Get<T>() where T : class
+    //    {
+    //        //_configuration.GetSection("").Get<T>();
+    //        return default(T);
+    //    }
+
+    //}
+
 }
