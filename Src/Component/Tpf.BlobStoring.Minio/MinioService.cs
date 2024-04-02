@@ -127,9 +127,9 @@ namespace Tpf.BlobStoring.Minio
                 }
 
                 var accessKey = ConfigHelper.Get(AppConfig.Minio_AccessKey);
-                var secretKey = ConfigHelper.Get(AppConfig.Minio_SecretKey); ;
-                var endPoint = ConfigHelper.Get(AppConfig.Minio_EndPoint); ;
-                var withSSL = ConfigHelper.Get(AppConfig.Minio_WithSSL); ;
+                var secretKey = ConfigHelper.Get(AppConfig.Minio_SecretKey);
+                var endPoint = ConfigHelper.Get(AppConfig.Minio_EndPoint);
+                var withSSL = ConfigHelper.Get(AppConfig.Minio_WithSSL);
                 if (string.IsNullOrEmpty(accessKey) || string.IsNullOrEmpty(secretKey) || string.IsNullOrEmpty(endPoint))
                 {
                     throw new Exception("GetMinioClient faild, MinIO config is null.");
