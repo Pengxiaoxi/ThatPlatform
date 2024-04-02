@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tpf.Utils.ConfigOptions
+namespace Tpf.Common.ConfigOptions
 {
     public class AppOptions
     {
-
+        
     }
 }

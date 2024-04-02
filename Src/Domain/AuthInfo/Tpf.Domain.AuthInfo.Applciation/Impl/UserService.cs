@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Tpf.Common.ConfigOptions;
 using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
 using Tpf.Domain.AuthInfo.Domain.Entity;
@@ -144,6 +145,11 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
             //var curUserAccount = UserContext.CurrentUserAccount;
 
             #endregion
+
+            //var minioOptions = ConfigHelper.GetOptions<BlobStoringOptions>(BlobStoringOptions.Name)?.Minio;
+            //await Console.Out.WriteLineAsync(minioOptions.AccessKey);
+
+            // Or : Resolve IOptionsSnapshot<MinioOptions>
 
             var exp = this.CreateExpression(query);
             var userList = await base.GetListAsync(exp);

@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
 using System;
-using System.Data;
 using Tpf.Common.Config;
 using Tpf.Common.Enum;
 using Tpf.Security;
@@ -56,6 +55,16 @@ namespace Tpf.Utils
         public static string Get(string[] args)
         {
             return Get(string.Join(':', args));
+        }
+
+        public static IConfigurationSection GetSection(string configSectionName)
+        {
+            if (string.IsNullOrEmpty(configSectionName))
+            {
+                throw new ArgumentNullException(configSectionName);
+            }
+
+            return _configuration.GetSection(configSectionName);
         }
 
 
@@ -129,15 +138,32 @@ namespace Tpf.Utils
 
     }
 
-    //public static partial class ConfigHelper
-    //{
+    public static partial class ConfigHelper
+    {
+        public static T GetOptions<T>(string optionName) where T : class
+        {
+            var result = default(T);
 
-    //    public static T Get<T>() where T : class
-    //    {
-    //        //_configuration.GetSection("").Get<T>();
-    //        return default(T);
-    //    }
+            // Can Get or Bind
+            result =  _configuration.GetSection(optionName)?.Get<T>() ?? default;
 
-    //}
+            //_configuration.GetSection(optionName).Bind(result);
+
+            return result;
+        }
+
+        public static T GetLiveOptions<T>(string optionName) where T : class
+        {
+            var result = default(T);
+
+            // Can Get or Bind
+            result = _configuration.GetSection(optionName)?.Get<T>() ?? default;
+
+            //_configuration.GetSection(optionName).Bind(result);
+
+            return result;
+        }
+
+    }
 
 }

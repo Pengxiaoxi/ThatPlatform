@@ -1,13 +1,16 @@
 ﻿using Autofac;
+using Autofac.Core;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Configuration;
 using Tpf.Authentication.Jwt;
 using Tpf.Autofac;
 using Tpf.AutoMapper;
 using Tpf.Middlewares.Log4Net;
 using Tpf.Middlewares.Newtonsoft;
+using Tpf.Middlewares.Options;
 using Tpf.Middlewares.Swagger;
 using Tpf.SqlSugar;
 
@@ -36,6 +39,8 @@ namespace Tpf.Middlewares
 
             builder.Services.AddHttpContextAccessor(); // IHttpContextAccessor
 
+            
+
             #region Add Middlewares
             //builder.Services.AddSingleton<AuthorizationMiddleware>();
             builder.Services.AddSingleton<ExceptionMiddleware>();
@@ -58,13 +63,21 @@ namespace Tpf.Middlewares
 
             #endregion
 
+            #region AddTpfOptions
+            builder.Services.AddTpfOptions();
+
+            #endregion
+
+
+
+
             #region 接口服务注册 Demo
             //.Net Core默认DI示例
             //services.AddTransient(typeof(IMongoDBRepository<>), typeof(MongoDBRepository<>));
             //services.AddTransient(typeof(IBaseRepository<>), typeof(BaseService<>)); 
             #endregion
 
-            #region Old (TODO: Drop)
+            #region Onsolute (TODO: Drop)
             //builder.Services.AddTransient<ITencentCloudDBOperateService, TencentCloudDBOperateService>();
 
             #endregion
