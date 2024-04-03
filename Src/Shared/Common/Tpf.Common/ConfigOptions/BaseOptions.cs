@@ -14,7 +14,7 @@ namespace Tpf.Common.ConfigOptions
 
     public interface IBaseOptions
     {
-        //public string CurrentOptionsName { get; }
+        public string CurrentOptionsName { get; }
 
         //string CurrentOptionsName();
 

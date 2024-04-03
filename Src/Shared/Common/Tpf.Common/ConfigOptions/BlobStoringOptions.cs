@@ -31,7 +31,7 @@ namespace Tpf.Common.ConfigOptions
         //    return "BlobStoring:Minio";
         //}
 
-        //public string CurrentOptionsName { get => "BlobStoring:Minio"; }
+        public string CurrentOptionsName { get => "BlobStoring:Minio"; }
 
         //public string CurrentOptionsName()
         //{
