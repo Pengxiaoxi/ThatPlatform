@@ -16,27 +16,27 @@ namespace Tpf.Domain.AuthInfo.Domain.Entity
         [JsonProperty("username")]
         [Column("username")]
         [SugarColumn(ColumnName = "username")]
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
 
         [JsonProperty("account")]
         [Column("account")]
         [SugarColumn(ColumnName = "account")]
-        public string Account { get; set; }
+        public string? Account { get; set; }
 
         [JsonProperty("password")]
         [Column("password")]
         [SugarColumn(ColumnName = "password")]
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
         [JsonProperty("secretkey")]
         [Column("secretkey")]
         [SugarColumn(ColumnName = "secretkey")]
-        public string Secretkey { get; set; }
+        public string? Secretkey { get; set; }
 
         [JsonProperty("phone")]
         [Column("phone")]
         [SugarColumn(ColumnName = "phone")]
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
 
 
         

@@ -23,4 +23,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\BaseInfo\Tpf.Domain.BaseInfo.HttpApi\Tpf.Domain.BaseInfo.HttpApi.csproj" />
+    <ProjectReference Include="..\..\Shared\Common\Tpf.Common\Tpf.Common.csproj" />
+  </ItemGroup>
+
 </Project>

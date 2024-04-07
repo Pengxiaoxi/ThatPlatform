@@ -5,7 +5,7 @@
 ## Plan
 > Done & Todo <br />
 > 
-> 即将开始 SqlSugar ⌛️
+> 即将开始 Hangfire | Console ⌛️
 
 ### 鉴权（Authentication）*
 - [x] JWT
@@ -18,13 +18,13 @@
 
 ### 仓储（Generic Repository）*
 - [x] EFCore / TpfDbContextBase
-- [x] Dapper / IDapperRepository (80%)
-- [x] MongoDB / IMongoDBRepository
-- [ ] SqlSugar
+- [x] Dapper / IDapperRepository
+- [x] SqlSugar / ISqlSugerRepository
+- [ ] MongoDB / IMongoDBRepository [Later]
 - [ ] FreeSql
 
 ### 依赖注入（DI） *
-- [x] Autofac
+- [x] Autofac / （添加自定义特性 [NotRegister] 可避免注册某些服务）
 
 ### 对象映射 （Objetc Mapper）*
 - [x] AutoMapper
@@ -37,7 +37,7 @@
 
 ### 服务通信
 - [x] gRpc / 提供 Tpf.Grpc.Client 与 Serve，帮助访问 gRpc 服务 和 发布 gRpc 服务
-- [ ] Refit / 基于Http的服务间通信组件
+- [x] Refit / 基于Http的服务间通信组件
 - [ ] WebApiClient / 基于Http的服务间通信组件 / https://github.com/dotnetcore/WebApiClient
 - [x] WebService / 基于 SoapCore
 

@@ -16,7 +16,7 @@ namespace Tpf.Domain.AuthInfo.Applciation.Dto
         /// <summary>
         /// 用户名称
         /// </summary>
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
 
 
     }

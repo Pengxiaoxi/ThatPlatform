@@ -1,6 +1,7 @@
 ﻿using Minio;
 using Minio.DataModel.Args;
-using Tpf.Common.Config;
+using Tpf.Common.ConfigOptions;
+using Tpf.Security;
 using Tpf.Utils;
 
 namespace Tpf.BlobStoring.Minio
@@ -126,22 +127,20 @@ namespace Tpf.BlobStoring.Minio
                     return _client;
                 }
 
-                var accessKey = ConfigHelper.Get(AppConfig.Minio_AccessKey);
-                var secretKey = ConfigHelper.Get(AppConfig.Minio_SecretKey); ;
-                var endPoint = ConfigHelper.Get(AppConfig.Minio_EndPoint); ;
-                var withSSL = ConfigHelper.Get(AppConfig.Minio_WithSSL); ;
-                if (string.IsNullOrEmpty(accessKey) || string.IsNullOrEmpty(secretKey) || string.IsNullOrEmpty(endPoint))
+                var minioOptions = ConfigHelper.GetOptions<BlobStoringOptions>(BlobStoringOptions.Name)?.Minio;
+
+                if (string.IsNullOrEmpty(minioOptions?.AccessKey) || string.IsNullOrEmpty(minioOptions?.SecretKey) || string.IsNullOrEmpty(minioOptions?.EndPoint))
                 {
-                    throw new Exception("GetMinioClient faild, MinIO config is null.");
+                    throw new Exception("GetMinioClient faild, Minio config is null.");
                 }
 
-                // TODO: secretKey 解密
+                minioOptions.SecretKey = AESHelper.Decrypt(minioOptions.SecretKey, ConfigHelper.GetSecurityKey16());
 
                 var client = new MinioClient()
-                    .WithEndpoint(endPoint)
-                    .WithCredentials(accessKey, secretKey);
+                    .WithEndpoint(minioOptions.EndPoint)
+                    .WithCredentials(minioOptions.AccessKey, minioOptions.SecretKey);
 
-                if (!string.IsNullOrEmpty(withSSL) && Convert.ToBoolean(withSSL))
+                if (minioOptions?.WithSSL == true)
                 {
                     client.WithSSL();
                 }

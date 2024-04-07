@@ -9,13 +9,14 @@
   <ItemGroup>
     <PackageReference Include="IdentityModel" Version="6.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Net.Http.Headers" Version="8.0.3" />
     <PackageReference Include="MongoDB.Bson" Version="2.22.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="SqlSugarCore" Version="5.1.4.148" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Shared\Middlewares\Tpf.Autofac\Tpf.Autofac.csproj" />
+    <ProjectReference Include="..\..\..\Component\Tpf.Autofac\Tpf.Autofac.csproj" />
     <ProjectReference Include="..\..\..\Shared\Utils\Tpf.Utils\Tpf.Utils.csproj" />
   </ItemGroup>
 

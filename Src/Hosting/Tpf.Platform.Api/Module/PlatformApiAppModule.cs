@@ -1,6 +1,14 @@
-﻿namespace Tpf.Platform.Api.Module
+﻿using Tpf.Common.CommonAttributes;
+using Tpf.Domain.BaseInfo.HttpApi;
+
+namespace Tpf.Platform.Api.Module
 {
-    //[DependsOn()]
+    /// <summary>
+    /// PlatformApiAppModule
+    /// </summary>
+    [DependsOn(
+        typeof(BaseInfoHttpApiModule)
+        )]
     public class PlatformApiAppModule
     {
     }
