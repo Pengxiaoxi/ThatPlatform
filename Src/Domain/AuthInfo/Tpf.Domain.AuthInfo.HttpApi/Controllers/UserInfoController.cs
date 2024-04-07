@@ -5,6 +5,7 @@ using Tpf.Domain.Base.HttpApi;
 using Tpf.Domain.AuthInfo.Domain.Entity;
 using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Common.ResponseExtensions.ServiceResult;
+using Tpf.Domain.Base.Domain.Context;
 
 namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
 {
@@ -15,7 +16,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
     {
         #region Field
         private readonly ILogger<UserInfoController> _logger;
-        private readonly IUserService _userService; 
+        private readonly IUserService _userService;
         #endregion
 
         /// <summary>
@@ -64,6 +65,18 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
             //var result = await _userService.DeleteAsync(x => ids.Contains(x.Id)); 
 
             var result = await _userService.DeleteAsync(x => x.Id == id);
+
+            return Success(result);
+        }
+
+        /// <summary>
+        /// 100、获取当前用户信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<ServiceResult<UserContextInfo>> GetCurrentUserInfo()
+        {
+            var result = await _userService.GetCurrentUserInfo();
 
             return Success(result);
         }

@@ -1,10 +1,13 @@
 ﻿using Autofac;
+using System.Reflection;
+using Tpf.Autofac.Attributes;
 using Tpf.Utils.AssemblyHelpers;
 
 namespace Tpf.Autofac
 {
     /// <summary>
-    /// Autofac Doc: https://docs.autofac.org/en/latest/register/scanning.html
+    /// Autofac 
+    /// Doc: https://docs.autofac.org/en/latest/register/scanning.html
     /// </summary>
     public static class AutofacFactory
     {
@@ -32,9 +35,9 @@ namespace Tpf.Autofac
 
             // 批量注册非DI模块内的服务（服务生命周期默认瞬时）
             containerBuilder.RegisterAssemblyTypes(assemblies)
-                          .AsImplementedInterfaces()
-                          .InstancePerDependency()
-                          .PropertiesAutowired();
+                .AsImplementedInterfaces()
+                .InstancePerDependency()
+                .PropertiesAutowired();
             //.EnableInterfaceInterceptors(); // 如需使用 Interceptor 引用Autofac.Extras.DynamicProxy;
 
             #region Tips: 按程序集批量注册模块 等同于如下（获取程序集内所有模块然后逐个注册）

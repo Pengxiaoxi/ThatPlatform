@@ -1,9 +1,6 @@
-﻿using Autofac.Core;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Reflection;
 using Tpf.Common.ConfigOptions;
-using Tpf.Utils;
 
 namespace Tpf.Middlewares.Options
 {
@@ -21,6 +18,8 @@ namespace Tpf.Middlewares.Options
             builder.Services.Configure<BlobStoringOptions>(builder.Configuration.GetSection(BlobStoringOptions.Name));
 
             builder.Services.Configure<MinioOptions>(builder.Configuration.GetSection(MinioOptions.Name));
+
+            builder.Services.Configure<RefitApisOptions>(builder.Configuration.GetSection(RefitApisOptions.Name));
 
             //builder.Services.Configure<MinioOptions>(ConfigHelper.GetSection(MinioOptions.Name));
 

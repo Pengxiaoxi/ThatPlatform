@@ -1,10 +1,8 @@
 ﻿using Autofac;
-using Autofac.Core;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Configuration;
 using Tpf.Authentication.Jwt;
 using Tpf.Autofac;
 using Tpf.AutoMapper;

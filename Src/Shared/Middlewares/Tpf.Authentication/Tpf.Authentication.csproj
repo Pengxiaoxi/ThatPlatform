@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Domain\Base\Tpf.Domain.Base.Domain\Tpf.Domain.Base.Domain.csproj" />
     <ProjectReference Include="..\..\Utils\Tpf.Utils\Tpf.Utils.csproj" />
   </ItemGroup>
 

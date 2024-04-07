@@ -17,7 +17,7 @@ namespace Tpf.Authentication.Jwt
         {
             var jwtOptions = new JwtOptions()
             {
-                SymmetricSecurityKeyString = ConfigHelper.GetSecurityKey32(),
+                SymmetricSecurityKeyString = ConfigHelper.GetSecurityKey32()
             };
 
             services.AddScoped<AppJwtBearerEvents>();

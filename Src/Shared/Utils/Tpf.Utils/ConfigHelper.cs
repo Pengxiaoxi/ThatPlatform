@@ -133,7 +133,9 @@ namespace Tpf.Utils
 
         public static string GetSecurityKey32()
         {
-            return ConfigHelper.Get(AppConfig.SecurityKey32);
+            var result = ConfigHelper.Get(AppConfig.SecurityKey32) ?? "zY3_iJ6[rP0!zS0/uQ3=dW5|lC6*yJ9:";
+
+            return result;
         }
 
     }
