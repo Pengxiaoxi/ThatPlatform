@@ -2,7 +2,7 @@
   "profiles": {
     "Platform.Api": {
       "commandName": "Project",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "index.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -10,16 +10,16 @@
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:8001"
     },
-    "https": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "weatherforecast",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:7074;http://localhost:5137"
-    },
+    //"https": {
+    //  "commandName": "Project",
+    //  "launchBrowser": true,
+    //  "launchUrl": "weatherforecast",
+    //  "environmentVariables": {
+    //    "ASPNETCORE_ENVIRONMENT": "Development"
+    //  },
+    //  "dotnetRunMessages": true,
+    //  "applicationUrl": "https://localhost:7074;http://localhost:5137"
+    //},
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,

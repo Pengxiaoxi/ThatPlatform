@@ -1,4 +1,4 @@
-﻿namespace Tpf.Autofac.Attributes
+﻿namespace Tpf.Autofac
 {
     /// <summary>
     /// Tpf.Autofac Not Register

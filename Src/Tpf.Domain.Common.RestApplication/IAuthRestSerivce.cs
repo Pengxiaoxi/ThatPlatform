@@ -1,5 +1,5 @@
 ﻿using Refit;
-using Tpf.Autofac.Attributes;
+using Tpf.Autofac;
 using Tpf.Common.ResponseExtensions.ServiceResult;
 using Tpf.Domain.Base.Domain.Context;
 
