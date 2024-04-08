@@ -1,6 +1,5 @@
-//using Tpf.Domain.BaseInfo.HttpApi.RefitClient;
+using Tpf.Domain.BaseInfo.HttpApi.RefitClient;
 using Tpf.Middlewares;
-using Tpf.Platform.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Loader;
 
 namespace Tpf.Utils.AssemblyHelpers
 {
@@ -15,7 +16,7 @@ namespace Tpf.Utils.AssemblyHelpers
         public static Assembly[] GetSolutionAssemblies()
         {
             var assemblies = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll")
-                .Select(x => Assembly.Load(AssemblyName.GetAssemblyName(x)));
+                .Select(x => AssemblyLoadContext.Default.LoadFromAssemblyName(AssemblyName.GetAssemblyName(x)));
 
             return assemblies.ToArray();
         }
