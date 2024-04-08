@@ -32,13 +32,13 @@
  
 ### 定时任务（Schedule Task）
 - [ ] Quartz.Net
-- [ ] Hangfire
+- [x] Hangfire / https://docs.hangfire.io/en/latest/getting-started/aspnet-core-applications.html
 - [ ] Timer
 
 ### 服务通信
 - [x] gRpc / 提供 Tpf.Grpc.Client 与 Serve，帮助访问 gRpc 服务 和 发布 gRpc 服务
-- [x] Refit / 基于Http的服务间通信组件
-- [ ] WebApiClient / 基于Http的服务间通信组件 / https://github.com/dotnetcore/WebApiClient
+- [x] Refit / 基于Http的服务间通信组件 https://reactiveui.github.io/refit/
+- [ ] WebApiClient / 基于Http的服务间通信组件 https://github.com/dotnetcore/WebApiClient
 - [x] WebService / 基于 SoapCore
 
 
@@ -64,6 +64,7 @@
 ### 工具（Tools）
 - [x] ConfigHelper
 - [x] WebApiHelper
+- [x] Options 配置选项模式
 - [ ] 等
 
 
