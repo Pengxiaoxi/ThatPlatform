@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
+using Tpf.Jobs.Hangfire;
 using Tpf.Middlewares.Swagger;
 
 namespace Tpf.Middlewares
@@ -35,7 +36,7 @@ namespace Tpf.Middlewares
 
             app.UseKnife4UI(); // Swagger + Knife4UI
 
-            
+            //app.UseTpfHangfireMiddle();            
 
             app.MapControllers();
 

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Tpf.Common.ResponseExtensions.ServiceResult;
 using Tpf.Domain.Base.Domain.Context;
 using Tpf.Domain.Base.HttpApi;
@@ -25,6 +24,7 @@ namespace Tpf.Domain.BaseInfo.HttpApi.Controllers
         {
             var result = await _authRestSerivce.GetCurrentUserInfo();
 
+            
             return result;
         }
 

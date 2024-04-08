@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Tpf.Authentication.Jwt;
 using Tpf.Autofac;
 using Tpf.AutoMapper;
+using Tpf.Jobs.Hangfire;
 using Tpf.Middlewares.Log4Net;
 using Tpf.Middlewares.Newtonsoft;
 using Tpf.Middlewares.Options;
@@ -50,6 +51,8 @@ namespace Tpf.Middlewares
 
             // ORM: SqlSugar
             builder.Services.AddSqlSugar();
+
+            
 
             #endregion
 
