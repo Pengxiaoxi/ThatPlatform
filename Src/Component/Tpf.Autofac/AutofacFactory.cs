@@ -11,7 +11,7 @@ namespace Tpf.Autofac
     public static class AutofacFactory
     {
         private static IContainer? _container;
-        
+
         public static IContainer GetContainer()
         {
             return _container;
@@ -26,8 +26,8 @@ namespace Tpf.Autofac
         {
             // Load并获取当前运行路径下 tpf 相关程序集
             var assemblies = AssemblyHelper.GetSolutionAssemblies()
-                .Where(x => x.FullName != null 
-                    && x.FullName.StartsWith("tpf", StringComparison.CurrentCultureIgnoreCase) 
+                .Where(x => x.FullName != null
+                    && x.FullName.StartsWith("tpf", StringComparison.CurrentCultureIgnoreCase)
                     )
                 .ToArray();
 
@@ -36,16 +36,7 @@ namespace Tpf.Autofac
 
             // 批量注册非DI模块内的服务（服务生命周期默认瞬时）
             containerBuilder.RegisterAssemblyTypes(assemblies)
-                .Where(x =>
-                {
-                    // 不注册某些继承的接口有 NotRegisterAttribute 标记的类
-                    if (x.GetInterfaces().Length > 0 && x.GetInterfaces()[0].GetCustomAttribute<NotRegisterAttribute>() != null)
-                    {
-                        Console.WriteLine($"NotRegister Service: {x.FullName}");
-                        return false;
-                    }
-                    return true;
-                })
+                .Where(IsRegisterType)
                 .AsImplementedInterfaces()
                 .InstancePerDependency()
                 .PropertiesAutowired();
@@ -68,5 +59,33 @@ namespace Tpf.Autofac
                 SetContainer((IContainer)container);
             });
         }
+
+
+        /// <summary>
+        /// 判断是否是可注入的类型
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        private static bool IsRegisterType(Type x)
+        {
+            var interfacTypes = x.GetInterfaces();
+            if (interfacTypes.Length == 0 && x.GetCustomAttribute<NotRegisterAttribute>() is not null)
+            {
+                Console.WriteLine($"NotRegister Type: {x.FullName}");
+                return false;
+            }
+
+            if (interfacTypes.Length > 0)
+            {
+                if (interfacTypes.Any(svc => svc.GetCustomAttribute<NotRegisterAttribute>() is not null))
+                {
+                    Console.WriteLine($"NotRegister Type: {x.FullName}");
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
     }
 }
