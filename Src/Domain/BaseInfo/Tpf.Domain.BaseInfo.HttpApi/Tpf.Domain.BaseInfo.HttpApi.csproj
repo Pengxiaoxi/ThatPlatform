@@ -14,7 +14,7 @@
     <ProjectReference Include="..\..\..\Component\Tpf.AutoMapper\Tpf.AutoMapper.csproj" />
     <ProjectReference Include="..\..\..\Shared\Common\Tpf.Common\Tpf.Common.csproj" />
     <ProjectReference Include="..\..\..\Shared\Middlewares\Tpf.Middlewares\Tpf.Middlewares.csproj" />
-    <ProjectReference Include="..\..\..\Tpf.Domain.Common.RestApplication\Tpf.Domain.Common.RestApplication.csproj" />
+    <ProjectReference Include="..\..\..\Domain\Common\Tpf.Domain.Common.RestApplication\Tpf.Domain.Common.RestApplication.csproj" />
     <ProjectReference Include="..\..\Base\Tpf.Domain.Base.HttpApi\Tpf.Domain.Base.HttpApi.csproj" />
   </ItemGroup>
 

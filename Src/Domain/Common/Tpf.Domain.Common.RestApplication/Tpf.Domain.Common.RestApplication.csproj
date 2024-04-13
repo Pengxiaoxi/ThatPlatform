@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Base\Tpf.Domain.Base.Domain\Tpf.Domain.Base.Domain.csproj" />
-    <ProjectReference Include="..\Shared\Common\Tpf.Common\Tpf.Common.csproj" />
+    <ProjectReference Include="..\..\..\Component\Tpf.Autofac\Tpf.Autofac.csproj" />
+    <ProjectReference Include="..\..\Base\Tpf.Domain.Base.Domain\Tpf.Domain.Base.Domain.csproj" />
   </ItemGroup>
 
 </Project>

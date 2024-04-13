@@ -106,7 +106,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{3C7B8C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Domain.Common.Application", "Domain\Common\Tpf.Domain.Common.Application\Tpf.Domain.Common.Application.csproj", "{3A5438F3-0812-4EB7-BA7B-E89EC1FA90C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Domain.Common.RestApplication", "Tpf.Domain.Common.RestApplication\Tpf.Domain.Common.RestApplication.csproj", "{AE2F9CD0-40EB-4851-80AE-2201D5994519}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Domain.Common.RestApplication", "Domain\Common\Tpf.Domain.Common.RestApplication\Tpf.Domain.Common.RestApplication.csproj", "{AE2F9CD0-40EB-4851-80AE-2201D5994519}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Domain.BaseInfo.HttpApi", "Domain\BaseInfo\Tpf.Domain.BaseInfo.HttpApi\Tpf.Domain.BaseInfo.HttpApi.csproj", "{849E31D1-D95B-47C0-8EC6-3CB01CB6EDB0}"
 EndProject
