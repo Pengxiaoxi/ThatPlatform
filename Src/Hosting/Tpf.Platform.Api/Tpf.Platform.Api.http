@@ -1,6 +1,0 @@
-@Tpf.Platform.Api_HostAddress = http://localhost:5137
-
-GET {{Tpf.Platform.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
