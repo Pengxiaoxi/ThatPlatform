@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration.Json;
 using System;
 using Tpf.Common.Config;
+using Tpf.Common.ConfigOptions;
 using Tpf.Common.Enum;
 using Tpf.Security;
 
@@ -142,29 +143,43 @@ namespace Tpf.Utils
 
     public static partial class ConfigHelper
     {
-        public static T GetOptions<T>(string optionName) where T : class
+        public static T GetOptions<T>() where T : BaseOptions
         {
-            var result = default(T);
+            var sectionName = Activator.CreateInstance<T>().SectionName;
+            var result = _configuration.GetSection(sectionName)?.Get<T>();
 
-            // Can Get or Bind
-            result =  _configuration.GetSection(optionName)?.Get<T>() ?? default;
-
-            //_configuration.GetSection(optionName).Bind(result);
+            //return result is null 
+            //    ? throw new Exception($"{nameof(sectionName)} config section not found.") 
+            //    : result;
 
             return result;
         }
 
-        public static T GetLiveOptions<T>(string optionName) where T : class
+        public static T GetOptions<T>(string sectionName) where T : class
         {
             var result = default(T);
 
             // Can Get or Bind
-            result = _configuration.GetSection(optionName)?.Get<T>() ?? default;
+            result =  _configuration.GetSection(sectionName)?.Get<T>() ?? default;
 
             //_configuration.GetSection(optionName).Bind(result);
 
-            return result;
+            return result is null
+                ? throw new Exception($"{sectionName} config section not found.")
+                : result;
         }
+
+        //public static T GetLiveOptions<T>(string sectionName) where T : class
+        //{
+        //    var result = default(T);
+
+        //    // Can Get or Bind
+        //    result = _configuration.GetSection(sectionName)?.Get<T>() ?? default;
+
+        //    //_configuration.GetSection(sectionName).Bind(result);
+
+        //    return result;
+        //}
 
     }
 

@@ -12,7 +12,7 @@ namespace Tpf.Domain.BaseInfo.HttpApi.RefitClient
     {
         public static void AddBaseInfoDomainRefitClient(this IServiceCollection services)
         {
-            var refitApiOptions = ConfigHelper.GetOptions<RefitApisOptions>(RefitApisOptions.Name);
+            var refitApiOptions = ConfigHelper.GetOptions<BaseInfoHttpApiOptions>();
 
             services.AddRefitClient<IAuthRestSerivce>(x => RefitSettingsExtensions.GetRefitSettings())
                 .ConfigureHttpClient(x => 

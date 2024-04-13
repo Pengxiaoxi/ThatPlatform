@@ -127,7 +127,7 @@ namespace Tpf.BlobStoring.Minio
                     return _client;
                 }
 
-                var minioOptions = ConfigHelper.GetOptions<BlobStoringOptions>(BlobStoringOptions.Name)?.Minio;
+                var minioOptions = ConfigHelper.GetOptions<MinioOptions>();
 
                 if (string.IsNullOrEmpty(minioOptions?.AccessKey) || string.IsNullOrEmpty(minioOptions?.SecretKey) || string.IsNullOrEmpty(minioOptions?.EndPoint))
                 {

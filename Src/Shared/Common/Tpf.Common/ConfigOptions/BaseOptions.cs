@@ -1,23 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Tpf.Common.ConfigOptions
+﻿namespace Tpf.Common.ConfigOptions
 {
+    /// <summary>
+    /// BaseOptions
+    /// </summary>
     public abstract class BaseOptions
     {
-        public abstract string GetOptionsName();
+        /// <summary>
+        /// SectionName
+        /// </summary>
+        public abstract string SectionName {  get; }
 
     }
 
-    public interface IBaseOptions
-    {
-        public string CurrentOptionsName { get; }
+    //public interface IBaseOptions
+    //{
+    //    public string CurrentOptionsName { get; }
 
-        //string CurrentOptionsName();
+    //    //string CurrentOptionsName();
 
-    }
+    //}
 
 }

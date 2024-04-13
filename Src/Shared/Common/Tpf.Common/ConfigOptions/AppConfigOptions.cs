@@ -8,10 +8,7 @@ namespace Tpf.Common.ConfigOptions
 {
     public class AppConfigOptions : BaseOptions
     {
-        public override string GetOptionsName()
-        {
-            return "App";
-        }
+        public override string SectionName => "App";
 
     }
 }
