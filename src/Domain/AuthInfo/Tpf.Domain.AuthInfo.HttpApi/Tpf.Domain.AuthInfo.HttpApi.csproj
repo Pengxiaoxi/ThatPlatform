@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Component\Tpf.Autofac\Tpf.Autofac.csproj" />
+    <ProjectReference Include="..\..\..\Component\Tpf.AutoMapper\Tpf.AutoMapper.csproj" />
+    <ProjectReference Include="..\..\..\Component\Tpf.Security\Tpf.Security.csproj" />
+    <ProjectReference Include="..\..\Base\Tpf.Domain.Base.HttpApi\Tpf.Domain.Base.HttpApi.csproj" />
+    <ProjectReference Include="..\Tpf.Domain.AuthInfo.Applciation\Tpf.Domain.AuthInfo.Applciation.csproj" />
+    <ProjectReference Include="..\Tpf.Domain.AuthInfo.Domain\Tpf.Domain.AuthInfo.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

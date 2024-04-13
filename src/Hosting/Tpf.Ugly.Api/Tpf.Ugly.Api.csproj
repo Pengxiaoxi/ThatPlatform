@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="bin\**" />
+    <Compile Remove="obj\**" />
+    <Content Remove="bin\**" />
+    <Content Remove="obj\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <EmbeddedResource Remove="obj\**" />
+    <None Remove="bin\**" />
+    <None Remove="obj\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="protobuf-net.Grpc.AspNetCore" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Component\Tpf.Grpc.Server\Tpf.Grpc.Server.csproj" />
+    <ProjectReference Include="..\..\Domain\AuthInfo\Tpf.Domain.AuthInfo.Domain\Tpf.Domain.AuthInfo.Domain.csproj" />
+    <ProjectReference Include="..\..\Domain\Base\Tpf.Domain.Base.HttpApi\Tpf.Domain.Base.HttpApi.csproj" />
+    <ProjectReference Include="..\..\Shared\Common\Tpf.Common\Tpf.Common.csproj" />
+    <ProjectReference Include="..\..\Component\Tpf.Grpc.Server\Tpf.Grpc.Server.csproj" />
+    <ProjectReference Include="..\..\Shared\Middlewares\Tpf.Middlewares\Tpf.Middlewares.csproj" />
+    <ProjectReference Include="..\..\Shared\ORM\Tpf.EntityFrameworkCore\Tpf.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+</Project>

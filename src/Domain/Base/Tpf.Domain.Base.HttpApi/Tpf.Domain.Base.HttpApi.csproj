@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\ORM\Tpf.Dapper\Tpf.Dapper.csproj" />
+    <ProjectReference Include="..\..\..\Shared\ORM\Tpf.EntityFrameworkCore\Tpf.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\..\Shared\ORM\Tpf.SqlSugar\Tpf.SqlSugar.csproj" />
+    <ProjectReference Include="..\..\..\Shared\ORM\Tpf.Uow\Tpf.Uow.csproj" />
+    <ProjectReference Include="..\Tpf.Domain.Base.Application\Tpf.Domain.Base.Application.csproj" />
+  </ItemGroup>
+
+</Project>
