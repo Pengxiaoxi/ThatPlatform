@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Tpf.Common.ConfigOptions;
+using Tpf.Common.Config;
 using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
 using Tpf.Domain.AuthInfo.Domain.Entity;
@@ -226,13 +226,23 @@ namespace Tpf.Domain.AuthInfo.Applciation.Impl
         public async Task<UserContextInfo> GetCurrentUserInfo()
         {
             var account = UserContext.CurrentUserAccount;
-            var model = await base.GetAsync(x => x.Account == account);
 
-            var result = _mapper.Map<UserContextInfo>(model);
+            var contextInfo = await RedisHelper.HGetAsync<UserContextInfo>(RedisKey.UserContext, account);
+            if (contextInfo is not null)
+            {
+                return contextInfo;
+            }
+
+            var model = await base.GetAsync(x => x.Account == account);
+            contextInfo = _mapper.Map<UserContextInfo>(model);
+
+
 
             // TODO： 一些其他属性
 
-            return result;
+            await RedisHelper.HSetAsync(RedisKey.UserContext, account, contextInfo);
+
+            return contextInfo;
         }
 
         #endregion

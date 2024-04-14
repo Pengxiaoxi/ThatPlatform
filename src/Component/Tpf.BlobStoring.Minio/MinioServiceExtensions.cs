@@ -1,41 +1,35 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Minio;
-using Tpf.Common.Config;
-using Tpf.Utils;
 
 namespace Tpf.BlobStoring.Minio
 {
-    public static class MinIOServiceExtensions
+    public static class MinioServiceExtensions
     {
         /// <summary>
         /// Minio Client
         /// </summary>
         /// <param name="services"></param>
-        public static void AddMinioClient(this IServiceCollection services)
+        public static void AddMinioClient(this IHostApplicationBuilder builder)
         {
-            //var accessKey = AppSettings.App("MinIO", "AccessKey");
-            //var secretKey = AppSettings.App("MinIO", "SecretKey");
-            //var endPoint = AppSettings.App("MinIO", "EndPoint");
+            var minioOptions = builder.Configuration.GetSection(new MinioOptions().SectionName)?.Get<MinioOptions>();
+            var withSSL = minioOptions?.WithSSL ?? false;
 
-            var accessKey = ConfigHelper.Get(AppConfig.Minio_AccessKey);
-            var secretKey = ConfigHelper.Get(AppConfig.Minio_SecretKey);
-            var endPoint = ConfigHelper.Get(AppConfig.Minio_EndPoint);
-            var withSSL = Convert.ToBoolean(ConfigHelper.Get(AppConfig.Minio_WithSSL));
-            if (string.IsNullOrEmpty(accessKey) || string.IsNullOrEmpty(secretKey) || string.IsNullOrEmpty(endPoint))
+            if (string.IsNullOrEmpty(minioOptions?.AccessKey) || string.IsNullOrEmpty(minioOptions ?.SecretKey) || string.IsNullOrEmpty(minioOptions?.EndPoint))
             {
                 throw new Exception("GetMinioClient faild, MinIO config is null.");
             }
 
-            if (string.IsNullOrEmpty(accessKey) || string.IsNullOrEmpty(secretKey) || string.IsNullOrEmpty(endPoint))
+            if (string.IsNullOrEmpty(minioOptions.AccessKey) || string.IsNullOrEmpty(minioOptions.SecretKey) || string.IsNullOrEmpty(minioOptions.EndPoint))
             {
                 return;
             }
 
-            services.AddMinio(configureClient =>
+            builder.Services.AddMinio(configureClient =>
             {
                 configureClient
-                    .WithCredentials(accessKey, secretKey)
-                    .WithEndpoint(endPoint)
+                    .WithCredentials(minioOptions.AccessKey, minioOptions.SecretKey)
+                    .WithEndpoint(minioOptions.EndPoint)
                     //.WithRegion()
                     .WithTimeout(60 * 1000) // 60s
                     .WithSSL(withSSL)

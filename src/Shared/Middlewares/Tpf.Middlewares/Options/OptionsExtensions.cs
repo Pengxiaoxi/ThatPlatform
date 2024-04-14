@@ -20,8 +20,6 @@ namespace Tpf.Middlewares.Options
 
             //builder.Services.Configure<HttpApisOptions>(builder.Configuration.GetSection(HttpApisOptions.Name));
 
-            
-
 
             #region TODO: 批量配置 Options
             //var optionTypes = AppDomain.CurrentDomain.GetAssemblies()

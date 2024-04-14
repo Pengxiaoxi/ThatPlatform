@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Tpf.Authentication.Jwt;
 using Tpf.Autofac;
 using Tpf.AutoMapper;
-using Tpf.Jobs.Hangfire;
+using Tpf.Caching.CSRedisCore;
 using Tpf.Middlewares.Log4Net;
 using Tpf.Middlewares.Newtonsoft;
 using Tpf.Middlewares.Options;
@@ -69,7 +69,7 @@ namespace Tpf.Middlewares
 
             #endregion
 
-
+            builder.AddTpfCSRedisCore();
 
 
             #region 接口服务注册 Demo
