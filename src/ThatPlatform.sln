@@ -116,6 +116,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Jobs.AotApi", "Hosting\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AotHosting", "AotHosting", "{33977981-C19B-47BA-96AA-F2F50CB5F0EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tpf.Caching.CSRedisCore", "Component\Tpf.Caching.CSRedisCore\Tpf.Caching.CSRedisCore.csproj", "{5FF2F02F-5C81-4343-BE90-5F074464E1A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -286,6 +288,10 @@ Global
 		{A365C48D-7A73-4344-96F6-BA30870E02E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A365C48D-7A73-4344-96F6-BA30870E02E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A365C48D-7A73-4344-96F6-BA30870E02E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FF2F02F-5C81-4343-BE90-5F074464E1A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FF2F02F-5C81-4343-BE90-5F074464E1A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FF2F02F-5C81-4343-BE90-5F074464E1A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FF2F02F-5C81-4343-BE90-5F074464E1A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -343,6 +349,7 @@ Global
 		{7553F6BA-DCBA-4856-927E-4F6141764DFC} = {0CA5A09A-1517-43B4-AC25-898E6D96F307}
 		{A365C48D-7A73-4344-96F6-BA30870E02E5} = {33977981-C19B-47BA-96AA-F2F50CB5F0EB}
 		{33977981-C19B-47BA-96AA-F2F50CB5F0EB} = {4A2CA3DC-2082-42F2-B3FA-67B203397DDB}
+		{5FF2F02F-5C81-4343-BE90-5F074464E1A1} = {0CA5A09A-1517-43B4-AC25-898E6D96F307}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48D4C4BC-746F-4767-959F-CB1A9FAD11C8}

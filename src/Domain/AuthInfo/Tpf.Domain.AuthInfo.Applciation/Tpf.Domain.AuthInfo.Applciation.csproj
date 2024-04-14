@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Component\Tpf.Caching.CSRedisCore\Tpf.Caching.CSRedisCore.csproj" />
     <ProjectReference Include="..\..\..\Component\Tpf.Grpc.Client\Tpf.Grpc.Client.csproj" />
     <ProjectReference Include="..\..\..\Shared\Middlewares\Tpf.Authentication\Tpf.Authentication.csproj" />
     <ProjectReference Include="..\..\..\Shared\ORM\Tpf.EntityFrameworkCore\Tpf.EntityFrameworkCore.csproj" />

@@ -25,6 +25,7 @@
     <ProjectReference Include="..\..\..\Component\Tpf.Autofac\Tpf.Autofac.csproj" />
     <ProjectReference Include="..\..\..\Component\Tpf.AutoMapper\Tpf.AutoMapper.csproj" />
     <ProjectReference Include="..\..\..\Component\Tpf.BlobStoring.Minio\Tpf.BlobStoring.Minio.csproj" />
+    <ProjectReference Include="..\..\..\Component\Tpf.Caching.CSRedisCore\Tpf.Caching.CSRedisCore.csproj" />
     <ProjectReference Include="..\..\..\Component\Tpf.Jobs.Hangfire\Tpf.Jobs.Hangfire.csproj" />
     <ProjectReference Include="..\..\Common\Tpf.Common\Tpf.Common.csproj" />
     <ProjectReference Include="..\..\ORM\Tpf.SqlSugar\Tpf.SqlSugar.csproj" />
