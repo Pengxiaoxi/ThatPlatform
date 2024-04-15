@@ -13,7 +13,7 @@ namespace Tpf.Domain.Common.RestApplication
         /// </summary>
         /// <returns></returns>
         [Get("/userInfo/getCurrentUserInfo")]
-        Task<ServiceResult<UserContextInfo>> GetCurrentUserInfo();
+        Task<Result<UserContextInfo>> GetCurrentUserInfo();
 
 
     }

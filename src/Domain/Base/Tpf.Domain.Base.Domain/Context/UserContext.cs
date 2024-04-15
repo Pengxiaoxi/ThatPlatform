@@ -47,12 +47,14 @@ namespace Tpf.Domain.Base.Domain.Context
 
         private static string? GetToken()
         {
-            if (HttpContext?.Request?.Headers != null && HttpContext.Request.Headers.ContainsKey(HeaderNames.Authorization))
-            {
-                return HttpContext?.Request?.Headers[HeaderNames.Authorization];
-            }
+            //if (HttpContext?.Request?.Headers != null && HttpContext.Request.Headers.ContainsKey(HeaderNames.Authorization))
+            //{
+            //    return HttpContext?.Request?.Headers[HeaderNames.Authorization];
+            //}
 
-            throw new ArgumentNullException(HeaderNames.Authorization);
+            //throw new ArgumentNullException(HeaderNames.Authorization);
+
+            return HttpContext?.Request?.Headers[HeaderNames.Authorization];
         }
 
         #endregion

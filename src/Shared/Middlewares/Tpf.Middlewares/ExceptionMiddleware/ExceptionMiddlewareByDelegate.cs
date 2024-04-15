@@ -48,7 +48,7 @@ namespace Tpf.Middlewares
             context.Response.ContentType = "application/json";
 
 
-            await context.Response.WriteAsync(JsonConvert.SerializeObject(ServiceResult<string>.IsFailed(e?.Message)));
+            await context.Response.WriteAsync(JsonConvert.SerializeObject(Result<string>.IsFailed(e?.Message)));
             //await context.Response.WriteAsync(e?.Message).ConfigureAwait(false);
         }
 

@@ -25,19 +25,19 @@ namespace Tpf.Domain.Base.HttpApi
         #endregion
 
         #region Response
-        public ServiceResult<T> Success<T>(T data = default, string? message = default)
+        public Result<T> Success<T>(T data = default, string? message = default)
         {
-            return ServiceResult<T>.IsSuccess(data, message);
+            return Result<T>.IsSuccess(data, message);
         }
 
-        public ServiceResult<T> Failed<T>(T data = default, string? message = default)
+        public Result<T> Failed<T>(T data = default, string? message = default)
         {
-            return ServiceResult<T>.IsFailed(data, message);
+            return Result<T>.IsFailed(data, message);
         }
 
-        public ServiceResult<T> Failed<T>(string? message = default)
+        public Result<T> Failed<T>(string? message = default)
         {
-            return ServiceResult<T>.IsFailed(default, message);
+            return Result<T>.IsFailed(default, message);
         }
         #endregion
 
