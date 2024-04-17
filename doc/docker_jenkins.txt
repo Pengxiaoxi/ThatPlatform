@@ -1,0 +1,1 @@
+docker run -d -p 8080:8080 -p 50000:50000 -v /var/jenkins_mount:/apps/develops/jenkins -v /etc/localtime:/etc/localtime --name jenkins docker.io/jenkinsci/blueocean

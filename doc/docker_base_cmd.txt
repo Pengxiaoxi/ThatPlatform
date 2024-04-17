@@ -1,3 +1,4 @@
+https://docker-practice.github.io/zh-cn/image/rm.html
 
 # 生成镜像
 docker build -t tpf_docker .
