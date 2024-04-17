@@ -19,7 +19,12 @@ namespace Tpf.Caching.CSRedisCore
         {
             var redisOptions = ConfigHelper.GetOptions<RedisOptions>();
 
-            Check.NotNull(redisOptions, nameof(redisOptions));
+            if (redisOptions is null)
+            {
+                return;
+            }
+
+            //Check.NotNull(redisOptions, nameof(redisOptions));
 
             CSRedisClient csredis = null;
             if (!string.IsNullOrWhiteSpace(redisOptions.Default))
@@ -31,7 +36,7 @@ namespace Tpf.Caching.CSRedisCore
                 csredis = new CSRedis.CSRedisClient(null, redisOptions.Cluser);
             }
 
-            Check.NotNull(csredis, nameof(csredis), "RedisOptions not be null.");
+            Check.NotNull(csredis, nameof(csredis), "CSRedisClient not be null.");
 
             RedisHelper.Initialization(csredis);
 
