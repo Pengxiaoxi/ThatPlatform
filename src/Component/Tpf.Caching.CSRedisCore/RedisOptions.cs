@@ -16,7 +16,7 @@ namespace Tpf.Caching.CSRedisCore
 
 
         // Cluser...
-        public string[]? Cluser { get; set; }
+        public string[]? Clusers { get; set; }
 
     }
 }

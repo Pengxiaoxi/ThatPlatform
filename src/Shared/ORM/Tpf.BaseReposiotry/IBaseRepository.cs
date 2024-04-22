@@ -1,8 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 using Tpf.Domain.Base.Domain.Entity;
-using Tpf.Security;
-using Tpf.Utils;
 
 namespace Tpf.BaseRepository
 {

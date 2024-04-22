@@ -31,9 +31,9 @@ namespace Tpf.Caching.CSRedisCore
             {
                 csredis = new CSRedis.CSRedisClient(redisOptions.Default);
             }
-            else if (redisOptions.Cluser != null && redisOptions.Cluser.Length > 0)
+            else if (redisOptions.Clusers != null && redisOptions.Clusers.Length > 0)
             {
-                csredis = new CSRedis.CSRedisClient(null, redisOptions.Cluser);
+                csredis = new CSRedis.CSRedisClient(null, redisOptions.Clusers);
             }
 
             Check.NotNull(csredis, nameof(csredis), "CSRedisClient not be null.");

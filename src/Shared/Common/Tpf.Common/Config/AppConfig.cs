@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tpf.Common.Config
 {
+    [Obsolete]
     public partial class AppConfig
     {
         public const string SecurityKey16 = "App:Security16";
@@ -15,7 +16,7 @@ namespace Tpf.Common.Config
         #region Database|ConnectionString
 
         public const string Database_Main = "Database:Main";
-        public const string Database_Slave = "Database:Slave";
+        //public const string Database_Slave = "Database:Slave";
 
 
         public const string ConnectionString_Default = "Default";
