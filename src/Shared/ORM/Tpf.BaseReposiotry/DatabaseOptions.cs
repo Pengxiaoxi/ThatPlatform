@@ -31,6 +31,7 @@ namespace Tpf.BaseRepository
         /// <summary>
         /// 其他ORM（配置后自动注入，便于直接使用）
         /// </summary>
+        [Obsolete("改配置不如改代码")]
         public string[]? Slaves { get; set; }
     }
 

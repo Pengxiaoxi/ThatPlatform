@@ -1,15 +1,11 @@
 ﻿using Autofac;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Tpf.Autofac;
 using Tpf.BaseRepository;
 using Tpf.Common.Enum;
 using Tpf.Dapper.Repository;
-using Tpf.Domain.Base.Application.Impl;
-using Tpf.Domain.Base.Application.Svc;
 using Tpf.EntityFrameworkCore;
 using Tpf.EntityFrameworkCore.Repository;
-using Tpf.MongoDB.Respository;
 using Tpf.SqlSugar.Respository;
 using Tpf.Uow;
 using Tpf.Utils;
@@ -29,23 +25,18 @@ namespace Tpf.Domain.Base.HttpApi
             var databaseOptions = ConfigHelper.GetOptions<DatabaseOptions>();
             if (databaseOptions != null )
             {
-                if (databaseOptions.ORMOptions != null && databaseOptions.ORMOptions.Slaves != null)
-                {
-                    var allORM = databaseOptions.ORMOptions.Slaves.Select(x => Enum.)
-                }
-
-                builder.RegisterGeneric(typeof(EFCoreRepository<>)).Keyed(RepositoryType.EFCore, typeof(IBaseRepository<>)).InstancePerLifetimeScope();
-                builder.RegisterGeneric(typeof(DapperRepository<>)).Keyed(RepositoryType.Dapper, typeof(IBaseRepository<>)).InstancePerLifetimeScope();
                 builder.RegisterGeneric(typeof(SqlSugerRepository<>)).Keyed(RepositoryType.SqlSugar, typeof(IBaseRepository<>)).InstancePerLifetimeScope();
+
+                //builder.RegisterGeneric(typeof(EFCoreRepository<>)).Keyed(RepositoryType.EFCore, typeof(IBaseRepository<>)).InstancePerLifetimeScope();
+                //builder.RegisterGeneric(typeof(DapperRepository<>)).Keyed(RepositoryType.Dapper, typeof(IBaseRepository<>)).InstancePerLifetimeScope();
                 //builder.RegisterGeneric(typeof(MongoDBRepository<>)).Keyed(RepositoryType.Mongo, typeof(IBaseRepository<>)).InstancePerLifetimeScope();
 
-                builder.RegisterGeneric(typeof(EFCoreRepository<>)).As(typeof(IEFCoreRepository<>)).InstancePerLifetimeScope();
-                builder.RegisterGeneric(typeof(DapperRepository<>)).As(typeof(IDapperRepository<>)).InstancePerLifetimeScope();
                 builder.RegisterGeneric(typeof(SqlSugerRepository<>)).As(typeof(ISqlSugerRepository<>)).InstancePerLifetimeScope();
+
+                //builder.RegisterGeneric(typeof(EFCoreRepository<>)).As(typeof(IEFCoreRepository<>)).InstancePerLifetimeScope();
+                //builder.RegisterGeneric(typeof(DapperRepository<>)).As(typeof(IDapperRepository<>)).InstancePerLifetimeScope();
                 //builder.RegisterGeneric(typeof(MongoDBRepository<>)).As(typeof(IMongoDBRepository<>)).InstancePerLifetimeScope();
             }
-
-
 
             // TpfDbContextBase
             builder.RegisterType(typeof(TpfDbContextBase)).InstancePerLifetimeScope();

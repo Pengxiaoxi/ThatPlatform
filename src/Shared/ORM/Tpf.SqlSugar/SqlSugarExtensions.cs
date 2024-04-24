@@ -24,7 +24,7 @@ namespace Tpf.SqlSugar
                     throw new ArgumentNullException($"{dbType} ConnectionString");
                 }
 
-                var dbConnections = new Dictionary<DBType, string>()
+                var dbConnections = new Dictionary<DBTypeEnum, string>()
                 {
                     { dbType, mainConn }
                 };
