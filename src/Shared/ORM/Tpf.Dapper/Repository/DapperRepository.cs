@@ -215,12 +215,12 @@ namespace Tpf.Dapper.Repository
 
             switch (dbType)
             {
-                case DBType.MySql:
+                case DBTypeEnum.MySql:
                     return new MySqlConnection(conn);
-                case DBType.PostgreSQL:
+                case DBTypeEnum.PostgreSQL:
                     return new NpgsqlConnection(conn);
-                case DBType.MongoDB:
-                case DBType.SqlServer:
+                case DBTypeEnum.MongoDB:
+                case DBTypeEnum.SqlServer:
                 default:
                     throw new Exception("获取 DbConnection 失败, 目前仅支持 Mysql|PgSql");
             }

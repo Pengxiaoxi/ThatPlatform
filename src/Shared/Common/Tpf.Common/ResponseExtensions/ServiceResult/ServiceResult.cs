@@ -10,7 +10,7 @@ namespace Tpf.Common.ResponseExtensions.ServiceResult
     /// <summary>
     /// ServiceResult
     /// </summary>
-    //public class ServiceResult
+    //public class Result
     //{
     //    /// <summary>
     //    /// 响应码
@@ -43,9 +43,9 @@ namespace Tpf.Common.ResponseExtensions.ServiceResult
     //    /// <param name="message"></param>
     //    /// <param name="data"></param>
     //    /// <returns></returns>
-    //    public static ServiceResult IsSuccess(string message = "")
+    //    public static Result IsSuccess(string message = "")
     //    {
-    //        return new ServiceResult()
+    //        return new Result()
     //        {
     //            Message = message,
     //            Code = ServiceResultCodeEnum.Succeed
@@ -58,9 +58,9 @@ namespace Tpf.Common.ResponseExtensions.ServiceResult
     //    /// <param name="message"></param>
     //    /// <param name="data"></param>
     //    /// <returns></returns>
-    //    public static ServiceResult IsFailed(string message = "", Exception exception = null)
+    //    public static Result IsFailed(string message = "", Exception exception = null)
     //    {
-    //        return new ServiceResult()
+    //        return new Result()
     //        {
     //            //Message = $"{message},Exception: {exception?.Message}, StackTrace: {exception?.StackTrace}",
     //            Message = message,
@@ -74,9 +74,9 @@ namespace Tpf.Common.ResponseExtensions.ServiceResult
     //    /// <param name="exexception></param>
     //    /// <param name="data"></param>
     //    /// <returns></returns>
-    //    public static ServiceResult IsFailed(Exception exception)
+    //    public static Result IsFailed(Exception exception)
     //    {
-    //        return new ServiceResult()
+    //        return new Result()
     //        {
     //            Message = exception.InnerException?.StackTrace,
     //            Code = ServiceResultCodeEnum.Failed

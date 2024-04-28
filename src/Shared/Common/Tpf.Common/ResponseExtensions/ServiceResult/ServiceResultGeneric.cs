@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 namespace Tpf.Common.ResponseExtensions.ServiceResult
 {
     /// <summary>
-    /// ServiceResult
+    /// Result
     /// </summary>
-    public partial class ServiceResult<T> // : ServiceResult
+    public partial class Result<T> // : Result
     {
         /// <summary>
         /// 响应成功
         /// </summary>
         /// <param name="data"></param>
         /// <param name="message"></param>
-        public static ServiceResult<T> IsSuccess(T data = default, string message = "")
+        public static Result<T> IsSuccess(T data = default, string message = "")
         {
-            return new ServiceResult<T>()
+            return new Result<T>()
             {
                 Message = message,
                 Code = ServiceResultCodeEnum.Succeed.GetHashCode(),
@@ -32,9 +32,9 @@ namespace Tpf.Common.ResponseExtensions.ServiceResult
         /// </summary>
         /// <param name="data"></param>
         /// <param name="message"></param>
-        public static ServiceResult<T> IsFailed(string message, Exception exception = null)
+        public static Result<T> IsFailed(string message, Exception exception = null)
         {
-            return new ServiceResult<T>()
+            return new Result<T>()
             {
                 Message = $"Exception: {message}",
                 Code = ServiceResultCodeEnum.Failed.GetHashCode(),
@@ -46,9 +46,9 @@ namespace Tpf.Common.ResponseExtensions.ServiceResult
         /// </summary>
         /// <param name="data"></param>
         /// <param name="message"></param>
-        public static ServiceResult<T> IsFailed(T data = default, string message = "")
+        public static Result<T> IsFailed(T data = default, string message = "")
         {
-            var innerResult = new ServiceResult<T>()
+            var innerResult = new Result<T>()
             {
                 Code = ServiceResultCodeEnum.Failed.GetHashCode(),
             };
@@ -70,7 +70,7 @@ namespace Tpf.Common.ResponseExtensions.ServiceResult
         }
     }
 
-    public partial class ServiceResult<T>
+    public partial class Result<T>
     {
         /// <summary>
         /// 返回结果

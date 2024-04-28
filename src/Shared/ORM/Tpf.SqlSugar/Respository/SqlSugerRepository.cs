@@ -37,8 +37,8 @@ namespace Tpf.SqlSugar.Respository
         public override async Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>>? expression = null)
         {
             return await _db.Queryable<TEntity>()
-                .WhereIF(expression != null, expression)
-                .ToListAsync();
+                            .WhereIF(expression != null, expression)
+                            .ToListAsync();
         }
 
         public override async Task<bool> InsertAsync(TEntity entity)
@@ -64,9 +64,9 @@ namespace Tpf.SqlSugar.Respository
         public override async Task<bool> UpdateAsync(Expression<Func<TEntity, bool>> whereExpression, Expression<Func<TEntity, TEntity>> updateExpression)
         {
             return await _db.Updateable<TEntity>()
-                .SetColumns(updateExpression)
-                .WhereIF(whereExpression != null, whereExpression)
-                .ExecuteCommandHasChangeAsync();
+                            .SetColumns(updateExpression)
+                            .WhereIF(whereExpression != null, whereExpression)
+                            .ExecuteCommandHasChangeAsync();
         }
 
         public override async Task<bool> DeleteAsync(TEntity entity)
@@ -86,22 +86,22 @@ namespace Tpf.SqlSugar.Respository
         public override async Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> whereExpression)
         {
             return await _db.Deleteable<TEntity>()
-                .Where(whereExpression)
-                .ExecuteCommandHasChangeAsync();
+                            .Where(whereExpression)
+                            .ExecuteCommandHasChangeAsync();
         }
 
         public override async Task<int> CountAsync(Expression<Func<TEntity, bool>>? whereExpression = null)
         {
             return await _db.Queryable<TEntity>()
-                .WhereIF(whereExpression != null, whereExpression)
-                .CountAsync();
+                            .WhereIF(whereExpression != null, whereExpression)
+                            .CountAsync();
         }
 
         public override async Task<bool> AnyAsync(Expression<Func<TEntity, bool>> whereExpression)
         {
             return await _db.Queryable<TEntity>()
-                .WhereIF(whereExpression != null, whereExpression)
-                .AnyAsync();
+                            .WhereIF(whereExpression != null, whereExpression)
+                            .AnyAsync();
         }
 
         #endregion

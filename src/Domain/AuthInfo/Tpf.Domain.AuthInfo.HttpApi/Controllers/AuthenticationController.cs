@@ -51,7 +51,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
         /// <exception cref="Exception"></exception>
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ServiceResult<bool>> Register(RegisterDto dto)
+        public async Task<Result<bool>> Register(RegisterDto dto)
         {
             if (dto is null || string.IsNullOrEmpty(dto.Account) || string.IsNullOrEmpty(dto.Password))
             {
@@ -61,7 +61,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
             var isExist = await _userService.AnyAsync(x => x.Account == dto.Account);
             if (isExist)
             {
-                return ServiceResult<bool>.IsFailed(false, $"当前账号已存在：{dto.Account}");
+                return Result<bool>.IsFailed(false, $"当前账号已存在：{dto.Account}");
             }
 
             var user = _mapper.Map<UserInfo>(dto);
@@ -80,7 +80,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
         /// <exception cref="Exception"></exception>
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ServiceResult<LoginOutputDto>> Login(LoginInputDto dto)
+        public async Task<Result<LoginOutputDto>> Login(LoginInputDto dto)
         {
             var user = await _userService.GetAsync(x => x.Account == dto.Account);
             if (user is null)
@@ -109,7 +109,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
         /// <param name="account"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ServiceResult<bool>> Logout(string account)
+        public async Task<Result<bool>> Logout(string account)
         {
             // 由于 token 无状态且一次性，注销登录简单做法直接前端清空缓存的 token；
             // 但为了避免token泄露被非法一直使用，因此可使用 redis/ db 兜底，注销登录的token加入过期黑名单

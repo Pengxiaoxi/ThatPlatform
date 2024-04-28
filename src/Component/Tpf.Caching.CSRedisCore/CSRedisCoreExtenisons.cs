@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Tpf.Security;
 using Tpf.Utils;
 using Tpf.Utils.Check;
 
@@ -19,19 +20,28 @@ namespace Tpf.Caching.CSRedisCore
         {
             var redisOptions = ConfigHelper.GetOptions<RedisOptions>();
 
-            Check.NotNull(redisOptions, nameof(redisOptions));
+            if (redisOptions is null || redisOptions.Enable == false)
+            {
+                return;
+            }
+
+            //Check.NotNull(redisOptions, nameof(redisOptions));
 
             CSRedisClient csredis = null;
             if (!string.IsNullOrWhiteSpace(redisOptions.Default))
             {
-                csredis = new CSRedis.CSRedisClient(redisOptions.Default);
+                var defaultConn = AESHelper.Decrypt(redisOptions.Default, ConfigHelper.GetSecurityKey16());
+
+                csredis = new CSRedis.CSRedisClient(defaultConn);
             }
-            else if (redisOptions.Cluser != null && redisOptions.Cluser.Length > 0)
+            else if (redisOptions.Clusers != null && redisOptions.Clusers.Length > 0)
             {
-                csredis = new CSRedis.CSRedisClient(null, redisOptions.Cluser);
+                var cluserConns = redisOptions.Clusers.Select(x => AESHelper.Decrypt(x, ConfigHelper.GetSecurityKey16())).ToArray();
+
+                csredis = new CSRedis.CSRedisClient(null, cluserConns);
             }
 
-            Check.NotNull(csredis, nameof(csredis), "RedisOptions not be null.");
+            Check.NotNull(csredis, nameof(csredis), "CSRedisClient not be null.");
 
             RedisHelper.Initialization(csredis);
 

@@ -37,7 +37,7 @@ namespace Tpf.Jobs.QuartzNet
         /// <typeparam name="T"></typeparam>
         /// <param name="trigger"></param>
         /// <returns></returns>
-        public async Task<ServiceResult<string>> StartJobAsync<T>() where T : IQuartzJob
+        public async Task<Result<string>> StartJobAsync<T>() where T : IQuartzJob
         {
             try
             {
@@ -46,7 +46,7 @@ namespace Tpf.Jobs.QuartzNet
                 //开启调度器
                 if (_scheduler.IsStarted)
                 {
-                    return ServiceResult<string>.IsSuccess(null, $"StartJobAsync Faild: {typeof(T).Name} Aleardy Exists");
+                    return Result<string>.IsSuccess(null, $"StartJobAsync Faild: {typeof(T).Name} Aleardy Exists");
                 }
                 await _scheduler.Start();
 
@@ -63,13 +63,13 @@ namespace Tpf.Jobs.QuartzNet
 
                 var message = $"StartJobAsync Success: {typeof(T).Name}";
                 _log.Info(message);
-                return ServiceResult<string>.IsSuccess(null, message);
+                return Result<string>.IsSuccess(null, message);
             }
             catch (Exception ex)
             {
                 var message = $"StartJobAsync Faild: {typeof(T).Name}";
                 _log.Error(message);
-                return ServiceResult<string>.IsFailed(message, ex);
+                return Result<string>.IsFailed(message, ex);
             }
         }
 
@@ -79,7 +79,7 @@ namespace Tpf.Jobs.QuartzNet
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public async Task<ServiceResult<string>> StopJobAsync<T>() where T : IQuartzJob
+        public async Task<Result<string>> StopJobAsync<T>() where T : IQuartzJob
         {
             try
             {
@@ -93,13 +93,13 @@ namespace Tpf.Jobs.QuartzNet
 
                 var message = $"StopJobAsync Success: {typeof(T).Name}";
                 _log.Info(message);
-                return ServiceResult<string>.IsSuccess(null, message);
+                return Result<string>.IsSuccess(null, message);
             }
             catch (Exception ex)
             {
                 var message = $"StopJobAsync Faild: {typeof(T).Name}";
                 _log.Error(message);
-                return ServiceResult<string>.IsFailed(message, ex);
+                return Result<string>.IsFailed(message, ex);
             }
         }
 
@@ -109,7 +109,7 @@ namespace Tpf.Jobs.QuartzNet
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public async Task<ServiceResult<string>> StopAllJobsAsync()
+        public async Task<Result<string>> StopAllJobsAsync()
         {
             try
             {
@@ -134,13 +134,13 @@ namespace Tpf.Jobs.QuartzNet
                     }
                 }
 
-                return ServiceResult<string>.IsSuccess(null, $"StopAllJobsAsync Success");
+                return Result<string>.IsSuccess(null, $"StopAllJobsAsync Success");
             }
             catch (Exception ex)
             {
                 var message = $"StopAllJobsAsync Faild";
                 _log.Error(message);
-                return ServiceResult<string>.IsFailed(message, ex);
+                return Result<string>.IsFailed(message, ex);
             }
         }
 

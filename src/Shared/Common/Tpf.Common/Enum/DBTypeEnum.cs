@@ -1,9 +1,9 @@
 ﻿namespace Tpf.Common.Enum
 {
     /// <summary>
-    /// DBType
+    /// DBTypeEnum
     /// </summary>
-    public enum DBType
+    public enum DBTypeEnum
     {
         MySql = 0,
 

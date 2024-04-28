@@ -33,10 +33,10 @@ namespace Tpf.Tool.DbOperate.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ServiceResult<object>> GetOrgByUserByGrpcExample()
+        public async Task<Result<object>> GetOrgByUserByGrpcExample()
         {
             var result = await _userService.GetOrgByUserByGrpc();
-            return ServiceResult<object>.IsSuccess(result);
+            return Result<object>.IsSuccess(result);
         }
 
     }

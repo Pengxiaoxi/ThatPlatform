@@ -35,11 +35,11 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ServiceResult<List<UserInfoOutputDto>>> GetList([FromQuery] UserInfoQueryDto query)
+        public async Task<Result<List<UserInfoOutputDto>>> GetList([FromQuery] UserInfoQueryDto query)
         {
             var result = await _userService.GetUserInfoList(query);
 
-            return ServiceResult<List<UserInfoOutputDto>>.IsSuccess(result);
+            return Result<List<UserInfoOutputDto>>.IsSuccess(result);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ServiceResult<bool>> Save(UserInfo model)
+        public async Task<Result<bool>> Save(UserInfo model)
         {
             var result = await _userService.Save(model);
 
@@ -60,7 +60,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ServiceResult<bool>> Delete([FromBody] string id)
+        public async Task<Result<bool>> Delete([FromBody] string id)
         {
             //var result = await _userService.DeleteAsync(x => ids.Contains(x.Id)); 
 
@@ -74,7 +74,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ServiceResult<UserContextInfo>> GetCurrentUserInfo()
+        public async Task<Result<UserContextInfo>> GetCurrentUserInfo()
         {
             var result = await _userService.GetCurrentUserInfo();
 

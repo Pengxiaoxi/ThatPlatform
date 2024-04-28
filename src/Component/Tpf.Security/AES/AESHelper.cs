@@ -18,7 +18,7 @@ namespace Tpf.Security
         /// <param name="key">密钥</param>
         /// <param name="iv">偏移量</param>
         /// <returns></returns>
-        public static byte[] Encrypt(byte[] ciphertext, byte[] key, byte[] iv)
+        private static byte[] Encrypt(byte[] ciphertext, byte[] key, byte[] iv)
         {
             IBufferedCipher cipher = CipherUtilities.GetCipher("AES/CTR/PKCS7Padding");
             cipher.Init(true, new ParametersWithIV(ParameterUtilities.CreateKeyParameter("AES", key), iv));
@@ -32,7 +32,7 @@ namespace Tpf.Security
         /// <param name="key">密钥</param>
         /// <param name="iv">偏移量</param>
         /// <returns></returns>
-        public static byte[] Decrypt(byte[] ciphertext, byte[] key, byte[] iv)
+        private static byte[] Decrypt(byte[] ciphertext, byte[] key, byte[] iv)
         {
             IBufferedCipher cipher = CipherUtilities.GetCipher("AES/CTR/PKCS7Padding");
             cipher.Init(false, new ParametersWithIV(ParameterUtilities.CreateKeyParameter("AES", key), iv));

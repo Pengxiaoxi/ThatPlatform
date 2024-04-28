@@ -29,7 +29,7 @@ namespace Tpf.Tool.DbOperate.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ServiceResult<string>> StartMongoDBBackupJob()
+        public async Task<Result<string>> StartMongoDBBackupJob()
         {
             var result = await _quartzJobCenterService.StartJobAsync<MongoDBAutoBackupJob>();
             return result;
@@ -40,7 +40,7 @@ namespace Tpf.Tool.DbOperate.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ServiceResult<string>> StopMongoDBBackupJob()
+        public async Task<Result<string>> StopMongoDBBackupJob()
         {
             var result = await _quartzJobCenterService.StopJobAsync<MongoDBAutoBackupJob>();
             return result;
@@ -51,7 +51,7 @@ namespace Tpf.Tool.DbOperate.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ServiceResult<string>> StopAllJobsAsync()
+        public async Task<Result<string>> StopAllJobsAsync()
         {
             var result = await _quartzJobCenterService.StopAllJobsAsync();
             return result;

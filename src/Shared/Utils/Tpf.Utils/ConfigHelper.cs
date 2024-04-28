@@ -114,15 +114,11 @@ namespace Tpf.Utils
             return mainORM;
         }
 
-        public static DBType GetMainDB()
+        public static DBTypeEnum GetMainDB()
         {
-            var mainDB = default(DBType);
-
             var configMainDB = ConfigHelper.Get(AppConfig.Database_Main);
-            if (!string.IsNullOrEmpty(configMainDB))
-            {
-                Enum.TryParse<DBType>(configMainDB, out mainDB);
-            }
+            
+            var mainDB = EnumHelper.GetValue<DBTypeEnum>(configMainDB);
 
             return mainDB;
         }
