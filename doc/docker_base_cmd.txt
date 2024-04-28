@@ -23,3 +23,12 @@ docker rm 1d52b2b722ad
 
 # Start Docker 容器
 docker start 1d52b2b722ad
+
+
+# 容器列表
+docker container ls
+
+# 进入容器
+docker exec -i containerId bash
+
+

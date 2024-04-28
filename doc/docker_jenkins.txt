@@ -1,1 +1,11 @@
-docker run -d -p 8080:8080 -p 50000:50000 -v /var/jenkins_mount:/apps/develops/jenkins -v /etc/localtime:/etc/localtime --name jenkins docker.io/jenkinsci/blueocean
+docker run \
+  --name jenkins \                                      # 给容器起个名字，叫做 jenkins
+  --detach \                                            # 以后台分离模式运行
+  --publish 8080:8080 \                                 # host 8080端口映射容器8080端口
+  --publish 50000:50000 \                               # host 50000端口映射容器50000端口
+  --volume jenkins-data:/var/jenkins_home \             # 卷 jenkins-data 映射容器路径/var/jenkins_home，这样就可以在host上直接修改jenkins配置了
+  --volume /var/run/docker.sock:/var/run/docker.sock \  # host 上的docker sock映射容器的docker sock，这样容器内的docker命令都会发送到host上的docker中来执行
+  myjenkins                                             # 使用刚刚构建的镜像 myjenkins 来运行容器
+
+  
+pengxx / 1
