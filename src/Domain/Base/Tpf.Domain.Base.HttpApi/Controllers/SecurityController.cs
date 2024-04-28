@@ -39,5 +39,27 @@ namespace Tpf.Domain.Base.HttpApi.Controllers
             return await Task.FromResult(result);
         }
 
+        /// <summary>
+        /// 3、GetSecurityKey16
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<string> GetSecurityKey16()
+        {
+            return await Task.FromResult(ConfigHelper.GetSecurityKey16());
+        }
+
+        /// <summary>
+        /// 4、GetSecurityKey32
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<string> GetSecurityKey32()
+        {
+            return await Task.FromResult(ConfigHelper.GetSecurityKey32());
+        }
+
     }
 }

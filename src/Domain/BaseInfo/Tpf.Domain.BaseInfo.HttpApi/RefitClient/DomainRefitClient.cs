@@ -2,7 +2,7 @@
 using Refit;
 using Tpf.Authentication;
 using Tpf.Common.ConfigOptions;
-using Tpf.Domain.Common.RestApplication;
+using Tpf.Domain.Common.RestApplication.Auth;
 using Tpf.Middlewares.Refit;
 using Tpf.Utils;
 

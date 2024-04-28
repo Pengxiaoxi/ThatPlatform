@@ -10,6 +10,11 @@ namespace Tpf.Caching.CSRedisCore
         public override string SectionName => "Caching:Redis";
 
         /// <summary>
+        /// 是否启用
+        /// </summary>
+        public bool? Enable { get; set; }
+
+        /// <summary>
         /// 默认连接
         /// </summary>
         public string? Default { get; set; }

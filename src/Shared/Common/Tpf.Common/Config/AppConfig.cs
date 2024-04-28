@@ -29,7 +29,7 @@ namespace Tpf.Common.Config
 
 
         #region ORM
-        public const string ORM_Main = "ORM:Main";
+        public const string ORM_Main = "Database:ORM:Main";
 
         public const string ORM_Slave = "ORM:Slave"; 
         #endregion

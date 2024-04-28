@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Tpf.Common.ResponseExtensions.ServiceResult;
 using Tpf.Domain.Base.Domain.Context;
 using Tpf.Domain.Base.HttpApi;
-using Tpf.Domain.Common.RestApplication;
+using Tpf.Domain.Common.RestApplication.Auth;
 
 namespace Tpf.Domain.BaseInfo.HttpApi.Controllers
 {

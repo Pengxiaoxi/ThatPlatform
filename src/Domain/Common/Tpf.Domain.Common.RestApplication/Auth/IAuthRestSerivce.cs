@@ -3,7 +3,7 @@ using Tpf.Autofac;
 using Tpf.Common.ResponseExtensions.ServiceResult;
 using Tpf.Domain.Base.Domain.Context;
 
-namespace Tpf.Domain.Common.RestApplication
+namespace Tpf.Domain.Common.RestApplication.Auth
 {
     [NotRegister]
     public interface IAuthRestSerivce
@@ -15,6 +15,12 @@ namespace Tpf.Domain.Common.RestApplication
         [Get("/userInfo/getCurrentUserInfo")]
         Task<Result<UserContextInfo>> GetCurrentUserInfo();
 
+        /// <summary>
+        /// 获取16位密钥
+        /// </summary>
+        /// <returns></returns>
+        [Get("/security/GetSecurityKey16")]
+        Task<string> GetSecurityKey16();
 
     }
 }

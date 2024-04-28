@@ -65,7 +65,7 @@ namespace Tpf.Middlewares
             #endregion
 
             #region AddTpfOptions
-            builder.AddTpfOptions();
+            //builder.AddTpfOptions();
 
             #endregion
 
