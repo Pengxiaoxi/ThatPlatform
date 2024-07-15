@@ -71,7 +71,7 @@ namespace Tpf.Autofac
             var interfacTypes = x.GetInterfaces();
             if (interfacTypes.Length == 0 && x.GetCustomAttribute<NotRegisterAttribute>() is not null)
             {
-                Console.WriteLine($"NotRegister Type: {x.FullName}");
+                //Console.WriteLine($"NotRegister Type: {x.FullName}");
                 return false;
             }
 
@@ -79,7 +79,7 @@ namespace Tpf.Autofac
             {
                 if (interfacTypes.Any(svc => svc.GetCustomAttribute<NotRegisterAttribute>() is not null))
                 {
-                    Console.WriteLine($"NotRegister Type: {x.FullName}");
+                    //Console.WriteLine($"NotRegister Type: {x.FullName}");
                     return false;
                 }
             }
