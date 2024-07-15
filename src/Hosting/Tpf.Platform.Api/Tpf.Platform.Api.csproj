@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Component\Tpf.RabbitMQ\Tpf.RabbitMQ.csproj" />
     <ProjectReference Include="..\..\Domain\BaseInfo\Tpf.Domain.BaseInfo.HttpApi\Tpf.Domain.BaseInfo.HttpApi.csproj" />
     <ProjectReference Include="..\..\Shared\Common\Tpf.Common\Tpf.Common.csproj" />
   </ItemGroup>
