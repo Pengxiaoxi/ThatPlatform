@@ -39,10 +39,12 @@ namespace Tpf.Platform.Api.Controllers
                 return false;
             }
 
-            var factory = new ConnectionFactory 
-            { 
-                HostName = _rabbitMqOptions.Connections.Default.HostName, 
+            var factory = new ConnectionFactory
+            {
+                HostName = _rabbitMqOptions.Connections.Default.HostName,
                 Port = _rabbitMqOptions.Connections.Default.Port,
+                //UserName = "",
+                //Password = "",
             };
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
@@ -53,32 +55,49 @@ namespace Tpf.Platform.Api.Controllers
                                  autoDelete: false,
                                  arguments: null);
 
-            //var body = Encoding.UTF8.GetBytes(message);
+            var body = Encoding.UTF8.GetBytes(message);
 
-            //channel.BasicPublish(exchange: string.Empty,
-            //                     routingKey: "SimpleQueue",
-            //                     basicProperties: null,
-            //                     body: body);
-
-            //ConsoleHelper.WriteColorLine($" [x] Sent {message}", ConsoleColor.Yellow);
-
-
-            // TEST
-            for (int i = 0; i < 100; i++)
-            {
-                message = $"{i}";
-
-                var body = Encoding.UTF8.GetBytes(message);
-
-                channel.BasicPublish(exchange: string.Empty,
+            channel.BasicPublish(exchange: string.Empty,
                                  routingKey: "SimpleQueue",
                                  basicProperties: null,
                                  body: body);
 
-                ConsoleHelper.WriteColorLine($" [x] Sent {message}", ConsoleColor.Yellow);
+            ConsoleHelper.WriteColorLine($" [x] Sent {message}", ConsoleColor.Yellow);
 
-                Thread.Sleep(1 * 1000);
-            }
+
+            // TEST
+            //Task.Run(() =>
+            //{
+            //    var factory = new ConnectionFactory
+            //    {
+            //        HostName = _rabbitMqOptions.Connections.Default.HostName,
+            //        Port = _rabbitMqOptions.Connections.Default.Port,
+            //    };
+            //    using var connection = factory.CreateConnection();
+            //    using var channel = connection.CreateModel();
+
+            //    channel.QueueDeclare(queue: "SimpleQueue",
+            //                         durable: false,
+            //                         exclusive: false,
+            //                         autoDelete: false,
+            //                         arguments: null);
+
+            //    for (int i = 0; i < 100; i++)
+            //    {
+            //        message = $"{i}";
+
+            //        var body = Encoding.UTF8.GetBytes(message);
+
+            //        channel.BasicPublish(exchange: string.Empty,
+            //                         routingKey: "SimpleQueue",
+            //                         basicProperties: null,
+            //                         body: body);
+
+            //        ConsoleHelper.WriteColorLine($" [x] Sent {message}", ConsoleColor.Yellow);
+
+            //        Thread.Sleep(1 * 1000);
+            //    }
+            //});
 
             return await Task.FromResult(true);
         }

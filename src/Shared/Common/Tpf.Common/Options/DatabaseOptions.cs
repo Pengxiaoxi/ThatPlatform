@@ -1,6 +1,4 @@
-﻿using Tpf.Common.Options;
-
-namespace Tpf.BaseRepository
+﻿namespace Tpf.Common.Options
 {
     public class DatabaseOptions : BaseOptions
     {
@@ -12,28 +10,22 @@ namespace Tpf.BaseRepository
         public string? Main { get; set; }
 
         /// <summary>
-        /// ORMOptions
+        /// ORM
         /// </summary>
-        public ORMOptions? ORMOptions { get; set; }
-
+        public ORMOption? ORM { get; set; }
     }
 
-    /// <summary>
-    /// ORMOptions
-    /// </summary>
-    public class ORMOptions
+    public class ORMOption
     {
         /// <summary>
-        /// 主ORM
+        /// IBaseReposiotry<> 默认ORM
         /// </summary>
         public string? Main { get; set; }
 
         /// <summary>
-        /// 其他ORM（配置后自动注入，便于直接使用）
+        /// 从属使用ORM
         /// </summary>
-        [Obsolete("改配置不如改代码")]
-        public string[]? Slaves { get; set; }
+        public List<string>? Slaves { get; set; }
+
     }
-
-
 }

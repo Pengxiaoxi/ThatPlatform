@@ -1,4 +1,4 @@
-﻿namespace Tpf.Common.ConfigOptions
+﻿namespace Tpf.Common.Options
 {
     public class HttpApisOptions : BaseOptions
     {

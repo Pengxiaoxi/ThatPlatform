@@ -21,10 +21,9 @@ namespace Tpf.Utils
 
                 SaveBinaryFile(responseStream, FileDirectory, FileName);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                //Console.WriteLine(ex);
-                throw ex;
+                throw;
             }
         }
 

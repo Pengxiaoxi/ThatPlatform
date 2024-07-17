@@ -2,8 +2,8 @@
 using Microsoft.Extensions.Configuration.Json;
 using System;
 using Tpf.Common.Config;
-using Tpf.Common.ConfigOptions;
 using Tpf.Common.Enum;
+using Tpf.Common.Options;
 using Tpf.Security;
 
 namespace Tpf.Utils
@@ -80,7 +80,7 @@ namespace Tpf.Utils
         {
             if (string.IsNullOrEmpty(connName))
             {
-                return null;
+                return string.Empty;
             }
 
             var conn = _configuration.GetConnectionString(connName) ?? throw new Exception($"未配置名称为'{connName}'数据库连接字符串，");
@@ -105,7 +105,7 @@ namespace Tpf.Utils
             // 默认 Dapper
             var mainORM = default(RepositoryType);
 
-            var configMainORM = ConfigHelper.Get(AppConfig.ORM_Main);
+            var configMainORM = ConfigHelper.GetOptions<DatabaseOptions>()?.ORM?.Main;
             if (!string.IsNullOrEmpty(configMainORM))
             {
                 Enum.TryParse<RepositoryType>(configMainORM, out mainORM);
@@ -116,7 +116,7 @@ namespace Tpf.Utils
 
         public static DBTypeEnum GetMainDB()
         {
-            var configMainDB = ConfigHelper.Get(AppConfig.Database_Main);
+            var configMainDB = ConfigHelper.GetOptions<DatabaseOptions>().Main;
             
             var mainDB = EnumHelper.GetValue<DBTypeEnum>(configMainDB);
 
@@ -125,12 +125,12 @@ namespace Tpf.Utils
 
         public static string GetSecurityKey16()
         {
-            return ConfigHelper.Get(AppConfig.SecurityKey16);
+            return ConfigHelper.GetOptions<AppOptions>().Security16;
         }
 
         public static string GetSecurityKey32()
         {
-            var result = ConfigHelper.Get(AppConfig.SecurityKey32) ?? "zY3_iJ6[rP0!zS0/uQ3=dW5|lC6*yJ9:";
+            var result = ConfigHelper.GetOptions<AppOptions>().Security32 ?? "zY3_iJ6[rP0!zS0/uQ3=dW5|lC6*yJ9:";
 
             return result;
         }

@@ -1,4 +1,4 @@
-﻿using Tpf.Common.ConfigOptions;
+﻿using Tpf.Common.Options;
 
 namespace Tpf.BlobStoring.Minio
 {
@@ -7,8 +7,6 @@ namespace Tpf.BlobStoring.Minio
     /// </summary>
     public class MinioOptions : BaseOptions
     {
-        public const string Name = "BlobStoring:Minio";
-
         public override string SectionName => "BlobStoring:Minio";
 
         /// <summary>

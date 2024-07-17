@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Refit;
 using Tpf.Authentication;
-using Tpf.Common.ConfigOptions;
+using Tpf.Common.Options;
 using Tpf.Domain.Common.RestApplication.Auth;
 using Tpf.Middlewares.Refit;
 using Tpf.Utils;

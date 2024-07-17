@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tpf.Common.Config
 {
-    [Obsolete]
+    [Obsolete("请使用选项模式，统一维护配置项")]
     public partial class AppConfig
     {
         public const string SecurityKey16 = "App:Security16";

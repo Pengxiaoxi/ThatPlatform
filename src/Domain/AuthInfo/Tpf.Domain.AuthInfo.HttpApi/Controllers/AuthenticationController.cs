@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Tpf.Common.Config;
+using Tpf.Common.Options;
 using Tpf.Common.ResponseExtensions.ServiceResult;
 using Tpf.Domain.AuthInfo.Applciation.Dto;
 using Tpf.Domain.AuthInfo.Applciation.Svc;
@@ -65,7 +66,7 @@ namespace Tpf.Domain.AuthInfo.HttpApi.Controllers
             }
 
             var user = _mapper.Map<UserInfo>(dto);
-            user.Secretkey = MD5Helper.MD5Encrypt32($"{user.Password}#{ConfigHelper.Get(AppConfig.SecurityKey16)}");
+            user.Secretkey = MD5Helper.MD5Encrypt32($"{user.Password}#{ConfigHelper.GetOptions<AppOptions>().Security16}");
             user.Password = GeneratePassBySecretkey(dto.Password, user.Secretkey);
             var result = await _userService.Save(user);
 

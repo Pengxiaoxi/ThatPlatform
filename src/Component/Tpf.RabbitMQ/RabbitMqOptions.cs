@@ -1,4 +1,4 @@
-﻿using Tpf.Common.ConfigOptions;
+﻿using Tpf.Common.Options;
 
 namespace Tpf.RabbitMQ
 {
