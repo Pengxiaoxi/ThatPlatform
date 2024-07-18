@@ -8,9 +8,9 @@ namespace Tpf.RabbitMQ
 
         public RabbitMqConnections Connections { get; }
 
-        
 
-        public RabbitMqOptions() 
+
+        public RabbitMqOptions()
         {
             Connections = new RabbitMqConnections();
         }

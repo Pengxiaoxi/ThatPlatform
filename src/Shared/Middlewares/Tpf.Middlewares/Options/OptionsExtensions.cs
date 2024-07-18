@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Tpf.Common.Options;
-using Tpf.Utils;
 
 namespace Tpf.Middlewares.Options
 {
@@ -37,7 +35,12 @@ namespace Tpf.Middlewares.Options
                 var option = builder.Configuration.GetSection(currentOptionsName).Get(type);
                 if (option is not null)
                 {
-                    builder.Services.ConfigureOptions(option);
+                    //builder.Services.ConfigureOptions(option);
+
+                    //var TType = type.BaseType;
+                    //builder.Services.Configure<dynamic>(builder.Configuration.GetSection(currentOptionsName));
+
+                    //builder.Services.AddOptions<BaseOptions>(currentOptionsName);
                 }
                 
                 //builder.Services.Configure<BaseOptions>(builder.Configuration.GetSection(currentOptionsName));

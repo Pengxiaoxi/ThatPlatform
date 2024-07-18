@@ -120,7 +120,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.Caching.CSRedisCore", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.RabbitMQ", "Component\Tpf.RabbitMQ\Tpf.RabbitMQ.csproj", "{126D4D41-6C35-48B0-9696-1FA207C1DCE1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.ConsoleApp", "Hosting\Console\Tpf.ConsoleApp\Tpf.ConsoleApp.csproj", "{856A1FD7-8F49-4FAF-A614-531AADB22D09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tpf.RabbitMQ.Customer1.Console", "Hosting\Console\Tpf.ConsoleApp\Tpf.RabbitMQ.Customer1.Console.csproj", "{856A1FD7-8F49-4FAF-A614-531AADB22D09}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Console", "Console", "{104D6284-48E2-4D5F-A376-F047B2B4C5B5}"
 EndProject

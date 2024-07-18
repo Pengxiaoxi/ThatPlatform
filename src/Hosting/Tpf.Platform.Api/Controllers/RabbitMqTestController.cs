@@ -43,28 +43,35 @@ namespace Tpf.Platform.Api.Controllers
             {
                 HostName = _rabbitMqOptions.Connections.Default.HostName,
                 Port = _rabbitMqOptions.Connections.Default.Port,
+                // 无账户密码则默认使用 guest/guest 处理消息
                 //UserName = "",
                 //Password = "",
             };
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 
-            channel.QueueDeclare(queue: "SimpleQueue",
-                                 durable: false,
+            // 声明队列，durable: true 标记为持久性
+            channel.QueueDeclare(queue: "SimpleQueue-durable",
+                                 durable: true, // 是否持久化
                                  exclusive: false,
                                  autoDelete: false,
                                  arguments: null);
 
             var body = Encoding.UTF8.GetBytes(message);
 
+            // 将消息标记为持久性
+            var properties = channel.CreateBasicProperties();
+            properties.Persistent = true;
+
             channel.BasicPublish(exchange: string.Empty,
-                                 routingKey: "SimpleQueue",
-                                 basicProperties: null,
+                                 routingKey: "SimpleQueue-durable",
+                                 basicProperties: properties,
                                  body: body);
 
             ConsoleHelper.WriteColorLine($" [x] Sent {message}", ConsoleColor.Yellow);
 
 
+            #region TEST
             // TEST
             //Task.Run(() =>
             //{
@@ -97,7 +104,8 @@ namespace Tpf.Platform.Api.Controllers
 
             //        Thread.Sleep(1 * 1000);
             //    }
-            //});
+            //}); 
+            #endregion
 
             return await Task.FromResult(true);
         }
