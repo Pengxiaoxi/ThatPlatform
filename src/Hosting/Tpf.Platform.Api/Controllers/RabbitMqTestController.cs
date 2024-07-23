@@ -27,12 +27,12 @@ namespace Tpf.Platform.Api.Controllers
         }
 
         /// <summary>
-        /// 1、Producer
+        /// 1、工作队列 WorkQueueProducer
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<bool> Producer([FromBody] string message)
+        public async Task<bool> WorkQueueProducer([FromBody] string message)
         {
             if (_rabbitMqOptions is null || _rabbitMqOptions.Connections is null)
             {
@@ -111,7 +111,137 @@ namespace Tpf.Platform.Api.Controllers
         }
 
         /// <summary>
-        /// 2、Consumer
+        /// 2、Fanout 广播交换机
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<bool> FanoutProducer([FromBody] string message)
+        {
+            if (_rabbitMqOptions is null || _rabbitMqOptions.Connections is null)
+            {
+                return false;
+            }
+
+            var factory = new ConnectionFactory
+            {
+                HostName = _rabbitMqOptions.Connections.Default.HostName,
+                Port = _rabbitMqOptions.Connections.Default.Port,
+                // 无账户密码则默认使用 guest/guest 处理消息
+                //UserName = "",
+                //Password = "",
+            };
+            using var connection = factory.CreateConnection();
+            using var channel = connection.CreateModel();
+
+            // 指定交换机名称及其类型
+            channel.ExchangeDeclare(exchange: "logs", type: ExchangeType.Fanout);
+
+            var body = Encoding.UTF8.GetBytes(message);
+
+            channel.BasicPublish(exchange: "logs",
+                                 routingKey: string.Empty,
+                                 basicProperties: null,
+                                 body: body);
+
+            ConsoleHelper.WriteColorLine($" [x] Sent {message}", ConsoleColor.Yellow);
+
+            return await Task.FromResult(true);
+        }
+
+        /// <summary>
+        /// 3、Direct 直接交换机
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<bool> DirectProducer([FromBody] string[] args)
+        {
+            if (_rabbitMqOptions is null || _rabbitMqOptions.Connections is null)
+            {
+                return false;
+            }
+
+            var factory = new ConnectionFactory
+            {
+                HostName = _rabbitMqOptions.Connections.Default.HostName,
+                Port = _rabbitMqOptions.Connections.Default.Port,
+                // 无账户密码则默认使用 guest/guest 处理消息
+                //UserName = "",
+                //Password = "",
+            };
+            using var connection = factory.CreateConnection();
+            using var channel = connection.CreateModel();
+
+            // 指定交换机名称及其类型
+            channel.ExchangeDeclare(exchange: "direct_logs", type: ExchangeType.Direct);
+
+            var severity = (args.Length > 0) ? args[0] : "info";
+            var message = (args.Length > 1)
+              ? string.Join(" ", args.Skip(1).ToArray())
+              : "Hello World!";
+
+            var body = Encoding.UTF8.GetBytes(message);
+
+            channel.BasicPublish(exchange: "direct_logs",
+                                 routingKey: severity,
+                                 basicProperties: null,
+                                 body: body);
+
+            ConsoleHelper.WriteColorLine($" [x] Sent '{severity}':'{message}'", ConsoleColor.Yellow);
+
+            return await Task.FromResult(true);
+        }
+
+
+        /// <summary>
+        /// 4、Topic 主题交换机
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<bool> TopicProducer([FromBody] string[] args)
+        {
+            if (_rabbitMqOptions is null || _rabbitMqOptions.Connections is null)
+            {
+                return false;
+            }
+
+            var factory = new ConnectionFactory
+            {
+                HostName = _rabbitMqOptions.Connections.Default.HostName,
+                Port = _rabbitMqOptions.Connections.Default.Port,
+                // 无账户密码则默认使用 guest/guest 处理消息
+                //UserName = "",
+                //Password = "",
+            };
+            using var connection = factory.CreateConnection();
+            using var channel = connection.CreateModel();
+
+            // 指定交换机名称及其类型
+            channel.ExchangeDeclare(exchange: "topic_logs", type: ExchangeType.Topic);
+
+            var routingKey = (args.Length > 0) ? args[0] : "anonymous.info";
+            var message = (args.Length > 1)
+              ? string.Join(" ", args.Skip(1).ToArray())
+              : "Hello World!";
+
+            var body = Encoding.UTF8.GetBytes(message);
+
+            channel.BasicPublish(exchange: "topic_logs",
+                                 routingKey: routingKey,
+                                 basicProperties: null,
+                                 body: body);
+
+            ConsoleHelper.WriteColorLine($" [x] Sent '{routingKey}':'{message}'", ConsoleColor.Yellow);
+
+            return await Task.FromResult(true);
+        }
+
+
+
+        /// <summary>
+        /// 20、Consumer
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
