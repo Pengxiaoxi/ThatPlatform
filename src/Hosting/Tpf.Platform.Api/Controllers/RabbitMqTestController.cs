@@ -238,6 +238,19 @@ namespace Tpf.Platform.Api.Controllers
             return await Task.FromResult(true);
         }
 
+        /// <summary>
+        /// 5、RPC 远程调用
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<bool> RpcServer()
+        {
+            var result = await new RpcClient(_rabbitMqOptions).CallAsync("10");
+
+            Console.WriteLine(result);
+
+            return true;
+        }
 
 
         /// <summary>
@@ -277,5 +290,8 @@ namespace Tpf.Platform.Api.Controllers
         }
 
 
+        #region Private Method
+        
+        #endregion
     }
 }
