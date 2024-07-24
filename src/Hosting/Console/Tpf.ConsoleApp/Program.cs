@@ -5,7 +5,6 @@ using RabbitMQ.Client.Events;
 using RabbitMQ.Client;
 using System.Text;
 using Tpf.Utils;
-using Tpf.RabbitMQ.Customer1.Console;
 
 public class Program
 {
