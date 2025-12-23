@@ -9,7 +9,8 @@
 
     public partial class RedisKey
     {
-        
+
+        public const string UserPrivileges = "user_privileges";
 
 
     }

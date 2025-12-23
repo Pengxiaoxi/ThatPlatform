@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Tpf.Common.Config;
 using Tpf.Common.ResponseExtensions.ServiceResult;
 using Tpf.Domain.Base.Domain.Context;
 using Tpf.Domain.Base.HttpApi;
@@ -37,11 +38,18 @@ namespace Tpf.Domain.BaseInfo.HttpApi.Controllers
         [AllowAnonymous]
         public async Task<Result<bool>> Test()
         {
-            var taskList = new List<Task<bool>>();
+            //var taskList = new List<Task<bool>>();
             //await Task.WhenAll(taskList);
 
-            taskList.Add(ActionA());
-            taskList.Add(ActionB());
+            //taskList.Add(ActionA());
+            //taskList.Add(ActionB());
+
+
+            var account = "18827698888";
+            var userPrivileges = await RedisHelper.HGetAsync<List<string>>(RedisKey.UserPrivileges, account);
+
+
+
 
             return Result<bool>.IsSuccess(true);
         }

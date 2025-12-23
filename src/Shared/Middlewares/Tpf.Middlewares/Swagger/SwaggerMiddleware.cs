@@ -3,10 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using System.IO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Scalar.AspNetCore;
 
 namespace Tpf.Middlewares.Swagger
 {
@@ -72,7 +69,17 @@ namespace Tpf.Middlewares.Swagger
             app.MapSwagger("{documentName}/api-docs");
         }
 
-        #region 
+        public static void UseScalar(this WebApplication app)
+        {
+            app.UseSwagger(options =>
+            {
+                options.RouteTemplate = "/openapi/{documentName}.json";
+            });
+            app.MapScalarApiReference();
+        }
+
+
+        #region Private Method
         /// <summary>
         /// 获取所有 xml 注释文档路径
         /// </summary>

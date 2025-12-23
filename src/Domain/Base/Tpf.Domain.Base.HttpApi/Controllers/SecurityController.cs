@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Tpf.Security;
 using Tpf.Utils;
 
@@ -7,7 +8,7 @@ namespace Tpf.Domain.Base.HttpApi.Controllers
     /// <summary>
     /// 加解密接口
     /// </summary>
-    //[AllowAnonymous]
+    [AllowAnonymous]
     //[Route("api/security/[action]")]
     public class SecurityController : BaseApiController
     {

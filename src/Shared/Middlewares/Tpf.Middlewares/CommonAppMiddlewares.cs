@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
+using Scalar.AspNetCore;
 using Tpf.Jobs.Hangfire;
 using Tpf.Middlewares.Swagger;
 
@@ -34,14 +35,16 @@ namespace Tpf.Middlewares
 
             app.UseHealthChecks("/health"); // HealthCheck
 
-            app.UseKnife4UI(); // Swagger + Knife4UI
+            //app.UseKnife4UI(); // Swagger + Knife4UI
 
             //app.UseTpfHangfireMiddle();            
 
             app.MapControllers();
 
 
-            
+            app.UseScalar();
+
+
         }
 
     }

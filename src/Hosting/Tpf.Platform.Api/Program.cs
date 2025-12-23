@@ -1,6 +1,5 @@
 using Tpf.Domain.BaseInfo.HttpApi.RefitClient;
 using Tpf.Middlewares;
-using Tpf.Middlewares.Options;
 using Tpf.RabbitMQ;
 
 var builder = WebApplication.CreateBuilder(args);
